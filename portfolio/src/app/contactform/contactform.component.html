@@ -1,0 +1,16 @@
+<div class="container">
+    <form (ngSubmit)="onSubmit()" >
+
+        <label for="name">Name</label>
+        <input [(ngModel)]="contactData.name" type="text" id="name" name="firstname" placeholder="Your name.." required>
+
+        <label for="email">E-Mail</label>
+        <input [(ngModel)]="contactData.email" type="text" id="email" name="email" placeholder="Write something.." required>
+
+        <label for="message">Subject</label>
+        <textarea [(ngModel)]="contactData.message" id="message" name="message" placeholder="Write something.." style="height:200px" required></textarea>
+
+        <input type="submit" value="Submit">
+
+    </form>
+</div>
