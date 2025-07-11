@@ -1,0 +1,14 @@
+<header class="header">
+  <div class="header__left">
+    <app-language-switcher></app-language-switcher>
+    <nav>
+      <a routerLink="/about" routerLinkActive="active">{{ 'header.about' | translate }}</a>
+      <a routerLink="/skills" routerLinkActive="active">{{ 'header.skills' | translate }}</a>
+      <a routerLink="/projects" routerLinkActive="active">{{ 'header.projects' | translate }}</a>
+    </nav>
+  </div>
+  <div class="header__right">
+    <img src="img/friedrichfaraji_logo.png" alt="Logo Friedrich Faraji" class="logo">
+    <span class="name">Friedrich Faraji</span>
+  </div>
+</header>

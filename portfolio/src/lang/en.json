@@ -1,0 +1,14 @@
+{
+  "header": {
+    "about": "About me",
+    "skills": "Skills",
+    "projects": "Projects"
+  },
+  "buttons": {
+    "checkWork": "Check my work",
+    "contact": "Contact me"
+  },
+  "footer": {
+    "location": "Berlin, Germany"
+  }
+}

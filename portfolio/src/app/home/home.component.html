@@ -1,0 +1,22 @@
+<section class="hero">
+  <h3 class="hero__subtitle">Frontend Developer</h3>
+  <h1 class="hero__title">Friedrich Faraji</h1>
+
+  <div class="hero__buttons">
+      <app-custom-button>
+          [text]="'buttons.checkWork' | translate"
+          (click)="scrollToProjects()">
+      </app-custom-button>
+      <app-custom-button>
+          [text]="'buttons.contact' | translate"
+          (click)="scrollToContact()">
+      </app-custom-button>
+  </div>
+
+  <app-banner></app-banner>
+</section>
+
+<section id="content">
+  <router-outlet></router-outlet>
+</section>
+

@@ -1,0 +1,14 @@
+{
+    "header": {
+        "about": "Über mich",
+        "skills": "Fähigkeiten",
+        "projects": "Projekte"
+    },
+    "buttons": {
+        "checkWork": "Meine Arbeit ansehen",
+        "contact": "Kontaktiere mich"
+    },
+    "footer": {
+        "location": "Berlin, Deutschland"
+    }
+}
