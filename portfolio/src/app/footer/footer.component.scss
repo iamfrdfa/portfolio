@@ -1,4 +1,44 @@
 .footer {
+    width: 99vw;
     display: flex;
     justify-content: space-between;
+    position: absolute;
+    bottom: 8px !important;
+}
+
+.logo {
+    height: 40px;
+    width: auto;
+}
+
+.logo-container {
+    margin: 0 0 16px 0 !important;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.footer-left {
+    > p {
+        margin-block-start: 0;
+        margin-block-end: 0;
+        margin-inline-start: 0;
+        margin-inline-end: 0;
+    }
+}
+
+.footer-right {
+    > nav {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        flex-direction: column;
+        > a {
+            margin: 0 8px;
+            text-decoration: none;
+            color: inherit;
+            font-size: 14px;
+        }
+    }
 }

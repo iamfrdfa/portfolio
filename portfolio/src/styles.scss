@@ -1,1 +1,47 @@
-/* You can add global styles to this file, and also import other style files */
+body, html {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    width: 100%;
+    color: white;
+}
+
+body {
+    background-image: url("/img/background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+// Optional: Falls Sie möchten, dass der Hintergrund auch bei Überläufen sichtbar bleibt
+#root, app-root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+@font-face {
+    font-family: 'ErsteSchrift';
+    src: url('/fonts/FiraCode-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; // Verbessert die Ladeperformance
+}
+
+@font-face {
+    font-family: 'ZweiteSchrift';
+    src: url('/fonts/Karla-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+// Beispiel für die Verwendung:
+body {
+    font-family: 'Fira Code', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Karla', sans-serif;
+}

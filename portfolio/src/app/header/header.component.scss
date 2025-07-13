@@ -3,8 +3,12 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    // Wenn Sie einen leicht transparenten Header möchten
+    background: transparent; // optional für leichte Transparenz
+    // ODER
+    // background: transparent; // für komplett transparent
+
 
     &__left {
         display: flex;
@@ -17,7 +21,7 @@
 
             a {
                 text-decoration: none;
-                color: #333;
+                color: #fff;
                 font-weight: 500;
                 transition: color 0.3s ease;
 
