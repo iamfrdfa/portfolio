@@ -2,13 +2,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 16px 32px;
+    background: transparent;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    // Wenn Sie einen leicht transparenten Header möchten
-    background: transparent; // optional für leichte Transparenz
-    // ODER
-    // background: transparent; // für komplett transparent
-
+    font-family: "Fira Code", monospace;
 
     &__left {
         display: flex;
@@ -44,6 +41,8 @@
         .logo {
             height: 40px;
             width: auto;
+            margin: 0!important;
+            padding: 0 !important;
         }
 
         .name {

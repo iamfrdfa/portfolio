@@ -4,9 +4,7 @@ body, html {
     min-height: 100vh;
     width: 100%;
     color: white;
-}
-
-body {
+    font-family: 'Fira Code', sans-serif;
     background-image: url("/img/background.png");
     background-size: cover;
     background-position: center;
@@ -35,11 +33,6 @@ body {
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-}
-
-// Beispiel für die Verwendung:
-body {
-    font-family: 'Fira Code', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
