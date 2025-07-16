@@ -1,14 +1,16 @@
 <header class="header">
-  <div class="header__left">
-    <app-language-switcher></app-language-switcher>
-    <nav>
-      <a routerLink="/about" routerLinkActive="active">{{ 'About me' | translate }}</a>
-      <a routerLink="/skills" routerLinkActive="active">{{ 'Skills' | translate }}</a>
-      <a routerLink="/projects" routerLinkActive="active">{{ 'Projects' | translate }}</a>
-    </nav>
-  </div>
-  <div class="header__right">
-    <img src="img/friedrichfaraji_fulllogo2.png" alt="Logo Friedrich Faraji" class="logo">
-    <!--span class="name">Friedrich Faraji</span-->
-  </div>
+    <div class="header__left">
+        <a href="">
+            <img src="img/switchButton_EN.png" alt="SwitchButton EN" class="switch-button">
+        </a>
+        <nav>
+            <a routerLink="/about" class="headerLinks">About me</a>
+            <a routerLink="/skills" class="headerLinks">Skills</a>
+            <a routerLink="/projects" class="headerLinks">Projects</a>
+        </nav>
+    </div>
+    <div class="header__right">
+        <img src="img/friedrichfaraji_fulllogo2.png" alt="Logo Friedrich Faraji" class="logo">
+        <!--span class="name">Friedrich Faraji</span-->
+    </div>
 </header>

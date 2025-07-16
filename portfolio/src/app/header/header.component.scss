@@ -1,3 +1,5 @@
+$primaryColor: #3DCFB6;
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -23,11 +25,12 @@
                 transition: color 0.3s ease;
 
                 &:hover {
-                    color: #007bff;
+                    color: $primaryColor;
+                    transition: all 0.3s ease-in-out;
                 }
 
                 &.active {
-                    color: #007bff;
+                    color: $primaryColor;
                 }
             }
         }

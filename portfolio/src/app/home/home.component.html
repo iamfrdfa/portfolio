@@ -1,22 +1,26 @@
 <section class="hero">
-  <h3 class="hero__subtitle">Frontend Developer</h3>
-  <h1 class="hero__title">Friedrich Faraji</h1>
+    <h3 class="hero__subtitle">Frontend Developer</h3>
+    <h1 class="hero__title">Friedrich Faraji</h1>
 
-  <div class="hero__buttons">
-      <app-custom-button>
-          [text]="'buttons.checkWork' | translate"
-          (click)="scrollToProjects()">
-      </app-custom-button>
-      <app-custom-button>
-          [text]="'buttons.contact' | translate"
-          (click)="scrollToContact()">
-      </app-custom-button>
-  </div>
+    <div class="hero__buttons">
+        <button class="hero__button" routerLink="/about" class="heroButton_work">Check my work</button>
+        <button class="hero__button" routerLink="/about" class="heroButton_contact">Contact me</button>
+    </div>
+</section>
 
-  <app-banner></app-banner>
+<section class="gimmick">
+    <div class="gimmick_left">
+
+    </div>
+    <div class="gimmick_center">
+
+    </div>
+    <div class="gimmick_right">
+
+    </div>
 </section>
 
 <section id="content">
-  <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
 </section>
 
