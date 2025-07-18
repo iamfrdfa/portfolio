@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {TranslatePipe} from '@ngx-translate/core';
 import {RouterOutlet} from '@angular/router';
 import {AboutmeComponent} from './aboutme/aboutme.component';
+import {SkillsComponent} from './skills/skills.component';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +10,7 @@ import {AboutmeComponent} from './aboutme/aboutme.component';
         TranslatePipe,
         RouterOutlet,
         AboutmeComponent,
+        SkillsComponent,
     ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'

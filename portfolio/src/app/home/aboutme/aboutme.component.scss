@@ -1,7 +1,7 @@
 $primaryColor: #3DCFB6;
 $primaryColorBG: #1f2e2b;
 
-#aboutMeWrapper {
+.centerWrapper {
     background-color: #000000;
     display: flex;
     gap: 32px;
@@ -13,7 +13,7 @@ $primaryColorBG: #1f2e2b;
     position: relative; // Hinzufügen für relative Positionierung der Kinder
 }
 
-h1 {
+.greenBoxHeadline {
     color: $primaryColor;
     font-size: 64px;
     font-weight: bold;
@@ -36,7 +36,7 @@ h1 {
     }
 }
 
-.aboutMeRightInnerWrapper {
+.greenTextBoxWrapper {
     width: 50%;
     display: flex;
     justify-content: center;
@@ -44,9 +44,9 @@ h1 {
     padding: 0 32px 0 0;
     transform: translateY(50px); // 50px nach unten versetzt
 
-    > p { font-size: 24px; }
+    .textAboveBoxGreen { font-size: 24px; }
 
-    > div {
+    .textBoxGreen {
         background-color: $primaryColorBG;
         padding: 16px;
         border: 1px solid $primaryColor;
