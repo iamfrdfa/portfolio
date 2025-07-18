@@ -1,26 +1,33 @@
-<section class="hero">
-    <h3 class="hero__subtitle">Frontend Developer</h3>
-    <h1 class="hero__title">Friedrich Faraji</h1>
+<section id="mainWrapper">
+    <section class="hero">
+        <h3 class="hero__subtitle">Frontend Developer</h3>
+        <h1 class="hero__title">Friedrich Faraji</h1>
 
-    <div class="hero__buttons">
-        <button class="hero__button" routerLink="/about" class="heroButton_work">Check my work</button>
-        <button class="hero__button" routerLink="/about" class="heroButton_contact">Contact me</button>
-    </div>
+        <div class="hero__buttons">
+            <button class="hero__button" routerLink="/about" class="heroButton_work">Check my work</button>
+            <button class="hero__button" routerLink="/about" class="heroButton_contact">Contact me</button>
+        </div>
+
+        <section class="gimmick">
+            <div class="gimmick_left">
+
+            </div>
+            <div class="gimmick_center">
+
+            </div>
+            <div class="gimmick_right">
+
+            </div>
+        </section>
+    </section>
+
+    <section id="aboutMeComponent">
+        <app-aboutme></app-aboutme>
+    </section>
+
+    <section id="routerOutlet">
+        <router-outlet></router-outlet>
+    </section>
+
+
 </section>
-
-<section class="gimmick">
-    <div class="gimmick_left">
-
-    </div>
-    <div class="gimmick_center">
-
-    </div>
-    <div class="gimmick_right">
-
-    </div>
-</section>
-
-<section id="content">
-    <router-outlet></router-outlet>
-</section>
-
