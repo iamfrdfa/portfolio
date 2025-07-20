@@ -1,6 +1,8 @@
 // Farbvariablen
 $primaryColor: #3DCFB6;
-$secondaryColor: #1f2e2b;
+$primaryColorBG: #1f2e2b;
+$black: #000000;
+
 $backgroundColor: #000000;
 $textColor: #FFFFFF;
 
@@ -11,16 +13,7 @@ $fontSizeXLarge: 32px;
 
 // Box-Styles
 $boxShadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-$borderRadius: 8px;
+$borderRadius: 16px;
 $borderColor: $primaryColor;
 $paddingDefault: 16px;
 
-// Mixin für Box-Stile
-@mixin box-style {
-    background-color: $secondaryColor;
-    color: $textColor;
-    padding: $paddingDefault;
-    border: 1px solid $borderColor;
-    border-radius: $borderRadius;
-    box-shadow: $boxShadow;
-}
