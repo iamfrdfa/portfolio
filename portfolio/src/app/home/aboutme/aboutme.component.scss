@@ -21,23 +21,13 @@
     }
 }
 
+.aboutMeRightInnerWrapper {
+    @include rightInnerWrapper;
+}
+
 .greenTextBoxWrapper {
     @include greenBoxWrapper;
     transform: translateY(50px); // 50px nach unten versetzt
-
-    .textAboveBoxGreen {
-        font-size: 24px;
-    }
-
-    .textBoxGreen {
-        @include greenBoxStyle;
-    }
-
-    .greenBoxParagraph {
-        display: flex;
-        justify-content: flex-start;
-        width: 568px;
-    }
 }
 
 .aboutMeTable {

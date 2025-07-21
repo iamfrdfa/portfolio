@@ -9,28 +9,34 @@
     @include greenBoxHeadline;
 }
 
-.aboutMeLeftInnerWrapper {
+.leftInnerWrapper {
     @include leftInnerWrapper;
+    transform: translateY(-100px); // 50px nach oben versetzt
+}
+
+.rightInnerWrapper {
+    @include rightInnerWrapper;
 }
 
 .greenTextBoxWrapper {
     @include greenBoxWrapper;
-
-    .textAboveBoxGreen { font-size: 24px; }
-
-    .textBoxGreen {
-        @include greenBoxStyle;
-    }
 }
 
-.aboutMeTable {
-    > table {
-        > tr {
-            > td {
-                padding: 8px;
-                font-size: 20px;
-                font-weight: 500;
-            }
+.primaryColor {
+    color: $primaryColor !important;
+}
+
+.skillIcons {
+    width: 632px !important;
+
+    > img {
+        width: 104px;
+        height: 116px;
+        margin-right: 72px;
+
+        &:nth-of-type(4),
+        &:nth-of-type(8) {
+            margin-right: 0 !important;
         }
     }
 }

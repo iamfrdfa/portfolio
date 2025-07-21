@@ -17,3 +17,12 @@ $borderRadius: 16px;
 $borderColor: $primaryColor;
 $paddingDefault: 16px;
 
+
+//General Styles
+.flex-start {
+    justify-content: flex-start !important;
+}
+
+.flex-end {
+    justify-content: flex-end !important;
+}
