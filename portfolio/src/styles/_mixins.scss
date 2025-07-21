@@ -2,7 +2,7 @@
 
 // Mixin für Box-Stile
 @mixin componentCenterWrapper {
-    background-color: $black;
+    background-color: $secondaryColorBG;
     display: flex;
     gap: 32px;
     justify-content: center;
@@ -12,6 +12,21 @@
     color: $primaryColor;
     font-size: 18px;
     gap: 100px;
+}
+
+@mixin componentCenterWrapperBG {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70vh;
+    color: $primaryColor;
+    font-size: 18px;
+    gap: 100px;
+    background-image: url("/img/background_skillSet.svg") !important;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 @mixin greenBoxWrapper {
