@@ -1,15 +1,15 @@
-@import '_variables';
+@use 'variables' as v;
 
 // Mixin für Box-Stile
 @mixin componentCenterWrapper {
-    background-color: $secondaryColorBG;
+    background-color: v.$secondaryColorBG;
     display: flex;
     gap: 32px;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 70vh;
-    color: $primaryColor;
+    color: v.$primaryColor;
     font-size: 18px;
     gap: 100px;
 }
@@ -21,7 +21,7 @@
     align-items: center;
     width: 100%;
     height: 70vh;
-    color: $primaryColor;
+    color: v.$primaryColor;
     font-size: 18px;
     gap: 100px;
     background-image: url("/img/background_skillSet.svg") !important;
@@ -54,10 +54,10 @@
 }
 
 @mixin greenBoxStyle {
-    background-color: $primaryColorBG;
-    padding: $paddingDefault;
-    border: 1px solid $primaryColor;
-    border-radius: $borderRadius;
+    background-color: v.$primaryColorBG;
+    padding: v.$paddingDefault;
+    border: 1px solid v.$primaryColor;
+    border-radius: v.$borderRadius;
     color: white;
     max-width: 568px;
 
@@ -68,11 +68,11 @@
 }
 
 @mixin generalBoxStyle {
-    background-color: $primaryColorBG;
-    padding: $paddingDefault;
-    border: 1px solid $borderColor;
-    border-radius: $borderRadius;
-    box-shadow: $boxShadow;
+    background-color: v.$primaryColorBG;
+    padding: v.$paddingDefault;
+    border: 1px solid v.$borderColor;
+    border-radius: v.$borderRadius;
+    box-shadow: v.$boxShadow;
     color: white;
     max-width: 568px;
 }
@@ -96,7 +96,7 @@
 }
 
 @mixin greenBoxHeadline {
-    color: $primaryColor;
+    color: v.$primaryColor;
     font-size: 64px;
     font-weight: bold;
     margin-block-start: 0;
@@ -129,8 +129,8 @@
     font-size: 17px;
 
     &:hover {
-        border-color: $primaryColor;
-        color: $primaryColor;
+        border-color: v.$primaryColor;
+        color: v.$primaryColor;
         transition: all 0.3s ease-in-out;
     }
 }
@@ -145,8 +145,8 @@
     font-size: 17px;
 
     &:hover {
-        border-color: $primaryColor;
-        color: $primaryColor;
+        border-color: v.$primaryColor;
+        color: v.$primaryColor;
         transition: all 0.3s ease-in-out;
     }
 }
