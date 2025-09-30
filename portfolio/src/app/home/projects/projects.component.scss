@@ -5,48 +5,134 @@
     background-color: $secondaryColorBG;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; /* zentriert Heading & Grid-Rahmen */
     justify-content: center;
     width: 100%;
     height: 100%;
 }
 
+.projectsHeading,
+.projectsGrid {
+    width: 51%;
+    align-items: flex-start;
+}
+
 .projectsHeading {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
     flex-direction: column;
-    width: calc(100% - 470px); // 470px for padding-left
+    margin-top: 32px;
+
+    .greenBoxHeadline { @include greenBoxHeadline; }
+
+    .textAboveBoxGreen {
+        font-size: 24px;
+        color: $primaryColor;
+    }
 }
 
 .projectsGrid {
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    width: calc(100% - 64px); // 64px for padding
+    gap: 32px;
+    margin: 0;
+    padding: 0;
 }
 
 .leftProjectGrid {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    width: 55%;
+    flex: 1 1 55%;
+    min-width: 0;
+}
+
+.rightProjectGrid {
+    flex: 0 0 296px;
+    height: 0;
+    overflow: visible;
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    align-self: center;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease;
 }
 
 .projectCard {
-    border: 1px solid $primaryColor;
+    border-top: 1px solid $primaryColor;
     border-right: none !important;
+    border-bottom: none;
     border-left: none !important;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 110px;
+    padding: 0 32px;
+
+    .projectGridItemLeft {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 16px;
+        width: 50%;
+
+        .projectName {
+            font-family: 'Fira Code', sans-serif;
+            font-size: 24px;
+            line-height: 120%;
+            font-weight: bold;
+        }
+
+        > .outwardArrow { display: none; }
+    }
+
+    .projectGridItemRight {
+        font-family: 'Karla', sans-serif;
+        font-size: 18px;
+        line-height: 120%;
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: $hoverColorSkills;
+
+        .projectGridItemLeft > .outwardArrow { display: block; }
+    }
 }
 
-.greenPipe {
-    color: $primaryColor;
+/* Erstes Thumbnail */
+.projectsGrid:nth-of-type(1) .rightProjectGrid {
+    /* eigene Position */
+    transform: translateY(-20px) translateX(40px);
 }
+
+/* Zweites Thumbnail */
+.projectsGrid:nth-of-type(2) .rightProjectGrid {
+    transform: translateY(100px) translateX(200px);
+}
+
+/* Drittes Thumbnail */
+.projectsGrid:nth-of-type(3) .rightProjectGrid {
+    transform: translateY(-10px) translateX(-30px);
+}
+
+
+.projectsWrapper .projectsGrid:last-of-type .projectCard {
+    border-bottom: 1px solid $primaryColor;
+}
+
+.projectsGrid:has(.projectCard:hover) .rightProjectGrid {
+    visibility: visible;
+    opacity: 1;
+}
+
+.greenPipe { color: $primaryColor; }
 
 .thumbnail {
     > img {

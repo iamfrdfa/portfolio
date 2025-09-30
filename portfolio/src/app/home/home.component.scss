@@ -1,13 +1,12 @@
 @use 'styles/variables' as *;
 @use 'styles/mixins' as *;
 
-
 .hero {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 15% 0 0 0 ; /* Adjust padding to create space for the hero section */
+    padding: 8% 0 7% 0 ; /* Adjust padding to create space for the hero section */
 }
 
 .hero_subtitle {
