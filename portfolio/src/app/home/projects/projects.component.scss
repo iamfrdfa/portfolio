@@ -106,22 +106,17 @@
     }
 }
 
-/* Erstes Thumbnail */
-.projectsGrid:nth-of-type(1) .rightProjectGrid {
-    /* eigene Position */
-    transform: translateY(-20px) translateX(40px);
-}
-
-/* Zweites Thumbnail */
 .projectsGrid:nth-of-type(2) .rightProjectGrid {
-    transform: translateY(100px) translateX(200px);
+    transform: translateY(-60px) translateX(100px);
 }
 
-/* Drittes Thumbnail */
 .projectsGrid:nth-of-type(3) .rightProjectGrid {
-    transform: translateY(-10px) translateX(-30px);
+    transform: translateY(-100px) translateX(100px);
 }
 
+.projectsGrid:nth-of-type(4) .rightProjectGrid {
+    transform: translateY(-120px) translateX(100px);
+}
 
 .projectsWrapper .projectsGrid:last-of-type .projectCard {
     border-bottom: 1px solid $primaryColor;
