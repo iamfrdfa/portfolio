@@ -2,10 +2,6 @@
     <h2 class="sectionTitle">What my colleagues say about me</h2>
 
     <div #viewport class="viewport">
-        <svg class="quoteIcon" viewBox="0 0 64 64" aria-hidden="true">
-            <path d="M24 28c0-8.8 7.2-16 16-16v8c-4.4 0-8 3.6-8 8h8v16H24V28zm-20 16V28c0-8.8 7.2-16 16-16v8c-4.4 0-8 3.6-8 8h8v16H4z"/>
-        </svg>
-
         <div #track class="track"
              (transitionend)="onTransitionEnd()"
              (pointerdown)="onPointerDown($event)"
@@ -13,6 +9,9 @@
              (pointerup)="onPointerUp($event)"
              (pointercancel)="onPointerUp($event)">
             <article *ngFor="let s of slides; let i = index" class="card" [attr.aria-hidden]="i!==idx">
+                <!-- NEU: dein eigenes SVG als Asset -->
+                <img src="img/icons/quotes.svg" class="quoteIcon" alt="" aria-hidden="true" />
+
                 <p class="quote" aria-live="polite">{{ s.quote }}</p>
                 <div class="signature">
                     <span class="line"></span>
@@ -24,16 +23,26 @@
     </div>
 
     <div class="controls">
-        <button class="arrow" type="button" (click)="prev()" aria-label="Vorheriges Testimonial">←</button>
+        <!-- Linker Pfeil -->
+        <button class="arrow" type="button" (click)="prev()" aria-label="Vorheriges Testimonial">
+            <img src="img/icons/arrow-left.svg" alt="" aria-hidden="true" />
+        </button>
+
+        <!-- Dots bleiben -->
         <div class="dots">
             <button *ngFor="let _ of items; let d = index"
-                type="button"
-                class="dot"
-                [class.active]="activeDot===d"
-                (click)="goDot(d)"
-                [attr.aria-current]="activeDot===d ? 'true' : null">
+                    type="button"
+                    class="dot"
+                    [class.active]="activeDot===d"
+                    (click)="goDot(d)"
+                    [attr.aria-current]="activeDot===d ? 'true' : null">
             </button>
         </div>
-        <button class="arrow" type="button" (click)="next()" aria-label="Nächstes Testimonial">→</button>
+
+        <!-- Rechter Pfeil -->
+        <button class="arrow" type="button" (click)="next()" aria-label="Nächstes Testimonial">
+            <img src="img/icons/arrow-right.svg" alt="" aria-hidden="true" />
+        </button>
     </div>
+
 </section>

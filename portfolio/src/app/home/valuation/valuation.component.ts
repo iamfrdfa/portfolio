@@ -111,12 +111,12 @@ export class ValuationComponent implements AfterViewInit {
         const firstCard = this.track.nativeElement.querySelector('.card') as HTMLElement | null;
         if (firstCard) {
             const cs = getComputedStyle(firstCard);
-            this.cardWidth = firstCard.offsetWidth; // sollte 632px sein
-            this.cardGap = parseFloat(cs.marginLeft) + parseFloat(cs.marginRight); // z.B. 24+24 = 48
+            this.cardWidth = firstCard.offsetWidth;
+            this.cardGap = parseFloat(cs.marginLeft) + parseFloat(cs.marginRight);
         }
 
         // aktive Karte im Viewport zentrieren
-        this.centerOffset = (vw - this.cardWidth) / 2;
+        this.centerOffset = (vw - this.cardWidth) / 2 - (this.cardGap / 2) - 35;
     }
 
     /** Translate berechnen: -(idx * (Breite+Gap)) + CenterOffset (+ Drag-Offset) */

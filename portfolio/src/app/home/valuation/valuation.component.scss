@@ -3,6 +3,10 @@
 
 #valuationComponent {
     padding: 250px 0;
+
+    /* verhindert, dass irgendwas außerhalb der Sektion
+       einen horizontalen Seitenscroll erzeugt */
+    overflow-x: clip;
 }
 
 .valuation {
@@ -13,6 +17,7 @@
     flex-direction: column;
     align-items: center;
     gap: 24px;
+    overflow-x: hidden;
 }
 
 .sectionTitle {
@@ -22,22 +27,25 @@
 
 .viewport {
     position: relative;
-    width: 1012px;
+    width: min(1012px, 100%);
     height: 274px;
     overflow: visible;
+    margin: 0 auto;
 }
 
 .quoteIcon {
     position: absolute;
-    left: -32px;
     top: -32px;
+    left: 50%;
+    transform: translateX(-348px); /* halbe Kartenbreite (632/2=316) + halbe Margin (36) ≈ 352 */
     width: 96px;
     height: 96px;
-    fill: #3DCFB6;
+    fill: #ffffff;
     opacity: 0.9;
     pointer-events: none;
-    z-index: 2;
+    z-index: 3;
 }
+
 
 .track {
     display: flex;
@@ -51,10 +59,13 @@
     width: 632px;
     height: 274px;
     box-sizing: border-box;
-    margin: 0 24px;         /* Gap zwischen Karten (48px total) */
+
+    /* GAP +50%: 24px → 36px je Seite (gesamt 72px) */
+    margin: 0 36px;
+
     padding: 24px 32px 22px 72px;
 
-    background: #173733;    /* keine Gradients/Overlays am Rand */
+    background: #173733;
     border: 1px solid $primaryColor;
     border-radius: 20px;
     color: #e8f5f2;
@@ -86,67 +97,70 @@
     border-radius: 2px;
 }
 
-.author {
-    font-weight: 600;
-}
+.author { font-weight: 600; }
+.role   { opacity: .9; }
 
-.role {
-    opacity: .9;
-}
-
-.fade {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 80px;
-    pointer-events: none;
-}
-
-.fade-left {
-    left: 0;
-    background: linear-gradient(90deg, #1f1f1f, transparent);
-}
-
-.fade-right {
-    right: 0;
-    background: linear-gradient(270deg, #1f1f1f, transparent);
-}
+/* (falls du sie später wieder nutzt) standardmäßig aus */
+.fade, .fade-left, .fade-right { display: none; }
 
 .controls {
     display: flex;
     align-items: center;
     gap: 18px;
 
+    /* Pfeile */
     .arrow {
         background: transparent;
-        border: 1px solid $primaryColor;
-        padding: 6px 10px;
-        border-radius: 10px;
+        border: none;             /* kein Rahmen */
+        padding: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+
+        img {
+            width: 40px;
+            height: 40px;
+            filter: brightness(0) invert(1); /* färbt schwarz → weiß */
+            transition: transform 0.2s ease;
+        }
+
+        &:hover img {
+            transform: scale(1.15);
+        }
     }
 
+    /* Pagination-Dots */
     .dots {
         display: flex;
         gap: 10px;
     }
 
     .dot {
+        display: block;
         width: 8px;
         height: 8px;
-        border-radius: 50%;
+        aspect-ratio: 1 / 1;
+        padding: 0;
         border: none;
-        background: #4a6;
-        opacity: .4;
+        border-radius: 50%;
+        background: #fff;
+        opacity: .35;
+        line-height: 0;
+        cursor: pointer;
+        transition: opacity 0.2s ease;
     }
 
     .dot.active {
         opacity: 1;
-        transform: scale(1.1);
     }
 }
 
+
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-    .track {
-        transition: none !important;
-    }
+    .track { transition: none !important; }
 }
