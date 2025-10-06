@@ -1,0 +1,152 @@
+@use 'styles/_variables' as *;
+@use 'styles/_mixins' as *;
+
+#valuationComponent {
+    padding: 250px 0;
+}
+
+.valuation {
+    background-color: $secondaryColorBG;
+    width: 100%;
+    place-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.sectionTitle {
+    @include greenBoxHeadline;
+    margin-bottom: 8px;
+}
+
+.viewport {
+    position: relative;
+    width: 1012px;
+    height: 274px;
+    overflow: visible;
+}
+
+.quoteIcon {
+    position: absolute;
+    left: -32px;
+    top: -32px;
+    width: 96px;
+    height: 96px;
+    fill: #3DCFB6;
+    opacity: 0.9;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.track {
+    display: flex;
+    will-change: transform;
+    transition: transform .45s ease;
+    z-index: 1;
+}
+
+.card {
+    flex: 0 0 auto;         /* nicht stretchen */
+    width: 632px;
+    height: 274px;
+    box-sizing: border-box;
+    margin: 0 24px;         /* Gap zwischen Karten (48px total) */
+    padding: 24px 32px 22px 72px;
+
+    background: #173733;    /* keine Gradients/Overlays am Rand */
+    border: 1px solid $primaryColor;
+    border-radius: 20px;
+    color: #e8f5f2;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+}
+
+.quote {
+    font-size: 20px;
+    line-height: 1.35;
+}
+
+.signature {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    opacity: .9;
+}
+
+.signature .line {
+    display: inline-block;
+    width: 260px;
+    height: 2px;
+    background: rgba($primaryColor, .6);
+    border-radius: 2px;
+}
+
+.author {
+    font-weight: 600;
+}
+
+.role {
+    opacity: .9;
+}
+
+.fade {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 80px;
+    pointer-events: none;
+}
+
+.fade-left {
+    left: 0;
+    background: linear-gradient(90deg, #1f1f1f, transparent);
+}
+
+.fade-right {
+    right: 0;
+    background: linear-gradient(270deg, #1f1f1f, transparent);
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    .arrow {
+        background: transparent;
+        border: 1px solid $primaryColor;
+        padding: 6px 10px;
+        border-radius: 10px;
+    }
+
+    .dots {
+        display: flex;
+        gap: 10px;
+    }
+
+    .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        border: none;
+        background: #4a6;
+        opacity: .4;
+    }
+
+    .dot.active {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .track {
+        transition: none !important;
+    }
+}
