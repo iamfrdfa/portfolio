@@ -20,27 +20,42 @@ export class ValuationComponent implements AfterViewInit {
     idx = 1;
     transitioning = false;
 
-    /** Maße für Positionierung */
-    private cardWidth = 632;   // Zielbreite einer Karte in px
-    private cardGap = 48;      // Summe aus margin-left + margin-right einer Karte
-    private centerOffset = 0;  // Offset, um die aktive Karte im Viewport zu zentrieren
+    private cardWidth = 632;
+    private cardGap = 72;
+    private centerOffset = 0;
 
     ngAfterViewInit() {
         if (!this.items?.length) return;
-        // Clones für Endlos-Loop
+
+        // 1️⃣ Klone für Loop erstellen
         this.slides = [this.items[this.items.length - 1], ...this.items, this.items[0]];
+        this.idx = 2; // starte bei erstem echten Slide
+
+        // 2️⃣ Erste Positionierung ohne Animation
+        this.disableTransition();
         this.measure();
         requestAnimationFrame(() => this.applyTranslate());
     }
 
-    get realLength() { return this.items.length; }
+    get realLength() {
+        return this.items.length;
+    }
 
-    // Pfeile
-    prev() { if (!this.transitioning) this.goto(this.idx - 1); }
-    next() { if (!this.transitioning) this.goto(this.idx + 1); }
+    // === Navigation ===
+    prev() {
+        if (this.transitioning) return;
+        this.goto(this.idx - 1);
+    }
 
-    // Dots
-    goDot(i: number) { if (!this.transitioning) this.goto(i + 1); }
+    next() {
+        if (this.transitioning) return;
+        this.goto(this.idx + 1);
+    }
+
+    goDot(i: number) {
+        if (this.transitioning) return;
+        this.goto(i + 1); // da idx=1 beim ersten echten Slide startet
+    }
 
     private goto(target: number) {
         this.transitioning = true;
@@ -49,7 +64,7 @@ export class ValuationComponent implements AfterViewInit {
         this.applyTranslate();
     }
 
-    // Nach Transition ggf. „snappen“ (Loop)
+    // === Nach der Transition prüfen, ob an Rand gesprungen ===
     onTransitionEnd() {
         this.disableTransition();
         this.transitioning = false;
@@ -58,12 +73,12 @@ export class ValuationComponent implements AfterViewInit {
             this.idx = this.realLength; // von lastClone → letzter echter
             this.applyTranslate();
         } else if (this.idx === this.realLength + 1) {
-            this.idx = 1;               // von firstClone → erster echter
+            this.idx = 1; // von firstClone → erster echter
             this.applyTranslate();
         }
     }
 
-    // Resize: Maße neu berechnen und Position anwenden
+    // === Größenänderung ===
     @HostListener('window:resize')
     onResize() {
         this.disableTransition();
@@ -71,7 +86,7 @@ export class ValuationComponent implements AfterViewInit {
         this.applyTranslate();
     }
 
-    // Swipe / Drag
+    // === Swipe / Drag ===
     private startX = 0;
     private deltaX = 0;
     private dragging = false;
@@ -94,20 +109,20 @@ export class ValuationComponent implements AfterViewInit {
         if (!this.dragging) return;
         this.dragging = false;
 
-        // Schwellwert relativ zur Kartenbreite
         const threshold = Math.min(80, this.cardWidth * 0.15);
-
         if (this.deltaX > threshold) this.prev();
         else if (this.deltaX < -threshold) this.next();
-        else { this.enableTransition(); this.applyTranslate(); } // zurücksnappen
+        else {
+            this.enableTransition();
+            this.applyTranslate();
+        }
 
         this.track.nativeElement.releasePointerCapture(e.pointerId);
     }
 
-    /** Maße & Offsets messen (holt reale Werte aus CSS, falls geändert) */
+    // === Geometrie messen ===
     private measure() {
-        const vw = this.viewport.nativeElement.clientWidth; // Breite des sichtbaren Bereichs
-
+        const vw = this.viewport.nativeElement.clientWidth;
         const firstCard = this.track.nativeElement.querySelector('.card') as HTMLElement | null;
         if (firstCard) {
             const cs = getComputedStyle(firstCard);
@@ -115,21 +130,24 @@ export class ValuationComponent implements AfterViewInit {
             this.cardGap = parseFloat(cs.marginLeft) + parseFloat(cs.marginRight);
         }
 
-        // aktive Karte im Viewport zentrieren
-        this.centerOffset = (vw - this.cardWidth) / 2 - (this.cardGap / 2) - 35;
+        // mittig zentrieren, inkl. Feintuning
+        this.centerOffset = (vw - this.cardWidth) / 2 - (this.cardGap / 2) - 30;
     }
 
-    /** Translate berechnen: -(idx * (Breite+Gap)) + CenterOffset (+ Drag-Offset) */
     private applyTranslate(dragOffset = 0) {
         const step = this.cardWidth + this.cardGap;
         const x = -(this.idx * step) + this.centerOffset + dragOffset;
-        this.track.nativeElement.style.transform = `translate3d(${x}px,0,0)`;
+        this.track.nativeElement.style.transform = `translate3d(${x}px, 0, 0)`;
     }
 
-    private enableTransition() { this.track.nativeElement.style.transition = 'transform .45s ease'; }
-    private disableTransition() { this.track.nativeElement.style.transition = 'none'; }
+    private enableTransition() {
+        this.track.nativeElement.style.transition = 'transform .45s ease';
+    }
 
-    // aktiver echter Index für Dots
+    private disableTransition() {
+        this.track.nativeElement.style.transition = 'none';
+    }
+
     get activeDot() {
         if (this.idx === 0) return this.realLength - 1;
         if (this.idx === this.realLength + 1) return 0;

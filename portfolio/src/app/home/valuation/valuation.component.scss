@@ -3,9 +3,7 @@
 
 #valuationComponent {
     padding: 250px 0;
-
-    /* verhindert, dass irgendwas außerhalb der Sektion
-       einen horizontalen Seitenscroll erzeugt */
+    /* verhindert horizontalen Seitenscroll */
     overflow-x: clip;
 }
 
@@ -33,20 +31,7 @@
     margin: 0 auto;
 }
 
-.quoteIcon {
-    position: absolute;
-    top: -32px;
-    left: 50%;
-    transform: translateX(-348px); /* halbe Kartenbreite (632/2=316) + halbe Margin (36) ≈ 352 */
-    width: 96px;
-    height: 96px;
-    fill: #ffffff;
-    opacity: 0.9;
-    pointer-events: none;
-    z-index: 3;
-}
-
-
+/* --- Track --- */
 .track {
     display: flex;
     will-change: transform;
@@ -54,8 +39,9 @@
     z-index: 1;
 }
 
+/* --- Karte --- */
 .card {
-    flex: 0 0 auto;         /* nicht stretchen */
+    flex: 0 0 auto;            /* nicht stretchen */
     width: 632px;
     height: 274px;
     box-sizing: border-box;
@@ -73,8 +59,28 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    position: relative;
+    position: relative;        /* wichtig für das Icon */
     z-index: 1;
+}
+
+/* Quote-Icon IN der Karte: standardmäßig unsichtbar … */
+.card .quoteIcon {
+    position: absolute;
+    top: -32px;
+    left: -32px;               /* ggf. feinjustieren */
+    width: 96px;
+    height: 96px;
+    pointer-events: none;
+    z-index: 3;                /* über Card-Inhalt */
+    opacity: 0;
+    transition: opacity .25s ease;
+    /* Hinweis: Falls dein SVG nicht weiß ist, bitte die Grafik weiß exportieren
+       oder wir stellen es auf Masking um. */
+}
+
+/* … nur aktive Karte zeigt das Icon */
+.card[aria-hidden="false"] .quoteIcon {
+    opacity: 1;
 }
 
 .quote {
@@ -103,40 +109,55 @@
 /* (falls du sie später wieder nutzt) standardmäßig aus */
 .fade, .fade-left, .fade-right { display: none; }
 
+/* --- Controls --- */
 .controls {
     display: flex;
     align-items: center;
     gap: 18px;
 
-    /* Pfeile */
+    /* Pfeile über Pseudo-Element + CSS-Mask */
     .arrow {
+        position: relative;
         background: transparent;
-        border: none;             /* kein Rahmen */
+        border: none;
         padding: 0;
         cursor: pointer;
-        display: flex;
+        width: 40px;
+        height: 40px;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 32px;
-        height: 32px;
+        transition: transform 0.25s ease;
 
-        img {
-            width: 40px;
-            height: 40px;
-            filter: brightness(0) invert(1); /* färbt schwarz → weiß */
-            transition: transform 0.2s ease;
+        /* evtl. vorhandenes <img> verstecken */
+        img { display: none; }
+
+        /* Icon (links) */
+        &::before {
+            content: "";
+            display: block;
+            width: 24px;
+            height: 24px;
+            background-color: #fff; /* Standard: weiß */
+            transition: background-color 0.25s ease, transform 0.25s ease;
+            -webkit-mask: url('/img/icons/arrow-left.svg') no-repeat center / contain;
+            mask: url('/img/icons/arrow-left.svg') no-repeat center / contain;
         }
 
-        &:hover img {
-            transform: scale(1.15);
+        /* rechter Pfeil: anderes SVG */
+        &:last-child::before {
+            -webkit-mask: url('/img/icons/arrow-right.svg') no-repeat center / contain;
+            mask: url('/img/icons/arrow-right.svg') no-repeat center / contain;
         }
+
+        &:hover { transform: scale(1.1); }   /* ~10% größer */
+        &:active { transform: scale(1.05); }
+
+        &:hover::before { background-color: $primaryColor; } /* Farbe auf Hover */
     }
 
-    /* Pagination-Dots */
-    .dots {
-        display: flex;
-        gap: 10px;
-    }
+    /* Dots */
+    .dots { display: flex; gap: 10px; }
 
     .dot {
         display: block;
@@ -147,18 +168,22 @@
         border: none;
         border-radius: 50%;
         background: #fff;
-        opacity: .35;
-        line-height: 0;
+        opacity: 0.35;
         cursor: pointer;
-        transition: opacity 0.2s ease;
+        transition: opacity 0.2s ease, transform 0.25s ease, background 0.25s ease;
+    }
+
+    .dot:hover {
+        opacity: 0.7;
+        background: $primaryColor;
+        transform: scale(1.1);
     }
 
     .dot.active {
         opacity: 1;
+        background: $primaryColor;
     }
 }
-
-
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
