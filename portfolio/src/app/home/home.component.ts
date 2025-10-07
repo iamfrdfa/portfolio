@@ -1,12 +1,15 @@
-import {Component} from '@angular/core';
-import {AboutmeComponent} from './aboutme/aboutme.component';
-import {SkillsComponent} from './skills/skills.component';
-import {ProjectsComponent} from './projects/projects.component';
-import {ValuationComponent} from './valuation/valuation.component';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { AboutmeComponent } from './aboutme/aboutme.component';
+import { SkillsComponent } from './skills/skills.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { ValuationComponent } from './valuation/valuation.component';
 
 @Component({
     selector: 'app-home',
+    standalone: true,
     imports: [
+        CommonModule,         // für *ngFor im Marquee
         AboutmeComponent,
         SkillsComponent,
         ProjectsComponent,
@@ -16,14 +19,27 @@ import {ValuationComponent} from './valuation/valuation.component';
     styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-
+    // Optional: Smooth Scroll, wenn du später Buttons auf Scroll umstellst
     scrollToProjects() {
-
+        document.querySelector('#featuredSkills')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     scrollToContact() {
-
+        document.querySelector('#valuationComponent')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+
+    marqueeItems: string[] = [
+        'Angular',
+        'TypeScript',
+        'SCSS',
+        'RxJS',
+        'Material',
+        'Tailwind',
+        'REST',
+        'Node.js',
+        'Git',
+        'Figma',
+    ];
 
     testimonials = [
         { quote: 'Lukas has proven to be a reliable group partner, delivering excellent results and clear communication throughout the project.', author: 'H. Janisch', role: 'Team Partner' },

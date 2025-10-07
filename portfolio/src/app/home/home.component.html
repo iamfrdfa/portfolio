@@ -4,19 +4,107 @@
         <h1 class="hero_title">Friedrich Faraji</h1>
 
         <div class="heroButtonsWrapper">
-            <button class="heroButton_work" routerLink="/about">Check my work</button>
-            <button class="heroButton_contact" routerLink="/about">Contact me</button>
+            <button class="heroButton_work" routerLink="/about" aria-label="Check my work">
+        <span class="btn-scroll">
+          <span>Check my work</span>
+          <span aria-hidden="true">Check my work</span>
+        </span>
+            </button>
+
+            <button class="heroButton_contact" routerLink="/about" aria-label="Contact me">
+        <span class="btn-scroll">
+          <span>Contact me</span>
+          <span aria-hidden="true">Contact me</span>
+        </span>
+            </button>
         </div>
 
+        <!-- Gimmicks: Left / Marquee / Right -->
         <section class="gimmick">
+            <!-- LEFT: Icons + vertikale Linie -->
             <div class="gimmick_left">
-
+                <ul class="iconStack">
+                    <li>
+                        <a class="iconBtn" href="#" target="_blank" rel="noopener" aria-label="GitHub">
+                            <!-- GitHub SVG -->
+                            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                                <path fill="currentColor"
+                                      d="M12 .5a11.5 11.5 0 0 0-3.64 22.42c.58.1.8-.25.8-.56v-2.1c-3.26.72-3.95-1.57-3.95-1.57-.53-1.36-1.3-1.72-1.3-1.72-1.07-.74.08-.72.08-.72 1.19.08 1.82 1.22 1.82 1.22 1.05 1.8 2.75 1.28 3.42.98.1-.78.41-1.29.74-1.58-2.6-.3-5.33-1.3-5.33-5.77 0-1.27.46-2.31 1.22-3.13-.12-.3-.53-1.53.12-3.2 0 0 .99-.32 3.24 1.2a11.2 11.2 0 0 1 5.9 0c2.25-1.52 3.23-1.2 3.23-1.2.66 1.67.25 2.9.12 3.2.76.82 1.22 1.86 1.22 3.14 0 4.48-2.74 5.46-5.35 5.76.42.36.79 1.07.79 2.16v3.2c0 .31.21.67.81.56A11.5 11.5 0 0 0 12 .5Z" />
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="iconBtn" href="#" target="_blank" rel="noopener" aria-label="LinkedIn">
+                            <!-- LinkedIn SVG -->
+                            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                                <path fill="currentColor"
+                                      d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5Zm.52 6.5H2.5V21h3V10ZM13 10h-3v11h3v-6.06c0-1.6.3-3.15 2.29-3.15 1.96 0 1.98 1.83 1.98 3.25V21h3v-6.94c0-3.41-.73-6.06-4.63-6.06-1.88 0-3.15 1.03-3.64 2.01H13Z" />
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="iconBtn" href="mailto:hello@example.com" aria-label="E-Mail senden">
+                            <!-- Mail SVG -->
+                            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                                <path fill="currentColor"
+                                      d="M20 4H4a2 2 0 0 0-2 2v.4l10 6.25L22 6.4V6a2 2 0 0 0-2-2Zm2 5.07-10 6.25L0 9.07V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9.07Z" />
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+                <div class="vertBar" aria-hidden="true"></div>
             </div>
+
+            <!-- CENTER: Marquee -->
             <div class="gimmick_center">
-
+                <div class="marquee" role="marquee" aria-label="Tech Stack">
+                    <div class="marquee__track">
+                        <ng-container *ngFor="let item of marqueeItems">
+                            <span class="marquee__item">{{item}}</span>
+                            <span class="marquee__sep" aria-hidden="true">•</span>
+                        </ng-container>
+                    </div>
+                    <div class="marquee__track marquee__track--clone" aria-hidden="true">
+                        <ng-container *ngFor="let item of marqueeItems">
+                            <span class="marquee__item">{{item}}</span>
+                            <span class="marquee__sep" aria-hidden="true">•</span>
+                        </ng-container>
+                    </div>
+                </div>
             </div>
-            <div class="gimmick_right">
 
+            <!-- RIGHT: Icons + vertikale Linie -->
+            <div class="gimmick_right">
+                <ul class="iconStack">
+                    <li>
+                        <a class="iconBtn" href="#" target="_blank" rel="noopener" aria-label="X / Twitter">
+                            <!-- X/Twitter SVG -->
+                            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                                <path fill="currentColor"
+                                      d="M18.9 3H21l-6.47 7.39L22 21h-5.53l-4.33-5.35L6.2 21H3l6.94-7.92L2 3h5.62l3.9 4.87L18.9 3Zm-1.94 16.05h1.18L8.12 4.02H6.85l10.11 15.03Z" />
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="iconBtn" href="#" target="_blank" rel="noopener" aria-label="Instagram">
+                            <!-- Instagram SVG -->
+                            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                                <path fill="currentColor"
+                                      d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0-5C8.1 2 7.56 2.02 6.29 2.08 5.02 2.14 4.09 2.34 3.3 2.65c-.8.31-1.47.73-2.14 1.4a5.9 5.9 0 0 0-1.4 2.14C-.55 7 .- . ."/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="iconBtn" href="#" target="_blank" rel="noopener" aria-label="Dribbble">
+                            <!-- Dribbble SVG -->
+                            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                                <path fill="currentColor"
+                                      d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.93 9.09a8.04 8.04 0 0 0-3.32-.22c-.1-.26-.2-.5-.32-.76a32 32 0 0 0 3.64-2.78 8.02 8.02 0 0 1 0 3.76ZM12 4a8 8 0 0 1 4.78 1.6 30.7 30.7 0 0 1-3.43 2.64A29.4 29.4 0 0 0 10.5 5.2 8.04 8.04 0 0 1 12 4ZM8.9 5.76a27.6 27.6 0 0 1 2.7 2.96 27.8 27.8 0 0 1-6.6.7A8.02 8.02 0 0 1 8.9 5.76Zm-5.8 6.3a8.02 8.02 0 0 1 .7-2.8 29.7 29.7 0 0 0 7.8-.86c.3.4.57.83.83 1.27a27 27 0 0 0-7.38 6.72 8 8 0 0 1-1.96-4.33Zm3.04 5.27a25 25 0 0 1 6.86-6.1c.3.63.55 1.28.76 1.95a17.8 17.8 0 0 0-5.65 4.67 8.02 8.02 0 0 1-1.97-.52Zm4.75 1.16a15.9 15.9 0 0 1 5.1-4.2c.25.98.4 2 .44 3.06A8 8 0 0 1 10.9 18.5Zm7.18-1.77c-.06-1.1-.24-2.13-.5-3.08.9-.1 1.83-.08 2.8.08a8.03 8.03 0 0 1-2.3 3Z" />
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+                <div class="vertBar" aria-hidden="true"></div>
             </div>
         </section>
     </section>
