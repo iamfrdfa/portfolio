@@ -1,6 +1,8 @@
 @use 'styles/variables' as *;
 @use 'styles/mixins' as *;
 
+$marqueeBackground: #383838d3;
+
 /* Fallback-Accent, falls kein Grün in Deinen Vars existiert */
 $accentGreen: #3dcfb6 !default;
 
@@ -32,43 +34,61 @@ $accentGreen: #3dcfb6 !default;
     gap: 16px;
 }
 
+/* ---------- Buttons mit nahtlosem Hover-Marquee ---------- */
 .heroButton_work,
 .heroButton_contact {
     @include buttonStyle160px;
+
+    /* Sichtbarer Text im Idle exakt zentriert */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
     position: relative;
-    overflow: hidden; /* wichtig fürs Scrollen im Button */
+    overflow: hidden;
     isolation: isolate;
 
-    /* Grundlayout für Scrolltext */
+    /* ----- Marquee-Setup ----- */
+    --btnMarqueeGap: 2.5rem;   /* Abstand zwischen den Kopien */
+    --btnMarqueeSpeed: 2.75s;  /* Laufgeschwindigkeit */
+
     .btn-scroll {
-        display: inline-grid;
-        grid-auto-flow: column;
+        display: inline-flex;     /* statt grid → zentriert sauber */
         align-items: center;
-        gap: 2.5rem;
         white-space: nowrap;
+        gap: var(--btnMarqueeGap);
         transform: translateX(0);
+        will-change: transform;
+        padding-inline-end: 0;    /* im Idle KEIN Endabstand */
     }
 
-    /* duplizierter Inhalt hat gleiche Typo */
-    .btn-scroll > span {
+    /* Duplikat im Idle ausblenden → nur ein Label sichtbar & zentriert */
+    .btn-scroll > span[aria-hidden="true"] {
+        display: none;
+    }
+
+    /* Hover/Fokus: Duplikat einblenden + Endabstand hinzufügen + Animation starten */
+    &:hover .btn-scroll > span[aria-hidden="true"],
+    &:focus-visible .btn-scroll > span[aria-hidden="true"] {
         display: inline-block;
     }
 
-    /* Animation nur auf Hover (bzw. Fokus für Tastatur) */
     &:hover .btn-scroll,
     &:focus-visible .btn-scroll {
-        animation: btnMarquee 2.75s linear infinite;
+        /* Endabstand = Gap, damit die Schleife nahtlos ist */
+        padding-inline-end: var(--btnMarqueeGap);
+        animation: btnMarquee var(--btnMarqueeSpeed) linear infinite;
     }
 }
 
-/* Laufbewegung im Button */
+/* Nur bis -50% animieren → 100% Frame entspricht 0% (nahtlos) */
 @keyframes btnMarquee {
     0%   { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
+    100% { transform: translateX(-50%); }
 }
 
 /* ---------- Gimmicks: Seitenleisten & Marquee ---------- */
-
 .gimmick {
     position: relative;
     width: min(1200px, 100%);
@@ -114,6 +134,7 @@ $accentGreen: #3dcfb6 !default;
             box-shadow: 0 4px 14px rgba($accentGreen, 0.28);
             background-color: rgba($accentGreen, 0.08);
         }
+
         &:focus-visible {
             outline: 2px solid $accentGreen;
             outline-offset: 2px;
@@ -141,63 +162,90 @@ $accentGreen: #3dcfb6 !default;
 /* Nimmt KEINEN Platz ein – der Banner liegt über dem Layout */
 .gimmick_center {
     position: relative;
-    height: 0;              /* verhindert Reflow */
+    height: 0;        /* verhindert Reflow */
     min-width: 0;
-    pointer-events: none;   /* Klicks gehen durch auf Elemente darunter */
+    pointer-events: none; /* Klicks gehen durch auf Elemente darunter */
 }
 
-/* Die Bahn selbst als Overlay, horizontal zentriert, mind. 1200px breit */
+/* Die Bahn selbst als Overlay, horizontal zentriert */
 .marquee {
     --speed: 22s;
 
-    position: absolute;           /* Overlay innerhalb der .gimmick_center-Zeile */
-    z-index: 999;                 /* sicher über allem */
+    padding: 10px 0;
+    height: 40px;
+
+    /* WICHTIG: kein Flex mehr, um Zeilenumbrüche auszuschließen */
+    display: block;
+
+    position: absolute;     /* Overlay innerhalb der .gimmick_center-Zeile */
+    z-index: 999;           /* sicher über allem */
     left: 50%;
-    transform: translateX(-50%);  /* exakt zentriert */
-    top: -300px;                       /* vertikale Position (bei Bedarf anpassen, z.B. -8px) */
+    transform: translateX(-50%);
+    top: -300px;
     rotate: -8deg;
 
-    width: max(800px, 80vw);    /* mind. 1200px, sonst Viewport-breit */
+    width: max(800px, 80vw);
     overflow: hidden;
-    pointer-events: none;         /* blockiert nichts darunter */
+    pointer-events: auto;   /* für Variante A: Hover direkt auf dem Banner */
 
-    /* sanftes Ausfaden an den Rändern (lint-sicher + cross-browser) */
+    font-size: 32px;
+    color: $primaryColor;
+
     mask-image: linear-gradient(
             to right,
-            rgba(0,0,0,0) 0%,
-            rgba(0,0,0,1) 10%,
-            rgba(0,0,0,1) 90%,
-            rgba(0,0,0,0) 100%
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 1) 10%,
+            rgba(0, 0, 0, 1) 90%,
+            rgba(0, 0, 0, 0) 100%
     );
     -webkit-mask-image: -webkit-linear-gradient(
             to right,
-            rgba(0,0,0,0) 0%,
-            rgba(0,0,0,1) 10%,
-            rgba(0,0,0,1) 90%,
-            rgba(0,0,0,0) 100%
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 1) 10%,
+            rgba(0, 0, 0, 1) 90%,
+            rgba(0, 0, 0, 0) 100%
     );
 
-    border: 1px solid rgba($accentGreen, 0.35);
+    border: none;
     border-radius: 999px;
-    padding: 10px 0;
-    background: transparent; /* oder z.B. rgba($accentGreen, .04) für leichte Tönung */
+    background: $marqueeBackground;
 }
 
-/* Laufspuren – Inhalt läuft zentriert innerhalb der Bahn */
-.marquee__track {
-    display: inline-flex;
+/* Hover: Geschwindigkeit runter auf 60s (Variante A) */
+.marquee:hover,
+.marquee:focus-visible {
+    --speed: 60s;
+}
+
+/* ----- Neuer, nahtloser Track mit zwei identischen Hälften ----- */
+.marquee__inner {
+    display: flex;              /* statt inline-flex */
     align-items: center;
+    flex-wrap: nowrap;          /* niemals umbrechen */
+    white-space: nowrap;        /* Textknoten nicht umbrechen */
     gap: 18px;
-    padding-inline: 18px;
-    white-space: nowrap;
+    width: max-content;         /* Breite = Inhalt */
     will-change: transform;
-    animation: marquee var(--speed) linear infinite;
+
+    /* getrennte Animations-Props → sanftere Geschwindigkeitswechsel */
+    animation-name: marqueeX;
+    animation-duration: var(--speed);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+    padding-inline: 0;          /* keine Naht-Lücke */
 }
 
-.marquee__track--clone {
-    position: absolute;
-    inset: 0 auto 0 100%; /* direkt rechts daneben starten */
-    animation: marquee var(--speed) linear infinite;
+/* Items dürfen nicht schrumpfen/ umbrechen */
+.marquee__item,
+.marquee__sep {
+    flex: 0 0 auto;
+}
+
+/* Nahtlos: von 0% bis -50%, da Hälfte B == Hälfte A */
+@keyframes marqueeX {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
 .marquee__item {
@@ -210,18 +258,11 @@ $accentGreen: #3dcfb6 !default;
     opacity: 0.5;
 }
 
-/* Endloslauf nach links */
-@keyframes marquee {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
-}
-
 /* Bewegungen respektieren Systemeinstellung */
 @media (prefers-reduced-motion: reduce) {
     .heroButton_work .btn-scroll,
     .heroButton_contact .btn-scroll,
-    .marquee__track,
-    .marquee__track--clone {
+    .marquee__inner {
         animation: none !important;
         transform: none !important;
     }

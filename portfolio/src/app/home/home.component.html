@@ -58,15 +58,16 @@
             <!-- CENTER: Marquee -->
             <div class="gimmick_center">
                 <div class="marquee" role="marquee" aria-label="Tech Stack">
-                    <div class="marquee__track">
-                        <ng-container *ngFor="let item of marqueeItems">
-                            <span class="marquee__item">{{item}}</span>
+                    <div class="marquee__inner">
+                        <!-- Hälfte A -->
+                        <ng-container *ngFor="let item of marqueeHalf">
+                            <span class="marquee__item">{{ item }}</span>
                             <span class="marquee__sep" aria-hidden="true">•</span>
                         </ng-container>
-                    </div>
-                    <div class="marquee__track marquee__track--clone" aria-hidden="true">
-                        <ng-container *ngFor="let item of marqueeItems">
-                            <span class="marquee__item">{{item}}</span>
+
+                        <!-- Hälfte B (identisch zu A) -->
+                        <ng-container *ngFor="let item of marqueeHalf">
+                            <span class="marquee__item">{{ item }}</span>
                             <span class="marquee__sep" aria-hidden="true">•</span>
                         </ng-container>
                     </div>
@@ -123,5 +124,9 @@
 
     <section id="valuationComponent">
         <app-valuation [items]="testimonials"></app-valuation>
+    </section>
+
+    <section id="contactFormComponent">
+        <app-contact></app-contact>
     </section>
 </section>
