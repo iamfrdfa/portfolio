@@ -1,28 +1,55 @@
 @use 'styles/_variables' as *;
 @use 'styles/_mixins' as *;
 
+/* ==========================================================================
+   SECTION: Valuation Component Styles
+   Beschreibung:
+   Enthält alle Styles für den Testimonial-Slider (ValuationComponent).
+   Strukturiert in Container, Viewport, Track, Card, Controls.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   #valuationComponent
+   - Äußerer Abschnitt der Valuation-Komponente
+   - Sorgt für vertikales Padding und verhindert horizontales Scrollen
+   -------------------------------------------------------------------------- */
 #valuationComponent {
     padding: 250px 0;
-    /* verhindert horizontalen Seitenscroll */
-    overflow-x: clip;
+    overflow-x: clip; /* verhindert horizontalen Seitenscroll */
 }
 
+/* --------------------------------------------------------------------------
+   .valuation
+   - Hauptcontainer für Heading + Slider
+   - Zentriert Inhalte vertikal und horizontal
+   -------------------------------------------------------------------------- */
 .valuation {
     background-color: $secondaryColorBG;
     width: 100%;
-    place-items: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 24px;
     overflow-x: hidden;
+    place-items: center;
 }
 
+
+/* --------------------------------------------------------------------------
+   .sectionTitle
+   - Überschrift oberhalb des Sliders
+   -------------------------------------------------------------------------- */
 .sectionTitle {
     @include greenBoxHeadline;
     margin-bottom: 8px;
 }
 
+/* --------------------------------------------------------------------------
+   .viewport
+   - Sichtbarer Bereich des Sliders
+   - Enthält den Track mit den Cards
+   - Overflow sichtbar, da Nachbar-Slides halb sichtbar bleiben sollen
+   -------------------------------------------------------------------------- */
 .viewport {
     position: relative;
     width: min(1012px, 100%);
@@ -31,24 +58,89 @@
     margin: 0 auto;
 }
 
-/* --- Track --- */
+/* --------------------------------------------------------------------------
+   .track
+   - Container, der alle Karten (Slides) nebeneinander enthält
+   - Wird horizontal via transform verschoben
+   - Weiche, Material-ähnliche Bewegung
+   -------------------------------------------------------------------------- */
 .track {
     display: flex;
     will-change: transform;
-    transition: transform .45s ease;
+    transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1); /* sanftere Slide-Bewegung */
     z-index: 1;
 }
 
-/* --- Karte --- */
+/* --------------------------------------------------------------------------
+   .viewport::before / ::after
+   - Erzeugen visuelle „Schleier“ (Gradient-Fades) an den Rändern
+   - Verhindern hart abgeschnittene Slides
+   - Before = links, After = rechts (gespiegelt)
+   -------------------------------------------------------------------------- */
+
+/* --- Linker Schleier: startet am Bildschirmrand, endet VOR aktiver Karte --- */
+.viewport::before {
+    content: "";
+    position: absolute;
+    top: 0;
+
+    /* Start exakt am linken Bildschirmrand */
+    left: calc(0px - var(--vp-left, 0px));
+
+    /* Reicht bis kurz vor die aktive Karte */
+    width: calc(var(--vp-left, 0px) + var(--left-cover, 180px));
+
+    height: 100%;
+    pointer-events: none;
+    z-index: 4;
+
+    /* Sanfter Verlauf von Hintergrundfarbe → transparent */
+    background: linear-gradient(
+            to right,
+            $secondaryColorBG 0%,
+            rgba($secondaryColorBG, 0.9) 40%,
+            rgba($secondaryColorBG, 0) 100%
+    );
+}
+
+/* --- Rechter Schleier (gespiegelt) --- */
+.viewport::after {
+    content: "";
+    position: absolute;
+    top: 0;
+
+    /* Start am rechten Bildschirmrand */
+    right: calc(0px - (100vw - (var(--vp-left, 0px) + var(--left-cover, 180px) + var(--vp-left, 0px))));
+
+    /* gleiche Breite wie linker Schleier */
+    width: calc(var(--vp-left, 0px) + var(--left-cover, 180px));
+
+    height: 100%;
+    pointer-events: none;
+    z-index: 4;
+
+    background: linear-gradient(
+            to left,
+            $secondaryColorBG 0%,
+            rgba($secondaryColorBG, 0.9) 40%,
+            rgba($secondaryColorBG, 0) 100%
+    );
+}
+
+/* --------------------------------------------------------------------------
+   .card
+   - Einzelne Testimonial-Karte
+   - Enthält Zitat, Autor, ggf. Rolle
+   - Definiert Höhe, Breite, Margin und Padding
+   -------------------------------------------------------------------------- */
 .card {
-    flex: 0 0 auto;            /* nicht stretchen */
+    flex: 0 0 auto;            /* verhindert Stretching */
     width: 632px;
     height: 274px;
     box-sizing: border-box;
 
-    /* GAP +50%: 24px → 36px je Seite (gesamt 72px) */
+    /* horizontaler Abstand: 36px links/rechts (gesamt 72px) */
     margin: 0 36px;
-
     padding: 24px 32px 22px 72px;
 
     background: #173733;
@@ -59,30 +151,36 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    position: relative;        /* wichtig für das Icon */
-    z-index: 1;
+    position: relative;
+    z-index: 1; /* damit Quote-Icon sichtbar bleibt */
 }
 
-/* Quote-Icon IN der Karte: standardmäßig unsichtbar … */
+/* --------------------------------------------------------------------------
+   .quoteIcon
+   - Zitat-Symbol in der oberen linken Ecke einer Karte
+   - Nur in der aktiven Karte sichtbar
+   -------------------------------------------------------------------------- */
 .card .quoteIcon {
     position: absolute;
     top: -32px;
-    left: -32px;               /* ggf. feinjustieren */
+    left: -32px;
     width: 96px;
     height: 96px;
     pointer-events: none;
-    z-index: 3;                /* über Card-Inhalt */
+    z-index: 3;
     opacity: 0;
     transition: opacity .25s ease;
-    /* Hinweis: Falls dein SVG nicht weiß ist, bitte die Grafik weiß exportieren
-       oder wir stellen es auf Masking um. */
 }
 
-/* … nur aktive Karte zeigt das Icon */
+/* Aktive Karte zeigt das Symbol */
 .card[aria-hidden="false"] .quoteIcon {
     opacity: 1;
 }
 
+/* --------------------------------------------------------------------------
+   .quote / .signature / .author / .role
+   - Typografische Gestaltung des Zitats und der Signaturzeile
+   -------------------------------------------------------------------------- */
 .quote {
     font-size: 20px;
     line-height: 1.35;
@@ -106,16 +204,32 @@
 .author { font-weight: 600; }
 .role   { opacity: .9; }
 
-/* (falls du sie später wieder nutzt) standardmäßig aus */
-.fade, .fade-left, .fade-right { display: none; }
+/* --------------------------------------------------------------------------
+   .fade-Klassen
+   - Platzhalter für optionale visuelle Überlagerungen
+   - Derzeit deaktiviert
+   -------------------------------------------------------------------------- */
+.fade,
+.fade-left,
+.fade-right {
+    display: none;
+}
 
-/* --- Controls --- */
+/* --------------------------------------------------------------------------
+   .controls
+   - Container für Pfeile (Navigation) und Dots (Pagination)
+   - Zentriert und mit Hover-Animationen
+   -------------------------------------------------------------------------- */
 .controls {
     display: flex;
     align-items: center;
     gap: 18px;
 
-    /* Pfeile über Pseudo-Element + CSS-Mask */
+    /* ---------------------------------------------------------------
+       Pfeile (.arrow)
+       - Basieren auf CSS-Masken für saubere SVG-Darstellung
+       - Farbänderung & Skalierung bei Hover
+       --------------------------------------------------------------- */
     .arrow {
         position: relative;
         background: transparent;
@@ -129,42 +243,56 @@
         justify-content: center;
         transition: transform 0.25s ease;
 
-        /* evtl. vorhandenes <img> verstecken */
+        /* versteckt evtl. eingebettetes <img> */
         img { display: none; }
 
-        /* Icon (links) */
+        /* Linker Pfeil */
         &::before {
             content: "";
             display: block;
             width: 24px;
             height: 24px;
-            background-color: #fff; /* Standard: weiß */
+            background-color: #fff; /* Standardfarbe */
             transition: background-color 0.25s ease, transform 0.25s ease;
             -webkit-mask: url('/img/icons/arrow-left.svg') no-repeat center / contain;
             mask: url('/img/icons/arrow-left.svg') no-repeat center / contain;
         }
 
-        /* rechter Pfeil: anderes SVG */
+        /* Rechter Pfeil */
         &:last-child::before {
             -webkit-mask: url('/img/icons/arrow-right.svg') no-repeat center / contain;
             mask: url('/img/icons/arrow-right.svg') no-repeat center / contain;
         }
 
-        &:hover { transform: scale(1.1); }   /* ~10% größer */
-        &:active { transform: scale(1.05); }
+        &:hover {
+            transform: scale(1.1); /* 10 % größer bei Hover */
+        }
 
-        &:hover::before { background-color: $primaryColor; } /* Farbe auf Hover */
+        &:active {
+            transform: scale(1.05);
+        }
+
+        /* Hover-Farbe */
+        &:hover::before {
+            background-color: $primaryColor;
+        }
     }
 
-    /* Dots */
-    .dots { display: flex; gap: 10px; }
+    /* ---------------------------------------------------------------
+       Dots (.dot)
+       - Kleine runde Indikatoren für aktuelle Slide-Position
+       - Reagieren auf Hover und aktiven Zustand
+       --------------------------------------------------------------- */
+    .dots {
+        display: flex;
+        gap: 10px;
+    }
 
     .dot {
         display: block;
         width: 8px;
         height: 8px;
         aspect-ratio: 1 / 1;
-        padding: 0;
         border: none;
         border-radius: 50%;
         background: #fff;
@@ -185,7 +313,12 @@
     }
 }
 
-/* Reduced motion */
+/* --------------------------------------------------------------------------
+   Accessibility / Motion Preferences
+   - Entfernt Animationen bei aktivierter reduzierter Bewegung
+   -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
-    .track { transition: none !important; }
+    .track {
+        transition: none !important;
+    }
 }

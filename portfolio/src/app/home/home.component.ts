@@ -32,5 +32,4 @@ export class HomeComponent {
         { quote: 'Working with Lukas means having clean code, clear communication, and a dependable partner in every sprint.', author: 'M. Becker', role: 'Project Manager' },
         { quote: 'Lukas not only understands frontend development but also brings strong UX intuition and team spirit to the table.', author: 'S. Nguyen', role: 'UX Designer' },
     ];
-
 }
