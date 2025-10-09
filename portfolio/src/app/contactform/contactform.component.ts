@@ -44,13 +44,20 @@ export class ContactformComponent {
 
     // Button nur aktiv, wenn nicht sending
     canSubmit = computed(() => !this.sending());
+    consent: boolean = false; // public
 
     onSubmit(ngForm: NgForm) {
         this.sentOk.set(false);
         this.sentError.set(null);
 
+        this.consent = false; // Einwilligung (Checkbox-DSGVO) - muss true sein
         // Verhindere Spam (Honeypot) & ungültige Submits
         if (!ngForm.submitted || !ngForm.form.valid || this.honeypot.trim().length > 0) {
+            return;
+        }
+
+        // + consent check (required)
+        if (!ngForm.submitted || !ngForm.form.valid || !this.consent || this.honeypot.trim().length > 0) {
             return;
         }
 
