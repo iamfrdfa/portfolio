@@ -1,33 +1,122 @@
-/* Style inputs with type="text", select elements and textareas */
-input[type=text], [type=email], select, textarea {
-    width: 100%; /* Full width */
-    padding: 12px; /* Some padding */
-    border: 1px solid #ccc; /* Gray border */
-    border-radius: 4px; /* Rounded borders */
-    box-sizing: border-box; /* Make sure that padding and width stays in place */
-    margin-top: 6px; /* Add a top margin */
-    margin-bottom: 16px; /* Bottom margin */
-    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+/* Container */
+.contact-container {
+    width: min(720px, 92%);
+    margin: 0 auto;
+    padding: 24px 0;
 }
 
-/* Style the submit button with a specific background color etc */
-input[type=submit] {
-    background-color: #04AA6D;
-    color: white;
-    padding: 12px 20px;
+/* Form Layout */
+form {
+    display: grid;
+    gap: 18px;
+}
+
+/* Honeypot */
+.hp-wrapper {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Field Wrapper */
+.field {
+    position: relative;
+    display: grid;
+}
+
+input, textarea {
+    width: 100%;
+    font: inherit;
+    padding: 14px 14px 14px 14px;
+    border-radius: 12px;
+    border: 1.5px solid #d0d0d0;
+    background: #101010;
+    color: #f5f5f5;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s, background-color .2s;
+}
+
+textarea { resize: vertical; }
+
+/* Floating Label */
+label.floating {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    translate: 0 -50%;
+    padding: 0 6px;
+    pointer-events: none;
+    background: #101010;
+    color: #a9a9a9;
+    transition: transform .15s ease, color .15s ease, top .15s ease;
+}
+
+/* Raised state on focus or when there's content (placeholder trick) */
+input:focus + .floating,
+input:not(:placeholder-shown) + .floating,
+textarea:focus + .floating,
+textarea:not(:placeholder-shown) + .floating {
+    top: 0;
+    transform: translateY(-50%) scale(0.88);
+    color: #7ee6d7; /* Akzent */
+}
+
+/* Valid/Invalid UI */
+.field.valid input,
+.field.valid textarea { border-color: #39d98a; }
+.field.invalid input,
+.field.invalid textarea { border-color: #ff5a5f; }
+
+input:focus, textarea:focus {
+    box-shadow: 0 0 0 4px rgba(62, 207, 182, 0.15);
+}
+
+/* Fehlermeldung */
+.msg {
+    margin-top: 6px;
+    font-size: .92rem;
+    color: #ff8a8e;
+}
+
+/* Feedback */
+.feedback {
+    min-height: 20px;
+}
+.ok { color: #39d98a; }
+.err { color: #ff5a5f; }
+
+/* Submit Button */
+.submit {
+    justify-self: start;
+    min-width: 140px;
+    height: 44px;
+    padding: 0 16px;
     border: none;
-    border-radius: 4px;
+    border-radius: 999px;
     cursor: pointer;
+    font-weight: 600;
+    background: linear-gradient(90deg, #3dcfb6, #6be6d5);
+    color: #0b0b0b;
+    transition: transform .06s ease, filter .2s ease, opacity .2s ease;
+}
+.submit:hover { filter: brightness(1.06); }
+.submit:active { transform: translateY(1px); }
+.submit:disabled {
+    opacity: .5;
+    cursor: not-allowed;
 }
 
-/* When moving the mouse over the submit button, add a darker green color */
-input[type=submit]:hover {
-    background-color: #45a049;
+/* Spinner */
+.spinner {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 3px solid rgba(255,255,255,.35);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+    vertical-align: -3px;
 }
-
-/* Add a background color and some padding around the form */
-.container {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-}
+@keyframes spin { to { transform: rotate(360deg); } }

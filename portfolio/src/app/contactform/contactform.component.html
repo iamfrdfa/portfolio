@@ -1,19 +1,77 @@
-<div class="container">
-    <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
+<div class="contact-container">
+    <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm" novalidate>
+        <!-- Honeypot (unsichtbar für Nutzer, sichtbar für Bots) -->
+        <div class="hp-wrapper" aria-hidden="true">
+            <label for="company">Company</label>
+            <input id="company" name="company" [(ngModel)]="honeypot" tabindex="-1" autocomplete="off">
+        </div>
 
-        <label for="name">Name</label>
-        <input [(ngModel)]="contactData.name" type="text" id="name" name="firstname" placeholder="Your name.." required>
+        <!-- Name -->
+        <div class="field" [class.invalid]="name.invalid && (name.touched || contactForm.submitted)" [class.valid]="name.valid">
+            <label class="floating" for="name">Name</label>
+            <input
+                id="name"
+                name="name"
+                type="text"
+                required
+                minlength="2"
+                placeholder=" "
+                [(ngModel)]="contactData.name"
+                #name="ngModel"
+                autocomplete="name" />
+            <div class="msg" *ngIf="name.invalid && (name.touched || contactForm.submitted)">
+                Bitte gib deinen Namen (mind. 2 Zeichen) ein.
+            </div>
+        </div>
 
-        <label for="email">E-Mail</label>
-        <input [(ngModel)]="contactData.email" type="email" id="email" name="email" placeholder="Write something.." required pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}">
+        <!-- Email -->
+        <div class="field" [class.invalid]="email.invalid && (email.touched || contactForm.submitted)" [class.valid]="email.valid">
+            <label class="floating" for="email">E-Mail</label>
+            <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                placeholder=" "
+                [(ngModel)]="contactData.email"
+                #email="ngModel"
+                pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
+                autocomplete="email" />
+            <div class="msg" *ngIf="email.invalid && (email.touched || contactForm.submitted)">
+                Bitte gib eine gültige E-Mail ein.
+            </div>
+        </div>
 
-        <label for="message">Subject</label>
-        <textarea #message="ngModel" minlength="8" [(ngModel)]="contactData.message" id="message" name="message" placeholder="Write something.." style="height:200px" required></textarea>
+        <!-- Message -->
+        <div class="field" [class.invalid]="message.invalid && (message.touched || contactForm.submitted)" [class.valid]="message.valid">
+            <label class="floating" for="message">Nachricht</label>
+            <textarea
+                id="message"
+                name="message"
+                required
+                minlength="8"
+                rows="6"
+                placeholder=" "
+                [(ngModel)]="contactData.message"
+                #message="ngModel"></textarea>
+            <div class="msg" *ngIf="message.invalid && (message.touched || contactForm.submitted)">
+                Bitte schreibe mindestens 8 Zeichen.
+            </div>
+        </div>
 
-        @if (!message.valid && message.touched && !message.disabled) {
-            <div class="error-message">Please enter a valid message.</div>
-        }
+        <!-- Feedback -->
+        <div class="feedback">
+            <div class="ok" *ngIf="sentOk()">Danke! Deine Nachricht wurde gesendet.</div>
+            <div class="err" *ngIf="sentError()">{{ sentError() }}</div>
+        </div>
 
-        <input type="submit" value="Submit">
+        <!-- Submit -->
+        <button
+            class="submit"
+            type="submit"
+            [disabled]="contactForm.invalid || !canSubmit()">
+            <span *ngIf="!sending()">Senden</span>
+            <span class="spinner" *ngIf="sending()" aria-live="polite" aria-busy="true"></span>
+        </button>
     </form>
 </div>

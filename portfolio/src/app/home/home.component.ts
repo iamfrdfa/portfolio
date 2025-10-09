@@ -4,7 +4,8 @@ import {AboutmeComponent} from './aboutme/aboutme.component';
 import {SkillsComponent} from './skills/skills.component';
 import {ProjectsComponent} from './projects/projects.component';
 import {ValuationComponent} from './valuation/valuation.component';
-import {ContactComponent} from './contact/contact.component';
+import {ContactformComponent} from '../contactform/contactform.component';
+import {RouterLink} from '@angular/router';
 
 @Component({
     selector: 'app-home',
@@ -15,7 +16,9 @@ import {ContactComponent} from './contact/contact.component';
         SkillsComponent,
         ProjectsComponent,
         ValuationComponent,
-        ContactComponent,
+        ContactformComponent,
+        ContactformComponent,
+        RouterLink,
     ],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss'
