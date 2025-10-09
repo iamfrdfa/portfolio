@@ -1,84 +1,92 @@
-<div class="contact-container">
-    <!-- LEFT -->
-    <div id="contact-left" class="contact-left">
-        <p class="kicker">Contact me</p>
-        <h2 class="display">Let's work<br>together</h2>
+<div class="contactWrapper">
+    <div class="contact-container">
+        <!-- LEFT -->
+        <div id="contact-left" class="contact-left">
+            <p class="kicker">Contact me</p>
+            <h2 class="display">Let's work<br>together</h2>
 
-        <h3 class="subhead">Got a problem to solve?</h3>
-        <p class="lead">
-            Encourage people to contact you and describe what role you are interested in.
-            Show that you will add value to their projects through your work.
-        </p>
-        <p class="cta-hint">
-            Need a Frontend developer? <a class="accent-link" href="#contact-right">Let’s talk!</a>
-        </p>
-    </div>
+            <h3 class="subhead">Got a problem to solve?</h3>
+            <p class="lead">
+                Encourage people to contact you and describe what role you are interested in.
+                Show that you will add value to their projects through your work.
+            </p>
+            <p class="cta-hint">
+                Need a Frontend developer? <a class="accent-link" href="#contact-right">Let’s talk!</a>
+            </p>
+        </div>
 
-    <!-- RIGHT -->
-    <div id="contact-right" class="contact-right">
-        <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm" novalidate>
-            <!-- Honeypot -->
-            <div class="hp-wrapper" aria-hidden="true">
-                <label for="company">Company</label>
-                <input id="company" name="company" [(ngModel)]="honeypot" tabindex="-1" autocomplete="off">
-            </div>
-
-            <!-- NAME -->
-            <div class="field sep" [class.invalid]="name.invalid && (name.touched || contactForm.submitted)" [class.valid]="name.valid">
-                <div class="prompt">What's your name?</div>
-                <input
-                    id="name" name="name" type="text" required minlength="2"
-                    placeholder="Your name goes here"
-                    [(ngModel)]="contactData.name" #name="ngModel" autocomplete="name" />
-                <div class="msg" *ngIf="name.invalid && (name.touched || contactForm.submitted)">
-                    Bitte gib deinen Namen (mind. 2 Zeichen) ein.
+        <!-- RIGHT -->
+        <div id="contact-right" class="contact-right">
+            <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm" novalidate>
+                <!-- Honeypot -->
+                <div class="hp-wrapper" aria-hidden="true">
+                    <label for="company">Company</label>
+                    <input id="company" name="company" [(ngModel)]="honeypot" tabindex="-1" autocomplete="off">
                 </div>
-            </div>
 
-            <!-- EMAIL -->
-            <div class="field sep" [class.invalid]="email.invalid && (email.touched || contactForm.submitted)" [class.valid]="email.valid">
-                <div class="prompt">What's your email?</div>
-                <input
-                    id="email" name="email" type="email" required
-                    placeholder="youremail@email.com"
-                    [(ngModel)]="contactData.email" #email="ngModel"
-                    pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" autocomplete="email" />
-                <div class="msg" *ngIf="email.invalid && (email.touched || contactForm.submitted)">
-                    Bitte gib eine gültige E-Mail ein.
+                <!-- NAME -->
+                <div class="field sep" [class.invalid]="name.invalid && (name.touched || contactForm.submitted)" [class.valid]="name.valid">
+                    <div class="prompt">What's your name?</div>
+                    <input
+                        id="name" name="name" type="text" required minlength="2"
+                        placeholder="Your name goes here"
+                        [(ngModel)]="contactData.name" #name="ngModel" autocomplete="name" />
+                    <div class="msg" *ngIf="name.invalid && (name.touched || contactForm.submitted)">
+                        Bitte gib deinen Namen (mind. 2 Zeichen) ein.
+                    </div>
                 </div>
-            </div>
 
-            <!-- MESSAGE -->
-            <div class="field sep" [class.invalid]="message.invalid && (message.touched || contactForm.submitted)" [class.valid]="message.valid">
-                <div class="prompt">How can I help you?</div>
-                <textarea
-                    id="message" name="message" required minlength="8" rows="4"
-                    placeholder="Hello Lukas, I am interested in…"
-                    [(ngModel)]="contactData.message" #message="ngModel"></textarea>
-                <div class="msg" *ngIf="message.invalid && (message.touched || contactForm.submitted)">
-                    Bitte schreibe mindestens 8 Zeichen.
+                <!-- EMAIL -->
+                <div class="field sep" [class.invalid]="email.invalid && (email.touched || contactForm.submitted)" [class.valid]="email.valid">
+                    <div class="prompt">What's your email?</div>
+                    <input
+                        id="email" name="email" type="email" required
+                        placeholder="youremail@email.com"
+                        [(ngModel)]="contactData.email" #email="ngModel"
+                        pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" autocomplete="email" />
+                    <div class="msg" *ngIf="email.invalid && (email.touched || contactForm.submitted)">
+                        Bitte gib eine gültige E-Mail ein.
+                    </div>
                 </div>
-            </div>
 
-            <!-- PRIVACY -->
-            <label class="consent sep">
-                <input type="checkbox" name="consent" [(ngModel)]="consent" required />
-                <span>
+                <!-- MESSAGE -->
+                <div class="field sep" [class.invalid]="message.invalid && (message.touched || contactForm.submitted)" [class.valid]="message.valid">
+                    <div class="prompt">How can I help you?</div>
+                    <textarea
+                        id="message" name="message" required minlength="8" rows="4"
+                        placeholder="Hello Lukas, I am interested in…"
+                        [(ngModel)]="contactData.message" #message="ngModel"></textarea>
+                    <div class="msg" *ngIf="message.invalid && (message.touched || contactForm.submitted)">
+                        Bitte schreibe mindestens 8 Zeichen.
+                    </div>
+                </div>
+
+                <!-- PRIVACY -->
+                <label class="consent sep">
+                    <input type="checkbox" name="consent" [(ngModel)]="consent" required />
+                    <span>
           I've read the <a href="/privacy" target="_blank" rel="noopener">privacy policy</a> and agree to the processing of my data as outlined.
         </span>
-            </label>
+                </label>
 
-            <!-- FEEDBACK -->
-            <div class="feedback">
-                <div class="ok" *ngIf="sentOk()">Danke! Deine Nachricht wurde gesendet.</div>
-                <div class="err" *ngIf="sentError()">{{ sentError() }}</div>
-            </div>
+                <!-- FEEDBACK -->
+                <div class="feedback">
+                    <div class="ok" *ngIf="sentOk()">Danke! Deine Nachricht wurde gesendet.</div>
+                    <div class="err" *ngIf="sentError()">{{ sentError() }}</div>
+                </div>
 
-            <!-- SUBMIT -->
-            <button class="submit pill" type="submit" [disabled]="contactForm.invalid || !canSubmit() || !consent">
-                <span *ngIf="!sending()">Say Hello ;)</span>
-                <span class="spinner" *ngIf="sending()" aria-live="polite" aria-busy="true"></span>
-            </button>
-        </form>
+                <!-- SUBMIT -->
+                <button
+                    class="submit pill"
+                    type="submit"
+                    [disabled]="contactForm.invalid || !canSubmit() || !consent"
+                    aria-label="Send message">
+                    {{ sending() ? '' : 'Say Hello ;)' }}
+                    <span class="spinner" *ngIf="sending()" aria-live="polite" aria-busy="true"></span>
+                </button>
+
+            </form>
+        </div>
     </div>
+
 </div>

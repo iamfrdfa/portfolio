@@ -1,16 +1,21 @@
 @use 'styles/variables' as *;
 @use 'styles/mixins' as *;
 
-$bg:            if(global-variable-exists(primaryColorBG), $primaryColorBG, #0f0f10) !default;
-$fg:            if(global-variable-exists(textColor), $textColor, #e8e8e8) !default;
-$muted:         #9aa0a6 !default;
-$accent:        if(global-variable-exists(primaryColor), $primaryColor, #3dcfb6) !default;
-$accent-soft:   rgba(61, 207, 182, 0.55) !default;
-$line:          rgba(61, 207, 182, 0.45) !default;
-$error:         #ff5a5f !default;
-$ok:            #39d98a !default;
+$bg: if(global-variable-exists(primaryColorBG), $primaryColorBG, #0f0f10) !default;
+$fg: if(global-variable-exists(textColor), $textColor, #e8e8e8) !default;
+$muted: #9aa0a6 !default;
+$accent: if(global-variable-exists(primaryColor), $primaryColor, #3dcfb6) !default;
+$accent-soft: rgba(61, 207, 182, 0.55) !default;
+$line: rgba(61, 207, 182, 0.45) !default;
+$error: #ff5a5f !default;
+$ok: #39d98a !default;
 
-.contact-container{
+.contactWrapper {
+    width: 100%;
+    background: $secondaryColorBG !important;
+}
+
+.contact-container {
     width: min(1200px, 92%);
     margin: 0 auto;
     padding: clamp(24px, 4vw, 48px) 0;
@@ -18,81 +23,92 @@ $ok:            #39d98a !default;
     grid-template-columns: 1.1fr 1fr;
     gap: clamp(24px, 4vw, 48px);
     color: $fg;
+    font-family: 'Fira Code', sans-serif;
 }
 
-@media (max-width: 980px){
-    .contact-container{ grid-template-columns: 1fr; }
+@media (max-width: 980px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* LEFT */
-.contact-left{
+.contact-left {
     display: grid;
     align-content: start;
     gap: 18px;
 
-    .kicker{
+    .kicker {
         color: $accent;
         font-weight: 700;
         letter-spacing: .02em;
         margin: 0;
     }
-    .display{
+
+    .display {
         font-size: clamp(40px, 7vw, 86px);
         line-height: .92;
         margin: 0 0 12px;
         font-weight: 800;
-        color: $fg;
+        color: $primaryColor;
     }
-    .subhead{
+
+    .subhead {
         font-size: clamp(18px, 2.3vw, 28px);
         margin: 8px 0 0;
         font-weight: 800;
-        color: $fg;
+        color: $primaryColor;
     }
-    .lead{
+
+    .lead {
         color: $muted;
         margin: 4px 0 0;
         max-width: 48ch;
     }
-    .cta-hint{
+
+    .cta-hint {
         margin-top: 12px;
-        .accent-link{
+
+        .accent-link {
             color: $accent;
             font-weight: 700;
             text-decoration: none;
             border-bottom: 1px solid transparent;
             transition: border-color .2s;
-            &:hover{ border-color: $accent; }
+
+            &:hover {
+                border-color: $accent;
+            }
         }
     }
 }
 
 /* RIGHT */
-.contact-right form{
+.contact-right form {
     display: grid;
     gap: 28px;
 }
 
 /* Top-Separators wie im Screenshot */
-.sep{
+.sep {
     padding-top: 22px;
     border-top: 2px solid $line;
 }
 
 /* “Frage”-Zeile */
-.prompt{
-    font-weight: 800;
+.prompt {
+    font-weight: 400;
     font-size: clamp(18px, 2.3vw, 28px);
     color: $accent;
     margin: 0 0 8px 0;
 }
 
 /* Inputs/Textareas mit grauem Beispieltext */
-.field{
+.field {
     display: grid;
     gap: 10px;
 
-    input, textarea{
+    input, textarea {
         width: 100%;
         font: inherit;
         border: none;
@@ -101,93 +117,147 @@ $ok:            #39d98a !default;
         color: $fg;
         padding: 0 0 8px 0;
         border-bottom: 1px solid transparent; // subtle caret line on focus
-        &::placeholder{ color: $muted; opacity: .9; }
-        &:focus{ border-bottom-color: $accent-soft; }
+        &::placeholder {
+            color: $muted;
+            opacity: .9;
+        }
+
+        &:focus {
+            border-bottom-color: $accent-soft;
+        }
     }
 
-    &.valid input, &.valid textarea { box-shadow: inset 0 -2px 0 0 rgba($ok, .9); }
-    &.invalid input, &.invalid textarea { box-shadow: inset 0 -2px 0 0 rgba($error, .9); }
+    &.valid input, &.valid textarea {
+        box-shadow: inset 0 -2px 0 0 rgba($ok, .9);
+    }
 
-    textarea { resize: none; }
+    &.invalid input, &.invalid textarea {
+        box-shadow: inset 0 -2px 0 0 rgba($error, .9);
+    }
+
+    textarea {
+        resize: none;
+    }
 }
 
-.msg{
+.msg {
     color: lighten($error, 10%);
     font-size: .92rem;
 }
 
 /* Consent checkbox */
-.consent{
+.consent {
     display: flex;
     align-items: flex-start;
     gap: 12px;
     color: $muted;
 
-    input[type="checkbox"]{
+    input[type="checkbox"] {
         appearance: none;
-        width: 18px; height: 18px;
+        width: 18px;
+        height: 18px;
         border: 2px solid $accent;
         border-radius: 4px;
         position: relative;
         margin-top: 3px;
         cursor: pointer;
         transition: background-color .15s, box-shadow .15s;
-        &:checked{
+
+        &:checked {
             background: $accent;
         }
-        &:checked::after{
+
+        &:checked::after {
             content: '';
             position: absolute;
-            left: 4px; top: 0px;
-            width: 5px; height: 10px;
+            left: 4px;
+            top: 0px;
+            width: 5px;
+            height: 10px;
             border: solid #0b0b0b;
             border-width: 0 2px 2px 0;
             transform: rotate(45deg);
         }
-        &:focus{ box-shadow: 0 0 0 3px rgba($accent, .25); }
+
+        &:focus {
+            box-shadow: 0 0 0 3px rgba($accent, .25);
+        }
     }
 
-    a{ color: $accent; text-decoration: underline; }
+    a {
+        color: $accent;
+        text-decoration: underline;
+    }
 }
 
 /* Feedback */
-.feedback{ min-height: 24px; }
-.ok{ color: $ok; }
-.err{ color: $error; }
+.feedback {
+    min-height: 24px;
+}
+
+.ok {
+    color: $ok;
+}
+
+.err {
+    color: $error;
+}
 
 /* Button */
-.pill{
+.pill {
     border-radius: 999px;
 }
-.submit{
+
+.submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; // hält Text/Spinner hübsch zusammen
     justify-self: start;
     min-width: 170px;
     height: 46px;
     padding: 0 20px;
-    border: 1px solid rgba(255,255,255,.25);
+    border: 1px solid $primaryColor;
     background: transparent;
-    color: $fg;
+    color: $primaryColor;
     font-weight: 700;
     cursor: pointer;
     transition: transform .06s ease, filter .2s ease, background-color .2s ease;
-    &:hover{ background-color: rgba(255,255,255,.06); filter: brightness(1.03); }
-    &:active{ transform: translateY(1px); }
-    &:disabled{ opacity: .5; cursor: not-allowed; }
+
+    &:hover {
+        background-color: rgba(255, 255, 255, .06);
+        filter: brightness(1.03);
+    }
+
+    &:active {
+        transform: translateY(1px);
+    }
+
+    &:disabled {
+        opacity: .5;
+        cursor: not-allowed;
+    }
 }
 
 /* Spinner wie zuvor */
-.spinner{
+.spinner {
     display: inline-block;
-    width: 18px; height: 18px;
-    border: 3px solid rgba(255,255,255,.35);
+    width: 18px;
+    height: 18px;
+    border: 3px solid rgba(255, 255, 255, .35);
     border-top-color: #fff;
     border-radius: 50%;
     animation: spin .8s linear infinite;
     vertical-align: -3px;
 }
+
 @keyframes spin { to { transform: rotate(360deg); } }
 
 /* Honeypot */
-.hp-wrapper{
-    position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;
+.hp-wrapper {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }
