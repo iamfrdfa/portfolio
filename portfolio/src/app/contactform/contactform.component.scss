@@ -251,7 +251,11 @@ $ok: #39d98a !default;
     vertical-align: -3px;
 }
 
-@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
 
 /* Honeypot */
 .hp-wrapper {
