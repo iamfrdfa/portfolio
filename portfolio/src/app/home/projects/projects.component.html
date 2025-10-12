@@ -1,42 +1,36 @@
 <div class="projectsWrapper">
     <div class="projectsHeading">
-        <p class="textAboveBoxGreen">
-            Portfolio
-        </p>
-        <h1 class="greenBoxHeadline">
-            Featured Projects
-        </h1>
-        <p>
-            Explore a selection of my work here - Interact with projects to see my skills in action.
-        </p>
+        <p class="textAboveBoxGreen">Portfolio</p>
+        <h1 class="greenBoxHeadline">Featured Projects</h1>
+        <p>Explore a selection of my work here - Interact with projects to see my skills in action.</p>
     </div>
+
+    <!-- Row 1 -->
     <div class="projectsGrid">
         <div class="leftProjectGrid">
-            <div class="projectCard">
+            <div class="projectCard" (click)="openOverlay(0)">
                 <div class="projectGridItemLeft">
-                    <p class="projectName">
-                        Join
-                    </p>
-                    <img src="img/icons/arrow_outward.png" alt="arrow_outward" class="outwardArrow">
+                    <p class="projectName">Join</p>
+                    <img src="/img/icons/arrow_outward.svg" alt="arrow_outward" class="outwardArrow"/>
                 </div>
                 <div class="projectGridItemRight">
-                    JavaScript <span class="greenPipe">|</span> HTML <span class="greenPipe">|</span> CSS <span class="greenPipe">|</span> Material Design
+                    JavaScript <span class="greenPipe">|</span> HTML <span class="greenPipe">|</span> CSS
+                    <span class="greenPipe">|</span> Material Design
                 </div>
             </div>
         </div>
         <div class="rightProjectGrid thumbnail">
-            <img src="img/thumbnails/join.svg" alt="Join - Kanban Board">
+            <img src="/img/thumbnails/join.svg" alt="Join - Kanban Board"/>
         </div>
     </div>
 
+    <!-- Row 2 -->
     <div class="projectsGrid">
         <div class="leftProjectGrid">
-            <div class="projectCard">
+            <div class="projectCard" (click)="openOverlay(1)">
                 <div class="projectGridItemLeft">
-                    <p class="projectName">
-                        El Pollo Loco
-                    </p>
-                    <img src="img/icons/arrow_outward.png" alt="arrow_outward" class="outwardArrow">
+                    <p class="projectName">El Pollo Loco</p>
+                    <img src="/img/icons/arrow_outward.svg" alt="arrow_outward" class="outwardArrow"/>
                 </div>
                 <div class="projectGridItemRight">
                     HTML <span class="greenPipe">|</span> CSS <span class="greenPipe">|</span> JavaScript
@@ -44,18 +38,17 @@
             </div>
         </div>
         <div class="rightProjectGrid thumbnail">
-            <img src="img/thumbnails/epl.svg" alt="El Pollo Loco">
+            <img src="/img/thumbnails/epl.svg" alt="El Pollo Loco"/>
         </div>
     </div>
 
+    <!-- Row 3 -->
     <div class="projectsGrid">
         <div class="leftProjectGrid">
-            <div class="projectCard">
+            <div class="projectCard" (click)="openOverlay(2)">
                 <div class="projectGridItemLeft">
-                    <p class="projectName">
-                        DA Bubble
-                    </p>
-                    <img src="img/icons/arrow_outward.png" alt="arrow_outward" class="outwardArrow">
+                    <p class="projectName">DA Bubble</p>
+                    <img src="/img/icons/arrow_outward.svg" alt="arrow_outward" class="outwardArrow"/>
                 </div>
                 <div class="projectGridItemRight">
                     Angular <span class="greenPipe">|</span> Firebase <span class="greenPipe">|</span> TypeScript
@@ -63,7 +56,84 @@
             </div>
         </div>
         <div class="rightProjectGrid thumbnail">
-            <img src="img/thumbnails/join.svg" alt="Join - Kanban Board">
+            <img src="/img/thumbnails/join.svg" alt="Join - Kanban Board"/>
         </div>
     </div>
 </div>
+
+<!-- ===================== OVERLAY ===================== -->
+<div class="overlayBackdrop" *ngIf="isOpen" (click)="closeOverlay()" aria-hidden="true"></div>
+
+<section
+    class="overlayPanel"
+    *ngIf="isOpen"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-label]="projects[current]?.name"
+    (click)="$event.stopPropagation()"
+>
+    <!-- Header (volle Breite) -->
+    <header class="overlayHeader">
+        <button type="button" class="iconBtn closeBtn" (click)="closeOverlay()" aria-label="Close overlay">
+            <span class="icon close"></span>
+        </button>
+    </header>
+
+    <!-- Content 2 Spalten -->
+    <div class="overlayContent">
+        <!-- Left: Text / Badges / Buttons -->
+        <div class="overlayLeft">
+            <h2 class="overlayIndex">{{ (current + 1) | number:'2.0' }}</h2>
+            <h3 class="overlayTitle">{{ projects[current]?.name }}</h3>
+
+            <h4 class="overlayQuestion">What is this project about?</h4>
+            <p class="overlayDesc">{{ projects[current]?.description }}</p>
+
+            <div class="techRow">
+                <ng-container *ngFor="let t of projects[current]?.tech">
+                    <span class="techIcon">
+                      <img [src]="getIcon(t)" [alt]="t + ' icon'"/>
+                      <p class="TechRowTech">&nbsp; {{ t }}</p>
+                    </span>
+                </ng-container>
+            </div>
+
+
+            <div class="ctaRow">
+                <a class="btn gh" [href]="projects[current]?.repoUrl || null" target="_blank" rel="noopener"
+                   (click)="$event.stopPropagation()">
+                    GitHub <span class="arrowOut"></span>
+                </a>
+                <a class="btn live" [href]="projects[current]?.liveUrl || null" target="_blank" rel="noopener"
+                   (click)="$event.stopPropagation()">
+                    Live Test <span class="arrowOut"></span>
+                </a>
+            </div>
+
+            <!-- Prev (nur wenn vorhanden) -->
+            <button
+                *ngIf="hasPrev"
+                type="button"
+                class="prevLink"
+                (click)="prev()"
+                aria-label="Previous project"
+            >
+                <span class="icon arrowLeft"></span>
+                <span>Previous project</span>
+            </button>
+        </div>
+
+        <!-- Right: Bild -->
+        <div class="overlayRight">
+            <img [src]="projects[current]?.image" [alt]="projects[current]?.name"/>
+        </div>
+    </div>
+
+    <!-- Footer (volle Breite) -->
+    <footer class="overlayFooter">
+        <button *ngIf="hasNext" type="button" class="nextLink" (click)="next()" aria-label="Next project">
+            <span>Next project</span>
+            <span class="icon arrowRight"></span>
+        </button>
+    </footer>
+</section>

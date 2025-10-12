@@ -1,6 +1,8 @@
 @use 'styles/_variables' as *;
 @use 'styles/_mixins' as *;
 
+
+
 .projectsWrapper {
     background-color: $secondaryColorBG;
     display: flex;
@@ -136,4 +138,230 @@
         object-fit: cover;
         border-radius: 10px;
     }
+}
+
+/* ================= Overlay ================= */
+.overlayBackdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    backdrop-filter: blur(2px);
+    z-index: 80;
+}
+
+.overlayPanel {
+    position: fixed;
+    inset: 32px;
+    margin: auto;
+    width: min(1248px, 92vw);
+    height: min(86vh, 656px);
+    background: radial-gradient(120% 120% at 0% 0%, #0f2623 0%, #122e2a 60%, #0f2623 100%);
+    border: 1px solid $primaryColor;
+    border-radius: 20px;
+    z-index: 90;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,.35);
+}
+
+/* Header mit Close-X */
+.overlayHeader {
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px 16px 0 16px;
+}
+
+.iconBtn {
+    background: transparent;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 10px;
+    &:hover { background: rgba(255,255,255,.06); }
+}
+
+.icon {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    background-color: #fff;
+}
+
+.icon.close {
+    -webkit-mask: url('/img/icons/cancel-cross-white.svg') no-repeat center / contain;
+    mask: url('/img/icons/cancel-cross-white.svg') no-repeat center / contain;
+}
+
+/* Inhalt: zwei Spalten */
+.overlayContent {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    padding: 24px 32px 0 32px;
+}
+
+.overlayLeft {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    color: #e8f5f2;
+
+    .overlayIndex {
+        font-size: 92px;
+        line-height: 1;
+        margin: 0;
+        color: $primaryColor;
+        font-weight: 700;
+    }
+    .overlayTitle {
+        font-size: 64px;
+        margin: 0 0 8px 0;
+        font-weight: 700;
+    }
+    .overlayQuestion {
+        font-family: 'Fira Code', monospace;
+        color: $primaryColor;
+        margin: 16px 0 0 0;
+        font-size: 28px;
+    }
+    .overlayDesc {
+        margin: 0;
+        opacity: .9;
+        max-width: 60ch;
+    }
+
+    .techRow {
+        display: flex;
+        gap: 14px;
+        margin-top: 8px;
+
+        .techIcon {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            width: auto;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            letter-spacing: .2px;
+
+            img {
+                width: 24px;
+                height: 24px;
+                display: inline-block;
+            }
+
+            p {
+                font-size: 16px;
+            }
+        }
+    }
+
+    .ctaRow {
+        display: flex;
+        gap: 16px;
+        margin-top: 8px;
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,.25);
+            color: #fff;
+            text-decoration: none;
+            transition: background-color .2s ease, border-color .2s ease, color .2s ease;
+
+            &:hover {
+                background: rgba(255,255,255,.08);
+                border-color: $primaryColor;
+                color: $primaryColor;
+
+                .arrowOut {
+                    background-color: $primaryColor;
+                    transform: scale(1.35); /* ~35 % größer */
+                }
+            }
+
+            .arrowOut {
+                width: 18px;
+                height: 18px;
+                background-color: #fff;
+                -webkit-mask: url('/img/icons/arrow_outward.svg') no-repeat center / contain;
+                mask: url('/img/icons/arrow_outward.svg') no-repeat center / contain;
+                transition: background-color .2s ease, transform .25s ease; /* 👈 Übergang für Farbe & Skalierung */
+            }
+        }
+    }
+
+    .prevLink {
+        margin-top: auto;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: #e8f5f2;
+        opacity: .9;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 6px 8px;
+        border-radius: 10px;
+        &:hover { color: $primaryColor; background: rgba(255,255,255,.06); }
+        .arrowLeft {
+            width: 18px; height: 18px; background: currentColor;
+            -webkit-mask: url('/img/icons/arrow-left.svg') no-repeat center / contain;
+            mask: url('/img/icons/arrow-left.svg') no-repeat center / contain;
+        }
+    }
+}
+
+.overlayRight {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+        width: 100%;
+        max-width: 640px;
+        height: auto;
+        border-radius: 18px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.25);
+        background: #0e2320;
+    }
+}
+
+/* Footer mit Next-Link */
+.overlayFooter {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 32px 24px 32px;
+
+    .nextLink {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: #e8f5f2;
+        opacity: .9;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 6px 8px;
+        border-radius: 10px;
+        &:hover { color: $primaryColor; background: rgba(255,255,255,.06); }
+        .arrowRight {
+            width: 18px; height: 18px; background: currentColor;
+            -webkit-mask: url('/img/icons/arrow-right.svg') no-repeat center / contain;
+            mask: url('/img/icons/arrow-right.svg') no-repeat center / contain;
+        }
+    }
+}
+
+/* Responsive Tuning */
+@media (max-width: 920px) {
+    .overlayPanel { inset: 16px; height: min(88vh, 820px); }
+    .overlayContent { grid-template-columns: 1fr; gap: 20px; }
+    .overlayRight { order: -1; }
+    .overlayLeft .overlayTitle { font-size: 42px; }
+    .overlayLeft .overlayIndex { font-size: 64px; }
 }
