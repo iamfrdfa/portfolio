@@ -1,43 +1,75 @@
+/* ===========================
+   aboutme.component.scss
+   (Desktop-Layout unverändert, Tabelle behält Struktur)
+   =========================== */
 @use 'styles/variables' as *;
 @use 'styles/mixins' as *;
 
-.centerWrapper {
-    @include componentCenterWrapper;
-}
-
-.greenBoxHeadline {
-    @include greenBoxHeadline;
-}
+.centerWrapper { @include componentCenterWrapper; }
+.greenBoxHeadline { @include greenBoxHeadline; }
 
 .aboutMeLeftInnerWrapper {
     @include leftInnerWrapper;
-    transform: translateY(-50px); // 50px nach oben versetzt
+    transform: translateY(-50px);
 
-    > div {
-        > img {
-            height: 568px;
-            width: 568px;
-        }
+    > div > img {
+        height: clamp(360px, 42vw, 568px);
+        width: clamp(360px, 42vw, 568px);
+        max-width: 100%;
+        object-fit: cover;
+        border-radius: 18px;
     }
 }
 
-.aboutMeRightInnerWrapper {
-    @include rightInnerWrapper;
-}
+.aboutMeRightInnerWrapper { @include rightInnerWrapper; }
 
 .greenTextBoxWrapper {
     @include greenBoxWrapper;
-    transform: translateY(50px); // 50px nach unten versetzt
+    transform: translateY(50px);
 }
 
+/* --- Tabelle: Desktop wie zuvor, mobil nur typografisch kleiner --- */
 .aboutMeTable {
+    width: 100%;
+
     > table {
-        > tr {
-            > td {
-                padding: 8px;
-                font-size: 20px;
-                font-weight: 500;
-            }
+        width: 100%;
+        border-collapse: collapse;
+
+        > tr > td {
+            padding: 8px;
+            font-size: clamp(16px, 1.6vw, 20px);
+            font-weight: 500;
+            vertical-align: top;
+            /* KEIN white-space / overflow – lässt normal umbrechen */
         }
+
+        > tr:last-child > td { border-bottom: none; }
+    }
+}
+
+/* --- Responsive Tweaks --- */
+@media (max-width: 992px) {
+    .aboutMeLeftInnerWrapper { transform: translateY(-30px); }
+    .greenTextBoxWrapper { transform: translateY(30px); }
+}
+
+@media (max-width: 768px) {
+    .aboutMeLeftInnerWrapper,
+    .aboutMeRightInnerWrapper { margin-inline: auto; }
+
+    .aboutMeLeftInnerWrapper { transform: none; }
+    .greenTextBoxWrapper { transform: none; }
+
+    .aboutMeTable > table > tr > td {
+        padding: 6px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 560px) {
+    .aboutMeTable > table > tr > td {
+        padding: 6px 4px;
+        font-size: 14px;
     }
 }

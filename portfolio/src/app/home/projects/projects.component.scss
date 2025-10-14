@@ -178,20 +178,30 @@
     padding: 8px;
     cursor: pointer;
     border-radius: 10px;
-    &:hover { background: rgba(255,255,255,.06); }
+    transition: background-color .2s ease;
+
 }
 
+/* === Close-Icon (X) === */
 .icon {
     display: inline-block;
-    width: 22px;
-    height: 22px;
+    width: 40px;       /* vorher 22px → größer */
+    height: 40px;
     background-color: #fff;
+    transition: background-color .25s ease, transform .25s ease;
 }
 
 .icon.close {
     -webkit-mask: url('/img/icons/cancel-cross-white.svg') no-repeat center / contain;
     mask: url('/img/icons/cancel-cross-white.svg') no-repeat center / contain;
+
+    /* Hover-Zustand */
+    &:hover {
+        background-color: $primaryColor; /* Farbe auf Primärfarbe ändern */
+        transform: scale(1.35);           /* leichtes Vergrößern (~10%) */
+    }
 }
+
 
 /* Inhalt: zwei Spalten */
 .overlayContent {
@@ -331,13 +341,15 @@
     }
 }
 
-/* Footer mit Next-Link */
+/* Footer mit Prev- & Next-Link */
 .overlayFooter {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-end; /* Next bleibt rechts, egal ob Prev da ist */
+    align-items: center;
     padding: 0 32px 24px 32px;
 
-    .nextLink {
+    /* Gemeinsamer Button-Style */
+    button {
         display: inline-flex;
         align-items: center;
         gap: 8px;
@@ -348,12 +360,32 @@
         cursor: pointer;
         padding: 6px 8px;
         border-radius: 10px;
-        &:hover { color: $primaryColor; background: rgba(255,255,255,.06); }
+        transition: color .2s ease, background .2s ease, transform .2s ease;
+
+        &:hover {
+            color: $primaryColor;
+            background: rgba(255,255,255,.06);
+            transform: scale(1.05);
+        }
+
+        .icon {
+            width: 18px;
+            height: 18px;
+            background: currentColor;
+        }
+        .arrowLeft {
+            -webkit-mask: url('/img/icons/arrow-left.svg') no-repeat center / contain;
+            mask: url('/img/icons/arrow-left.svg') no-repeat center / contain;
+        }
         .arrowRight {
-            width: 18px; height: 18px; background: currentColor;
             -webkit-mask: url('/img/icons/arrow-right.svg') no-repeat center / contain;
             mask: url('/img/icons/arrow-right.svg') no-repeat center / contain;
         }
+    }
+
+    /* Nur wenn vorhanden -> schiebt Next nach rechts */
+    .prevLink {
+        margin-right: auto;
     }
 }
 
@@ -364,4 +396,153 @@
     .overlayRight { order: -1; }
     .overlayLeft .overlayTitle { font-size: 42px; }
     .overlayLeft .overlayIndex { font-size: 64px; }
+}
+
+/* ================= RESPONSIVE DESIGN ================= */
+
+/* --- Basis: mobile-first (unter 480px) --- */
+@media (max-width: 480px) {
+    .overlayPanel {
+        inset: 8px;
+        width: 94vw;
+        height: auto;
+        min-height: 80vh;
+        padding: 0;
+    }
+
+    .overlayHeader {
+        padding: 8px;
+    }
+
+    .overlayContent {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 16px;
+    }
+
+    .overlayLeft {
+        .overlayIndex {
+            font-size: 48px;
+        }
+        .overlayTitle {
+            font-size: 32px;
+            line-height: 1.1;
+        }
+        .overlayQuestion {
+            font-size: 20px;
+        }
+        .overlayDesc {
+            font-size: 14px;
+        }
+
+        .techRow {
+            flex-wrap: wrap;
+            gap: 8px;
+            .techIcon {
+                font-size: 12px;
+                padding: 4px 8px;
+            }
+        }
+
+        .ctaRow {
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-start;
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    }
+
+    .overlayRight img {
+        max-width: 100%;
+        border-radius: 10px;
+    }
+
+    .overlayFooter {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 8px 16px 16px 16px;
+
+        .prevLink,
+        .nextLink {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .prevLink { margin-right: 0; }
+    }
+}
+
+/* --- Tablets (481px bis 768px) --- */
+@media (min-width: 481px) and (max-width: 768px) {
+    .overlayPanel {
+        inset: 16px;
+        width: 94vw;
+        height: min(88vh, 820px);
+    }
+
+    .overlayContent {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .overlayLeft .overlayTitle {
+        font-size: 40px;
+    }
+
+    .overlayLeft .overlayIndex {
+        font-size: 64px;
+    }
+
+    .overlayRight img {
+        max-width: 90%;
+        border-radius: 14px;
+    }
+
+    .overlayFooter {
+        justify-content: space-between;
+        padding: 16px 24px;
+    }
+}
+
+/* --- Small Laptops (769px bis 1024px) --- */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .overlayPanel {
+        width: 90vw;
+        height: min(88vh, 800px);
+    }
+
+    .overlayContent {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        padding: 24px;
+    }
+
+    .overlayLeft .overlayTitle {
+        font-size: 48px;
+    }
+}
+
+/* --- Desktop Large (1025px bis 1440px) --- */
+@media (min-width: 1025px) and (max-width: 1440px) {
+    .overlayPanel {
+        width: min(1100px, 92vw);
+        height: min(86vh, 760px);
+    }
+
+    .overlayLeft .overlayTitle {
+        font-size: 56px;
+    }
+}
+
+/* --- Ultra-Wide (ab 1441px) --- */
+@media (min-width: 1441px) {
+    .overlayPanel {
+        width: 1200px;
+        height: 760px;
+    }
 }

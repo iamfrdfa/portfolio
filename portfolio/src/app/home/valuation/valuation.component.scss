@@ -1,148 +1,95 @@
+/* ===========================
+   valuation.component.scss
+   Testimonial-Slider (Viewport/Track/Card/Controls)
+   Responsiv, barrierearm, mit Rand-Schleiern.
+   Breakpoints: 1200 / 992 / 768 / 560
+   =========================== */
 @use 'styles/_variables' as *;
 @use 'styles/_mixins' as *;
 
-/* ==========================================================================
-   SECTION: Valuation Component Styles
-   Beschreibung:
-   Enthält alle Styles für den Testimonial-Slider (ValuationComponent).
-   Strukturiert in Container, Viewport, Track, Card, Controls.
-   ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   #valuationComponent
-   - Äußerer Abschnitt der Valuation-Komponente
-   - Sorgt für vertikales Padding und verhindert horizontales Scrollen
-   -------------------------------------------------------------------------- */
+/* SECTION Wrapper */
 #valuationComponent {
-    padding: 250px 0;
-    overflow-x: clip; /* verhindert horizontalen Seitenscroll */
+    padding: clamp(120px, 16vh, 250px) 0;
+    overflow-x: clip;
 }
 
-/* --------------------------------------------------------------------------
-   .valuation
-   - Hauptcontainer für Heading + Slider
-   - Zentriert Inhalte vertikal und horizontal
-   -------------------------------------------------------------------------- */
+/* Hauptcontainer */
 .valuation {
     background-color: $secondaryColorBG;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: clamp(16px, 2.5vw, 24px);
     overflow-x: hidden;
     place-items: center;
 }
 
-
-/* --------------------------------------------------------------------------
-   .sectionTitle
-   - Überschrift oberhalb des Sliders
-   -------------------------------------------------------------------------- */
+/* Überschrift */
 .sectionTitle {
     @include greenBoxHeadline;
     margin-bottom: 8px;
 }
 
-/* --------------------------------------------------------------------------
-   .viewport
-   - Sichtbarer Bereich des Sliders
-   - Enthält den Track mit den Cards
-   - Overflow sichtbar, da Nachbar-Slides halb sichtbar bleiben sollen
-   -------------------------------------------------------------------------- */
+/* Sichtbereich */
 .viewport {
     position: relative;
     width: min(1012px, 100%);
-    height: 274px;
+    height: clamp(220px, 30vw, 274px);
     overflow: visible;
     margin: 0 auto;
 }
 
-/* --------------------------------------------------------------------------
-   .track
-   - Container, der alle Karten (Slides) nebeneinander enthält
-   - Wird horizontal via transform verschoben
-   - Weiche, Material-ähnliche Bewegung
-   -------------------------------------------------------------------------- */
+/* Track */
 .track {
     display: flex;
     will-change: transform;
-    transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1); /* sanftere Slide-Bewegung */
+    transition: transform .65s cubic-bezier(.4,0,.2,1);
     z-index: 1;
 }
 
-/* --------------------------------------------------------------------------
-   .viewport::before / ::after
-   - Erzeugen visuelle „Schleier“ (Gradient-Fades) an den Rändern
-   - Verhindern hart abgeschnittene Slides
-   - Before = links, After = rechts (gespiegelt)
-   -------------------------------------------------------------------------- */
-
-/* --- Linker Schleier: startet am Bildschirmrand, endet VOR aktiver Karte --- */
+/* Rand-Schleier */
 .viewport::before {
     content: "";
     position: absolute;
     top: 0;
-
-    /* Start exakt am linken Bildschirmrand */
     left: calc(0px - var(--vp-left, 0px));
-
-    /* Reicht bis kurz vor die aktive Karte */
     width: calc(var(--vp-left, 0px) + var(--left-cover, 180px));
-
     height: 100%;
     pointer-events: none;
     z-index: 4;
-
-    /* Sanfter Verlauf von Hintergrundfarbe → transparent */
     background: linear-gradient(
             to right,
             $secondaryColorBG 0%,
-            rgba($secondaryColorBG, 0.9) 40%,
+            rgba($secondaryColorBG, .9) 40%,
             rgba($secondaryColorBG, 0) 100%
     );
 }
-
-/* --- Rechter Schleier (gespiegelt) --- */
 .viewport::after {
     content: "";
     position: absolute;
     top: 0;
-
-    /* Start am rechten Bildschirmrand */
     right: calc(0px - (100vw - (var(--vp-left, 0px) + var(--left-cover, 180px) + var(--vp-left, 0px))));
-
-    /* gleiche Breite wie linker Schleier */
     width: calc(var(--vp-left, 0px) + var(--left-cover, 180px));
-
     height: 100%;
     pointer-events: none;
     z-index: 4;
-
     background: linear-gradient(
             to left,
             $secondaryColorBG 0%,
-            rgba($secondaryColorBG, 0.9) 40%,
+            rgba($secondaryColorBG, .9) 40%,
             rgba($secondaryColorBG, 0) 100%
     );
 }
 
-/* --------------------------------------------------------------------------
-   .card
-   - Einzelne Testimonial-Karte
-   - Enthält Zitat, Autor, ggf. Rolle
-   - Definiert Höhe, Breite, Margin und Padding
-   -------------------------------------------------------------------------- */
+/* Karte */
 .card {
-    flex: 0 0 auto;            /* verhindert Stretching */
-    width: 632px;
-    height: 274px;
+    flex: 0 0 auto;
+    width: clamp(300px, 70vw, 632px);
+    height: clamp(220px, 30vw, 274px);
     box-sizing: border-box;
-
-    /* horizontaler Abstand: 36px links/rechts (gesamt 72px) */
-    margin: 0 36px;
-    padding: 24px 32px 22px 72px;
-
+    margin: 0 clamp(14px, 4vw, 36px);
+    padding: clamp(16px, 2.5vw, 24px) clamp(18px, 3vw, 32px) clamp(16px, 2.2vw, 22px) clamp(36px, 6vw, 72px);
     background: #173733;
     border: 1px solid $primaryColor;
     border-radius: 20px;
@@ -152,173 +99,114 @@
     flex-direction: column;
     justify-content: space-between;
     position: relative;
-    z-index: 1; /* damit Quote-Icon sichtbar bleibt */
+    z-index: 1;
 }
 
-/* --------------------------------------------------------------------------
-   .quoteIcon
-   - Zitat-Symbol in der oberen linken Ecke einer Karte
-   - Nur in der aktiven Karte sichtbar
-   -------------------------------------------------------------------------- */
+/* Quote-Icon */
 .card .quoteIcon {
     position: absolute;
     top: -32px;
     left: -32px;
-    width: 96px;
-    height: 96px;
+    width: clamp(56px, 8vw, 96px);
+    height: clamp(56px, 8vw, 96px);
     pointer-events: none;
     z-index: 3;
     opacity: 0;
     transition: opacity .25s ease;
 }
+.card[aria-hidden="false"] .quoteIcon { opacity: 1; }
 
-/* Aktive Karte zeigt das Symbol */
-.card[aria-hidden="false"] .quoteIcon {
-    opacity: 1;
-}
-
-/* --------------------------------------------------------------------------
-   .quote / .signature / .author / .role
-   - Typografische Gestaltung des Zitats und der Signaturzeile
-   -------------------------------------------------------------------------- */
+/* Typo */
 .quote {
-    font-size: 20px;
+    font-size: clamp(16px, 2vw, 20px);
     line-height: 1.35;
 }
-
 .signature {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: clamp(10px, 2vw, 16px);
     opacity: .9;
 }
-
 .signature .line {
     display: inline-block;
-    width: 260px;
+    width: clamp(120px, 30vw, 260px);
     height: 2px;
     background: rgba($primaryColor, .6);
     border-radius: 2px;
 }
-
 .author { font-weight: 600; }
-.role   { opacity: .9; }
+.role { opacity: .9; }
 
-/* --------------------------------------------------------------------------
-   .fade-Klassen
-   - Platzhalter für optionale visuelle Überlagerungen
-   - Derzeit deaktiviert
-   -------------------------------------------------------------------------- */
-.fade,
-.fade-left,
-.fade-right {
-    display: none;
-}
+/* Fades (derzeit deaktiviert) */
+.fade, .fade-left, .fade-right { display: none; }
 
-/* --------------------------------------------------------------------------
-   .controls
-   - Container für Pfeile (Navigation) und Dots (Pagination)
-   - Zentriert und mit Hover-Animationen
-   -------------------------------------------------------------------------- */
+/* Controls */
 .controls {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: clamp(12px, 2.5vw, 18px);
 
-    /* ---------------------------------------------------------------
-       Pfeile (.arrow)
-       - Basieren auf CSS-Masken für saubere SVG-Darstellung
-       - Farbänderung & Skalierung bei Hover
-       --------------------------------------------------------------- */
     .arrow {
         position: relative;
         background: transparent;
         border: none;
         padding: 0;
         cursor: pointer;
-        width: 40px;
-        height: 40px;
+        width: clamp(36px, 6vw, 40px);
+        height: clamp(36px, 6vw, 40px);
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        transition: transform 0.25s ease;
+        transition: transform .25s ease;
 
-        /* versteckt evtl. eingebettetes <img> */
         img { display: none; }
 
-        /* Linker Pfeil */
         &::before {
             content: "";
             display: block;
-            width: 24px;
-            height: 24px;
-            background-color: #fff; /* Standardfarbe */
-            transition: background-color 0.25s ease, transform 0.25s ease;
+            width: clamp(18px, 3.2vw, 24px);
+            height: clamp(18px, 3.2vw, 24px);
+            background-color: #fff;
+            transition: background-color .25s ease, transform .25s ease;
             -webkit-mask: url('/img/icons/arrow-left.svg') no-repeat center / contain;
             mask: url('/img/icons/arrow-left.svg') no-repeat center / contain;
         }
 
-        /* Rechter Pfeil */
         &:last-child::before {
             -webkit-mask: url('/img/icons/arrow-right.svg') no-repeat center / contain;
             mask: url('/img/icons/arrow-right.svg') no-repeat center / contain;
         }
 
-        &:hover {
-            transform: scale(1.1); /* 10 % größer bei Hover */
-        }
-
-        &:active {
-            transform: scale(1.05);
-        }
-
-        /* Hover-Farbe */
-        &:hover::before {
-            background-color: $primaryColor;
-        }
+        &:hover { transform: scale(1.1); }
+        &:active { transform: scale(1.05); }
+        &:hover::before { background-color: $primaryColor; }
     }
 
-    /* ---------------------------------------------------------------
-       Dots (.dot)
-       - Kleine runde Indikatoren für aktuelle Slide-Position
-       - Reagieren auf Hover und aktiven Zustand
-       --------------------------------------------------------------- */
-    .dots {
-        display: flex;
-        gap: 10px;
-    }
+    .dots { display: flex; gap: clamp(8px, 1.6vw, 10px); }
 
     .dot {
         display: block;
-        width: 8px;
-        height: 8px;
-        aspect-ratio: 1 / 1;
+        width: clamp(7px, 1.6vw, 8px);
+        height: clamp(7px, 1.6vw, 8px);
+        aspect-ratio: 1;
         border: none;
         border-radius: 50%;
         background: #fff;
-        opacity: 0.35;
+        opacity: .35;
         cursor: pointer;
-        transition: opacity 0.2s ease, transform 0.25s ease, background 0.25s ease;
+        transition: opacity .2s ease, transform .25s ease, background .25s ease;
     }
 
-    .dot:hover {
-        opacity: 0.7;
-        background: $primaryColor;
-        transform: scale(1.1);
-    }
-
-    .dot.active {
-        opacity: 1;
-        background: $primaryColor;
-    }
+    .dot:hover { opacity: .7; background: $primaryColor; transform: scale(1.1); }
+    .dot.active { opacity: 1; background: $primaryColor; }
 }
 
-/* --------------------------------------------------------------------------
-   Accessibility / Motion Preferences
-   - Entfernt Animationen bei aktivierter reduzierter Bewegung
-   -------------------------------------------------------------------------- */
+/* Motion Prefs */
 @media (prefers-reduced-motion: reduce) {
-    .track {
-        transition: none !important;
-    }
+    .track { transition: none !important; }
+}
+
+/* <= 768px: mehr Sicht auf Nachbar-Slides (kleinerer left-cover sinnvoll im TS) */
+@media (max-width: 768px) {
+    #valuationComponent { padding: clamp(80px, 12vh, 140px) 0; }
 }

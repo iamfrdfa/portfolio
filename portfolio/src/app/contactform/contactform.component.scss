@@ -1,3 +1,9 @@
+/* ===========================
+   contactform.component.scss
+   Responsives Kontaktformular mit
+   Grid-Layout, skalierender Typo & Buttons.
+   Breakpoints: 1200 / 980 / 768 / 560
+   =========================== */
 @use 'styles/variables' as *;
 @use 'styles/mixins' as *;
 
@@ -27,26 +33,26 @@ $ok: #39d98a !default;
 }
 
 @media (max-width: 980px) {
-    .contact-container {
-        grid-template-columns: 1fr;
-    }
+    .contact-container { grid-template-columns: 1fr; }
 }
 
 /* LEFT */
 .contact-left {
     display: grid;
     align-content: start;
-    gap: 18px;
+    gap: clamp(12px, 2.5vw, 18px);
 
     .kicker {
         color: $accent;
         font-weight: 700;
         letter-spacing: .02em;
         margin: 0;
+        font-size: clamp(12px, 1.5vw, 14px);
+        text-transform: uppercase;
     }
 
     .display {
-        font-size: clamp(40px, 7vw, 86px);
+        font-size: clamp(32px, 7vw, 86px);
         line-height: .92;
         margin: 0 0 12px;
         font-weight: 800;
@@ -54,7 +60,7 @@ $ok: #39d98a !default;
     }
 
     .subhead {
-        font-size: clamp(18px, 2.3vw, 28px);
+        font-size: clamp(16px, 2.3vw, 28px);
         margin: 8px 0 0;
         font-weight: 800;
         color: $primaryColor;
@@ -63,7 +69,8 @@ $ok: #39d98a !default;
     .lead {
         color: $muted;
         margin: 4px 0 0;
-        max-width: 48ch;
+        max-width: 58ch;
+        font-size: clamp(14px, 1.8vw, 16px);
     }
 
     .cta-hint {
@@ -75,10 +82,7 @@ $ok: #39d98a !default;
             text-decoration: none;
             border-bottom: 1px solid transparent;
             transition: border-color .2s;
-
-            &:hover {
-                border-color: $accent;
-            }
+            &:hover { border-color: $accent; }
         }
     }
 }
@@ -86,16 +90,16 @@ $ok: #39d98a !default;
 /* RIGHT */
 .contact-right form {
     display: grid;
-    gap: 28px;
+    gap: clamp(20px, 2.6vw, 28px);
 }
 
-/* Top-Separators wie im Screenshot */
+/* Top-Separators */
 .sep {
     padding-top: 22px;
     border-top: 2px solid $line;
 }
 
-/* “Frage”-Zeile */
+/* Frage-Zeile */
 .prompt {
     font-weight: 400;
     font-size: clamp(18px, 2.3vw, 28px);
@@ -103,7 +107,7 @@ $ok: #39d98a !default;
     margin: 0 0 8px 0;
 }
 
-/* Inputs/Textareas mit grauem Beispieltext */
+/* Inputs/Textareas */
 .field {
     display: grid;
     gap: 10px;
@@ -116,41 +120,31 @@ $ok: #39d98a !default;
         background: transparent;
         color: $fg;
         padding: 0 0 8px 0;
-        border-bottom: 1px solid transparent; // subtle caret line on focus
-        &::placeholder {
-            color: $muted;
-            opacity: .9;
-        }
+        border-bottom: 1px solid transparent;
+        font-size: clamp(14px, 1.8vw, 16px);
 
-        &:focus {
-            border-bottom-color: $accent-soft;
-        }
+        &::placeholder { color: $muted; opacity: .9; }
+        &:focus { border-bottom-color: $accent-soft; }
     }
 
-    &.valid input, &.valid textarea {
-        box-shadow: inset 0 -2px 0 0 rgba($ok, .9);
-    }
+    &.valid input, &.valid textarea { box-shadow: inset 0 -2px 0 0 rgba($ok, .9); }
+    &.invalid input, &.invalid textarea { box-shadow: inset 0 -2px 0 0 rgba($error, .9); }
 
-    &.invalid input, &.invalid textarea {
-        box-shadow: inset 0 -2px 0 0 rgba($error, .9);
-    }
-
-    textarea {
-        resize: none;
-    }
+    textarea { resize: none; min-height: clamp(120px, 18vh, 180px); }
 }
 
 .msg {
     color: lighten($error, 10%);
-    font-size: .92rem;
+    font-size: clamp(.86rem, 1.6vw, .92rem);
 }
 
-/* Consent checkbox */
+/* Consent */
 .consent {
     display: flex;
     align-items: flex-start;
     gap: 12px;
     color: $muted;
+    font-size: clamp(13px, 1.7vw, 15px);
 
     input[type="checkbox"] {
         appearance: none;
@@ -163,56 +157,35 @@ $ok: #39d98a !default;
         cursor: pointer;
         transition: background-color .15s, box-shadow .15s;
 
-        &:checked {
-            background: $accent;
-        }
-
+        &:checked { background: $accent; }
         &:checked::after {
             content: '';
             position: absolute;
-            left: 4px;
-            top: 0px;
-            width: 5px;
-            height: 10px;
+            left: 4px; top: 0px;
+            width: 5px; height: 10px;
             border: solid #0b0b0b;
             border-width: 0 2px 2px 0;
             transform: rotate(45deg);
         }
-
-        &:focus {
-            box-shadow: 0 0 0 3px rgba($accent, .25);
-        }
+        &:focus { box-shadow: 0 0 0 3px rgba($accent, .25); }
     }
 
-    a {
-        color: $accent;
-        text-decoration: underline;
-    }
+    a { color: $accent; text-decoration: underline; }
 }
 
 /* Feedback */
-.feedback {
-    min-height: 24px;
-}
-
-.ok {
-    color: $ok;
-}
-
-.err {
-    color: $error;
-}
+.feedback { min-height: 24px; }
+.ok { color: $ok; }
+.err { color: $error; }
 
 /* Button */
-.pill {
-    border-radius: 999px;
-}
+.pill { border-radius: 999px; }
 
 .submit {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px; // hält Text/Spinner hübsch zusammen
+    gap: 8px;
     justify-self: start;
     min-width: 170px;
     height: 46px;
@@ -224,44 +197,32 @@ $ok: #39d98a !default;
     cursor: pointer;
     transition: transform .06s ease, filter .2s ease, background-color .2s ease;
 
-    &:hover {
-        background-color: rgba(255, 255, 255, .06);
-        filter: brightness(1.03);
-    }
-
-    &:active {
-        transform: translateY(1px);
-    }
-
-    &:disabled {
-        opacity: .5;
-        cursor: not-allowed;
-    }
+    &:hover { background-color: rgba(255,255,255,.06); filter: brightness(1.03); }
+    &:active { transform: translateY(1px); }
+    &:disabled { opacity: .5; cursor: not-allowed; }
 }
 
-/* Spinner wie zuvor */
+/* Spinner */
 .spinner {
     display: inline-block;
-    width: 18px;
-    height: 18px;
-    border: 3px solid rgba(255, 255, 255, .35);
+    width: 18px; height: 18px;
+    border: 3px solid rgba(255,255,255,.35);
     border-top-color: #fff;
     border-radius: 50%;
     animation: spin .8s linear infinite;
     vertical-align: -3px;
 }
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
+@keyframes spin { to { transform: rotate(360deg); } }
 
 /* Honeypot */
 .hp-wrapper {
     position: absolute;
     left: -9999px;
-    width: 1px;
-    height: 1px;
+    width: 1px; height: 1px;
     overflow: hidden;
+}
+
+/* <= 768px: Button full-width optional */
+@media (max-width: 768px) {
+    .submit { width: 100%; min-width: 0; }
 }

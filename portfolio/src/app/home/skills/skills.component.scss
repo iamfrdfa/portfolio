@@ -1,35 +1,26 @@
+/* ===========================
+   skills.component.scss
+   (Desktop-Layout der Icons 1:1 belassen,
+   mobil wird nur sanft umgebrochen & skaliert)
+   =========================== */
 @use 'styles/variables' as *;
 @use 'styles/mixins' as *;
 
-.centerWrapper {
-    @include componentCenterWrapperBG;
-}
-
-.greenBoxHeadline {
-    @include greenBoxHeadline;
-}
+.centerWrapper { @include componentCenterWrapperBG; }
+.greenBoxHeadline { @include greenBoxHeadline; }
 
 .leftInnerWrapper {
     @include leftInnerWrapper;
-    transform: translateY(-40px); // 50px nach oben versetzt
+    transform: translateY(-40px);
 }
 
-.rightInnerWrapper {
-    @include rightInnerWrapper;
-}
+.rightInnerWrapper { @include rightInnerWrapper; }
+.greenTextBoxWrapper { @include greenBoxWrapper; }
 
-.greenTextBoxWrapper {
-    @include greenBoxWrapper;
-}
+.primaryColor { color: $primaryColor !important; }
+.button { @include buttonStyle122px; }
 
-.primaryColor {
-    color: $primaryColor !important;
-}
-
-.button {
-    @include buttonStyle122px;
-}
-
+/* --- ORIGINAL Desktop-Layout beibehalten --- */
 .skillIcons {
     width: 632px !important;
 
@@ -43,4 +34,44 @@
             margin-right: 0 !important;
         }
     }
+}
+
+/* --- Responsiv: ab <= 992px flexibel umbrechen, ohne Desktop zu ändern --- */
+@media (max-width: 992px) {
+    .leftInnerWrapper { transform: translateY(-24px); }
+
+    .skillIcons {
+        width: 100% !important;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 24px;
+
+        > img {
+            width: 88px;
+            height: 98px;
+            margin-right: 0 !important; /* feste Spaltenabstände entfernen */
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .leftInnerWrapper { transform: none; }
+
+    .skillIcons {
+        gap: 20px;
+        > img { width: 80px; height: 90px; }
+    }
+}
+
+@media (max-width: 560px) {
+    .skillIcons {
+        gap: 16px 14px;
+        > img { width: 72px; height: 80px; }
+    }
+}
+
+/* Motion-Respect */
+@media (prefers-reduced-motion: reduce) {
+    .leftInnerWrapper { transform: none !important; }
 }

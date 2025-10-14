@@ -2,8 +2,6 @@
 @use 'styles/mixins' as *;
 
 $marqueeBackground: #383838d3;
-
-/* Fallback-Accent, falls kein Grün in Deinen Vars existiert */
 $accentGreen: #3dcfb6 !default;
 
 /* ---------- HERO ---------- */
@@ -14,69 +12,59 @@ $accentGreen: #3dcfb6 !default;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 8% 0 7% 0;
-    overflow: visible; /* wichtig, falls Kind-Overlays rausstehen */
+    padding: clamp(48px, 8vh, 120px) 0 clamp(40px, 6vh, 100px) 0;
+    overflow: visible;
 }
 
 .hero_subtitle {
-    font-size: 40px;
+    font-size: clamp(18px, 4.2vw, 32px);
     font-weight: 100;
     margin-block: 0;
 }
 
 .hero_title {
-    font-size: clamp(48px, 8vw, 100px);
+    font-size: clamp(38px, 8vw, 100px);
     margin-block: 0;
 }
 
 .heroButtonsWrapper {
     @include buttonsWrapper;
-    gap: 16px;
+    gap: clamp(10px, 2vw, 16px);
 }
 
 /* ---------- Buttons mit nahtlosem Hover-Marquee ---------- */
 .heroButton_work,
 .heroButton_contact {
     @include buttonStyle160px;
-
-    /* Sichtbarer Text im Idle exakt zentriert */
     display: inline-flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-
     position: relative;
     overflow: hidden;
     isolation: isolate;
 
-    /* ----- Marquee-Setup ----- */
-    --btnMarqueeGap: 2.5rem;   /* Abstand zwischen den Kopien */
-    --btnMarqueeSpeed: 2.75s;  /* Laufgeschwindigkeit */
+    /* Marquee-Setup */
+    --btnMarqueeGap: clamp(1.25rem, 2.2vw, 2.5rem);
+    --btnMarqueeSpeed: 2.75s;
 
     .btn-scroll {
-        display: inline-flex;     /* statt grid → zentriert sauber */
+        display: inline-flex;
         align-items: center;
         white-space: nowrap;
         gap: var(--btnMarqueeGap);
         transform: translateX(0);
         will-change: transform;
-        padding-inline-end: 0;    /* im Idle KEIN Endabstand */
+        padding-inline-end: 0;
     }
 
-    /* Duplikat im Idle ausblenden → nur ein Label sichtbar & zentriert */
-    .btn-scroll > span[aria-hidden="true"] {
-        display: none;
-    }
+    .btn-scroll > span[aria-hidden="true"] { display: none; }
 
-    /* Hover/Fokus: Duplikat einblenden + Endabstand hinzufügen + Animation starten */
     &:hover .btn-scroll > span[aria-hidden="true"],
-    &:focus-visible .btn-scroll > span[aria-hidden="true"] {
-        display: inline-block;
-    }
+    &:focus-visible .btn-scroll > span[aria-hidden="true"] { display: inline-block; }
 
     &:hover .btn-scroll,
     &:focus-visible .btn-scroll {
-        /* Endabstand = Gap, damit die Schleife nahtlos ist */
         padding-inline-end: var(--btnMarqueeGap);
         animation: btnMarquee var(--btnMarqueeSpeed) linear infinite;
     }
@@ -84,7 +72,7 @@ $accentGreen: #3dcfb6 !default;
 
 /* Nur bis -50% animieren → 100% Frame entspricht 0% (nahtlos) */
 @keyframes btnMarquee {
-    0%   { transform: translateX(0); }
+    0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
 
@@ -92,12 +80,12 @@ $accentGreen: #3dcfb6 !default;
 .gimmick {
     position: relative;
     width: min(1200px, 100%);
-    margin: 40px auto 0;
+    margin: clamp(24px, 5vh, 40px) auto 0;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: end;
     gap: clamp(16px, 4vw, 40px);
-    overflow: visible; /* erlaubt Overlay, ohne abgeschnitten zu werden */
+    overflow: visible;
 }
 
 /* Gemeinsame Styles für linke/rechte Säule */
@@ -107,7 +95,7 @@ $accentGreen: #3dcfb6 !default;
     justify-items: center;
     align-content: end;
     gap: 12px;
-    pointer-events: none; /* Icons selbst reaktivieren */
+    pointer-events: none;
 }
 
 .iconStack {
@@ -121,8 +109,8 @@ $accentGreen: #3dcfb6 !default;
     .iconBtn {
         display: grid;
         place-items: center;
-        width: 40px;
-        height: 40px;
+        width: clamp(32px, 4.5vw, 40px);
+        height: clamp(32px, 4.5vw, 40px);
         border: 1px solid rgba($accentGreen, 0.55);
         border-radius: 999px;
         color: $accentGreen;
@@ -145,7 +133,7 @@ $accentGreen: #3dcfb6 !default;
 /* Vertikale grüne Linie */
 .vertBar {
     width: 2px;
-    height: clamp(120px, 18vw, 220px);
+    height: clamp(110px, 18vw, 220px);
     background: linear-gradient(
             to bottom,
             rgba($accentGreen, 0) 0%,
@@ -158,52 +146,41 @@ $accentGreen: #3dcfb6 !default;
 }
 
 /* ---------- Marquee Mitte (als Overlay) ---------- */
-
-/* Nimmt KEINEN Platz ein – der Banner liegt über dem Layout */
 .gimmick_center {
     position: relative;
-    height: 0;        /* verhindert Reflow */
+    height: 0;
     min-width: 0;
-    pointer-events: none; /* Klicks gehen durch auf Elemente darunter */
+    pointer-events: none;
 }
 
-/* Die Bahn selbst als Overlay, horizontal zentriert */
 .marquee {
     --speed: 30s;
 
     padding: 10px 0;
-    height: 40px;
+    height: clamp(34px, 4.5vw, 40px);
 
-    /* WICHTIG: kein Flex mehr, um Zeilenumbrüche auszuschließen */
     display: block;
 
-    position: absolute;     /* Overlay innerhalb der .gimmick_center-Zeile */
-    z-index: 999;           /* sicher über allem */
+    position: absolute;
+    z-index: 999;
     left: 50%;
     transform: translateX(-50%);
-    top: -300px;
-    rotate: -8deg;
+    top: clamp(-180px, -28vw, -300px);
+    rotate: -6deg;
 
-    width: max(800px, 80vw);
+    width: min(100vw, 1100px);
+    max-width: 95vw;
     overflow: hidden;
-    pointer-events: auto;   /* für Variante A: Hover direkt auf dem Banner */
+    pointer-events: auto;
 
-    font-size: 32px;
+    font-size: clamp(18px, 4.5vw, 32px);
     color: $primaryColor;
 
     mask-image: linear-gradient(
-            to right,
-            rgba(0, 0, 0, 0) 0%,
-            rgba(0, 0, 0, 1) 10%,
-            rgba(0, 0, 0, 1) 90%,
-            rgba(0, 0, 0, 0) 100%
+            to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%
     );
     -webkit-mask-image: -webkit-linear-gradient(
-            to right,
-            rgba(0, 0, 0, 0) 0%,
-            rgba(0, 0, 0, 1) 10%,
-            rgba(0, 0, 0, 1) 90%,
-            rgba(0, 0, 0, 0) 100%
+            to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%
     );
 
     border: none;
@@ -213,50 +190,36 @@ $accentGreen: #3dcfb6 !default;
 
 /* Hover: Geschwindigkeit runter auf 60s (Variante A) */
 .marquee:hover,
-.marquee:focus-visible {
-    --speed: 60s;
-}
+.marquee:focus-visible { --speed: 60s; }
 
-/* ----- Neuer, nahtloser Track mit zwei identischen Hälften ----- */
+/* Track */
 .marquee__inner {
-    display: flex;              /* statt inline-flex */
+    display: flex;
     align-items: center;
-    flex-wrap: nowrap;          /* niemals umbrechen */
-    white-space: nowrap;        /* Textknoten nicht umbrechen */
-    gap: 18px;
-    width: max-content;         /* Breite = Inhalt */
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    gap: clamp(10px, 2.2vw, 18px);
+    width: max-content;
     will-change: transform;
 
-    /* getrennte Animations-Props → sanftere Geschwindigkeitswechsel */
     animation-name: marqueeX;
     animation-duration: var(--speed);
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 
-    padding-inline: 0;          /* keine Naht-Lücke */
+    padding-inline: 0;
 }
 
-/* Items dürfen nicht schrumpfen/ umbrechen */
 .marquee__item,
-.marquee__sep {
-    flex: 0 0 auto;
-}
+.marquee__sep { flex: 0 0 auto; }
 
-/* Nahtlos: von 0% bis -50%, da Hälfte B == Hälfte A */
 @keyframes marqueeX {
     0%   { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
 
-.marquee__item {
-    font-weight: 500;
-    letter-spacing: 0.2px;
-    line-height: 1;
-}
-
-.marquee__sep {
-    opacity: 0.5;
-}
+.marquee__item { font-weight: 500; letter-spacing: .2px; line-height: 1; }
+.marquee__sep  { opacity: .5; }
 
 /* Bewegungen respektieren Systemeinstellung */
 @media (prefers-reduced-motion: reduce) {
@@ -269,10 +232,108 @@ $accentGreen: #3dcfb6 !default;
 }
 
 /* ---------- Sektionen darunter ---------- */
-
 #aboutMeComponent,
 #skillComponent,
 #featuredSkills,
-#valuationComponent {
-    width: 100%;
+#valuationComponent { width: 100%; }
+
+/* =======================
+   RESPONSIVE BREAKPOINTS
+   ======================= */
+
+/* <= 1200px: etwas kompakter */
+@media (max-width: 1200px) {
+    .gimmick { gap: 28px; }
+}
+
+/* <= 992px: Gimmicks enger, Marquee etwas näher an die Hero */
+@media (max-width: 992px) {
+    .gimmick { gap: 24px; }
+    .marquee { top: clamp(-140px, -22vw, -220px); }
+}
+
+/* <= 768px: Stack-Layout, Buttons größer tappbar, Seitenleisten schlanker */
+@media (max-width: 768px) {
+    .hero { padding: clamp(36px, 8vh, 72px) 0 clamp(28px, 6vh, 60px); }
+
+    .heroButtonsWrapper {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .heroButton_work,
+    .heroButton_contact {
+        min-width: 140px; /* falls das Mixin sehr breit ist */
+        padding-inline: 16px;
+    }
+
+    .gimmick {
+        grid-template-columns: 1fr; /* stack */
+        align-items: center;
+        justify-items: center;
+        gap: 16px;
+        margin-top: clamp(12px, 3vh, 20px);
+    }
+
+    .gimmick_left,
+    .gimmick_right {
+        grid-auto-flow: column;
+        gap: 10px;
+    }
+
+    .iconStack {
+        grid-auto-flow: column;
+        grid-auto-columns: min-content;
+        gap: 10px;
+    }
+
+    .vertBar { height: clamp(90px, 22vw, 140px); }
+
+    .marquee {
+        rotate: -6deg;
+        top: clamp(-120px, -18vw, -180px);
+        width: 100vw;
+        max-width: 100vw;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 8px 0;
+    }
+}
+
+/* <= 560px: Seitenleisten optional vereinfachen, Marquee dichter & kleiner */
+@media (max-width: 560px) {
+    .hero_subtitle { font-size: clamp(16px, 4.2vw, 22px); }
+    .hero_title    { font-size: clamp(32px, 9vw, 56px); }
+
+    .iconStack .iconBtn {
+        width: 32px; height: 32px;
+    }
+
+    .gimmick_left,
+    .gimmick_right {
+        opacity: .9;
+    }
+
+    .marquee {
+        font-size: clamp(16px, 4.5vw, 22px);
+        top: clamp(-96px, -15vw, -140px);
+        padding: 6px 0;
+    }
+}
+
+/* Sehr kleine Geräte / Sicherheitsnetz */
+@media (max-width: 380px) {
+    .heroButtonsWrapper { gap: 10px; }
+    .heroButton_work,
+    .heroButton_contact { min-width: 128px; }
+
+    .marquee {
+        top: -88px;
+        rotate: -2deg;
+    }
+}
+
+/* Touch-Geräte: kein Hover-Speedwechsel nötig */
+@media (hover: none) and (pointer: coarse) {
+    .marquee { --speed: 40s; } /* etwas ruhiger, aber ohne Hover-Abhängigkeit */
 }

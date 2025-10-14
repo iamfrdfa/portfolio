@@ -110,17 +110,7 @@
                 </a>
             </div>
 
-            <!-- Prev (nur wenn vorhanden) -->
-            <button
-                *ngIf="hasPrev"
-                type="button"
-                class="prevLink"
-                (click)="prev()"
-                aria-label="Previous project"
-            >
-                <span class="icon arrowLeft"></span>
-                <span>Previous project</span>
-            </button>
+
         </div>
 
         <!-- Right: Bild -->
@@ -131,6 +121,18 @@
 
     <!-- Footer (volle Breite) -->
     <footer class="overlayFooter">
+        <!-- Prev (nur wenn vorhanden) -->
+        <button
+            *ngIf="hasPrev"
+            type="button"
+            class="prevLink"
+            (click)="prev()"
+            aria-label="Previous project"
+        >
+            <span class="icon arrowLeft"></span>
+            <span>Previous project</span>
+        </button>
+
         <button *ngIf="hasNext" type="button" class="nextLink" (click)="next()" aria-label="Next project">
             <span>Next project</span>
             <span class="icon arrowRight"></span>
