@@ -4,9 +4,9 @@
             <img src="img/switchButton_EN.png" alt="SwitchButton EN" class="switch-button">
         </a>
         <nav>
-            <a routerLink="/about" routerLinkActive="active" class="headerLinks">About me</a>
-            <a routerLink="/skills" class="headerLinks">Skills</a>
-            <a routerLink="/projects" class="headerLinks">Projects</a>
+            <a routerLink="/about" routerLinkActive="active" (click)="scrollTo('aboutMeComponent')"  class="headerLinks">About me</a>
+            <a routerLink="/skills" (click)="scrollTo('skillComponent')"  class="headerLinks">Skills</a>
+            <a routerLink="/projects" (click)="scrollTo('projects')"  class="headerLinks">Projects</a>
         </nav>
     </div>
     <div class="header__right">

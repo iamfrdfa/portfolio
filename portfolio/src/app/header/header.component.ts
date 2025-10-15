@@ -1,18 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 
 @Component({
     selector: 'app-header',
-    standalone: true,
-    imports: [
-        CommonModule,
-        RouterLink,
-        RouterLinkActive,
-    ],
     templateUrl: './header.component.html',
-    styleUrl: './header.component.scss'
+    styleUrls: ['./header.component.scss'],
+    standalone: true,
+    imports: [CommonModule, RouterLink, RouterLinkActive],
 })
 export class HeaderComponent {
-    // Hier können später weitere Funktionen hinzugefügt werden
+    constructor(@Inject(DOCUMENT) private document: Document) {}
+
+    scrollTo(anchor: string) {
+        const el = this.document.getElementById(anchor);
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
 }

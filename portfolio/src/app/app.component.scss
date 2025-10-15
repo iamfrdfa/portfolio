@@ -1,0 +1,14 @@
+html {
+    scroll-behavior: smooth; /* optional – JS oben reicht bereits */
+}
+
+/* Höhe deines Headers anpassen */
+:root {
+    --header-h: clamp(56px, 10vh, 92px);
+}
+
+#about,
+#skills,
+#projects {
+    scroll-margin-top: var(--header-h);
+}

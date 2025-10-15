@@ -26,7 +26,7 @@ import {RouterLink} from '@angular/router';
 export class HomeComponent {
     // Optional: Smooth Scroll, wenn du später Buttons auf Scroll umstellst
     scrollToProjects() {
-        document.querySelector('#featuredSkills')?.scrollIntoView({behavior: 'smooth', block: 'start'});
+        document.querySelector('#projects')?.scrollIntoView({behavior: 'smooth', block: 'start'});
     }
 
     scrollToContact() {
