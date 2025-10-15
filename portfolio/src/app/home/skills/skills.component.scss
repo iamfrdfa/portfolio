@@ -18,7 +18,58 @@
 .greenTextBoxWrapper { @include greenBoxWrapper; }
 
 .primaryColor { color: $primaryColor !important; }
+
 .button { @include buttonStyle122px; }
+
+.marquee-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;               /* schneidet Lauftext sauber ab */
+    white-space: nowrap;
+
+    .label {
+        position: relative;
+        z-index: 1;
+        transition: opacity .2s ease;
+    }
+
+    .track {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        opacity: 0;                   /* im Idle unsichtbar */
+        pointer-events: none;         /* keine Mausereignisse abfangen */
+        /* weiche Ränder, damit der Text links/rechts smooth „ein-/ausfadet“ */
+        -webkit-mask-image: linear-gradient(to right, transparent 0, black 16px, black calc(100% - 16px), transparent 100%);
+        mask-image: linear-gradient(to right, transparent 0, black 16px, black calc(100% - 16px), transparent 100%);
+    }
+
+    .inner {
+        display: inline-block;
+        will-change: transform;
+        transform: translateX(0);
+    }
+
+    &:hover {
+        .label { opacity: 0; }
+        .track { opacity: 1; }
+        .inner { animation: marquee 8s linear infinite; } /* Speed nach Wunsch anpassen */
+    }
+}
+
+@keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Motion-Respect */
+@media (prefers-reduced-motion: reduce) {
+    .marquee-btn .inner { animation: none !important; }
+}
+
 
 /* --- ORIGINAL Desktop-Layout beibehalten --- */
 .skillIcons {
