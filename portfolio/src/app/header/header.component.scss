@@ -14,7 +14,7 @@ $primaryColor: #3DCFB6;
     gap: 16px;
     padding: clamp(10px, 2vw, 16px) clamp(16px, 3vw, 32px);
     background: transparent;
-    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
     font-family: "Fira Code", monospace;
 
     &__left {
@@ -25,29 +25,57 @@ $primaryColor: #3DCFB6;
         nav {
             display: flex;
             gap: clamp(10px, 2.5vw, 1.5rem);
-            /* Mobiler Fallback: horizontales Scrollen statt umbrechen */
-            overflow: auto hidden;
+
+            /* nur horizontal scrollen, vertikal sichtbar lassen */
+            overflow-x: auto;
+            overflow-y: visible;
             -webkit-overflow-scrolling: touch;
             scroll-behavior: smooth;
             scrollbar-width: none;
-
             &::-webkit-scrollbar { display: none; }
 
             a {
+                position: relative;
+                display: inline-block; /* sichert korrektes Bezugssystem */
                 text-decoration: none;
                 color: #fff;
                 font-weight: 500;
                 font-size: clamp(14px, 1.6vw, 16px);
                 line-height: 1;
-                padding: 6px 2px;
+                /* unten Platz für den Bullet schaffen */
+                padding: 6px 2px 14px;
                 transition: color .3s ease;
+
+                /* Bullet */
+                &::after {
+                    content: "";
+                    position: absolute;
+                    left: 50%;
+                    bottom: 4px;           /* innerhalb des Links, nicht mehr abgeschnitten */
+                    transform: translateX(-50%) scale(0);
+                    width: 6px;
+                    height: 6px;
+                    background-color: $primaryColor;
+                    border-radius: 50%;
+                    opacity: 0;
+                    transition: transform .25s ease, opacity .25s ease;
+                }
 
                 &:hover {
                     color: $primaryColor;
-                    transition: all .3s ease-in-out;
+                    &::after {
+                        transform: translateX(-50%) scale(1);
+                        opacity: 1;
+                    }
                 }
 
-                &.active { color: $primaryColor; }
+                &.active {
+                    color: $primaryColor;
+                    &::after {
+                        transform: translateX(-50%) scale(1);
+                        opacity: 1;
+                    }
+                }
             }
         }
     }
@@ -88,6 +116,7 @@ $primaryColor: #3DCFB6;
     .header {
         flex-wrap: wrap;
     }
+
     .header__left { order: 2; width: 100%; }
     .header__left nav { justify-content: flex-start; }
     .header__right { order: 1; width: 100%; justify-content: space-between; }

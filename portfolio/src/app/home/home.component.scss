@@ -98,6 +98,82 @@ $accentGreen: #3dcfb6 !default;
     pointer-events: none;
 }
 
+/* Seitlicher Offset für die beiden Säulen */
+.gimmick {
+    --sideOffset: 150px; /* gewünschte 150px nach außen */
+}
+
+/* ganze linke/rechte Säule gemeinsam verschieben */
+.gimmick_left {
+    transform: translateX(calc(-1 * var(--sideOffset)));
+}
+.gimmick_right {
+    transform: translateX(var(--sideOffset));
+}
+
+/* Responsiv anpassen (damit’s nicht abgeschnitten wirkt) */
+@media (max-width: 1200px) {
+    .gimmick { --sideOffset: 100px; }
+}
+@media (max-width: 992px) {
+    .gimmick { --sideOffset: 60px; }
+}
+@media (max-width: 768px) {
+    /* auf kleineren Screens kein Außenversatz, weil die Säulen stacken */
+    .gimmick { --sideOffset: 0px; }
+}
+
+/* Basis-Höhe als Variable, dann pro Seite versetzen */
+.gimmick {
+    --vertBase: clamp(110px, 18vw, 220px);
+}
+
+.gimmick_left .vertBar {
+    height: calc(var(--vertBase) + 100px);  /* links +100px */
+}
+
+.gimmick_right .vertBar {
+    height: calc(max(0px, var(--vertBase) - 40px)); /* rechts -40px, nicht unter 0 */
+}
+
+/* Events in der rechten Säule wieder zulassen */
+.gimmick_right .vEmail,
+.gimmick_right .iconStack {
+    pointer-events: auto;
+}
+
+/* Vertikale E-Mail: bottom → top lesen + Hover-Effekte */
+.vEmail {
+    display: inline-block;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+
+    /* Leserichtung umkehren, ohne Hover-Invert */
+    transform: rotate(180deg);
+    transform-origin: center;
+
+    color: white;
+    text-decoration: none;
+    font-size: clamp(12px, 1.6vw, 18px);
+    letter-spacing: .08em;
+    opacity: .9;
+
+    /* weiche Transition – inkl. transform, damit Scale/Translate smooth sind */
+    transition:
+        opacity .2s ease,
+        color .2s ease,
+        transform .2s ease;
+
+    /* HOVER / FOCUS: größer wirken, leicht anheben, Farb-Boost */
+    &:hover,
+    &:focus-visible {
+        opacity: 1;
+        color: lighten($primaryColor, 10%);
+        /* Rotation beibehalten und Effekte additiv kombinieren */
+        transform: rotate(180deg) translateY(2px) scale(1.06);
+    }
+}
+
 .iconStack {
     pointer-events: auto;
     list-style: none;
@@ -129,6 +205,55 @@ $accentGreen: #3dcfb6 !default;
         }
     }
 }
+
+/* Ovale Pill 30×48 */
+.nudgePill {
+    width: 30px;
+    height: 48px;
+    border-radius: 9999px;
+    border: 1px solid rgba($accentGreen, 0.55);
+    background: transparent;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 2px 10px rgba($accentGreen, 0.12);
+}
+
+/* sorgt für die sanfte Y-Bewegung ohne Sprung am Loop */
+.nudgeMotion {
+    will-change: transform;
+    animation: floatY 1s linear infinite; /* linear + 0%==100% → nahtlos */
+}
+
+/* Das Glyph (der eigentliche Pfeil) */
+.nudgeGlyph {
+    display: inline-block;
+    color: #fff;              /* weiß, wie gewünscht */
+    font-size: 18px;          /* passt gut in 30×48; nach Geschmack anpassen */
+    line-height: 1;           /* keine zusätzlichen Zeilenabstände */
+    transform: translateZ(0); /* glatter auf manchen GPUs */
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* sanfte Bounce-Loop – Start/Ende identisch → kein „Stocken“ */
+@keyframes floatY {
+    0%   { transform: translateY(0); }
+    20%  { transform: translateY(2px); }
+    40%  { transform: translateY(6px); }  /* tiefster Punkt */
+    60%  { transform: translateY(2px); }
+    80%  { transform: translateY(0); }
+    100% { transform: translateY(0); }    /* identisch zu 0% */
+}
+
+/* Optional: leicht diagonal wie im Video
+.nudgePill { transform: rotate(-6deg); }
+*/
+
+/* Barrierefreiheit */
+@media (prefers-reduced-motion: reduce) {
+    .nudgeMotion { animation: none !important; transform: none !important; }
+}
+
 
 /* Vertikale grüne Linie */
 .vertBar {
