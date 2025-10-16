@@ -1,8 +1,9 @@
 <header class="header">
     <div class="header__left">
-        <a href="">
+        <app-language-toggle></app-language-toggle>
+        <!--a href="">
             <img src="img/switchButton_EN.png" alt="SwitchButton EN" class="switch-button">
-        </a>
+        </a-->
         <nav>
             <a routerLink="/about" routerLinkActive="active" (click)="scrollTo('aboutMeComponent')"  class="headerLinks">About me</a>
             <a routerLink="/skills" (click)="scrollTo('skillComponent')"  class="headerLinks">Skills</a>

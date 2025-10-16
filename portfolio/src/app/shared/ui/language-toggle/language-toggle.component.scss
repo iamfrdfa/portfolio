@@ -1,0 +1,69 @@
+$primaryColor: #3DCFB6;
+$bg: rgba(255,255,255,0.08);
+$border: rgba(255,255,255,0.25);
+$text: #ffffff;
+
+.lang-toggle {
+    appearance: none;
+    border: none;
+    background: transparent;
+    padding: 0;
+    width: 84px;
+    height: 28px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+
+    &:focus-visible {
+        outline: 2px solid $primaryColor;
+        outline-offset: 3px;
+        border-radius: 999px;
+    }
+}
+
+.pill {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 999px;
+    background: $bg;
+    border: 1px solid $primaryColor;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    overflow: hidden;
+    transition: border-color .2s ease, background-color .2s ease;
+}
+
+.label {
+    font-family: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 12px;
+    letter-spacing: .04em;
+    text-align: center;
+    color: $text;
+    user-select: none;
+    z-index: 1;
+
+    &.left { grid-column: 1; }
+    &.right { grid-column: 2; }
+}
+
+/* Neuer Positions-Ansatz: kein transform, sondern left toggeln */
+.thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;                  /* EN aktiv: links mit 2px Abstand */
+    width: calc(50% - 4px);     /* 2px links + 2px rechts */
+    height: calc(100% - 4px);   /* 2px oben + 2px unten */
+    border-radius: 999px;
+    background: $primaryColor;
+    box-shadow: 0 2px 6px rgba(0,0,0,.25);
+    transition: left .22s cubic-bezier(.2,.6,.2,1), background-color .2s ease, box-shadow .2s ease;
+
+    &.right {
+        left: calc(50% + 2px);    /* DE aktiv: exakt symmetrisch, 2px Abstand rechts */
+    }
+}
+
+.lang-toggle:hover .pill { border-color: $primaryColor; }
+.lang-toggle:hover .thumb { box-shadow: 0 3px 10px rgba(0,0,0,.35); }
