@@ -16,6 +16,7 @@
     gap: clamp(12px, 3vw, 24px);
     padding-top: 8px;
     flex-wrap: wrap;
+    background-color: $secondaryColorBG;
 }
 
 .logo {
@@ -59,7 +60,8 @@
     > nav {
         display: flex;
         justify-content: flex-start;
-        align-items: flex-start;
+        align-items: flex-end;
+        flex-direction: column;
         flex-wrap: wrap;
         gap: 8px 12px;
         > a {
