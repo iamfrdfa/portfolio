@@ -5,7 +5,8 @@
    Breakpoints: 1200 / 992 / 768 / 560
    =========================== */
 
-$primaryColor: #3DCFB6;
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
 
 .header {
     display: flex;
@@ -14,63 +15,66 @@ $primaryColor: #3DCFB6;
     gap: 16px;
     padding: clamp(10px, 2vw, 16px) clamp(16px, 3vw, 32px);
     background: transparent;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
     font-family: "Fira Code", monospace;
+    overflow: visible; /* wichtig für Bullet-Sichtbarkeit */
 
     &__left {
         display: flex;
         align-items: center;
         gap: clamp(12px, 3vw, 2rem);
+        overflow: visible;
 
         nav {
+            position: relative;
             display: flex;
+            align-items: center;      /* vertikal zentriert */
+            justify-content: center;  /* horizontal zentriert */
             gap: clamp(10px, 2.5vw, 1.5rem);
 
             /* nur horizontal scrollen, vertikal sichtbar lassen */
             overflow-x: auto;
             overflow-y: visible;
             -webkit-overflow-scrolling: touch;
-            scroll-behavior: smooth;
             scrollbar-width: none;
             &::-webkit-scrollbar { display: none; }
 
             a {
                 position: relative;
-                display: inline-block; /* sichert korrektes Bezugssystem */
+                z-index: 2; /* sichert, dass der Link über Nachbarn liegt */
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
                 text-decoration: none;
                 color: #fff;
                 font-weight: 500;
                 font-size: clamp(14px, 1.6vw, 16px);
                 line-height: 1;
-                /* unten Platz für den Bullet schaffen */
-                padding: 6px 2px 14px;
-                transition: color .3s ease;
+                padding: 6px 2px;
+                transition: color .25s ease;
+                overflow: visible; /* falls irgendwo geerbt wurde */
 
-                /* Bullet */
+                /* --- Bullet unterhalb des Textes --- */
                 &::after {
                     content: "";
                     position: absolute;
                     left: 50%;
-                    bottom: 4px;           /* innerhalb des Links, nicht mehr abgeschnitten */
+                    top: calc(100% + 6px);   /* 6px unterhalb des Linktexts */
                     transform: translateX(-50%) scale(0);
-                    width: 6px;
-                    height: 6px;
+                    width: 8px;               /* leicht größer für bessere Sichtbarkeit */
+                    height: 8px;
                     background-color: $primaryColor;
                     border-radius: 50%;
                     opacity: 0;
+                    pointer-events: none;
+                    z-index: 3;
                     transition: transform .25s ease, opacity .25s ease;
                 }
 
-                &:hover {
-                    color: $primaryColor;
-                    &::after {
-                        transform: translateX(-50%) scale(1);
-                        opacity: 1;
-                    }
-                }
-
+                &:hover,
                 &.active {
                     color: $primaryColor;
+
                     &::after {
                         transform: translateX(-50%) scale(1);
                         opacity: 1;
@@ -106,12 +110,12 @@ $primaryColor: #3DCFB6;
     }
 }
 
-/* <= 992px: engeres Layout */
+/* <= 992px */
 @media (max-width: 992px) {
     .header { gap: 12px; }
 }
 
-/* <= 768px: Header stapelt sich bei Bedarf */
+/* <= 768px */
 @media (max-width: 768px) {
     .header {
         flex-wrap: wrap;
@@ -122,7 +126,7 @@ $primaryColor: #3DCFB6;
     .header__right { order: 1; width: 100%; justify-content: space-between; }
 }
 
-/* <= 560px: mehr Touch-Ziel-Fläche */
+/* <= 560px */
 @media (max-width: 560px) {
     .header__left nav a { padding: 10px 2px; }
 }

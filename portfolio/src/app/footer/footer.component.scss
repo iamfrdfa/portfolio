@@ -5,11 +5,14 @@
    Breakpoints: 1200 / 992 / 768 / 560
    =========================== */
 
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
 .footer {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     gap: clamp(12px, 3vw, 24px);
     padding-top: 8px;
     flex-wrap: wrap;
@@ -26,6 +29,17 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
+}
+
+.footer-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .copyright {
+        color: $primaryColor;
+        font-size: clamp(14px, 1.6vw, 18px);
+    }
 }
 
 .footer-left {

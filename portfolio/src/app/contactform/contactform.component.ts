@@ -23,6 +23,9 @@ export class ContactformComponent {
     // Spam-Honeypot (soll leer bleiben)
     honeypot = '';
 
+    // DSGVO-Checkbox
+    consent: boolean = false;
+
     // Form-Model
     contactData = {
         name: '',
@@ -35,29 +38,20 @@ export class ContactformComponent {
         endPoint: 'https://deineDomain.de/sendMail.php',
         body: (payload: any) => JSON.stringify(payload),
         options: {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json'
-            }),
+            headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
             responseType: 'text' as const // Server gibt Text zurück
         }
     };
 
     // Button nur aktiv, wenn nicht sending
     canSubmit = computed(() => !this.sending());
-    consent: boolean = false; // public
 
     onSubmit(ngForm: NgForm) {
         this.sentOk.set(false);
         this.sentError.set(null);
 
-        this.consent = false; // Einwilligung (Checkbox-DSGVO) - muss true sein
-        // Verhindere Spam (Honeypot) & ungültige Submits
-        if (!ngForm.submitted || !ngForm.form.valid || this.honeypot.trim().length > 0) {
-            return;
-        }
-
-        // + consent check (required)
-        if (!ngForm.submitted || !ngForm.form.valid || !this.consent || this.honeypot.trim().length > 0) {
+        // Ungültig / Honeypot / fehlende Einwilligung -> abbrechen
+        if (!ngForm.form.valid || !this.consent || this.honeypot.trim().length > 0) {
             return;
         }
 
@@ -85,11 +79,19 @@ export class ContactformComponent {
                 error: (err) => {
                     this.sending.set(false);
                     this.sentError.set(
-                        (err?.error && typeof err.error === 'string') ? err.error : 'Senden fehlgeschlagen. Bitte später erneut versuchen.'
+                        (err?.error && typeof err.error === 'string')
+                            ? err.error
+                            : 'Senden fehlgeschlagen. Bitte später erneut versuchen.'
                     );
                     console.error('Mail send error:', err);
                 },
                 complete: () => console.info('send post complete')
             });
+    }
+
+    // <-- hier neu: Scroll & Focus auf das Namensfeld
+    scrollToName(el: HTMLInputElement) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => el.focus(), 400);
     }
 }

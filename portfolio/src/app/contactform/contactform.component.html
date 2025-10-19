@@ -11,7 +11,7 @@
                 Show that you will add value to their projects through your work.
             </p>
             <p class="cta-hint">
-                Need a Frontend developer? <a class="accent-link" href="#contact-right">Let’s talk!</a>
+                Need a Frontend developer? <a class="accent-link" (click)="scrollToName(nameInput)">Let’s talk!</a>
             </p>
         </div>
 
@@ -28,9 +28,17 @@
                 <div class="field sep" [class.invalid]="name.invalid && (name.touched || contactForm.submitted)" [class.valid]="name.valid">
                     <div class="prompt">What's your name?</div>
                     <input
-                        id="name" name="name" type="text" required minlength="2"
+                        #nameInput
+                        id="name"
+                        name="name"
+                        type="text"
+                        required
+                        minlength="2"
                         placeholder="Your name goes here"
-                        [(ngModel)]="contactData.name" #name="ngModel" autocomplete="name" />
+                        [(ngModel)]="contactData.name"
+                        #name="ngModel"
+                        autocomplete="name"
+                    />
                     <div class="msg" *ngIf="name.invalid && (name.touched || contactForm.submitted)">
                         Bitte gib deinen Namen (mind. 2 Zeichen) ein.
                     </div>
