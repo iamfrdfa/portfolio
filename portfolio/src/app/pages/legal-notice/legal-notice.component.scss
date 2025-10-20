@@ -1,6 +1,17 @@
 @use 'styles/variables' as *;
 @use 'styles/mixins' as *;
 
+.legal-header {
+    padding: 24px;
+    max-width: 55%;
+    .arrow-back {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 70%;
+    }
+}
+
 .legalWrapper {
     display: flex;
     justify-content: center;
@@ -12,6 +23,7 @@
 .textBlock {
     max-width: 60%;
 
+    h1,
     h3,
     .source {
         text-align: center;
