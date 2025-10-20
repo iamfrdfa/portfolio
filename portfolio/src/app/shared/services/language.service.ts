@@ -1,47 +1,54 @@
-import { Injectable, Signal, signal, effect, inject } from '@angular/core';
+import { Injectable, effect, signal } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 export type LangCode = 'de' | 'en';
 
+const STORAGE_KEY = 'lang';
+
 @Injectable({ providedIn: 'root' })
 export class LanguageService {
-    private readonly STORAGE_KEY = 'app.lang';
-    private readonly _lang = signal<LangCode>(this.readInitial());
+    /** Reaktiver Sprach-State als Signal */
+    private _lang = signal<LangCode>(initLang());
 
-    lang: Signal<LangCode> = this._lang.asReadonly();
+    /** Readonly-Signal für Komponenten */
+    lang = this._lang.asReadonly();
 
-    constructor() {
-        // <html lang="..."> aktualisieren + persistieren (nur im Browser)
+    constructor(private translate: TranslateService) {
+        // Auf Signal-Änderungen reagieren (einziger „Writer“ ist setLang/toggle)
         effect(() => {
             const l = this._lang();
-            if (this.isBrowser()) {
-                document.documentElement.lang = l;
-                try { localStorage.setItem(this.STORAGE_KEY, l); } catch {}
-            }
+            this.translate.use(l);
+            localStorage.setItem(STORAGE_KEY, l);
+            document.documentElement.setAttribute('lang', l);
         });
-    }
 
-    toggle(): void {
-        this.set(this._lang() === 'de' ? 'en' : 'de');
-    }
-
-    set(lang: LangCode): void {
-        this._lang.set(lang);
-    }
-
-    /** Initialwert: gespeichertes Lang oder Browser-Heuristik */
-    private readInitial(): LangCode {
-        if (this.isBrowser()) {
-            try {
-                const saved = localStorage.getItem(this.STORAGE_KEY) as LangCode | null;
-                if (saved === 'de' || saved === 'en') return saved;
-            } catch {}
-            const browser = (navigator.language || 'en').toLowerCase();
-            return browser.startsWith('de') ? 'de' : 'en';
+        // Sicherstellen, dass Translate eine Startsprache hat (Englisch)
+        if (!this.translate.currentLang) {
+            this.translate.use(this._lang()); // 'en' durch initLang()
         }
-        return 'en';
     }
 
-    private isBrowser(): boolean {
-        return typeof window !== 'undefined' && typeof document !== 'undefined';
+    /** Aktuellen Wert als normales Getter (optional) */
+    get current(): LangCode {
+        return this._lang();
     }
+
+    setLang(lang: LangCode) {
+        if (lang !== this._lang()) {
+            this._lang.set(lang);
+        }
+    }
+
+    toggle() {
+        this._lang.set(this._lang() === 'de' ? 'en' : 'de');
+    }
+}
+
+/** Startsprache ermitteln – Default: 'en' */
+function initLang(): LangCode {
+    const saved = (localStorage.getItem(STORAGE_KEY) || '').toLowerCase();
+    if (saved === 'de' || saved === 'en') return saved as LangCode;
+
+    const n = (navigator.language || '').toLowerCase();
+    return n.startsWith('de') ? 'de' : 'en'; // Browser-Fallback
 }

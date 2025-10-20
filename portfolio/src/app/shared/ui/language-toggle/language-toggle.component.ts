@@ -1,6 +1,6 @@
 import { Component, computed, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LanguageService, LangCode } from '../../../shared/services/language.service';
+import { LanguageService, LangCode } from '../../services/language.service';
 
 @Component({
     selector: 'app-language-toggle',
@@ -16,32 +16,32 @@ import { LanguageService, LangCode } from '../../../shared/services/language.ser
             [attr.aria-label]="ariaLabel()"
             [title]="titleText()"
         >
-            <span class="pill">
-            <!-- EN links, DE rechts -->
-            <span class="label left">EN</span>
-            <span class="label right">DE</span>
+      <span class="pill">
+        <!-- EN links, DE rechts -->
+        <span class="label left">EN</span>
+        <span class="label right">DE</span>
 
-              <!-- Thumb ist rechts NUR wenn DE aktiv ist -->
-            <span class="thumb" [class.right]="!isEn()"></span>
-            </span>
+          <!-- Thumb ist rechts NUR wenn DE aktiv ist -->
+        <span class="thumb" [class.right]="!isEn()"></span>
+      </span>
         </button>
-
     `,
     styleUrls: ['./language-toggle.component.scss']
 })
 export class LanguageToggleComponent {
-    /** Optional: Startsprache von außen setzen (wird reaktiv beachtet) */
+    /** Optional: Startsprache von außen setzen */
     lang = input<LangCode | undefined>(undefined);
 
+    /** true, wenn aktuell Englisch aktiv ist – reagiert auf Signal */
     isEn = computed(() => this.language.lang() === 'en');
 
     constructor(private language: LanguageService) {
-        // Reagiert auf spätere Input-Änderungen (Angular 20: signals-safe)
-        // Setzt nur, wenn eine gültige Sprache ankommt.
-        // Kein Endlosloop, da set() auf denselben Wert keine Änderung triggert.
+        // Falls eine gültige Startsprache als Input kommt, einmalig übernehmen
         queueMicrotask(() => {
             const initial = this.lang();
-            if (initial === 'de' || initial === 'en') this.language.set(initial);
+            if (initial === 'de' || initial === 'en') {
+                this.language.setLang(initial);
+            }
         });
     }
 
