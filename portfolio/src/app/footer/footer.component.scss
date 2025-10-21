@@ -17,6 +17,7 @@
     padding-top: 8px;
     flex-wrap: wrap;
     background-color: $secondaryColorBG;
+    font-size: clamp(13px, 1.5vw, 16px);
 }
 
 .logo {
@@ -46,6 +47,7 @@
 .footer-left {
     padding: 0 0 16px clamp(12px, 3vw, 32px);
     flex: 1 1 320px;
+
     > p {
         margin-block: 0;
         color: #e8e8e8;
@@ -68,22 +70,59 @@
         gap: 8px 12px;
         width: max-content;
         text-align: left;
+
         > a {
+            position: relative;
             margin: 0;
             text-decoration: none;
             color: inherit;
-            font-size: clamp(13px, 1.5vw, 14px);
             opacity: .9;
-            transition: opacity .2s ease, color .2s ease;
-            &:hover { opacity: 1; color: #3DCFB6; }
+            transition: opacity .2s ease, color .2s ease, transform .2s ease;
+
+            /* Bullet-Punkt */
+            &::before {
+                content: "•";
+                position: absolute;
+                left: -14px;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                font-size: inherit;
+                color: $primaryColor;
+                opacity: 0;
+                transform: translateX(-4px);
+                transition: opacity .2s ease, transform .2s ease;
+            }
+
+            &:hover {
+                opacity: 1;
+                color: $primaryColor;
+
+                &::before {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
         }
     }
 }
 
 /* <= 768px: Spalten untereinander */
 @media (max-width: 768px) {
-    .footer { flex-direction: column; }
-    .footer-left, .footer-right {
+    .footer {
+        flex-direction: column;
+    }
+
+    .footer-left,
+    .footer-right {
         padding-inline: clamp(12px, 3vw, 24px);
+    }
+
+    .footer-right {
+        justify-content: center;
+
+        > nav {
+            align-items: center;
+        }
     }
 }

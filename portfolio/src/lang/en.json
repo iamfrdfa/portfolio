@@ -1,4 +1,62 @@
 {
+    "home": {
+        "subtitle": "Frontend Developer",
+        "ctas": {
+            "work": "Check my work",
+            "contact": "Contact me"
+        },
+        "marquee": [
+            "Available for remote work",
+            "Frontend Developer",
+            "Open to work",
+            "Based in Maintal"
+        ]
+    },
+
+    "about": {
+        "kicker": "WHO I AM",
+        "headline": "About me",
+        "intro": "Hey there, I'm Friedrich! Write some information about yourself that is IT related. Why are you passionate about coding? What is your source of inspiration for improving your programming skills?",
+        "rows": {
+            "r1": "Where are you based? Would you be open to working remotely or potentially relocating?",
+            "r2": "Show that you are open-minded. Are you enthusiastic about learning new technologies and continually improving your skills?",
+            "r3": "A brief description of your problem-solving approach. Do you learn from each challenge as you search for the most efficient or elegant solution? You can include keywords like: analytical thinking, creativity, persistence and collaboration."
+        },
+        "alt": {
+            "self": "Self Image",
+            "location": "Location",
+            "mindset": "Open-mindedness",
+            "new": "Highlights / Strengths"
+        }
+    },
+
+    "skills": {
+        "kicker": "Technologies",
+        "headline": "Skill Set",
+        "intro": "A short introduction of your skills. Highlight your experience of using different front-end technologies and emphasise your openness to learning and adapting to new technologies. Show how important it is for you to keep up with the rapid changes in web development.",
+        "ask": {
+            "pre": "You need",
+            "highlight": "another skill?"
+        },
+        "more": "Feel free to contact me. I look forward to expanding on my previous knowledge.",
+        "cta": {
+            "label": "Let’s talk"
+        },
+        "icons": {
+            "html": "HTML",
+            "css": "CSS",
+            "javascript": "JavaScript",
+            "material_design": "Material Design",
+            "typescript": "TypeScript",
+            "angular": "Angular",
+            "firebase": "Firebase",
+            "git": "Git",
+            "rest_api": "REST API",
+            "scrum": "Scrum",
+            "growth_mindset": "Growth mindset"
+        }
+    },
+
     "legal": {
         "glance": {
             "title": "1. Data Protection at a Glance",

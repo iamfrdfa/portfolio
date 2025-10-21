@@ -1,4 +1,62 @@
 {
+    "home": {
+        "subtitle": "Frontend-Entwickler",
+        "ctas": {
+            "work": "Zu meinen Arbeiten",
+            "contact": "Kontakt aufnehmen"
+        },
+        "marquee": [
+            "Verfügbar für Remote-Arbeit",
+            "Frontend-Entwickler",
+            "Offen für Neues",
+            "Sitz in Maintal"
+        ]
+    },
+
+    "about": {
+        "kicker": "WER ICH BIN",
+        "headline": "Über mich",
+        "intro": "Hey, ich bin Friedrich! Schreib hier IT-bezogene Informationen über dich. Warum brennst du fürs Programmieren? Was ist deine Inspiration, deine Skills stetig zu verbessern?",
+        "rows": {
+            "r1": "Wo befindest du dich? Wärst du offen für Remote-Arbeit oder gegebenenfalls einen Umzug?",
+            "r2": "Zeige, dass du aufgeschlossen bist. Begeisterst du dich dafür, neue Technologien zu lernen und deine Fähigkeiten kontinuierlich zu verbessern?",
+            "r3": "Beschreibe kurz deinen Problemlösungsansatz. Lernst du aus jeder Herausforderung, während du nach der effizientesten oder elegantesten Lösung suchst? Du kannst Stichworte wie analytisches Denken, Kreativität, Ausdauer und Zusammenarbeit einbauen."
+        },
+        "alt": {
+            "self": "Porträtfoto",
+            "location": "Standort",
+            "mindset": "Aufgeschlossenheit",
+            "new": "Highlights / Stärken"
+        }
+    },
+
+    "skills": {
+        "kicker": "Technologien",
+        "headline": "Skill Set",
+        "intro": "Eine kurze Einführung in deine Fähigkeiten. Hebe deine Erfahrung mit verschiedenen Frontend-Technologien hervor und betone deine Offenheit, neue Technologien zu lernen und dich anzupassen. Zeige, wie wichtig es dir ist, mit den schnellen Entwicklungen im Web mitzuhalten.",
+        "ask": {
+            "pre": "Dir fehlt",
+            "highlight": "eine weitere Fähigkeit?"
+        },
+        "more": "Melde dich gerne bei mir. Ich freue mich darauf, mein Wissen weiter auszubauen.",
+        "cta": {
+            "label": "Lass uns sprechen"
+        },
+        "icons": {
+            "html": "HTML",
+            "css": "CSS",
+            "javascript": "JavaScript",
+            "material_design": "Material Design",
+            "typescript": "TypeScript",
+            "angular": "Angular",
+            "firebase": "Firebase",
+            "git": "Git",
+            "rest_api": "REST-API",
+            "scrum": "Scrum",
+            "growth_mindset": "Wachstums-Mindset"
+        }
+    },
+
     "legal": {
         "glance": {
             "title": "1. Datenschutz auf einen Blick",

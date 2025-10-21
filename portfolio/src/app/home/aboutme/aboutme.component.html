@@ -1,52 +1,47 @@
 <div id="aboutMeWrapper" class="centerWrapper">
     <div class="aboutMeLeftInnerWrapper flex-end">
         <div class="photoOfMe">
-            <img src="img/photo.png" alt="Self Image">
+            <img src="img/photo.png" [attr.alt]="'about.alt.self' | translate">
         </div>
     </div>
+
     <div class="aboutMeRightInnerWrapper flex-start">
         <div class="greenTextBoxWrapper">
             <div class="greenBoxParagraph">
-                <p class="textAboveBoxGreen">WHO I AM</p>
+                <p class="textAboveBoxGreen">{{ 'about.kicker' | translate }}</p>
             </div>
+
             <div class="textBoxGreen">
                 <div>
-                    <h1 class="greenBoxHeadline">About me</h1>
+                    <h1 class="greenBoxHeadline">{{ 'about.headline' | translate }}</h1>
                     <p>
-                        Hey there, I'm Lukas! Write some information about yourself that is IT related.
-                        Why are you passionate about coding? What is your source of inspiration for improving your
-                        programming skills?
+                        {{ 'about.intro' | translate }}
                     </p>
                 </div>
+
                 <div class="aboutMeTable">
                     <table>
                         <tr>
                             <td>
-                                <img src="img/icons/location_on.png" alt="Location">
+                                <img src="img/icons/location_on.png" [attr.alt]="'about.alt.location' | translate">
                             </td>
-                            <td>Where are you based? Would you be open to working remotely or potentially relocating?</td>
+                            <td>{{ 'about.rows.r1' | translate }}</td>
                         </tr>
                         <tr>
                             <td>
-                                <img src="img/icons/cognition.png" alt="Location">
+                                <img src="img/icons/cognition.png" [attr.alt]="'about.alt.mindset' | translate">
                             </td>
-                            <td>Show that you are open-minded. Are you enthusiastic about learning new technologies and
-                                continually improving your skills?
-                            </td>
+                            <td>{{ 'about.rows.r2' | translate }}</td>
                         </tr>
                         <tr>
                             <td>
-                                <img src="img/icons/new_releases.png" alt="Location">
+                                <img src="img/icons/new_releases.png" [attr.alt]="'about.alt.new' | translate">
                             </td>
-                            <td>
-                                A brief description of your problem-solving approach.
-                                Do you learn from each challenge as you search for the most efficient or elegant solution?
-                                You can include some keywords like: analytical thinking, creativity, persistence and
-                                collaboration.
-                            </td>
+                            <td>{{ 'about.rows.r3' | translate }}</td>
                         </tr>
                     </table>
                 </div>
+
             </div>
         </div>
     </div>

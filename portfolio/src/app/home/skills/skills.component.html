@@ -2,47 +2,56 @@
     <div class="leftInnerWrapper flex-end">
         <div class="greenTextBoxWrapper">
             <div class="greenBoxParagraph">
-                <p class="textAboveBoxGreen">Technologies</p>
+                <p class="textAboveBoxGreen">{{ 'skills.kicker' | translate }}</p>
             </div>
+
             <div class="textBoxGreen">
                 <div>
-                    <h1 class="greenBoxHeadline">Skill Set</h1>
+                    <h1 class="greenBoxHeadline">{{ 'skills.headline' | translate }}</h1>
+
                     <p>
-                        A short introduction of your skills. Highlight your experience of using different front-end
-                        technologies and emphasise your openness to learning and adapting to new technologies. Show how
-                        important it is for you to keep up with the rapid changes in web development.
+                        {{ 'skills.intro' | translate }}
                     </p>
+
                     <h3>
-                        You need <span class="primaryColor">another skill?</span>
+                        {{ 'skills.ask.pre' | translate }}
+                        <span class="primaryColor">{{ 'skills.ask.highlight' | translate }}</span>
                     </h3>
+
                     <p>
-                        Feel free to contact me. I look forward to expanding on my previous knowledge.
+                        {{ 'skills.more' | translate }}
                     </p>
-                    <button class="button marquee-btn">
-                        <span class="label">Let's talk</span>
+
+                    <button class="button marquee-btn" [attr.aria-label]="'skills.cta.label' | translate">
+                        <span class="label">{{ 'skills.cta.label' | translate }}</span>
                         <span class="track" aria-hidden="true">
-    <span class="inner">
-      Let’s talk • Let’s talk • Let’s talk • Let’s talk • Let’s talk •
-    </span>
-  </span>
+              <span class="inner">
+                {{ 'skills.cta.label' | translate }} •
+                  {{ 'skills.cta.label' | translate }} •
+                  {{ 'skills.cta.label' | translate }} •
+                  {{ 'skills.cta.label' | translate }} •
+                  {{ 'skills.cta.label' | translate }} •
+              </span>
+            </span>
                     </button>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="rightInnerWrapper flex-start">
         <div class="skillIcons">
-            <img src="img/icons/html.png" alt="HTML">
-            <img src="img/icons/css.png" alt="css">
-            <img src="img/icons/javascript.png" alt="javascript">
-            <img src="img/icons/material_design.png" alt="material_design">
-            <img src="img/icons/typescript.png" alt="typescript">
-            <img src="img/icons/angular.png" alt="angular">
-            <img src="img/icons/firebase.png" alt="firebase">
-            <img src="img/icons/git.png" alt="git">
-            <img src="img/icons/rest_api.png" alt="rest_api">
-            <img src="img/icons/scrum.png" alt="scrum">
-            <img src="img/icons/growth_mindset.png" alt="growth_mindset">
+            <img src="img/icons/html.png" [attr.alt]="'skills.icons.html' | translate">
+            <img src="img/icons/css.png" [attr.alt]="'skills.icons.css' | translate">
+            <img src="img/icons/javascript.png" [attr.alt]="'skills.icons.javascript' | translate">
+            <img src="img/icons/material_design.png" [attr.alt]="'skills.icons.material_design' | translate">
+            <img src="img/icons/typescript.png" [attr.alt]="'skills.icons.typescript' | translate">
+            <img src="img/icons/angular.png" [attr.alt]="'skills.icons.angular' | translate">
+            <img src="img/icons/firebase.png" [attr.alt]="'skills.icons.firebase' | translate">
+            <img src="img/icons/git.png" [attr.alt]="'skills.icons.git' | translate">
+            <img src="img/icons/rest_api.png" [attr.alt]="'skills.icons.rest_api' | translate">
+            <img src="img/icons/scrum.png" [attr.alt]="'skills.icons.scrum' | translate">
+            <img src="img/icons/growth_mindset.png" [attr.alt]="'skills.icons.growth_mindset' | translate">
         </div>
     </div>
 </div>

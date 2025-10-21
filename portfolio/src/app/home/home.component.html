@@ -1,27 +1,26 @@
 <section id="mainWrapper">
     <section class="hero">
-        <h3 class="hero_subtitle">Frontend Developer</h3>
+        <h3 class="hero_subtitle">{{ 'home.subtitle' | translate }}</h3>
         <h1 class="hero_title">Friedrich Faraji</h1>
 
         <div class="heroButtonsWrapper">
-            <button class="heroButton_work" routerLink="/about" aria-label="Check my work">
+            <button class="heroButton_work" routerLink="/about" [attr.aria-label]="'home.ctas.work' | translate">
         <span class="btn-scroll">
-          <span>Check my work</span>
-          <span aria-hidden="true">Check my work</span>
+          <span>{{ 'home.ctas.work' | translate }}</span>
+          <span aria-hidden="true">{{ 'home.ctas.work' | translate }}</span>
         </span>
             </button>
 
-            <button class="heroButton_contact" routerLink="/about" aria-label="Contact me">
+            <button class="heroButton_contact" routerLink="/about" [attr.aria-label]="'home.ctas.contact' | translate">
         <span class="btn-scroll">
-          <span>Contact me</span>
-          <span aria-hidden="true">Contact me</span>
+          <span>{{ 'home.ctas.contact' | translate }}</span>
+          <span aria-hidden="true">{{ 'home.ctas.contact' | translate }}</span>
         </span>
             </button>
         </div>
 
         <!-- Gimmicks: Left / Marquee / Right -->
         <section class="gimmick">
-            <!-- LEFT: Ovale Pill + vertikale Linie -->
             <div class="gimmick_left">
                 <div class="nudgePill" aria-hidden="true" title="Scroll hint">
                     <div class="nudgeMotion">
@@ -35,13 +34,11 @@
             <div class="gimmick_center">
                 <div class="marquee" role="marquee" aria-label="Tech Stack">
                     <div class="marquee__inner">
-                        <!-- Hälfte A -->
                         <ng-container *ngFor="let item of marqueeHalf">
                             <span class="marquee__item">{{ item }}</span>
                             <span class="marquee__sep" aria-hidden="true">•</span>
                         </ng-container>
 
-                        <!-- Hälfte B (identisch zu A) -->
                         <ng-container *ngFor="let item of marqueeHalf">
                             <span class="marquee__item">{{ item }}</span>
                             <span class="marquee__sep" aria-hidden="true">•</span>
@@ -50,11 +47,8 @@
                 </div>
             </div>
 
-            <!-- RIGHT: Vertikale E-Mail + GitHub/LinkedIn + vertikale Linie -->
             <div class="gimmick_right">
-                <!-- vertikale E-Mail (bitte Adresse anpassen) -->
                 <a class="vEmail" href="mailto:info@ffaraji.de">info&#64;ffaraji.de</a>
-
                 <ul class="iconStack">
                     <li>
                         <a class="iconBtn" href="#" target="_blank" rel="noopener" aria-label="GitHub">
@@ -71,10 +65,8 @@
                         </a>
                     </li>
                 </ul>
-
                 <div class="vertBar" aria-hidden="true"></div>
             </div>
-
         </section>
     </section>
 
