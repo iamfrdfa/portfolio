@@ -56,14 +56,18 @@
 .footer-right {
     padding: 0 clamp(12px, 3vw, 32px) 16px 0;
     flex: 1 1 280px;
+    display: flex;
+    justify-content: flex-end;
 
     > nav {
         display: flex;
         justify-content: flex-start;
-        align-items: flex-end;
+        align-items: flex-start;
         flex-direction: column;
         flex-wrap: wrap;
         gap: 8px 12px;
+        width: max-content;
+        text-align: left;
         > a {
             margin: 0;
             text-decoration: none;
