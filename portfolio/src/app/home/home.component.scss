@@ -1,5 +1,7 @@
 @use 'styles/variables' as *;
 @use 'styles/mixins' as *;
+@use "sass:color";
+// ggf. @use "sass:meta"; falls man meta.* nutzt
 
 $marqueeBackground: #383838d3;
 $accentGreen: #3dcfb6 !default;
@@ -168,7 +170,8 @@ $accentGreen: #3dcfb6 !default;
     &:hover,
     &:focus-visible {
         opacity: 1;
-        color: lighten($primaryColor, 10%);
+        //color: lighten($primaryColor, 10%);
+        color: color.adjust($primaryColor, $lightness: 10%);
         /* Rotation beibehalten und Effekte additiv kombinieren */
         transform: rotate(180deg) translateY(2px) scale(1.06);
     }

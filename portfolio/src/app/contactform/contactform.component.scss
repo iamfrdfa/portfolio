@@ -6,11 +6,20 @@
    =========================== */
 @use 'styles/variables' as *;
 @use 'styles/mixins' as *;
+@use "sass:meta";
+@use "sass:color";
 
-$bg: if(global-variable-exists(primaryColorBG), $primaryColorBG, #0f0f10) !default;
-$fg: if(global-variable-exists(textColor), $textColor, #e8e8e8) !default;
+// ALT:
+// $bg: if(global-variable-exists(primaryColorBG), $primaryColorBG, #222) !default;
+// $fg: if(global-variable-exists(textColor), $textColor, #e8e8e8) !default;
+// $accent: if(global-variable-exists(primaryColor), $primaryColor, #3dcfb6) !default;
+
+// NEU:
+$bg: if(meta.global-variable-exists('primaryColorBG'), $primaryColorBG, #222) !default;
+$fg: if(meta.global-variable-exists('textColor'), $textColor, #e8e8e8) !default;
+$accent: if(meta.global-variable-exists('primaryColor'), $primaryColor, #3dcfb6) !default;
+
 $muted: #9aa0a6 !default;
-$accent: if(global-variable-exists(primaryColor), $primaryColor, #3dcfb6) !default;
 $accent-soft: rgba(61, 207, 182, 0.55) !default;
 $line: rgba(61, 207, 182, 0.45) !default;
 $error: #ff5a5f !default;
@@ -135,7 +144,8 @@ $ok: #39d98a !default;
 }
 
 .msg {
-    color: lighten($error, 10%);
+    //color: lighten($error, 10%);
+    color: color.adjust($error, $lightness: 10%);
     font-size: clamp(.86rem, 1.6vw, .92rem);
 }
 

@@ -1,4 +1,14 @@
-import { Component, Input, ElementRef, ViewChild, AfterViewInit, HostListener } from '@angular/core';
+import {
+    Component,
+    Input,
+    ElementRef,
+    ViewChild,
+    AfterViewInit,
+    HostListener,
+    OnChanges,
+    SimpleChanges,
+    ChangeDetectionStrategy
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -9,35 +19,81 @@ type Testimonial = { quote: string; author: string; role?: string };
     standalone: true,
     templateUrl: './valuation.component.html',
     styleUrls: ['./valuation.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CommonModule, TranslateModule],
 })
-export class ValuationComponent implements AfterViewInit {
+export class ValuationComponent implements OnChanges, AfterViewInit {
     @Input() items: Testimonial[] = [];
     @ViewChild('track', { static: true }) track!: ElementRef<HTMLDivElement>;
     @ViewChild('viewport', { static: true }) viewport!: ElementRef<HTMLDivElement>;
 
     slides: Testimonial[] = [];
-    idx = 1;
+    idx = 1; // 1 = erstes echtes Slide (0 ist linker Clone)
     transitioning = false;
+
     private cardWidth = 632;
     private cardGap = 72;
     private centerOffset = 0;
+    private viewReady = false;
+
+    // ==== Lifecycle ====
+
+    // WICHTIG: Slides und Index hier setzen (vor dem 1. Check) → verhindert NG0100
+    ngOnChanges(changes: SimpleChanges): void {
+        if ('items' in changes) {
+            const src = this.items ?? [];
+            if (src.length > 0) {
+                // [lastClone, ...real, firstClone]
+                this.slides = [src[src.length - 1], ...src, src[0]];
+                this.idx = 1; // auf das 1. echte Element zeigen
+            } else {
+                this.slides = [];
+                this.idx = 1;
+            }
+
+            // Wenn die View bereits fertig ist, nur neu positionieren (ohne Wertänderung in Template)
+            if (this.viewReady) {
+                this.disableTransition();
+                this.measure();
+                requestAnimationFrame(() => this.applyTranslate());
+            }
+        }
+    }
 
     ngAfterViewInit(): void {
-        if (!this.items?.length) return;
-        this.slides = [this.items[this.items.length - 1], ...this.items, this.items[0]];
-        this.idx = 2;
+        this.viewReady = true;
 
+        // Initiale Messung + Positionierung (ändert keine Template-gebundenen Werte)
         this.disableTransition();
         this.measure();
         requestAnimationFrame(() => this.applyTranslate());
     }
 
-    get realLength(): number { return this.items.length; }
+    // ==== Getter ====
 
-    prev(): void { if (!this.transitioning) this.goto(this.idx - 1); }
-    next(): void { if (!this.transitioning) this.goto(this.idx + 1); }
-    goDot(i: number): void { if (!this.transitioning) this.goto(i + 1); }
+    get realLength(): number {
+        return this.items.length;
+    }
+
+    get activeDot(): number {
+        if (this.idx === 0) return this.realLength - 1;          // linker Clone
+        if (this.idx === this.realLength + 1) return 0;           // rechter Clone
+        return this.idx - 1;                                      // echtes Index
+    }
+
+    // ==== Navigation ====
+
+    prev(): void {
+        if (!this.transitioning) this.goto(this.idx - 1);
+    }
+
+    next(): void {
+        if (!this.transitioning) this.goto(this.idx + 1);
+    }
+
+    goDot(i: number): void {
+        if (!this.transitioning) this.goto(i + 1); // +1 wegen linken Clones
+    }
 
     private goto(target: number): void {
         this.transitioning = true;
@@ -49,9 +105,18 @@ export class ValuationComponent implements AfterViewInit {
     onTransitionEnd(): void {
         this.disableTransition();
         this.transitioning = false;
-        if (this.idx === 0) { this.idx = this.realLength; this.applyTranslate(); }
-        else if (this.idx === this.realLength + 1) { this.idx = 1; this.applyTranslate(); }
+
+        // Endlos-Loop-Korrektur (ändert nur idx, nicht die Slides-Struktur)
+        if (this.idx === 0) {
+            this.idx = this.realLength; // springe ans Ende (letztes echtes)
+            this.applyTranslate();
+        } else if (this.idx === this.realLength + 1) {
+            this.idx = 1; // springe an den Anfang (erstes echtes)
+            this.applyTranslate();
+        }
     }
+
+    // ==== Resize ====
 
     @HostListener('window:resize')
     onResize(): void {
@@ -59,6 +124,8 @@ export class ValuationComponent implements AfterViewInit {
         this.measure();
         this.applyTranslate();
     }
+
+    // ==== Dragging / Pointer ====
 
     private startX = 0;
     private deltaX = 0;
@@ -85,21 +152,30 @@ export class ValuationComponent implements AfterViewInit {
         const threshold = Math.min(80, this.cardWidth * 0.15);
         if (this.deltaX > threshold) this.prev();
         else if (this.deltaX < -threshold) this.next();
-        else { this.enableTransition(); this.applyTranslate(); }
+        else {
+            this.enableTransition();
+            this.applyTranslate();
+        }
 
         this.track.nativeElement.releasePointerCapture(e.pointerId);
     }
 
+    // ==== Layout / Transform ====
+
     private measure(): void {
         const vw = this.viewport.nativeElement.clientWidth;
         const firstCard = this.track.nativeElement.querySelector('.card') as HTMLElement | null;
+
         if (firstCard) {
             const cs = getComputedStyle(firstCard);
             this.cardWidth = firstCard.offsetWidth;
             this.cardGap = parseFloat(cs.marginLeft) + parseFloat(cs.marginRight);
         }
-        this.centerOffset = (vw - this.cardWidth) / 2 - (this.cardGap / 2) - 30;
 
+        // Zentrier-Offset (kleine Korrektur von -30 bleibt bestehen)
+        this.centerOffset = (vw - this.cardWidth) / 2 - this.cardGap / 2 - 30;
+
+        // CSS-Custom-Props für visuelle Cover/Gutter
         const rect = this.viewport.nativeElement.getBoundingClientRect();
         this.viewport.nativeElement.style.setProperty('--vp-left', `${rect.left}px`);
         const leftGutter = Math.max(0, (vw - this.cardWidth) / 2);
@@ -112,12 +188,11 @@ export class ValuationComponent implements AfterViewInit {
         this.track.nativeElement.style.transform = `translate3d(${x}px, 0, 0)`;
     }
 
-    private enableTransition(): void { this.track.nativeElement.style.transition = 'transform .45s ease'; }
-    private disableTransition(): void { this.track.nativeElement.style.transition = 'none'; }
+    private enableTransition(): void {
+        this.track.nativeElement.style.transition = 'transform .45s ease';
+    }
 
-    get activeDot(): number {
-        if (this.idx === 0) return this.realLength - 1;
-        if (this.idx === this.realLength + 1) return 0;
-        return this.idx - 1;
+    private disableTransition(): void {
+        this.track.nativeElement.style.transition = 'none';
     }
 }
