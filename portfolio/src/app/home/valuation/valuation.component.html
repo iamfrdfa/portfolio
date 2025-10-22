@@ -1,48 +1,58 @@
-<section id="valuationComponent" class="valuation" role="region" aria-roledescription="carousel" aria-label="Testimonials">
-    <h2 class="sectionTitle">What my colleagues say about me</h2>
+<section
+    id="valuationComponent"
+    class="valuation"
+    role="region"
+    aria-roledescription="carousel"
+    [attr.aria-label]="'testimonials.aria.region' | translate"
+>
+    <h2 class="sectionTitle">{{ 'testimonials.title' | translate }}</h2>
 
     <div #viewport class="viewport">
-        <div #track class="track"
-             (transitionend)="onTransitionEnd()"
-             (pointerdown)="onPointerDown($event)"
-             (pointermove)="onPointerMove($event)"
-             (pointerup)="onPointerUp($event)"
-             (pointercancel)="onPointerUp($event)">
+        <div
+            #track
+            class="track"
+            (transitionend)="onTransitionEnd()"
+            (pointerdown)="onPointerDown($event)"
+            (pointermove)="onPointerMove($event)"
+            (pointerup)="onPointerUp($event)"
+            (pointercancel)="onPointerUp($event)"
+        >
             <article *ngFor="let s of slides; let i = index" class="card" [attr.aria-hidden]="i!==idx">
-                <!-- NEU: dein eigenes SVG als Asset -->
                 <img src="img/icons/quotes.svg" class="quoteIcon" alt="" aria-hidden="true" />
 
-                <p class="quote" aria-live="polite">{{ s.quote }}</p>
+                <!-- Wichtig: | translate bei quote/author/role
+                     Option A (empfohlen): s.quote/s.author/s.role sind i18n-Keys
+                     Option B: falls Plain-Text übergeben wird, zeigt EN wie geliefert; DE benötigt Keys in JSON -->
+                <p class="quote" aria-live="polite">{{ s.quote | translate }}</p>
                 <div class="signature">
                     <span class="line"></span>
-                    <span class="author">{{ s.author }}</span>
-                    <ng-container *ngIf="s.role"> – <span class="role">{{ s.role }}</span></ng-container>
+                    <span class="author">{{ s.author | translate }}</span>
+                    <ng-container *ngIf="s.role">
+                        – <span class="role">{{ s.role | translate }}</span>
+                    </ng-container>
                 </div>
             </article>
         </div>
     </div>
 
     <div class="controls">
-        <!-- Linker Pfeil -->
-        <button class="arrow" type="button" (click)="prev()" aria-label="Vorheriges Testimonial">
+        <button class="arrow" type="button" (click)="prev()" [attr.aria-label]="'testimonials.aria.prev' | translate">
             <img src="img/icons/arrow-left.svg" alt="" aria-hidden="true" />
         </button>
 
-        <!-- Dots bleiben -->
         <div class="dots">
-            <button *ngFor="let _ of items; let d = index"
-                    type="button"
-                    class="dot"
-                    [class.active]="activeDot===d"
-                    (click)="goDot(d)"
-                    [attr.aria-current]="activeDot===d ? 'true' : null">
-            </button>
+            <button
+                *ngFor="let _ of items; let d = index"
+                type="button"
+                class="dot"
+                [class.active]="activeDot===d"
+                (click)="goDot(d)"
+                [attr.aria-current]="activeDot===d ? 'true' : null"
+            ></button>
         </div>
 
-        <!-- Rechter Pfeil -->
-        <button class="arrow" type="button" (click)="next()" aria-label="Nächstes Testimonial">
+        <button class="arrow" type="button" (click)="next()" [attr.aria-label]="'testimonials.aria.next' | translate">
             <img src="img/icons/arrow-right.svg" alt="" aria-hidden="true" />
         </button>
     </div>
-
 </section>

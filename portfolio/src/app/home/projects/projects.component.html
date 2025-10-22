@@ -1,8 +1,8 @@
 <div class="projectsWrapper">
     <div class="projectsHeading">
-        <p class="textAboveBoxGreen">Portfolio</p>
-        <h1 class="greenBoxHeadline">Featured Projects</h1>
-        <p>Explore a selection of my work here - Interact with projects to see my skills in action.</p>
+        <p class="textAboveBoxGreen">{{ 'projects.kicker' | translate }}</p>
+        <h1 class="greenBoxHeadline">{{ 'projects.headline' | translate }}</h1>
+        <p>{{ 'projects.lead' | translate }}</p>
     </div>
 
     <!-- Row 1 -->
@@ -10,12 +10,13 @@
         <div class="leftProjectGrid">
             <div class="projectCard" (click)="openOverlay(0)">
                 <div class="projectGridItemLeft">
-                    <p class="projectName">Join</p>
+                    <p class="projectName">{{ projects[0]?.name }}</p>
                     <img src="/img/icons/arrow_outward.svg" alt="arrow_outward" class="outwardArrow"/>
                 </div>
                 <div class="projectGridItemRight">
-                    JavaScript <span class="greenPipe">|</span> HTML <span class="greenPipe">|</span> CSS
-                    <span class="greenPipe">|</span> Material Design
+                    <ng-container *ngFor="let t of projects[0]?.tech; let last = last">
+                        {{ ('projects.tech.' + t) | translate }} <span *ngIf="!last" class="greenPipe">|</span>
+                    </ng-container>
                 </div>
             </div>
         </div>
@@ -29,11 +30,13 @@
         <div class="leftProjectGrid">
             <div class="projectCard" (click)="openOverlay(1)">
                 <div class="projectGridItemLeft">
-                    <p class="projectName">El Pollo Loco</p>
+                    <p class="projectName">{{ projects[1]?.name }}</p>
                     <img src="/img/icons/arrow_outward.svg" alt="arrow_outward" class="outwardArrow"/>
                 </div>
                 <div class="projectGridItemRight">
-                    HTML <span class="greenPipe">|</span> CSS <span class="greenPipe">|</span> JavaScript
+                    <ng-container *ngFor="let t of projects[1]?.tech; let last = last">
+                        {{ ('projects.tech.' + t) | translate }} <span *ngIf="!last" class="greenPipe">|</span>
+                    </ng-container>
                 </div>
             </div>
         </div>
@@ -47,11 +50,13 @@
         <div class="leftProjectGrid">
             <div class="projectCard" (click)="openOverlay(2)">
                 <div class="projectGridItemLeft">
-                    <p class="projectName">DA Bubble</p>
+                    <p class="projectName">{{ projects[2]?.name }}</p>
                     <img src="/img/icons/arrow_outward.svg" alt="arrow_outward" class="outwardArrow"/>
                 </div>
                 <div class="projectGridItemRight">
-                    Angular <span class="greenPipe">|</span> Firebase <span class="greenPipe">|</span> TypeScript
+                    <ng-container *ngFor="let t of projects[2]?.tech; let last = last">
+                        {{ ('projects.tech.' + t) | translate }} <span *ngIf="!last" class="greenPipe">|</span>
+                    </ng-container>
                 </div>
             </div>
         </div>
@@ -64,78 +69,97 @@
 <!-- ===================== OVERLAY ===================== -->
 <div class="overlayBackdrop" *ngIf="isOpen" (click)="closeOverlay()" aria-hidden="true"></div>
 
+<!-- ===================== OVERLAY ===================== -->
+<div class="overlayBackdrop" *ngIf="isOpen" (click)="closeOverlay()" aria-hidden="true"></div>
+
 <section
     class="overlayPanel"
-    *ngIf="isOpen"
+    *ngIf="isOpen && projects[current] as p"
     role="dialog"
     aria-modal="true"
-    [attr.aria-label]="projects[current]?.name"
+    [attr.aria-label]="p.name"
     (click)="$event.stopPropagation()"
 >
-    <!-- Header (volle Breite) -->
+    <!-- Header -->
     <header class="overlayHeader">
-        <button type="button" class="iconBtn closeBtn" (click)="closeOverlay()" aria-label="Close overlay">
+        <button
+            type="button"
+            class="iconBtn closeBtn"
+            (click)="closeOverlay()"
+            [attr.aria-label]="'projects.overlay.closeAria' | translate"
+        >
             <span class="icon close"></span>
         </button>
     </header>
 
-    <!-- Content 2 Spalten -->
+    <!-- Content -->
     <div class="overlayContent">
-        <!-- Left: Text / Badges / Buttons -->
         <div class="overlayLeft">
-            <h2 class="overlayIndex">{{ (current + 1) | number:'2.0' }}</h2>
-            <h3 class="overlayTitle">{{ projects[current]?.name }}</h3>
+            <h2 class="overlayIndex">{{ (current + 1) | number: '2.0' }}</h2>
+            <h3 class="overlayTitle">{{ p.name }}</h3>
 
-            <h4 class="overlayQuestion">What is this project about?</h4>
-            <p class="overlayDesc">{{ projects[current]?.description }}</p>
+            <h4 class="overlayQuestion">{{ 'projects.overlay.question' | translate }}</h4>
+            <p class="overlayDesc">{{ p.descriptionKey | translate }}</p>
 
             <div class="techRow">
-                <ng-container *ngFor="let t of projects[current]?.tech">
-                    <span class="techIcon">
-                      <img [src]="getIcon(t)" [alt]="t + ' icon'"/>
-                      <p class="TechRowTech">&nbsp; {{ t }}</p>
-                    </span>
+                <ng-container *ngFor="let t of p.tech">
+          <span class="techIcon">
+            <img [src]="getIcon(t)" [alt]="t + ' icon'" />
+            <p class="TechRowTech">&nbsp; {{ ('projects.tech.' + t) | translate }}</p>
+          </span>
                 </ng-container>
             </div>
 
-
             <div class="ctaRow">
-                <a class="btn gh" [href]="projects[current]?.repoUrl || null" target="_blank" rel="noopener"
-                   (click)="$event.stopPropagation()">
-                    GitHub <span class="arrowOut"></span>
+                <a
+                    class="btn gh"
+                    [href]="p.repoUrl || null"
+                    target="_blank"
+                    rel="noopener"
+                    (click)="$event.stopPropagation()"
+                >
+                    {{ 'projects.overlay.github' | translate }} <span class="arrowOut"></span>
                 </a>
-                <a class="btn live" [href]="projects[current]?.liveUrl || null" target="_blank" rel="noopener"
-                   (click)="$event.stopPropagation()">
-                    Live Test <span class="arrowOut"></span>
+                <a
+                    class="btn live"
+                    [href]="p.liveUrl || null"
+                    target="_blank"
+                    rel="noopener"
+                    (click)="$event.stopPropagation()"
+                >
+                    {{ 'projects.overlay.live' | translate }} <span class="arrowOut"></span>
                 </a>
             </div>
-
-
         </div>
 
-        <!-- Right: Bild -->
         <div class="overlayRight">
-            <img [src]="projects[current]?.image" [alt]="projects[current]?.name"/>
+            <img [src]="p.image" [alt]="p.name" />
         </div>
     </div>
 
-    <!-- Footer (volle Breite) -->
+    <!-- Footer -->
     <footer class="overlayFooter">
-        <!-- Prev (nur wenn vorhanden) -->
         <button
             *ngIf="hasPrev"
             type="button"
             class="prevLink"
             (click)="prev()"
-            aria-label="Previous project"
+            [attr.aria-label]="'projects.overlay.prev' | translate"
         >
             <span class="icon arrowLeft"></span>
-            <span>Previous project</span>
+            <span>{{ 'projects.overlay.prev' | translate }}</span>
         </button>
 
-        <button *ngIf="hasNext" type="button" class="nextLink" (click)="next()" aria-label="Next project">
-            <span>Next project</span>
+        <button
+            *ngIf="hasNext"
+            type="button"
+            class="nextLink"
+            (click)="next()"
+            [attr.aria-label]="'projects.overlay.next' | translate"
+        >
+            <span>{{ 'projects.overlay.next' | translate }}</span>
             <span class="icon arrowRight"></span>
         </button>
     </footer>
 </section>
+

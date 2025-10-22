@@ -52,7 +52,8 @@ $ok: #39d98a !default;
     }
 
     .display {
-        font-size: clamp(32px, 7vw, 86px);
+        font-family: 'Fira Code', monospace;
+        font-size: clamp(32px, 7vw, 64px);
         line-height: .92;
         margin: 0 0 12px;
         font-weight: 800;
@@ -148,10 +149,10 @@ $ok: #39d98a !default;
 
     input[type="checkbox"] {
         appearance: none;
-        width: 18px;
-        height: 18px;
+        width: 18px !important;
+        height: 18px !important;
         border: 2px solid $accent;
-        border-radius: 4px;
+        border-radius: 2px;
         position: relative;
         margin-top: 3px;
         cursor: pointer;

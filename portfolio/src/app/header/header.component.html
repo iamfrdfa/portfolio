@@ -1,13 +1,43 @@
 <header class="header">
     <div class="header__left">
         <app-language-toggle></app-language-toggle>
+
         <nav>
-            <a routerLink="/about" routerLinkActive="active" (click)="scrollTo('aboutMeComponent')"  class="headerLinks">About me</a>
-            <a routerLink="/skills" (click)="scrollTo('skillComponent')"  class="headerLinks">Skills</a>
-            <a routerLink="/projects" (click)="scrollTo('projects')"  class="headerLinks">Projects</a>
+            <a
+                routerLink="/about"
+                routerLinkActive="active"
+                (click)="scrollTo('aboutMeComponent')"
+                class="headerLinks"
+                [attr.aria-label]="'header.nav.about' | translate"
+            >
+                {{ 'header.nav.about' | translate }}
+            </a>
+
+            <a
+                routerLink="/skills"
+                (click)="scrollTo('skillComponent')"
+                class="headerLinks"
+                [attr.aria-label]="'header.nav.skills' | translate"
+            >
+                {{ 'header.nav.skills' | translate }}
+            </a>
+
+            <a
+                routerLink="/projects"
+                (click)="scrollTo('projects')"
+                class="headerLinks"
+                [attr.aria-label]="'header.nav.projects' | translate"
+            >
+                {{ 'header.nav.projects' | translate }}
+            </a>
         </nav>
     </div>
+
     <div class="header__right">
-        <img src="img/friedrichfaraji_fulllogo2.png" alt="Logo Friedrich Faraji" class="logo">
+        <img
+            src="img/friedrichfaraji_fulllogo2.png"
+            class="logo"
+            [attr.alt]="'header.logoAlt' | translate"
+        >
     </div>
 </header>

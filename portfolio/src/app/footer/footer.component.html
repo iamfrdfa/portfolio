@@ -1,25 +1,33 @@
 <footer class="footer">
     <div class="footer-left">
         <div class="logo-container">
-            <img src="img/friedrichfaraji_logo.png" alt="Logo" class="logo">
-            <span class="name">Friedrich <br> Faraji</span>
+            <img src="img/friedrichfaraji_logo.png" alt="Logo Friedrich Faraji" class="logo" />
+            <span class="name">Friedrich<br>Faraji</span>
         </div>
-        <p class="profession">Frontend Developer</p>
+        <p class="profession">{{ 'footer.role' | translate }}</p>
         <p class="location">{{ 'footer.location' | translate }}</p>
     </div>
 
     <div class="footer-center">
         <p class="copyright">
-            © {{ currentYear }} Friedrich Faraji
+            {{ 'footer.copyright' | translate:{ year: currentYear } }}
         </p>
     </div>
 
     <div class="footer-right">
         <nav class="social-links">
-            <a href="https://github.com/username" target="_blank">GitHub</a>
-            <a href="https://linkedin.com/in/username" target="_blank">LinkedIn</a>
-            <a href="https://twitter.com/username" target="_blank">Twitter</a>
-            <a href="/legal-notice">Legal Notice</a>
+            <a href="https://github.com/username" target="_blank" rel="noopener">
+                {{ 'footer.links.github' | translate }}
+            </a>
+            <a href="https://linkedin.com/in/username" target="_blank" rel="noopener">
+                {{ 'footer.links.linkedin' | translate }}
+            </a>
+            <a href="/legal-notice">
+                {{ 'footer.links.legal' | translate }}
+            </a>
+            <a href="/imprint">
+                {{ 'footer.links.imprint' | translate }}
+            </a>
         </nav>
     </div>
 </footer>

@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 type Tech =
     | 'JavaScript'
@@ -10,11 +11,14 @@ type Tech =
     | 'TypeScript'
     | 'Firebase';
 
+type ProjectKey = 'join' | 'epl' | 'dabubble';
+
 type Project = {
-    name: string;
-    tech: Tech[];          // ← dynamisch pro Projekt
+    key: ProjectKey;
+    name: string;             // Eigennamen bleiben i.d.R. unübersetzt
+    tech: Tech[];
     image: string;
-    description: string;
+    descriptionKey: string;   // i18n-Key in JSON
     repoUrl?: string;
     liveUrl?: string;
 };
@@ -22,12 +26,12 @@ type Project = {
 @Component({
     selector: 'app-projects',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, TranslateModule],
     templateUrl: './projects.component.html',
     styleUrl: './projects.component.scss',
 })
 export class ProjectsComponent {
-    /** Zuordnung Tech → Icon (klein). Passe Pfade bei Bedarf an. */
+    /** Zuordnung Tech → Icon (klein). Pfade bei Bedarf anpassen. */
     private iconMap: Record<Tech, string> = {
         JavaScript: '/img/icons/javascript-small.svg',
         HTML: '/img/icons/html-small.svg',
@@ -38,32 +42,32 @@ export class ProjectsComponent {
         Firebase: '/img/icons/firebase-small.svg',
     };
 
-    /** Projekte mit individuellem Tech-Stack. */
+    /** Projekte mit i18n-Description-Key */
     projects: Project[] = [
         {
+            key: 'join',
             name: 'Join',
             tech: ['JavaScript', 'HTML', 'CSS', 'Firebase'],
             image: '/img/thumbnails/join-overlay.svg',
-            description:
-                'Task manager inspired by the Kanban System. Create and organize tasks using drag and drop functions, assign users and categories.',
+            descriptionKey: 'projects.items.join.desc',
             repoUrl: '',
             liveUrl: '',
         },
         {
+            key: 'epl',
             name: 'El Pollo Loco',
             tech: ['JavaScript', 'HTML', 'CSS'],
             image: '/img/thumbnails/epl-overlay.svg',
-            description:
-                'Jump-and-run browser game. Focus on sprites, collision handling and simple game state management.',
+            descriptionKey: 'projects.items.epl.desc',
             repoUrl: '',
             liveUrl: '',
         },
         {
+            key: 'dabubble',
             name: 'DA Bubble',
             tech: ['Angular', 'Firebase', 'TypeScript'],
             image: '/img/thumbnails/dabubble-overlay.svg',
-            description:
-                'Team messenger inspired by Slack. Real-time channels, threads, mentions, and file uploads.',
+            descriptionKey: 'projects.items.dabubble.desc',
             repoUrl: '',
             liveUrl: '',
         },
@@ -96,7 +100,7 @@ export class ProjectsComponent {
         return this.iconMap[label] ?? this.iconMap['HTML'];
     }
 
-    /** Techs als „A | B | C“ für die Liste (falls du es in den Zeilen nutzen willst) */
+    /** Optional: "A | B | C" String, falls nötig */
     asPipeString(list: Tech[]): string {
         return list.join(' | ');
     }

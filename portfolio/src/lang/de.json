@@ -1,4 +1,13 @@
 {
+    "header": {
+        "nav": {
+            "about": "Über mich",
+            "skills": "Skills",
+            "projects": "Projekte"
+        },
+        "logoAlt": "Logo von Friedrich Faraji"
+    },
+
     "home": {
         "subtitle": "Frontend-Entwickler",
         "ctas": {
@@ -55,6 +64,133 @@
             "scrum": "Scrum",
             "growth_mindset": "Wachstums-Mindset"
         }
+    },
+
+    "projects": {
+        "kicker": "Portfolio",
+        "headline": "Ausgewählte Projekte",
+        "lead": "Entdecke hier eine Auswahl meiner Arbeiten – interagiere mit den Projekten, um meine Skills in Aktion zu sehen.",
+        "overlay": {
+            "question": "Worum geht es in diesem Projekt?",
+            "github": "GitHub",
+            "live": "Live-Demo",
+            "prev": "Vorheriges Projekt",
+            "next": "Nächstes Projekt",
+            "closeAria": "Overlay schließen"
+        },
+        "tech": {
+            "JavaScript": "JavaScript",
+            "HTML": "HTML",
+            "CSS": "CSS",
+            "Material Design": "Material Design",
+            "Angular": "Angular",
+            "TypeScript": "TypeScript",
+            "Firebase": "Firebase"
+        },
+        "items": {
+            "join": {
+                "desc": "Task-Manager nach dem Kanban-Prinzip. Erstelle und organisiere Tasks mit Drag & Drop, weise Nutzer und Kategorien zu."
+            },
+            "epl": {
+                "desc": "Jump-and-Run-Browsergame. Fokus auf Sprites, Kollisionserkennung und einfachem Game-State-Management."
+            },
+            "dabubble": {
+                "desc": "Team-Messenger nach dem Vorbild von Slack. Echtzeit-Channels, Threads, Mentions und Datei-Uploads."
+            }
+        }
+    },
+
+    "testimonials": {
+        "title": "Was Kolleginnen und Kollegen über mich sagen",
+        "aria": {
+            "region": "Referenzen",
+            "prev": "Vorheriges Testimonial",
+            "next": "Nächstes Testimonial"
+        },
+        "items": [
+            {
+                "quote": "Friedrich hat sich als verlässlicher Team-Partner erwiesen, liefert hervorragende Ergebnisse und kommuniziert klar über den gesamten Projektverlauf.",
+                "author": "H. Janisch",
+                "role": "Team-Partner"
+            },
+            {
+                "quote": "Ich hatte das Glück, mit Friedrich an mehreren Frontend-Projekten zu arbeiten. Seine strukturierte Arbeitsweise und sein Gespür für Design stechen hervor.",
+                "author": "A. Smith",
+                "role": "Frontend-Entwickler"
+            },
+            {
+                "quote": "Stets ruhig, fokussiert und kompetent – selbst bei engen Deadlines. Die Zusammenarbeit macht wirklich Spaß.",
+                "author": "T. Schulz",
+                "role": "Frontend-Entwickler"
+            },
+            {
+                "quote": "Mit Friedrich zu arbeiten bedeutet sauberen Code, klare Kommunikation und einen verlässlichen Partner in jedem Sprint.",
+                "author": "M. Becker",
+                "role": "Projektmanager"
+            },
+            {
+                "quote": "Friedrich versteht nicht nur Frontend-Entwicklung, sondern bringt auch eine starke UX-Intuition und Teamgeist mit.",
+                "author": "S. Nguyen",
+                "role": "UX-Designer"
+            }
+        ]
+    },
+
+    "contact": {
+        "kicker": "Kontaktiere mich",
+        "headline": "Lass uns<br>zusammenarbeiten",
+        "subhead": "Sie haben ein Problem zu lösen?",
+        "lead": "Ermutige Besucher, dich zu kontaktieren, und beschreibe, für welche Rolle du dich interessierst. Zeige, welchen Mehrwert du durch deine Arbeit in ihre Projekte einbringst.",
+        "ctaHint": {
+            "pre": "Du brauchst einen Frontend-Entwickler?",
+            "link": "Lass uns sprechen!"
+        },
+        "form": {
+            "name": {
+                "prompt": "Wie ist dein Name?",
+                "placeholder": "Dein Name",
+                "error": "Bitte gib deinen Namen ein (mindestens 2 Zeichen)."
+            },
+            "email": {
+                "prompt": "Wie lautet deine E-Mail?",
+                "placeholder": "du@beispiel.de",
+                "error": "Bitte gib eine gültige E-Mail ein."
+            },
+            "message": {
+                "prompt": "Wobei kann ich helfen?",
+                "placeholder": "Hallo Friedrich, ich interessiere mich für…",
+                "error": "Bitte schreibe mindestens 8 Zeichen."
+            },
+            "consent": {
+                "labelBefore": "Ich habe die ",
+                "policy": "Datenschutzerklärung",
+                "labelAfter": " gelesen und stimme der dort beschriebenen Verarbeitung meiner Daten zu."
+            },
+            "feedback": {
+                "ok": "Danke! Deine Nachricht wurde gesendet.",
+                "errorFallback": "Senden fehlgeschlagen. Bitte später erneut versuchen."
+            },
+            "submit": {
+                "label": "Sag Hallo ;)",
+                "aria": "Nachricht senden",
+                "sending": "Senden…"
+            },
+            "honeypot": {
+                "label": "Firma"
+            }
+        }
+    },
+
+    "footer": {
+        "role": "Frontend-Entwickler",
+        "location": "Ansässig in Maintal, Deutschland",
+        "links": {
+            "github": "GitHub",
+            "linkedin": "LinkedIn",
+            "legal": "Datenschutzerklärung",
+            "imprint": "Impressum"
+        },
+        "copyright": "© {{year}} Friedrich Faraji"
     },
 
     "legal": {

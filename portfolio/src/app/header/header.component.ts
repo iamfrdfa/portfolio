@@ -3,18 +3,18 @@ import { CommonModule, DOCUMENT } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { LanguageToggleComponent } from '../shared/ui/language-toggle/language-toggle.component';
 import { LanguageService } from '../shared/services/language.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-header',
     standalone: true,
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
-    imports: [CommonModule, RouterLink, RouterLinkActive, LanguageToggleComponent],
+    imports: [CommonModule, RouterLink, RouterLinkActive, LanguageToggleComponent, TranslateModule],
 })
 export class HeaderComponent {
     private langSvc = inject(LanguageService);
 
-    // Beispiel – falls du im Template den Text brauchst
     isDE = computed(() => this.langSvc.lang() === 'de');
     isEN = computed(() => this.langSvc.lang() === 'en');
 

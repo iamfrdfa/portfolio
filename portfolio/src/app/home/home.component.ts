@@ -69,31 +69,11 @@ export class HomeComponent implements OnDestroy {
     }
 
     testimonials = [
-        {
-            quote: 'Lukas has proven to be a reliable group partner, delivering excellent results and clear communication throughout the project.',
-            author: 'H. Janisch',
-            role: 'Team Partner'
-        },
-        {
-            quote: 'I had the good fortune of working with Lukas on several frontend projects. His structured approach and sense for design stand out.',
-            author: 'A. Smith',
-            role: 'Frontend Dev'
-        },
-        {
-            quote: 'Always calm, cool and knowledgeable — even when deadlines are tight. A pleasure to collaborate with.',
-            author: 'T. Schulz',
-            role: 'Frontend Developer'
-        },
-        {
-            quote: 'Working with Lukas means having clean code, clear communication, and a dependable partner in every sprint.',
-            author: 'M. Becker',
-            role: 'Project Manager'
-        },
-        {
-            quote: 'Lukas not only understands frontend development but also brings strong UX intuition and team spirit to the table.',
-            author: 'S. Nguyen',
-            role: 'UX Designer'
-        }
+        { quote: 'testimonials.items.0.quote', author: 'testimonials.items.0.author', role: 'testimonials.items.0.role' },
+        { quote: 'testimonials.items.1.quote', author: 'testimonials.items.1.author', role: 'testimonials.items.1.role' },
+        { quote: 'testimonials.items.2.quote', author: 'testimonials.items.2.author', role: 'testimonials.items.2.role' },
+        { quote: 'testimonials.items.3.quote', author: 'testimonials.items.3.author', role: 'testimonials.items.3.role' },
+        { quote: 'testimonials.items.4.quote', author: 'testimonials.items.4.author', role: 'testimonials.items.4.role' }
     ];
 
     ngOnDestroy(): void {

@@ -1,11 +1,12 @@
 import { Component, inject, signal, computed } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-contactform',
     standalone: true,
-    imports: [FormsModule],
+    imports: [FormsModule, TranslateModule],
     templateUrl: './contactform.component.html',
     styleUrl: './contactform.component.scss'
 })
@@ -27,11 +28,7 @@ export class ContactformComponent {
     consent: boolean = false;
 
     // Form-Model
-    contactData = {
-        name: '',
-        email: '',
-        message: ''
-    };
+    contactData = { name: '', email: '', message: '' };
 
     // Endpoint + Optionen
     post = {
@@ -39,7 +36,7 @@ export class ContactformComponent {
         body: (payload: any) => JSON.stringify(payload),
         options: {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-            responseType: 'text' as const // Server gibt Text zurück
+            responseType: 'text' as const
         }
     };
 
@@ -51,12 +48,9 @@ export class ContactformComponent {
         this.sentError.set(null);
 
         // Ungültig / Honeypot / fehlende Einwilligung -> abbrechen
-        if (!ngForm.form.valid || !this.consent || this.honeypot.trim().length > 0) {
-            return;
-        }
+        if (!ngForm.form.valid || !this.consent || this.honeypot.trim().length > 0) return;
 
         if (this.mailTest) {
-            // Simulierter Erfolg
             this.sending.set(true);
             setTimeout(() => {
                 this.sending.set(false);
@@ -66,30 +60,25 @@ export class ContactformComponent {
             return;
         }
 
-        // Echter Versand
         this.sending.set(true);
-        this.http
-            .post(this.post.endPoint, this.post.body(this.contactData), this.post.options)
-            .subscribe({
-                next: () => {
-                    this.sending.set(false);
-                    this.sentOk.set(true);
-                    ngForm.resetForm();
-                },
-                error: (err) => {
-                    this.sending.set(false);
-                    this.sentError.set(
-                        (err?.error && typeof err.error === 'string')
-                            ? err.error
-                            : 'Senden fehlgeschlagen. Bitte später erneut versuchen.'
-                    );
-                    console.error('Mail send error:', err);
-                },
-                complete: () => console.info('send post complete')
-            });
+        this.http.post(this.post.endPoint, this.post.body(this.contactData), this.post.options).subscribe({
+            next: () => {
+                this.sending.set(false);
+                this.sentOk.set(true);
+                ngForm.resetForm();
+            },
+            error: (err) => {
+                this.sending.set(false);
+                this.sentError.set(
+                    (err?.error && typeof err.error === 'string')
+                        ? err.error
+                        : null // -> Fallback-Text kommt aus i18n im Template
+                );
+                console.error('Mail send error:', err);
+            }
+        });
     }
 
-    // <-- hier neu: Scroll & Focus auf das Namensfeld
     scrollToName(el: HTMLInputElement) {
         el.scrollIntoView({ behavior: 'smooth', block: 'center' });
         setTimeout(() => el.focus(), 400);

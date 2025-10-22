@@ -1,4 +1,13 @@
 {
+    "header": {
+        "nav": {
+            "about": "About me",
+            "skills": "Skills",
+            "projects": "Projects"
+        },
+        "logoAlt": "Logo Friedrich Faraji"
+    },
+
     "home": {
         "subtitle": "Frontend Developer",
         "ctas": {
@@ -55,6 +64,133 @@
             "scrum": "Scrum",
             "growth_mindset": "Growth mindset"
         }
+    },
+
+    "projects": {
+        "kicker": "Portfolio",
+        "headline": "Featured Projects",
+        "lead": "Explore a selection of my work here – interact with projects to see my skills in action.",
+        "overlay": {
+            "question": "What is this project about?",
+            "github": "GitHub",
+            "live": "Live Test",
+            "prev": "Previous project",
+            "next": "Next project",
+            "closeAria": "Close overlay"
+        },
+        "tech": {
+            "JavaScript": "JavaScript",
+            "HTML": "HTML",
+            "CSS": "CSS",
+            "Material Design": "Material Design",
+            "Angular": "Angular",
+            "TypeScript": "TypeScript",
+            "Firebase": "Firebase"
+        },
+        "items": {
+            "join": {
+                "desc": "Task manager inspired by the Kanban System. Create and organize tasks using drag and drop functions, assign users and categories."
+            },
+            "epl": {
+                "desc": "Jump-and-run browser game. Focus on sprites, collision handling and simple game state management."
+            },
+            "dabubble": {
+                "desc": "Team messenger inspired by Slack. Real-time channels, threads, mentions, and file uploads."
+            }
+        }
+    },
+
+    "testimonials": {
+        "title": "What my colleagues say about me",
+        "aria": {
+            "region": "Testimonials",
+            "prev": "Previous testimonial",
+            "next": "Next testimonial"
+        },
+        "items": [
+            {
+                "quote": "Friedrich has proven to be a reliable group partner, delivering excellent results and clear communication throughout the project.",
+                "author": "H. Janisch",
+                "role": "Team Partner"
+            },
+            {
+                "quote": "I had the good fortune of working with Friedrich on several frontend projects. His structured approach and sense for design stand out.",
+                "author": "A. Smith",
+                "role": "Frontend Dev"
+            },
+            {
+                "quote": "Always calm, cool and knowledgeable — even when deadlines are tight. A pleasure to collaborate with.",
+                "author": "T. Schulz",
+                "role": "Frontend Developer"
+            },
+            {
+                "quote": "Working with Friedrich means having clean code, clear communication, and a dependable partner in every sprint.",
+                "author": "M. Becker",
+                "role": "Project Manager"
+            },
+            {
+                "quote": "Friedrich not only understands frontend development but also brings strong UX intuition and team spirit to the table.",
+                "author": "S. Nguyen",
+                "role": "UX Designer"
+            }
+        ]
+    },
+
+    "contact": {
+        "kicker": "Contact me",
+        "headline": "Let's work<br>together",
+        "subhead": "Got a problem to solve?",
+        "lead": "Encourage people to contact you and describe what role you are interested in. Show that you will add value to their projects through your work.",
+        "ctaHint": {
+            "pre": "Need a Frontend developer?",
+            "link": "Let’s talk!"
+        },
+        "form": {
+            "name": {
+                "prompt": "What's your name?",
+                "placeholder": "Your name goes here",
+                "error": "Please enter your name (at least 2 characters)."
+            },
+            "email": {
+                "prompt": "What's your email?",
+                "placeholder": "youremail@email.com",
+                "error": "Please enter a valid email address."
+            },
+            "message": {
+                "prompt": "How can I help you?",
+                "placeholder": "Hello Friedrich, I am interested in…",
+                "error": "Please write at least 8 characters."
+            },
+            "consent": {
+                "labelBefore": "I've read the ",
+                "policy": "privacy policy",
+                "labelAfter": " and agree to the processing of my data as outlined."
+            },
+            "feedback": {
+                "ok": "Thanks! Your message has been sent.",
+                "errorFallback": "Sending failed. Please try again later."
+            },
+            "submit": {
+                "label": "Say Hello ;)",
+                "aria": "Send message",
+                "sending": "Sending…"
+            },
+            "honeypot": {
+                "label": "Company"
+            }
+        }
+    },
+
+    "footer": {
+        "role": "Frontend Developer",
+        "location": "Based in Maintal, Germany",
+        "links": {
+            "github": "GitHub",
+            "linkedin": "LinkedIn",
+            "legal": "Legal Notice",
+            "imprint": "Imprint"
+        },
+        "copyright": "© {{year}} Friedrich Faraji"
     },
 
     "legal": {
