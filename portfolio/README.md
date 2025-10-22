@@ -1,59 +1,125 @@
-# Portfolio
+---
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+# 🌐 Friedrich Faraji – Portfolio (Angular)
 
-## Development server
+A modern, responsive **frontend portfolio** built with **Angular 20**, **TypeScript**, and **SCSS**.  
+It showcases clean architecture, bilingual support, and a design language inspired by minimalism and precision.
 
-To start a local development server, run:
+---
+
+## 🚀 Project Overview
+
+This portfolio website presents the work, skills, and personality of **Friedrich Faraji** – a frontend developer with a passion for modern web technologies and scalable UI design.
+
+The project was developed as part of the **Developer Akademie** Full-Stack Web Developer training.
+
+### 🧩 Core Features
+
+- 🌍 **Bilingual (DE / EN)** – powered by `@ngx-translate/core`
+- 💅 **Custom SCSS design system** – variables, mixins, and responsive breakpoints
+- 🧠 **Component-based structure** (Angular 20.3.5)
+- 📱 **Fully responsive layout** using `flexbox`, `grid`, and `clamp()`
+- 🧭 **Smooth-scroll navigation** and animated hero buttons (marquee effect)
+- 🔄 **Language toggle switch** (DE ↔ EN)
+- 📬 **Contact form** using Angular Reactive Forms
+- ⚖️ **Legal Notice / Impressum / Privacy Policy**
+- 🚫 **NOINDEX setup** to keep the portfolio private from search engines
+- 🧱 **Clean Git structure** with optimized `.gitignore`
+
+---
+
+## 🗂️ Folder Structure (Simplified)
+src/
+├── app/
+│ ├── home/
+│ ├── aboutme/
+│ ├── skills/
+│ ├── projects/
+│ ├── valuation/
+│ ├── contact/
+│ ├── legal-notice/
+│ └── shared/
+│ ├── header/
+│ ├── footer/
+│ └── language-toggle/
+├── assets/
+│ └── img/
+├── lang/
+│ ├── de.json
+│ └── en.json
+└── styles/
+├── variables.scss
+├── mixins.scss
+└── globals.scss
+
+yaml
+Code kopieren
+
+---
+
+## 🧑‍💻 Development
+
+### 1. Installation
 
 ```bash
+npm install
+Make sure to use Node ≥ 20.x and Angular CLI ≥ 20.3.5.
+
+2. Local Development Server
+bash
+Code kopieren
 ng serve
-```
+Then open your browser at http://localhost:4200.
+The app reloads automatically whenever you modify a file.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
+3. Code Scaffolding
+bash
+Code kopieren
 ng generate component component-name
-```
+Example:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+bash
+Code kopieren
+ng generate component pages/aboutme
+For a full list of schematics:
 
-```bash
+bash
+Code kopieren
 ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
+4. Build
+bash
+Code kopieren
 ng build
-```
+Creates a production-optimized build in dist/.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
+5. Unit Tests
+bash
+Code kopieren
 ng test
-```
+Runs tests with Karma.
 
-## Running end-to-end tests
+🧭 Deployment
+Prepared for deployment on GitHub Pages or Vercel.
+During development or private demos, use a subdomain with NOINDEX meta tag to keep it out of Google Search.
 
-For end-to-end (e2e) testing, run:
+🧠 Tech Stack
+Technology	Purpose
+Angular 20.3.5	Frontend framework
+TypeScript 5.x	Strongly typed language
+SCSS	Styling & responsive design
+ngx-translate	i18n / localization
+Git + GitHub	Version control & CI/CD
+VS Code / WebStorm	IDE
 
-```bash
-ng e2e
-```
+📅 Project Status
+🔹 In active development
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Core components implemented (Header, Hero, About, Skills, Projects, Contact, Legal Notice)
 
-## Additional Resources
+Language switch and responsive layout working
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Final design polish & accessibility improvements in progress
+
+🧾 License
+© 2025 Friedrich Faraji – All rights reserved.
+Unauthorized copying, modification, or commercial use is prohibited.
