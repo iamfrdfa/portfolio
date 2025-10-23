@@ -1,3 +1,4 @@
+// ... deine Imports bleiben
 import { Component, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AboutmeComponent } from './aboutme/aboutme.component';
@@ -6,8 +7,6 @@ import { ProjectsComponent } from './projects/projects.component';
 import { ValuationComponent } from './valuation/valuation.component';
 import { ContactformComponent } from '../contactform/contactform.component';
 import { RouterLink } from '@angular/router';
-
-// NEW: ngx-translate
 import { TranslateModule, TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
@@ -22,8 +21,6 @@ import { Subscription } from 'rxjs';
         ValuationComponent,
         ContactformComponent,
         RouterLink,
-
-        // NEW: for | translate in template
         TranslateModule
     ],
     templateUrl: './home.component.html',
@@ -46,26 +43,85 @@ export class HomeComponent implements OnDestroy {
     }
 
     private buildMarqueeFromI18n() {
-        // Read array from i18n; fallback to English if something goes wrong
         const arr = this.translate.instant('home.marquee') as unknown;
-        const list = Array.isArray(arr) ? arr as string[] : [
+        const list = Array.isArray(arr) ? (arr as string[]) : [
             'Available for remote work',
             'Frontend Developer',
             'Open to work',
             'Based in Maintal'
         ];
-
         this.marqueeItems = list;
         this.marqueeHalf = Array.from({ length: this.MARQUEE_REPEAT_PER_HALF })
             .flatMap(() => this.marqueeItems);
     }
 
+    // --- CTA: Scroll zu Projects
     scrollToProjects() {
-        document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const el = document.querySelector('#projects');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    scrollToContact() {
-        document.querySelector('#valuationComponent')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // --- CTA: Scroll zu Kontakt & erstes Feld fokussieren
+    async scrollToContactAndFocus() {
+        const container = document.querySelector('#contactFormComponent') as HTMLElement | null;
+        if (!container) return;
+
+        container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        // Warte kurz bis der Scroll abgeschlossen ist (scrollend, rAF + Timeout Fallback)
+        await this.waitForScrollEnd(350);
+
+        // Erstes sinnvolles fokussierbares Element suchen:
+        const firstFocusable = container.querySelector<HTMLElement>(
+            'input:not([type="hidden"]), textarea, select, [contenteditable="true"], button, [tabindex]:not([tabindex="-1"])'
+        );
+
+        if (firstFocusable) {
+            // Verhindert erneutes Scrollen beim Fokussieren
+            firstFocusable.focus({ preventScroll: true } as any);
+            // Optional: Cursor an das Ende setzen (falls input/textarea)
+            if (firstFocusable instanceof HTMLInputElement || firstFocusable instanceof HTMLTextAreaElement) {
+                const len = firstFocusable.value?.length ?? 0;
+                try {
+                    firstFocusable.setSelectionRange?.(len, len);
+                } catch {}
+            }
+        }
+    }
+
+    private waitForScrollEnd(timeoutMs = 300): Promise<void> {
+        return new Promise((resolve) => {
+            let done = false;
+            const finish = () => {
+                if (done) return;
+                done = true;
+                resolve();
+            };
+
+            // Browser mit scrollend-Event
+            const onScrollEnd = () => {
+                window.removeEventListener('scrollend', onScrollEnd as any);
+                finish();
+            };
+            try {
+                window.addEventListener('scrollend', onScrollEnd as any, { once: true });
+            } catch {
+                // Ignorieren, wenn nicht unterstützt
+            }
+
+            // rAF + Timeout Fallback
+            let raf = 0;
+            const start = performance.now();
+            const tick = (t: number) => {
+                if (t - start >= timeoutMs) {
+                    cancelAnimationFrame(raf);
+                    finish();
+                    return;
+                }
+                raf = requestAnimationFrame(tick);
+            };
+            raf = requestAnimationFrame(tick);
+        });
     }
 
     testimonials = [

@@ -4,20 +4,29 @@
         <h1 class="hero_title">Friedrich Faraji</h1>
 
         <div class="heroButtonsWrapper">
-            <button class="heroButton_work" routerLink="/about" [attr.aria-label]="'home.ctas.work' | translate">
-        <span class="btn-scroll">
-          <span>{{ 'home.ctas.work' | translate }}</span>
-          <span aria-hidden="true">{{ 'home.ctas.work' | translate }}</span>
-        </span>
+            <button
+                class="heroButton_work"
+                type="button"
+                (click)="scrollToProjects()"
+                [attr.aria-label]="'home.ctas.work' | translate">
+                <span class="btn-scroll">
+                  <span>{{ 'home.ctas.work' | translate }}</span>
+                  <span aria-hidden="true">{{ 'home.ctas.work' | translate }}</span>
+                </span>
             </button>
 
-            <button class="heroButton_contact" routerLink="/about" [attr.aria-label]="'home.ctas.contact' | translate">
-        <span class="btn-scroll">
-          <span>{{ 'home.ctas.contact' | translate }}</span>
-          <span aria-hidden="true">{{ 'home.ctas.contact' | translate }}</span>
-        </span>
+            <button
+                class="heroButton_contact"
+                type="button"
+                (click)="scrollToContactAndFocus()"
+                [attr.aria-label]="'home.ctas.contact' | translate">
+                <span class="btn-scroll">
+                  <span>{{ 'home.ctas.contact' | translate }}</span>
+                  <span aria-hidden="true">{{ 'home.ctas.contact' | translate }}</span>
+                </span>
             </button>
         </div>
+
 
         <!-- Gimmicks: Left / Marquee / Right -->
         <section class="gimmick">
@@ -53,14 +62,16 @@
                     <li>
                         <a class="iconBtn" href="#" target="_blank" rel="noopener" aria-label="GitHub">
                             <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-                                <path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.42c.58.1.8-.25.8-.56v-2.1c-3.26.72-3.95-1.57-3.95-1.57-.53-1.36-1.3-1.72-1.3-1.72-1.07-.74.08-.72.08-.72 1.19.08 1.82 1.22 1.82 1.22 1.05 1.8 2.75 1.28 3.42.98.1-.78.41-1.29.74-1.58-2.6-.3-5.33-1.3-5.33-5.77 0-1.27.46-2.31 1.22-3.13-.12-.3-.53-1.53.12-3.2 0 0 .99-.32 3.24 1.2a11.2 11.2 0 0 1 5.9 0c2.25-1.52 3.23-1.2 3.23-1.2.66 1.67.25 2.9.12 3.2.76.82 1.22 1.86 1.22 3.14 0 4.48-2.74 5.46-5.35 5.76.42.36.79 1.07.79 2.16v3.2c0 .31.21.67.81.56A11.5 11.5 0 0 0 12 .5Z"/>
+                                <path fill="currentColor"
+                                      d="M12 .5a11.5 11.5 0 0 0-3.64 22.42c.58.1.8-.25.8-.56v-2.1c-3.26.72-3.95-1.57-3.95-1.57-.53-1.36-1.3-1.72-1.3-1.72-1.07-.74.08-.72.08-.72 1.19.08 1.82 1.22 1.82 1.22 1.05 1.8 2.75 1.28 3.42.98.1-.78.41-1.29.74-1.58-2.6-.3-5.33-1.3-5.33-5.77 0-1.27.46-2.31 1.22-3.13-.12-.3-.53-1.53.12-3.2 0 0 .99-.32 3.24 1.2a11.2 11.2 0 0 1 5.9 0c2.25-1.52 3.23-1.2 3.23-1.2.66 1.67.25 2.9.12 3.2.76.82 1.22 1.86 1.22 3.14 0 4.48-2.74 5.46-5.35 5.76.42.36.79 1.07.79 2.16v3.2c0 .31.21.67.81.56A11.5 11.5 0 0 0 12 .5Z"/>
                             </svg>
                         </a>
                     </li>
                     <li>
                         <a class="iconBtn" href="#" target="_blank" rel="noopener" aria-label="LinkedIn">
                             <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-                                <path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5Zm.52 6.5H2.5V21h3V10ZM13 10h-3v11h3v-6.06c0-1.6.3-3.15 2.29-3.15 1.96 0 1.98 1.83 1.98 3.25V21h3v-6.94c0-3.41-.73-6.06-4.63-6.06-1.88 0-3.15 1.03-3.64 2.01H13Z"/>
+                                <path fill="currentColor"
+                                      d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5Zm.52 6.5H2.5V21h3V10ZM13 10h-3v11h3v-6.06c0-1.6.3-3.15 2.29-3.15 1.96 0 1.98 1.83 1.98 3.25V21h3v-6.94c0-3.41-.73-6.06-4.63-6.06-1.88 0-3.15 1.03-3.64 2.01H13Z"/>
                             </svg>
                         </a>
                     </li>

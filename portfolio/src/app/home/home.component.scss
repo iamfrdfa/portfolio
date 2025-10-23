@@ -6,6 +6,11 @@
 $marqueeBackground: #383838d3;
 $accentGreen: #3dcfb6 !default;
 
+a,
+button {
+    cursor: pointer !important;
+}
+
 /* ---------- HERO ---------- */
 
 .hero {
