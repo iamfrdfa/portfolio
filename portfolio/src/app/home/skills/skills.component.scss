@@ -71,58 +71,222 @@
 }
 
 
-/* --- ORIGINAL Desktop-Layout beibehalten --- */
+/* --- Skill Icons Layout (4-spaltiges Grid auf Desktop) --- */
 .skillIcons {
     width: 632px !important;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* exakt 4 Spalten */
+    justify-items: center;                 /* Inhalt in jeder Spalte zentrieren */
+    row-gap: 48px;                         /* vertikaler Abstand zwischen den Reihen */
+    column-gap: 72px;                      /* horizontaler Abstand zwischen Spalten */
+}
 
-    > img {
-        width: 104px;
-        height: 116px;
-        margin-right: 72px;
+/* Einzelnes Skill-Item (Icon + Text drunter) */
+.skill {
+    width: 80px; /* feste Breite wie vorher */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 
-        &:nth-of-type(4),
-        &:nth-of-type(8) {
-            margin-right: 0 !important;
-        }
+    img {
+        width: 60px;
+        height: 60px;
+        flex-shrink: 0;
+        object-fit: contain;
+        display: block;
+        transition: transform 0.1s ease, filter 0.1s ease;
+
+        /* sorgt dafür, dass weiße SVGs gefärbt werden können */
+        filter: brightness(1) saturate(1) invert(0);
+    }
+
+    &:hover img {
+        transform: scale(1.1);
+        filter: brightness(0) saturate(100%) invert(72%) sepia(48%) saturate(538%) hue-rotate(120deg);
+        /* ↑ ergibt den Effekt von $primaryColor ≈ #3DCFB6 */
+    }
+
+    .label {
+        margin-top: 12px;
+        font-size: clamp(12px, 1.2vw, 14px);
+        line-height: 1.3;
+        color: $white;
+        font-family: "Fira Code", monospace;
+        word-break: break-word;
     }
 }
 
-/* --- Responsiv: ab <= 992px flexibel umbrechen, ohne Desktop zu ändern --- */
+/* ========== Tooltip für einzelnes Skill ========= */
+.skill--with-tooltip {
+    position: relative;
+    z-index: 5;
+
+    .skillTooltip {
+        position: absolute;
+        left: 50%;
+        bottom: calc(100% + 16px);
+        transform: translateX(-50%);
+        width: 188px;
+        height: 129px;
+        background: #ffffff;
+        color: #000;
+        border-radius: 8px;
+        box-shadow:
+            0 20px 40px rgba(0,0,0,0.6),
+            0 2px 4px rgba(0,0,0,0.4);
+        padding: 16px 12px 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+
+        font-family: "Fira Code", monospace;
+
+        z-index: 10;
+
+        /* <<< HIER KOMMT DER PFEIL >>> */
+        &::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -8px; /* wie weit der Pfeil unterhalb der Box rauskommt */
+            transform: translateX(-50%) rotate(45deg);
+            width: 16px;
+            height: 16px;
+            background: #ffffff;
+            border-radius: 2px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+
+            /* Trick: obere Hälfte sichtbar lassen, untere Hälfte "verschwindet" optisch */
+            /* Dadurch wirkt es wie ein kleiner Dreieck-Zahn */
+            /* Wir lösen das nicht mit clip-path, sondern mit Shadow + Positionierung */
+        }
+    }
+
+    .tooltip-headline {
+        color: $primaryColor;
+        font-size: 12px;
+        line-height: 1.3;
+        margin: 0 0 12px 0;
+        font-weight: 400;
+        text-align: center;
+    }
+
+    .tooltip-icons {
+        display: flex;
+        gap: 24px;
+        align-items: flex-start;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .tooltip-icon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 12px;
+        line-height: 1.3;
+        color: $primaryColor;
+        font-weight: 400;
+        text-align: center;
+
+        img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+            margin-bottom: 4px;
+            filter: brightness(0) saturate(100%) invert(72%) sepia(48%) saturate(538%) hue-rotate(120deg);
+        }
+    }
+
+    &:hover .skillTooltip {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+/* --- Responsive Breakpoints --- */
+
+/* ab ~992px runter wird's enger und darf umbrechen */
 @media (max-width: 992px) {
-    .leftInnerWrapper { transform: translateY(-24px); }
+    .leftInnerWrapper {
+        transform: translateY(-24px);
+    }
 
     .skillIcons {
         width: 100% !important;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 24px;
+        grid-template-columns: repeat(3, 1fr); /* 3 Spalten */
+        column-gap: 24px;
+        row-gap: 32px;
+        justify-items: center;
+    }
 
-        > img {
+    .skill {
+        width: 88px;
+
+        img {
             width: 88px;
-            height: 98px;
-            margin-right: 0 !important; /* feste Spaltenabstände entfernen */
+            height: 88px;
+        }
+
+        .label {
+            font-size: clamp(12px, 1.5vw, 14px);
         }
     }
 }
 
+/* ab Tablet */
 @media (max-width: 768px) {
-    .leftInnerWrapper { transform: none; }
+    .leftInnerWrapper {
+        transform: none;
+    }
 
     .skillIcons {
-        gap: 20px;
-        > img { width: 80px; height: 90px; }
+        grid-template-columns: repeat(2, 1fr); /* 2 Spalten */
+        column-gap: 20px;
+        row-gap: 28px;
+    }
+
+    .skill {
+        width: 80px;
+
+        img {
+            width: 80px;
+            height: 80px;
+        }
     }
 }
 
+/* kleines Handy */
 @media (max-width: 560px) {
     .skillIcons {
-        gap: 16px 14px;
-        > img { width: 72px; height: 80px; }
+        grid-template-columns: repeat(2, 1fr); /* weiter 2 Spalten, aber kleiner */
+        column-gap: 16px;
+        row-gap: 24px;
+    }
+
+    .skill {
+        width: 72px;
+
+        img {
+            width: 72px;
+            height: 72px;
+        }
+
+        .label {
+            font-size: clamp(11px, 2vw, 13px);
+        }
     }
 }
 
 /* Motion-Respect */
 @media (prefers-reduced-motion: reduce) {
-    .leftInnerWrapper { transform: none !important; }
+    .leftInnerWrapper {
+        transform: none !important;
+    }
 }

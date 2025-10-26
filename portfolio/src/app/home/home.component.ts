@@ -1,4 +1,3 @@
-// ... deine Imports bleiben
 import { Component, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AboutmeComponent } from './aboutme/aboutme.component';
@@ -6,7 +5,6 @@ import { SkillsComponent } from './skills/skills.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ValuationComponent } from './valuation/valuation.component';
 import { ContactformComponent } from '../contactform/contactform.component';
-import { RouterLink } from '@angular/router';
 import { TranslateModule, TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
@@ -20,7 +18,6 @@ import { Subscription } from 'rxjs';
         ProjectsComponent,
         ValuationComponent,
         ContactformComponent,
-        RouterLink,
         TranslateModule
     ],
     templateUrl: './home.component.html',
