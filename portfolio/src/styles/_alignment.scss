@@ -18,6 +18,9 @@
     /* gleiche linke Kante bei jeder Viewport-Breite */
     width: min(var(--container-max), 100% - 2 * var(--gutter));
     margin-inline: auto;
+    > div {
+        margin-inline-start: 0;
+    }
 }
 
 /* -------------------------------------------
@@ -54,8 +57,9 @@
 }
 
 /* Contact */
-#contactFormComponent .contact-container,
-#contactFormComponent .contactWrapper {
+#contactComponent .contact-container,
+#contactComponent .centerWrapper,
+#contactComponent .centerWrapperBG {
     @extend .align-x;
 }
 

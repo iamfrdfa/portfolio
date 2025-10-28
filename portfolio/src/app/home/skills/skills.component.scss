@@ -18,6 +18,11 @@
     transform: translateY(-40px);
 }
 
+.skills-green-box {
+    max-width: 520px !important;
+    margin-left: 25px !important;
+}
+
 .rightInnerWrapper { @include rightInnerWrapper; }
 .greenTextBoxWrapper { @include greenBoxWrapper; }
 
@@ -145,8 +150,8 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 Spalten */
     justify-items: center;
-    row-gap: 48px;
-    column-gap: 72px;
+    row-gap: 43px;
+    column-gap: 50px;
 }
 
 /* Einzelnes Skill-Item (Icon + Text) */
