@@ -175,9 +175,11 @@ export class ValuationComponent implements OnChanges, AfterViewInit {
         // Zentrier-Offset (kleine Korrektur von -30 bleibt bestehen)
         this.centerOffset = (vw - this.cardWidth) / 2 - this.cardGap / 2 - 30;
 
-        // CSS-Custom-Props für visuelle Cover/Gutter
-        const rect = this.viewport.nativeElement.getBoundingClientRect();
-        this.viewport.nativeElement.style.setProperty('--vp-left', `${rect.left}px`);
+        // ❌ nicht mehr nötig (Schleier sitzt nun direkt an .viewport):
+        // const rect = this.viewport.nativeElement.getBoundingClientRect();
+        // this.viewport.nativeElement.style.setProperty('--vp-left', `${rect.left}px`);
+
+        // ✅ reicht aus – Breite der Fade-Zonen je Seite (für ::before/::after)
         const leftGutter = Math.max(0, (vw - this.cardWidth) / 2);
         this.viewport.nativeElement.style.setProperty('--left-cover', `${leftGutter}px`);
     }

@@ -31,7 +31,8 @@ $ok: #39d98a !default;
 }
 
 .contact-container {
-    width: min(1200px, 92%);
+    /* Auf einheitliches Alignment-System umgestellt */
+    width: min(var(--container-max), 100% - 2 * var(--gutter));
     margin: 0 auto;
     padding: clamp(24px, 4vw, 48px) 0;
     display: grid;

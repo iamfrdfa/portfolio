@@ -15,7 +15,8 @@
 
 .projectsHeading,
 .projectsGrid {
-    width: 51%;
+    /* Auf einheitliches Alignment-System umgestellt */
+    width: min(var(--container-max), 100% - 2 * var(--gutter));
     align-items: flex-start;
 }
 

@@ -1,0 +1,100 @@
+/* ===========================
+   _alignment.scss
+   Einheitliche X-Ausrichtung für alle Sektionen
+   (ausgenommen Header & Footer)
+   =========================== */
+
+/* Globale Container-Variablen */
+:root {
+    /* Maximalbreite deines Inhaltsbereichs */
+    --container-max: 1200px;
+
+    /* Seitenabstand / Gutter */
+    --gutter: clamp(16px, 3vw, 32px);
+}
+
+/* Utility: standardisierter Content-Container */
+.align-x {
+    /* gleiche linke Kante bei jeder Viewport-Breite */
+    width: min(var(--container-max), 100% - 2 * var(--gutter));
+    margin-inline: auto;
+}
+
+/* -------------------------------------------
+   Auf bestehende Wrapper anwenden (kein HTML nötig)
+   ------------------------------------------- */
+
+/* AboutMe */
+#aboutMeComponent .centerWrapper,
+#aboutMeComponent .centerWrapperBG,
+#aboutMeComponent .greenTextBoxWrapper {
+    @extend .align-x;
+}
+
+/* Skills */
+#skillComponent .centerWrapper,
+#skillComponent .centerWrapperBG,
+#featuredSkills .centerWrapper,
+#featuredSkills .centerWrapperBG,
+#skillComponent .greenTextBoxWrapper {
+    @extend .align-x;
+}
+
+/* Projects */
+#projects .projectsWrapper,
+#projects .projectsHeading,
+#projects .projectsGrid {
+    @extend .align-x;
+}
+
+/* Valuation/Testimonial */
+#valuationComponent .valuation,
+#valuationComponent .viewport {
+    @extend .align-x;
+}
+
+/* Contact */
+#contactFormComponent .contact-container,
+#contactFormComponent .contactWrapper {
+    @extend .align-x;
+}
+
+/* Optional: Home-Sektionen falls direkt dort gerendert */
+#homeComponent .centerWrapper,
+#homeComponent .centerWrapperBG {
+    @extend .align-x;
+}
+
+/* Hero-Section & Gimmicks */
+.hero,
+.gimmick {
+    @extend .align-x;
+}
+
+/* Sicherheitsnetz: falls irgendwo 100%-Breiten gesetzt sind,
+   erzwingen wir gleichmäßige Innenabstände */
+#aboutMeComponent,
+#skillComponent,
+#featuredSkills,
+#projectsComponent,
+#valuationComponent,
+#contactComponent {
+    padding-inline: 0; /* wir regeln die Breite über .align-x */
+}
+
+/* -------------------------------------------
+   Debug-Helfer: linke rote Ausrichtungslinie
+   (zum Ein-/Ausblenden body.x-guide-toggle setzen)
+   ------------------------------------------- */
+body.x-guide-toggle::before {
+    content: "";
+    position: fixed;
+    top: 0; bottom: 0;
+    /* linke Containerkante = (Viewport - Container)/2 + Gutter */
+    left: calc((100vw - min(var(--container-max), 100vw - 2 * var(--gutter))) / 2 + var(--gutter));
+    width: 1px;
+    background: #ff4d4f; /* rot */
+    opacity: 0.9;
+    pointer-events: none;
+    z-index: 9999;
+}

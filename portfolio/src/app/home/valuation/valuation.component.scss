@@ -16,7 +16,9 @@
 /* Hauptcontainer */
 .valuation {
     background-color: $secondaryColorBG;
-    width: 100%;
+    /* Auf einheitliches Alignment-System umgestellt */
+    width: min(var(--container-max), 100% - 2 * var(--gutter));
+    margin-inline: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,7 +36,8 @@
 /* Sichtbereich */
 .viewport {
     position: relative;
-    width: min(1012px, 100%);
+    /* Auf einheitliches Alignment-System umgestellt */
+    width: min(var(--container-max), 100% - 2 * var(--gutter));
     height: clamp(220px, 30vw, 274px);
     overflow: visible;
     margin: 0 auto;
@@ -49,15 +52,19 @@
 }
 
 /* Rand-Schleier */
-.viewport::before {
+.viewport::before,
+.viewport::after {
     content: "";
     position: absolute;
     top: 0;
-    left: calc(0px - var(--vp-left, 0px));
-    width: calc(var(--vp-left, 0px) + var(--left-cover, 180px));
     height: 100%;
+    width: calc(var(--left-cover, 180px) + 30px); /* +30px breiter */
     pointer-events: none;
     z-index: 4;
+}
+
+.viewport::before {
+    left: -80px;
     background: linear-gradient(
             to right,
             $secondaryColorBG 0%,
@@ -65,15 +72,9 @@
             rgba($secondaryColorBG, 0) 100%
     );
 }
+
 .viewport::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: calc(0px - (100vw - (var(--vp-left, 0px) + var(--left-cover, 180px) + var(--vp-left, 0px))));
-    width: calc(var(--vp-left, 0px) + var(--left-cover, 180px));
-    height: 100%;
-    pointer-events: none;
-    z-index: 4;
+    right: -80px;
     background: linear-gradient(
             to left,
             $secondaryColorBG 0%,
@@ -81,6 +82,7 @@
             rgba($secondaryColorBG, 0) 100%
     );
 }
+
 
 /* Karte */
 .card {

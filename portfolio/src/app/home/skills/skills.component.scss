@@ -1,11 +1,15 @@
 /* ===========================
    skills.component.scss
    (Desktop-Layout der Icons 1:1 belassen,
-   mobil wird nur sanft umgebrochen & skaliert)
+   mobil nur sanft umgebrochen & skaliert)
+   + Grüner Schleier (BG) hinter der Box
    =========================== */
 @use 'styles/variables' as *;
 @use 'styles/mixins' as *;
 
+/* ---------------------------------------
+   Grundlayout / vorhandene Mixins
+   --------------------------------------- */
 .centerWrapper { @include componentCenterWrapperBG; }
 .greenBoxHeadline { @include greenBoxHeadline; }
 
@@ -18,15 +22,78 @@
 .greenTextBoxWrapper { @include greenBoxWrapper; }
 
 .primaryColor { color: $primaryColor !important; }
-
 .button { @include buttonStyle122px; }
 
+/* ---------------------------------------
+   Grüner „Schleier“ hinter der Box
+   (Bild + Fallback-Gradient)
+   - Passe den Bildpfad ggf. an
+   --------------------------------------- */
+#skillComponent,
+#featuredSkills {
+    position: relative;
+    overflow: visible; /* Schleier darf überstehen */
+}
+
+/* Der Wrapper, hinter dem der Schleier liegt */
+#skillComponent .centerWrapper,
+#skillComponent .centerWrapperBG,
+#featuredSkills .centerWrapper,
+#featuredSkills .centerWrapperBG {
+    position: relative;
+    isolation: isolate; /* z-index sauber */
+}
+
+/* Das eigentliche Schleier-Element */
+#skillComponent .centerWrapperBG::before,
+#featuredSkills .centerWrapperBG::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;                          /* Schleier an der linken Seite */
+    width: clamp(180px, 28vw, 360px);  /* Breite des Schleiers */
+    pointer-events: none;
+    z-index: 0;                        /* HINTER der Box liegen */
+
+    /* Bild + leichter Verlauf als Fallback/Verstärker */
+    background-image:
+        linear-gradient(
+                180deg,
+                rgba($primaryColor, .18) 0%,
+                rgba($primaryColor, .12) 40%,
+                rgba($primaryColor, .06) 70%,
+                rgba($primaryColor, 0) 100%
+        ),
+        url('/img/bg/skills-veil.png'); /* <— Pfad anpassen, falls nötig */
+    background-repeat: no-repeat, no-repeat;
+    background-size: contain, contain;
+    background-position: left center, left center;
+
+    opacity: .35; /* Intensität des Schleiers */
+    filter: drop-shadow(0 8px 24px rgba($primaryColor, .25));
+}
+
+/* Sicherstellen, dass Content ÜBER dem Schleier liegt */
+#skillComponent .greenTextBoxWrapper,
+#featuredSkills .greenTextBoxWrapper,
+#skillComponent .leftInnerWrapper,
+#featuredSkills .leftInnerWrapper,
+#skillComponent .rightInnerWrapper,
+#featuredSkills .rightInnerWrapper {
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------------------------------------
+   Marquee-Button (dein Code, unverändert + Motion-Respect)
+   --------------------------------------- */
 .marquee-btn {
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;               /* schneidet Lauftext sauber ab */
+    overflow: hidden;
     white-space: nowrap;
 
     .label {
@@ -40,9 +107,8 @@
         inset: 0;
         display: flex;
         align-items: center;
-        opacity: 0;                   /* im Idle unsichtbar */
-        pointer-events: none;         /* keine Mausereignisse abfangen */
-        /* weiche Ränder, damit der Text links/rechts smooth „ein-/ausfadet“ */
+        opacity: 0;
+        pointer-events: none;
         -webkit-mask-image: linear-gradient(to right, transparent 0, black 16px, black calc(100% - 16px), transparent 100%);
         mask-image: linear-gradient(to right, transparent 0, black 16px, black calc(100% - 16px), transparent 100%);
     }
@@ -56,7 +122,7 @@
     &:hover {
         .label { opacity: 0; }
         .track { opacity: 1; }
-        .inner { animation: marquee 8s linear infinite; } /* Speed nach Wunsch anpassen */
+        .inner { animation: marquee 8s linear infinite; }
     }
 }
 
@@ -70,20 +136,22 @@
     .marquee-btn .inner { animation: none !important; }
 }
 
-
-/* --- Skill Icons Layout (4-spaltiges Grid auf Desktop) --- */
+/* ---------------------------------------
+   Skill Icons Layout
+   (Desktop 4 Spalten, exakt wie vorher)
+   --------------------------------------- */
 .skillIcons {
     width: 632px !important;
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* exakt 4 Spalten */
-    justify-items: center;                 /* Inhalt in jeder Spalte zentrieren */
-    row-gap: 48px;                         /* vertikaler Abstand zwischen den Reihen */
-    column-gap: 72px;                      /* horizontaler Abstand zwischen Spalten */
+    grid-template-columns: repeat(4, 1fr); /* 4 Spalten */
+    justify-items: center;
+    row-gap: 48px;
+    column-gap: 72px;
 }
 
-/* Einzelnes Skill-Item (Icon + Text drunter) */
+/* Einzelnes Skill-Item (Icon + Text) */
 .skill {
-    width: 80px; /* feste Breite wie vorher */
+    width: 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -95,16 +163,13 @@
         flex-shrink: 0;
         object-fit: contain;
         display: block;
-        transition: transform 0.1s ease, filter 0.1s ease;
-
-        /* sorgt dafür, dass weiße SVGs gefärbt werden können */
+        transition: transform .1s ease, filter .1s ease;
         filter: brightness(1) saturate(1) invert(0);
     }
 
     &:hover img {
         transform: scale(1.1);
         filter: brightness(0) saturate(100%) invert(72%) sepia(48%) saturate(538%) hue-rotate(120deg);
-        /* ↑ ergibt den Effekt von $primaryColor ≈ #3DCFB6 */
     }
 
     .label {
@@ -117,7 +182,7 @@
     }
 }
 
-/* ========== Tooltip für einzelnes Skill ========= */
+/* Tooltip für einzelnes Skill */
 .skill--with-tooltip {
     position: relative;
     z-index: 5;
@@ -133,8 +198,8 @@
         color: #000;
         border-radius: 8px;
         box-shadow:
-            0 20px 40px rgba(0,0,0,0.6),
-            0 2px 4px rgba(0,0,0,0.4);
+            0 20px 40px rgba(0,0,0,.6),
+            0 2px 4px rgba(0,0,0,.4);
         padding: 16px 12px 12px;
         display: flex;
         flex-direction: column;
@@ -143,28 +208,22 @@
 
         opacity: 0;
         pointer-events: none;
-        transition: opacity 0.2s ease;
+        transition: opacity .2s ease;
 
         font-family: "Fira Code", monospace;
-
         z-index: 10;
 
-        /* <<< HIER KOMMT DER PFEIL >>> */
         &::after {
             content: "";
             position: absolute;
             left: 50%;
-            bottom: -8px; /* wie weit der Pfeil unterhalb der Box rauskommt */
+            bottom: -8px;
             transform: translateX(-50%) rotate(45deg);
             width: 16px;
             height: 16px;
             background: #ffffff;
             border-radius: 2px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
-
-            /* Trick: obere Hälfte sichtbar lassen, untere Hälfte "verschwindet" optisch */
-            /* Dadurch wirkt es wie ein kleiner Dreieck-Zahn */
-            /* Wir lösen das nicht mit clip-path, sondern mit Shadow + Positionierung */
+            box-shadow: 0 8px 16px rgba(0,0,0,.4);
         }
     }
 
@@ -200,7 +259,7 @@
             height: 28px;
             object-fit: contain;
             margin-bottom: 4px;
-            filter: brightness(0) saturate(100%) invert(72%) sepia(48%) saturate(538%) hue-rotate(120deg);
+            filter: none; /* Icons im Tooltip NICHT einfärben */
         }
     }
 
@@ -210,13 +269,12 @@
     }
 }
 
-/* --- Responsive Breakpoints --- */
-
-/* ab ~992px runter wird's enger und darf umbrechen */
+/* ---------------------------------------
+   Responsive Breakpoints
+   --------------------------------------- */
+/* <= 992px */
 @media (max-width: 992px) {
-    .leftInnerWrapper {
-        transform: translateY(-24px);
-    }
+    .leftInnerWrapper { transform: translateY(-24px); }
 
     .skillIcons {
         width: 100% !important;
@@ -229,22 +287,22 @@
     .skill {
         width: 88px;
 
-        img {
-            width: 88px;
-            height: 88px;
-        }
+        img { width: 88px; height: 88px; }
 
-        .label {
-            font-size: clamp(12px, 1.5vw, 14px);
-        }
+        .label { font-size: clamp(12px, 1.5vw, 14px); }
+    }
+
+    /* Schleier etwas schmaler/leichter */
+    #skillComponent .centerWrapperBG::before,
+    #featuredSkills .centerWrapperBG::before {
+        width: clamp(140px, 34vw, 280px);
+        opacity: .32;
     }
 }
 
-/* ab Tablet */
+/* <= 768px */
 @media (max-width: 768px) {
-    .leftInnerWrapper {
-        transform: none;
-    }
+    .leftInnerWrapper { transform: none; }
 
     .skillIcons {
         grid-template-columns: repeat(2, 1fr); /* 2 Spalten */
@@ -252,41 +310,31 @@
         row-gap: 28px;
     }
 
-    .skill {
-        width: 80px;
+    .skill { width: 80px; img { width: 80px; height: 80px; } }
 
-        img {
-            width: 80px;
-            height: 80px;
-        }
+    #skillComponent .centerWrapperBG::before,
+    #featuredSkills .centerWrapperBG::before {
+        width: clamp(120px, 40vw, 220px);
+        opacity: .28;
     }
 }
 
-/* kleines Handy */
+/* <= 560px */
 @media (max-width: 560px) {
     .skillIcons {
-        grid-template-columns: repeat(2, 1fr); /* weiter 2 Spalten, aber kleiner */
+        grid-template-columns: repeat(2, 1fr);
         column-gap: 16px;
         row-gap: 24px;
     }
 
     .skill {
         width: 72px;
-
-        img {
-            width: 72px;
-            height: 72px;
-        }
-
-        .label {
-            font-size: clamp(11px, 2vw, 13px);
-        }
+        img { width: 72px; height: 72px; }
+        .label { font-size: clamp(11px, 2vw, 13px); }
     }
 }
 
-/* Motion-Respect */
+/* Motion-Respect (Transform-Effekte neutralisieren, falls gewünscht) */
 @media (prefers-reduced-motion: reduce) {
-    .leftInnerWrapper {
-        transform: none !important;
-    }
+    .leftInnerWrapper { transform: none !important; }
 }
