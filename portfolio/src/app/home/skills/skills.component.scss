@@ -32,7 +32,6 @@
 /* ---------------------------------------
    Grüner „Schleier“ hinter der Box
    (Bild + Fallback-Gradient)
-   - Passe den Bildpfad ggf. an
    --------------------------------------- */
 #skillComponent,
 #featuredSkills {
@@ -61,7 +60,6 @@
     pointer-events: none;
     z-index: 0;                        /* HINTER der Box liegen */
 
-    /* Bild + leichter Verlauf als Fallback/Verstärker */
     background-image:
         linear-gradient(
                 180deg,
@@ -70,12 +68,12 @@
                 rgba($primaryColor, .06) 70%,
                 rgba($primaryColor, 0) 100%
         ),
-        url('/img/bg/skills-veil.png'); /* <— Pfad anpassen, falls nötig */
+        url('/img/bg/skills-veil.png');
     background-repeat: no-repeat, no-repeat;
     background-size: contain, contain;
     background-position: left center, left center;
 
-    opacity: .35; /* Intensität des Schleiers */
+    opacity: .35;
     filter: drop-shadow(0 8px 24px rgba($primaryColor, .25));
 }
 
@@ -91,7 +89,7 @@
 }
 
 /* ---------------------------------------
-   Marquee-Button (dein Code, unverändert + Motion-Respect)
+   Marquee-Button
    --------------------------------------- */
 .marquee-btn {
     position: relative;
@@ -114,8 +112,20 @@
         align-items: center;
         opacity: 0;
         pointer-events: none;
-        -webkit-mask-image: linear-gradient(to right, transparent 0, black 16px, black calc(100% - 16px), transparent 100%);
-        mask-image: linear-gradient(to right, transparent 0, black 16px, black calc(100% - 16px), transparent 100%);
+        -webkit-mask-image: linear-gradient(
+                to right,
+                transparent 0,
+                black 16px,
+                black calc(100% - 16px),
+                transparent 100%
+        );
+        mask-image: linear-gradient(
+                to right,
+                transparent 0,
+                black 16px,
+                black calc(100% - 16px),
+                transparent 100%
+        );
     }
 
     .inner {
@@ -143,7 +153,6 @@
 
 /* ---------------------------------------
    Skill Icons Layout
-   (Desktop 4 Spalten, exakt wie vorher)
    --------------------------------------- */
 .skillIcons {
     width: 632px !important;
@@ -154,7 +163,7 @@
     column-gap: 50px;
 }
 
-/* Einzelnes Skill-Item (Icon + Text) */
+/* Einzelnes Skill-Item */
 .skill {
     width: 80px;
     display: flex;
@@ -264,7 +273,7 @@
             height: 28px;
             object-fit: contain;
             margin-bottom: 4px;
-            filter: none; /* Icons im Tooltip NICHT einfärben */
+            filter: none;
         }
     }
 
@@ -277,13 +286,14 @@
 /* ---------------------------------------
    Responsive Breakpoints
    --------------------------------------- */
+
 /* <= 992px */
 @media (max-width: 992px) {
     .leftInnerWrapper { transform: translateY(-24px); }
 
     .skillIcons {
         width: 100% !important;
-        grid-template-columns: repeat(3, 1fr); /* 3 Spalten */
+        grid-template-columns: repeat(3, 1fr);
         column-gap: 24px;
         row-gap: 32px;
         justify-items: center;
@@ -292,12 +302,16 @@
     .skill {
         width: 88px;
 
-        img { width: 88px; height: 88px; }
+        img {
+            width: 88px;
+            height: 88px;
+        }
 
-        .label { font-size: clamp(12px, 1.5vw, 14px); }
+        .label {
+            font-size: clamp(12px, 1.5vw, 14px);
+        }
     }
 
-    /* Schleier etwas schmaler/leichter */
     #skillComponent .centerWrapperBG::before,
     #featuredSkills .centerWrapperBG::before {
         width: clamp(140px, 34vw, 280px);
@@ -310,12 +324,19 @@
     .leftInnerWrapper { transform: none; }
 
     .skillIcons {
-        grid-template-columns: repeat(2, 1fr); /* 2 Spalten */
+        grid-template-columns: repeat(2, 1fr);
         column-gap: 20px;
         row-gap: 28px;
     }
 
-    .skill { width: 80px; img { width: 80px; height: 80px; } }
+    .skill {
+        width: 80px;
+
+        img {
+            width: 80px;
+            height: 80px;
+        }
+    }
 
     #skillComponent .centerWrapperBG::before,
     #featuredSkills .centerWrapperBG::before {
@@ -334,8 +355,15 @@
 
     .skill {
         width: 72px;
-        img { width: 72px; height: 72px; }
-        .label { font-size: clamp(11px, 2vw, 13px); }
+
+        img {
+            width: 72px;
+            height: 72px;
+        }
+
+        .label {
+            font-size: clamp(11px, 2vw, 13px);
+        }
     }
 }
 
