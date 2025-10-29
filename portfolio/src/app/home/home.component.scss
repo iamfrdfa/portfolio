@@ -483,13 +483,13 @@ button {
         rotate: -2deg;
     }
 
-    .heroButton_contact { margin-top: 0; }
-
     .gimmick {
         justify-content: space-between;
         gap: 120px;
     }
 }
+
+@media (max-width: 376px) { .heroButton_contact { margin-top: 0; }}
 
 /* Touch-Geräte: kein Hover-Speedwechsel nötig */
 @media (hover: none) and (pointer: coarse) {

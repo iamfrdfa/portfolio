@@ -2,12 +2,13 @@
    header.component.scss
    Responsive Header mit flexibler Navigation,
    skalierender Typografie und Logo.
-   Breakpoints: 1200 / 992 / 768 / 560
+   Breakpoints: 1200 / 992 / 768 / 600 / 560
    =========================== */
 
 @use 'styles/variables' as *;
 @use 'styles/mixins' as *;
 
+/* Basis-Header */
 .header {
     display: flex;
     justify-content: space-between;
@@ -25,7 +26,8 @@
         gap: clamp(12px, 3vw, 2rem);
         overflow: visible;
 
-        nav {
+        /* NAV DESKTOP */
+        nav.navDesktop {
             position: relative;
             display: flex;
             align-items: center;      /* vertikal zentriert */
@@ -90,7 +92,7 @@
         gap: clamp(8px, 2vw, 1rem);
         min-width: 0;
 
-        .logo {
+        .logoDesktop {
             height: clamp(28px, 4vw, 40px);
             width: auto;
             margin: 0 !important;
@@ -110,9 +112,139 @@
     }
 }
 
+/* ===========================
+   Burger Button (hidden desktop)
+   =========================== */
+.burgerBtn {
+    display: none; /* wird bei <=600px eingeblendet */
+    background: transparent;
+    border: 1px solid rgba($primaryColor, 0.0);
+    border-radius: 8px;
+    padding: 8px 10px;
+    cursor: pointer;
+    min-width: 44px;
+    min-height: 40px;
+    line-height: 0;
+    color: $textColor;
+}
+
+/* ===========================
+   Mobile Overlay Menu
+   =========================== */
+.mobileMenuOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1500;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+
+    display: none; /* default unsichtbar */
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+.mobileMenuOverlay--open {
+    display: flex;
+}
+
+.mobileMenuCard {
+    position: relative;
+    width: 220px;
+    max-width: 80vw;
+
+    background: radial-gradient(
+            circle at 0% 0%,
+            rgba(0, 128, 96, 0.35) 0%,
+            rgba(0, 0, 0, 0.8) 60%
+    );
+
+    border: 1px solid $primaryColor;
+    border-radius: 16px;
+
+    padding: 24px 20px;
+    color: $textColor;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+
+    box-shadow: 0 24px 64px rgba(0,0,0,0.85);
+}
+
+.closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+    line-height: 0;
+    z-index: 10;
+    transition: transform 0.2s ease, color 0.2s ease;
+
+    .closeIcon {
+        width: 24px;
+        height: 24px;
+        display: block;
+        filter: brightness(0) invert(1); /* weiß auf dunklem Hintergrund */
+        transition: filter 0.2s ease;
+    }
+
+    &:hover,
+    &:focus-visible {
+        transform: scale(1.1);
+        .closeIcon {
+            filter: brightness(0) saturate(100%) invert(74%) sepia(57%) saturate(388%) hue-rotate(120deg) brightness(96%) contrast(94%);
+            /* ergibt ein leichtes $primaryColor-Leuchten */
+        }
+    }
+}
+
+.mobileMenuNav {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.mobileMenuLink {
+    color: $textColor;
+    font-size: 18px;
+    font-family: "Courier New", ui-monospace, monospace;
+    text-decoration: none;
+    line-height: 1.4;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+        color: $primaryColor;
+    }
+}
+
+.langToggle--desktop {
+    display: inline-block;
+}
+
+.langToggle--mobile {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* ===========================
+   BREAKPOINTS
+   =========================== */
+
 /* <= 992px */
 @media (max-width: 992px) {
-    .header { gap: 12px; }
+    .header {
+        gap: 12px;
+    }
 }
 
 /* <= 768px */
@@ -121,12 +253,98 @@
         flex-wrap: wrap;
     }
 
-    .header__left { order: 2; width: 100%; }
-    .header__left nav { justify-content: flex-start; }
-    .header__right { order: 1; width: 100%; justify-content: space-between; }
+    .header__left {
+        order: 1;
+        width: 60%;
+    }
+
+    .header__left nav.navDesktop {
+        justify-content: flex-start;
+    }
+
+    .header__right {
+        order: 2;
+        width: 30%;
+        justify-content: flex-end;
+    }
+}
+
+/* ===========================
+   MOBILE LOGO
+   =========================== */
+
+.logoMobile {
+    display: none;
+    height: clamp(26px, 4vw, 34px);
+    width: auto;
+    margin: 0;
+    padding: 0;
+}
+
+/* <= 600px (Mobile Mode aktiv) */
+@media (max-width: 600px) {
+    .header {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .logoMobile {
+        display: block;
+    }
+
+    /* Desktopzeug ausblenden */
+    .header__left nav.navDesktop {
+        display: none;
+    }
+
+    .langToggle--desktop {
+        display: none;
+    }
+
+    .header__right .logoDesktop {
+        display: none;
+    }
+
+    /* Burger einblenden */
+    .burgerBtn {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 /* <= 560px */
 @media (max-width: 560px) {
-    .header__left nav a { padding: 10px 2px; }
+    .header__left nav.navDesktop a {
+        padding: 10px 2px;
+    }
+
+    .mobileMenuCard {
+        width: 200px;
+        gap: 18px;
+    }
+
+    .mobileMenuLink {
+        font-size: 16px;
+    }
+}
+
+/* Sehr kleine Geräte / Sicherheitsnetz, z.B. <380px */
+@media (max-width: 380px) {
+    .mobileMenuCard {
+        width: 180px;
+        padding: 20px 16px;
+    }
+
+    .mobileMenuLink {
+        font-size: 15px;
+    }
+}
+
+/* Touch-Optimierung */
+@media (hover: none) and (pointer: coarse) {
+    .mobileMenuOverlay {
+        backdrop-filter: blur(2px);
+    }
 }

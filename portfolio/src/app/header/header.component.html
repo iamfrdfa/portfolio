@@ -1,8 +1,17 @@
 <header class="header">
     <div class="header__left">
-        <app-language-toggle></app-language-toggle>
+        <!-- 🟢 Mobiles Logo (nur bei <=600px sichtbar) -->
+        <img
+            src="img/icons/ff-logo-mobile.svg"
+            alt="Friedrich Faraji Logo Mobile"
+            class="logoMobile"
+        >
 
-        <nav>
+        <!-- Language Toggle (Desktop) -->
+        <app-language-toggle class="langToggle--desktop"></app-language-toggle>
+
+        <!-- Desktop-Navigation -->
+        <nav class="navDesktop">
             <a
                 routerLink="/about"
                 routerLinkActive="active"
@@ -34,10 +43,49 @@
     </div>
 
     <div class="header__right">
+        <!-- 🟢 Desktop Logo -->
         <img
             src="img/friedrichfaraji_fulllogo2.png"
-            class="logo"
+            class="logoDesktop"
             [attr.alt]="'header.logoAlt' | translate"
         >
+
+        <!-- Burger-Button (Mobile) -->
+        <button
+            class="burgerBtn"
+            type="button"
+            aria-label="Menu"
+            (click)="toggleMenu()"
+        >
+            <img src="img/icons/menu-icon.svg" alt="Close" class="" />
+        </button>
+    </div>
+
+    <!-- Mobile Overlay -->
+    <div
+        class="mobileMenuOverlay"
+        [class.mobileMenuOverlay--open]="isMenuOpen"
+        (click)="closeMenu()"
+    >
+        <div class="mobileMenuCard" (click)="$event.stopPropagation()">
+            <!-- Close Button -->
+            <button class="closeBtn" type="button" aria-label="Close menu" (click)="closeMenu()">
+                <img src="img/icons/cancel-cross-white.svg" alt="Close" class="closeIcon"/>
+            </button>
+
+            <nav class="mobileMenuNav">
+                <a class="mobileMenuLink" (click)="handleNavClick('aboutMeComponent')">
+                    {{ 'header.nav.about' | translate }}
+                </a>
+                <a class="mobileMenuLink" (click)="handleNavClick('skillComponent')">
+                    {{ 'header.nav.skills' | translate }}
+                </a>
+                <a class="mobileMenuLink" (click)="handleNavClick('projects')">
+                    {{ 'header.nav.projects' | translate }}
+                </a>
+            </nav>
+
+            <app-language-toggle class="langToggle--mobile"></app-language-toggle>
+        </div>
     </div>
 </header>

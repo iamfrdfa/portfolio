@@ -32,4 +32,20 @@ export class HeaderComponent {
     toggleLang() {
         this.langSvc.toggle();
     }
+
+    isMenuOpen = false;
+
+    toggleMenu() {
+        this.isMenuOpen = !this.isMenuOpen;
+    }
+
+    closeMenu(event?: Event) {
+        this.isMenuOpen = false;
+    }
+
+    handleNavClick(targetId: string) {
+        this.scrollTo(targetId);  // du hast scrollTo ja schon
+        this.isMenuOpen = false;
+    }
+
 }
