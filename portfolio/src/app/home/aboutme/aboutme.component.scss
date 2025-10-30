@@ -1,75 +1,178 @@
 /* ===========================
    aboutme.component.scss
-   (Desktop-Layout unverändert, Tabelle behält Struktur)
+   Responsive Split-Layout (Bild | Textbox)
    =========================== */
 @use 'styles/variables' as *;
 @use 'styles/mixins' as *;
 
-.centerWrapper { @include componentCenterWrapper; }
-.greenBoxHeadline { @include greenBoxHeadline; }
+.centerWrapper {
+    @include componentCenterWrapper;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: clamp(40px, 5vw, 100px);
+    padding-top: clamp(40px, 5vw, 400px);
+    flex-wrap: nowrap; /* nebeneinander bis 600px */
+}
 
+.greenBoxHeadline {
+    @include greenBoxHeadline;
+}
+
+/* ===========================
+   LEFT (Bild)
+   =========================== */
 .aboutMeLeftInnerWrapper {
     @include leftInnerWrapper;
+    flex: 1 1 50%;
     transform: translateY(-50px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    > div > img {
-        height: clamp(360px, 42vw, 568px);
-        width: clamp(360px, 42vw, 568px);
-        max-width: 100%;
-        object-fit: cover;
-        border-radius: 18px;
+    .photoOfMe {
+        width: 100%;
+        max-width: 568px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 18px;
+            transition: transform .3s ease;
+        }
+
+        img:hover {
+            transform: scale(1.02);
+        }
     }
 }
 
-.aboutMeRightInnerWrapper { @include rightInnerWrapper; }
+/* ===========================
+   RIGHT (Textbox)
+   =========================== */
+.aboutMeRightInnerWrapper {
+    @include rightInnerWrapper;
+    flex: 1 1 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .greenTextBoxWrapper {
     @include greenBoxWrapper;
     transform: translateY(50px);
+    width: 100%;
+    max-width: 568px;
 }
 
-/* --- Tabelle: Desktop wie zuvor, mobil nur typografisch kleiner --- */
+/* Tabelle */
 .aboutMeTable {
     width: 100%;
 
-    > table {
+    table {
         width: 100%;
         border-collapse: collapse;
 
-        > tr > td {
+        tr td {
             padding: 8px;
             font-size: clamp(16px, 1.6vw, 20px);
             font-weight: 500;
             vertical-align: top;
-            /* KEIN white-space / overflow – lässt normal umbrechen */
         }
 
-        > tr:last-child > td { border-bottom: none; }
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        td img {
+            width: clamp(18px, 2vw, 24px);
+            height: auto;
+            vertical-align: middle;
+        }
     }
 }
 
-/* --- Responsive Tweaks --- */
+/* ===========================
+   RESPONSIVE BREAKPOINTS
+   =========================== */
+/* <= 1350px: leicht anpassen */
+#aboutMeWrapper {
+    padding-top: clamp(40px, 15vw, 600px);
+    height: 100%;
+}
+
+/* <= 992px: leicht anpassen */
 @media (max-width: 992px) {
-    .aboutMeLeftInnerWrapper { transform: translateY(-30px); }
-    .greenTextBoxWrapper { transform: translateY(30px); }
-}
-
-@media (max-width: 768px) {
-    .aboutMeLeftInnerWrapper,
-    .aboutMeRightInnerWrapper { margin-inline: auto; }
-
-    .aboutMeLeftInnerWrapper { transform: none; }
-    .greenTextBoxWrapper { transform: none; }
-
-    .aboutMeTable > table > tr > td {
-        padding: 6px;
-        font-size: 15px;
+    .textBoxGreen {
+        div {
+            h1 {
+                font-size: clamp(48px, 4vw, 48px) !important;
+            }
+        }
+    }
+    .aboutMeLeftInnerWrapper {
+        transform: translateY(-30px);
+    }
+    .greenTextBoxWrapper {
+        transform: translateY(30px);
     }
 }
 
-@media (max-width: 560px) {
-    .aboutMeTable > table > tr > td {
-        padding: 6px 4px;
+/* <= 800px: leicht anpassen */
+@media (max-width: 800px) {
+    .centerWrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: clamp(20px, 4vh, 40px);
+        padding-bottom: clamp(40px, 10vw, 400px);
+    }
+
+    .aboutMeLeftInnerWrapper,
+    .aboutMeRightInnerWrapper {
+        flex: none;
+        width: 100%;
+        max-width: 90%;
+        transform: none;
+    }
+
+    .photoOfMe img {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .greenTextBoxWrapper {
+        max-width: 400px;
+    }
+
+    .aboutMeTable table tr td {
+        padding: 5px;
         font-size: 14px;
+    }
+}
+
+/* <= 768px: proportional kleiner, aber noch nebeneinander */
+@media (max-width: 768px) {
+
+}
+
+/* <= 600px: jetzt untereinander anordnen */
+@media (max-width: 600px) {
+
+}
+
+/* <= 480px: kompakter */
+@media (max-width: 480px) {
+    .photoOfMe img {
+        width: 100%;
+        max-width: 340px;
+    }
+
+    .greenTextBoxWrapper {
+        max-width: 340px;
     }
 }
