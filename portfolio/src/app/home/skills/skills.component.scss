@@ -303,8 +303,8 @@
         width: 88px;
 
         img {
-            width: 88px;
-            height: 88px;
+            width: 72px;
+            height: 72px;
         }
 
         .label {
@@ -324,8 +324,8 @@
     .centerWrapper {
         flex-direction: column;
         align-items: center;
-        gap: clamp(20px, 4vh, 40px);
         padding-bottom: clamp(40px, 10vw, 400px);
+        justify-content: normal;
     }
     .skills-green-box {
         margin-left: 0 !important;
