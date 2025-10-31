@@ -327,6 +327,10 @@
         gap: clamp(20px, 4vh, 40px);
         padding-bottom: clamp(40px, 10vw, 400px);
     }
+    .skills-green-box {
+        margin-left: 0 !important;
+        width: 400px;
+    }
 }
 
 /* <= 768px */
