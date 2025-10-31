@@ -319,6 +319,16 @@
     }
 }
 
+/* <= 800px: leicht anpassen */
+@media (max-width: 800px) {
+    .centerWrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: clamp(20px, 4vh, 40px);
+        padding-bottom: clamp(40px, 10vw, 400px);
+    }
+}
+
 /* <= 768px */
 @media (max-width: 768px) {
     .leftInnerWrapper { transform: none; }
