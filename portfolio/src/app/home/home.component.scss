@@ -209,8 +209,10 @@ button {
 
     &:hover .vEmailImage,
     &:focus-visible .vEmailImage {
-        transform: scale(1.05);
         opacity: 0.9;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 14px rgba($accentGreen, 0.28);
+        background-color: rgba($accentGreen, 0.08);
     }
 }
 
@@ -234,7 +236,6 @@ button {
     .vEmail { display: none; }
     .vEmail--mobile { display: block; }
 }
-
 
 .iconStack {
     pointer-events: auto;
