@@ -101,9 +101,11 @@
    RESPONSIVE BREAKPOINTS
    =========================== */
 /* <= 1350px: leicht anpassen */
-#aboutMeWrapper {
-    padding-top: clamp(40px, 15vw, 600px);
-    height: 100%;
+@media (max-width: 1350px) {
+    #aboutMeWrapper {
+        padding-top: clamp(40px, 15vw, 600px);
+        height: 100%;
+    }
 }
 
 /* <= 992px: leicht anpassen */
