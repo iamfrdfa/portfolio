@@ -1,8 +1,6 @@
 @use 'styles/_variables' as *;
 @use 'styles/_mixins' as *;
 
-
-
 .projectsWrapper {
     background-color: $secondaryColorBG;
     display: flex;
@@ -399,7 +397,97 @@
     .overlayLeft .overlayIndex { font-size: 64px; }
 }
 
-/* ================= RESPONSIVE DESIGN ================= */
+/* ---------------------------------------
+   Responsive Breakpoints
+   --------------------------------------- */
+
+/* <= 1100px */
+@media (max-width: 1100px) {
+    .projectsGrid {
+        gap: 0;
+
+        .projectGridItemLeft {
+            max-width: 30%;
+
+            > p {
+                font-size: 20px !important;
+            }
+        }
+
+        .rightProjectGrid {
+            margin-right: 32px;
+        }
+    }
+}
+
+/* <= 992px */
+@media (max-width: 992px) {
+    .projectsHeading {
+        h1 {
+            font-size: clamp(48px, 4vw, 48px) !important;
+        }
+
+        .projectGridItemLeft {
+            max-width: 30%;
+
+            > p {
+                font-size: 20px !important;
+            }
+        }
+    }
+}
+
+/* <= 800px */
+@media (max-width: 800px) {
+    /* Row-Container mittig ausrichten */
+    .projectsGrid {
+        justify-content: center;      /* zentriert die linke Spalte */
+        align-items: center;
+        gap: 16px;                    /* etwas kompakter */
+    }
+
+    /* linke Spalte/Card zentrieren und begrenzen */
+    .leftProjectGrid {
+        flex: 0 1 auto;               /* kein 55% Layout mehr */
+        min-width: 0;
+        display: flex;
+        justify-content: center;       /* Card mittig */
+        align-items: center;
+        width: 100%;
+    }
+
+    .projectCard {
+        max-width: min(720px, 100% - 2 * var(--gutter));
+        margin-inline: auto;
+        height: 100px;                 /* optional kompakter */
+        padding: 0 24px;
+    }
+
+    /* Thumbnails vollständig deaktivieren */
+    .rightProjectGrid {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        transform: none !important;
+    }
+
+    /* Hover darf nichts einblenden */
+    .projectsGrid:has(.projectCard:hover) .rightProjectGrid {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        transform: none !important;
+    }
+
+    /* vorhandene Offsets neutralisieren */
+    .projectsGrid:nth-of-type(2) .rightProjectGrid,
+    .projectsGrid:nth-of-type(3) .rightProjectGrid,
+    .projectsGrid:nth-of-type(4) .rightProjectGrid {
+        transform: none !important;
+    }
+}
 
 /* --- Basis: mobile-first (unter 480px) --- */
 @media (max-width: 480px) {
