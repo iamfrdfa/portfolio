@@ -487,6 +487,10 @@
     .projectsGrid:nth-of-type(4) .rightProjectGrid {
         transform: none !important;
     }
+
+    .overlayPanel {
+        height: auto !important;
+    }
 }
 
 /* --- Basis: mobile-first (unter 480px) --- */
