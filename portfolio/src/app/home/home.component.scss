@@ -112,15 +112,16 @@ button {
 
 /* Seitlicher Offset für die beiden Säulen */
 .gimmick {
-    --sideOffset: 150px; /* gewünschte 150px nach außen */
+    --sideOffset: 250px; /* gewünschte 250px nach außen */
+
+    color: $primaryColor;
 }
 
-/* ganze linke/rechte Säule gemeinsam verschieben */
 .gimmick_left {
-    transform: translateX(calc(-1 * var(--sideOffset)));
+    margin-inline-end: var(--sideOffset);
 }
 .gimmick_right {
-    transform: translateX(var(--sideOffset));
+    margin-inline-start: var(--sideOffset);
 }
 
 /* Responsiv anpassen (damit’s nicht abgeschnitten wirkt) */
