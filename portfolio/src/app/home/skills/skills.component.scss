@@ -10,21 +10,43 @@
 /* ---------------------------------------
    Grundlayout / vorhandene Mixins
    --------------------------------------- */
-.centerWrapper { @include componentCenterWrapperBG; }
+.centerWrapper {
+    @include componentCenterWrapperBG;
+    /* Gleichmäßiges Schrumpfen (wichtig!) */
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: clamp(32px, 6vw, 100px);
+}
 .greenBoxHeadline { @include greenBoxHeadline; }
 
 .leftInnerWrapper {
     @include leftInnerWrapper;
     transform: translateY(-40px);
+
+    /* Gleichmäßig mit der rechten Seite schrumpfen */
+    flex: 1 1 0;
+    min-width: 0; /* verhindert Overflow durch Inhalte */
 }
 
 .skills-green-box {
-    max-width: 520px !important;
+    /* Begrenze die Box adaptiv statt starr, bleibt aber Desktop-Optik erhalten */
+    max-width: clamp(420px, 46vw, 568px) !important;
     margin-left: 25px !important;
 }
 
-.rightInnerWrapper { @include rightInnerWrapper; }
-.greenTextBoxWrapper { @include greenBoxWrapper; }
+.rightInnerWrapper {
+    @include rightInnerWrapper;
+
+    /* Gleichmäßig mit der linken Seite schrumpfen */
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.greenTextBoxWrapper {
+    @include greenBoxWrapper;
+    /* passt sich mit an */
+    max-width: clamp(420px, 46vw, 568px);
+}
 
 .primaryColor { color: $primaryColor !important; }
 .button { @include buttonStyle122px; }
@@ -155,7 +177,9 @@
    Skill Icons Layout
    --------------------------------------- */
 .skillIcons {
-    width: 632px !important;
+    /* WICHTIG: statt fixer 632px jetzt adaptiv → gleichmäßiges Schrumpfen */
+    width: min(100%, 632px) !important;
+    max-width: min(46vw, 632px); /* im Gleichlauf mit linker Box */
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 Spalten */
     justify-items: center;
@@ -163,7 +187,6 @@
     column-gap: 50px;
 }
 
-/* Einzelnes Skill-Item */
 .skill {
     width: 80px;
     display: flex;
@@ -286,18 +309,15 @@
 /* ---------------------------------------
    Responsive Breakpoints
    --------------------------------------- */
+
 /* <= 1300px */
 @media (max-width: 1300px) {
-    .centerWrapper {
-        gap: 50px !important;
-    }
+    .centerWrapper { gap: 50px !important; }
 }
 
 /* <= 992px */
 @media (max-width: 992px) {
-    .centerWrapper {
-        height: 50vh;
-    }
+    .centerWrapper { height: 50vh; }
 
     .textBoxGreen {
         div {
@@ -311,6 +331,7 @@
 
     .skillIcons {
         width: 100% !important;
+        max-width: 520px;
         grid-template-columns: repeat(3, 1fr);
         column-gap: 16px;
         row-gap: 16px;
@@ -337,18 +358,28 @@
     }
 }
 
-/* <= 800px: leicht anpassen */
+/* <= 800px: NICHT stapeln, nur weicher */
 @media (max-width: 800px) {
     .centerWrapper {
         flex-direction: column;
         align-items: center;
-        padding-bottom: clamp(40px, 10vw, 400px);
-        justify-content: normal;
+        gap: clamp(20px, 4vh, 40px);
+        height: auto; /* frei atmen lassen */
     }
-    .skills-green-box {
-        margin-left: 0 !important;
-        width: 400px;
+
+    .leftInnerWrapper,
+    .rightInnerWrapper {
+        flex: none;
+        width: 100%;
+        max-width: 90%;
     }
+
+    .greenTextBoxWrapper,
+    .skillIcons {
+        max-width: 400px;
+    }
+
+    .skills-green-box { margin-left: 0 !important; }
 }
 
 /* <= 768px */
@@ -356,19 +387,14 @@
     .leftInnerWrapper { transform: none; }
 
     .skillIcons {
+        /* 3 → 2 Spalten, bleibt aber neben der Box bis 600px */
         grid-template-columns: repeat(2, 1fr);
         column-gap: 20px;
         row-gap: 28px;
+        max-width: 460px;
     }
 
-    .skill {
-        width: 80px;
-
-        img {
-            width: 80px;
-            height: 80px;
-        }
-    }
+    .greenTextBoxWrapper { max-width: 460px; }
 
     #skillComponent .centerWrapperBG::before,
     #featuredSkills .centerWrapperBG::before {
