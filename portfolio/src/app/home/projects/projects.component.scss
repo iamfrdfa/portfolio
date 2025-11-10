@@ -494,7 +494,7 @@
 }
 
 /* --- Basis: mobile-first (unter 480px) --- */
-@media (max-width: 480px) {
+@media (max-width: 500px) {
     .overlayPanel {
         inset: 8px;
         width: 94vw;
@@ -566,6 +566,16 @@
         }
 
         .prevLink { margin-right: 0; }
+    }
+
+    .projectCard {
+        display: block !important;
+        height: auto !important;
+        padding: 16px 24px !important;
+
+        .projectGridItemLeft {
+            max-width: 100% !important;
+        }
     }
 }
 

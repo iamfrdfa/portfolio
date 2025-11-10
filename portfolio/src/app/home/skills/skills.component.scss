@@ -31,7 +31,6 @@
 .skills-green-box {
     /* Begrenze die Box adaptiv statt starr, bleibt aber Desktop-Optik erhalten */
     max-width: clamp(420px, 46vw, 568px) !important;
-    margin-left: 25px !important;
 }
 
 .rightInnerWrapper {
