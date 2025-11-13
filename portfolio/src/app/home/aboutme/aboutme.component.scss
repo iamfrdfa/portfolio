@@ -13,6 +13,7 @@
     gap: clamp(40px, 5vw, 100px);
     padding-top: clamp(40px, 5vw, 400px);
     flex-wrap: nowrap; /* nebeneinander bis 600px */
+    padding-bottom: 100px;
 }
 
 .greenBoxHeadline {
@@ -65,7 +66,7 @@
 
 .greenTextBoxWrapper {
     @include greenBoxWrapper;
-    transform: translateY(50px);
+    //transform: translateY(50px);
     width: 100%;
     max-width: 568px;
 }
@@ -134,6 +135,10 @@
         padding-bottom: clamp(40px, 10vw, 400px);
     }
 
+    .textBoxGreen {
+        width: 385px;
+    }
+
     .aboutMeLeftInnerWrapper,
     .aboutMeRightInnerWrapper {
         flex: none;
@@ -144,7 +149,7 @@
 
     .photoOfMe img {
         width: 100%;
-        max-width: 400px;
+        max-width: 418px;
     }
 
     .greenTextBoxWrapper {

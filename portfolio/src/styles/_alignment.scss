@@ -21,6 +21,13 @@
     > div {
         margin-inline-start: 0;
     }
+
+    /* ab <= 769px: Rücksetzung */
+    @media (max-width: 769px) {
+        > div {
+            //margin-inline-start: unset; /* oder auto, je nach gewünschtem Effekt */
+        }
+    }
 }
 
 /* -------------------------------------------
