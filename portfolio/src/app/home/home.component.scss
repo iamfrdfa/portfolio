@@ -492,8 +492,6 @@ button {
     .marquee {
         rotate: -6deg;
         top: calc(clamp(-120px, -18vw, -100px) + 150px);
-        width: 100vw;
-        max-width: 100vw;
         left: 50%;
         transform: translateX(-50%);
         padding: 8px 0;
