@@ -97,7 +97,7 @@
 
 @mixin greenBoxHeadline {
     color: v.$primaryColor;
-    font-size: 64px;
+    font-size: clamp(40px, 7vw, 64px);
     font-weight: bold;
     margin-block-start: 0;
     margin-block-end: 0;

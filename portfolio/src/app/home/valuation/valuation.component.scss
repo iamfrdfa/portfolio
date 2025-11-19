@@ -31,6 +31,7 @@
 .sectionTitle {
     @include greenBoxHeadline;
     margin-bottom: 8px;
+    font-size: clamp(40px, 7vw, 64px);
 }
 
 /* Sichtbereich */
@@ -211,4 +212,13 @@
 /* <= 768px: mehr Sicht auf Nachbar-Slides (kleinerer left-cover sinnvoll im TS) */
 @media (max-width: 768px) {
     #valuationComponent { padding: clamp(80px, 12vh, 140px) 0; }
+}
+
+/* <= 600: mehr Sicht auf Nachbar-Slides (kleinerer left-cover sinnvoll im TS) */
+@media (max-width: 600px) {
+    /* Rand-Schleier */
+    .viewport::before,
+    .viewport::after {
+        display: none;
+    }
 }
