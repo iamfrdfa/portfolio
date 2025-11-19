@@ -236,8 +236,8 @@
         "controller": {
             "heading": "Informationen zum Verantwortlichen:",
             "name": "Friedrich Faraji",
-            "street": "Wingertstraße 24",
-            "city": "63477 Maintal",
+            "street": "Musterstr. 11",
+            "city": "PLZ Musterstadt",
             "country": "Deutschland",
             "phoneLabel": "Telefon:",
             "emailLabel": "Kontakt:",

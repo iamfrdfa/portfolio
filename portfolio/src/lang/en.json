@@ -236,8 +236,8 @@
         "controller": {
             "heading": "Information on the Controller:",
             "name": "Friedrich Faraji",
-            "street": "Wingertstraße 24",
-            "city": "63477 Maintal",
+            "street": "Musterstr. 11",
+            "city": "PLZ Musterstadt",
             "country": "Germany",
             "phoneLabel": "Fon:",
             "emailLabel": "Contact:",
