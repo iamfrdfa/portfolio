@@ -39,23 +39,6 @@
                 <div class="vertBar" aria-hidden="true"></div>
             </div>
 
-            <!-- CENTER: Marquee -->
-            <div class="gimmick_center">
-                <div class="marquee" role="marquee" aria-label="Tech Stack">
-                    <div class="marquee__inner">
-                        <ng-container *ngFor="let item of marqueeHalf">
-                            <span class="marquee__item">{{ item }}</span>
-                            <span class="marquee__sep" aria-hidden="true">•</span>
-                        </ng-container>
-
-                        <ng-container *ngFor="let item of marqueeHalf">
-                            <span class="marquee__item">{{ item }}</span>
-                            <span class="marquee__sep" aria-hidden="true">•</span>
-                        </ng-container>
-                    </div>
-                </div>
-            </div>
-
             <div class="gimmick_right">
                 <!-- Desktop: vertikale E-Mail -->
                 <a class="vEmail" href="mailto:info@ffaraji.de">info&#64;ffaraji.de</a>
@@ -90,6 +73,25 @@
                 <div class="vertBar" aria-hidden="true"></div>
             </div>
         </section>
+
+
+        <!-- CENTER: Marquee -->
+        <div class="gimmick_center">
+            <div class="marquee" role="marquee" aria-label="Tech Stack">
+                <div class="marquee__inner">
+                    <ng-container *ngFor="let item of marqueeHalf">
+                        <span class="marquee__item">{{ item }}</span>
+                        <span class="marquee__sep" aria-hidden="true">•</span>
+                    </ng-container>
+
+                    <ng-container *ngFor="let item of marqueeHalf">
+                        <span class="marquee__item">{{ item }}</span>
+                        <span class="marquee__sep" aria-hidden="true">•</span>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+
     </section>
 
     <section id="aboutMeComponent">

@@ -67,8 +67,9 @@
 .greenTextBoxWrapper {
     @include greenBoxWrapper;
     //transform: translateY(50px);
-    width: 100%;
-    max-width: 568px;
+    width: unset;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Tabelle */
