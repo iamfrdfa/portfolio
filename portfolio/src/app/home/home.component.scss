@@ -494,6 +494,9 @@ button {
 
     .vertBar { height: clamp(90px, 22vw, 140px); }
 
+    .gimmick_center {
+        top: -150px;
+    }
     .marquee {
         rotate: -6deg;
         top: calc(clamp(-120px, -18vw, -100px) + 150px);
@@ -523,6 +526,7 @@ button {
         top: calc(clamp(-96px, -15vw, -140px) + 150px );
         padding: 6px 0;
     }
+    .marquee__inner { padding: 7px; }
 }
 
 /* Sehr kleine Geräte / Sicherheitsnetz */
@@ -540,6 +544,10 @@ button {
         justify-content: space-between;
         gap: 120px;
     }
+
+    .gimmick_center { top: -200px; }
+
+    .textBoxGreen { max-width: 250px !important; }
 }
 
 @media (max-width: 376px) { .heroButton_contact { margin-top: 0; }}
