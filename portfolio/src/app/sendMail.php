@@ -1,37 +1,52 @@
 <?php
 
 switch ($_SERVER['REQUEST_METHOD']) {
-    case ("OPTIONS"): //Allow preflighting to take place.
+
+    case "OPTIONS":
         header("Access-Control-Allow-Origin: *");
-        header("Access-Control-Allow-Methods: POST");
-        header("Access-Control-Allow-Headers: content-type");
+        header("Access-Control-Allow-Methods: POST, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type");
         exit;
-    case("POST"): //Send the email;
+
+    case "POST":
         header("Access-Control-Allow-Origin: *");
-        // Payload is not send to $_POST Variable,
-        // is send to php:input as a text
+
+        // Empfange JSON aus Angular (Text-Payload)
         $json = file_get_contents('php://input');
-        //parse the Payload from text format to Object
         $params = json_decode($json);
 
-        $name = $params->name;
-        $email = $params->email;
-        $message = $params->message;
+        if (!$params) {
+            http_response_code(400);
+            echo "Invalid JSON";
+            exit;
+        }
+
+        $name = htmlspecialchars($params->name ?? '');
+        $email = htmlspecialchars($params->email ?? '');
+        $message = nl2br(htmlspecialchars($params->message ?? ''));
 
         $recipient = 'info@ffaraji.de';
-        $subject = "Contact From <$email>";
-        $message = "From:" . $name . "<br>" . $message;
+        $subject = "Kontaktformular – Nachricht von $name <$email>";
 
-        $headers = array();
-        $headers[] = 'MIME-Version: 1.0';
-        $headers[] = 'Content-type: text/html; charset=utf-8';
+        $body = "
+            <html><body>
+            <h2>Neue Kontaktanfrage</h2>
+            <p><strong>Name:</strong> $name</p>
+            <p><strong>Email:</strong> $email</p>
+            <p><strong>Nachricht:</strong><br>$message</p>
+            </body></html>
+        ";
 
-        // Additional headers
-        $headers[] = "From: noreply@mywebsite.com";
+        $headers  = "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+        $headers .= "From: noreply@ffaraji.de\r\n";
 
-        mail($recipient, $subject, $message, implode("\r\n", $headers));
-        break;
-    default: //Reject any non POST or OPTIONS requests.
+        mail($recipient, $subject, $body, $headers);
+
+        echo "OK";
+        exit;
+
+    default:
         header("Allow: POST", true, 405);
         exit;
 }
