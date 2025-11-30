@@ -35,7 +35,7 @@ export class ContactformComponent {
 
     // Backend-Config (Akademie-Vorgabe)
     post = {
-        endPoint: 'https://ffaraji.de/portfolio/sendMail.php',
+        endPoint: 'https://faraji.dev/sendMail.php',
         body: (payload: any) => JSON.stringify(payload),
         options: {
             headers: new HttpHeaders({

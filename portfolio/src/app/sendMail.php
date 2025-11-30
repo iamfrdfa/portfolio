@@ -25,7 +25,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $email = htmlspecialchars($params->email ?? '');
         $message = nl2br(htmlspecialchars($params->message ?? ''));
 
-        $recipient = 'info@ffaraji.de';
+        $recipient = 'info@faraji.dev';
         $subject = "Kontaktformular – Nachricht von $name <$email>";
 
         $body = "
@@ -39,7 +39,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
         $headers  = "MIME-Version: 1.0\r\n";
         $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-        $headers .= "From: noreply@ffaraji.de\r\n";
+        $headers .= "From: noreply@faraji.dev\r\n";
 
         mail($recipient, $subject, $body, $headers);
 
