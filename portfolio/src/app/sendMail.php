@@ -29,12 +29,14 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $subject = "Kontaktformular – Nachricht von $name <$email>";
 
         $body = "
-            <html><body>
-            <h2>Neue Kontaktanfrage</h2>
-            <p><strong>Name:</strong> $name</p>
-            <p><strong>Email:</strong> $email</p>
-            <p><strong>Nachricht:</strong><br>$message</p>
-            </body></html>
+            <html>
+                <body>
+                    <h2>Neue Kontaktanfrage</h2>
+                    <p><strong>Name:</strong> $name</p>
+                    <p><strong>Email:</strong> $email</p>
+                    <p><strong>Nachricht:</strong><br>$message</p>
+                </body>
+            </html>
         ";
 
         $headers  = "MIME-Version: 1.0\r\n";
