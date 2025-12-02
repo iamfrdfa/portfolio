@@ -402,6 +402,18 @@
     }
 }
 
+/* <= 600px */
+@media (max-width: 600px) {
+    .textBoxGreen {
+        div {
+            h1 {
+                font-size: clamp(36px, 4vw, 36px) !important;
+            }
+        }
+    }
+}
+
+
 /* <= 560px */
 @media (max-width: 560px) {
     .skillIcons {
@@ -416,6 +428,43 @@
         img {
             width: 72px;
             height: 72px;
+        }
+
+        .label {
+            font-size: clamp(11px, 2vw, 13px);
+        }
+    }
+}
+
+/* <= 480px */
+@media (max-width: 480px) {
+    .textBoxGreen {
+        max-width: 279px;
+        width: unset !important;
+        div {
+            h1 {
+                font-size: clamp(36px, 4vw, 36px) !important;
+            }
+        }
+    }
+}
+
+
+
+/* <= 400px */
+@media (max-width: 400px) {
+    .skillIcons {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 16px;
+        row-gap: 24px;
+    }
+
+    .skill {
+        width: 50px;
+
+        img {
+            width: 50px;
+            height: 50px;
         }
 
         .label {
