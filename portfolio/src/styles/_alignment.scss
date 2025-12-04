@@ -18,9 +18,6 @@
     /* gleiche linke Kante bei jeder Viewport-Breite */
     width: min(var(--container-max), 100% - 2 * var(--gutter));
     margin-inline: auto;
-    > div {
-        margin-inline-start: 0;
-    }
 
     /* ab <= 769px: Rücksetzung */
     @media (max-width: 769px) {
@@ -54,6 +51,10 @@
 #projects .projectsHeading,
 #projects .projectsGrid {
     @extend .align-x;
+}
+
+#projects .projectsHeading > div {
+    margin-inline-start: unset;
 }
 
 /* Valuation/Testimonial */
