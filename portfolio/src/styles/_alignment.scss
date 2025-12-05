@@ -15,14 +15,17 @@
 
 /* Utility: standardisierter Content-Container */
 .align-x {
-    /* gleiche linke Kante bei jeder Viewport-Breite */
     width: min(var(--container-max), 100% - 2 * var(--gutter));
-    margin-inline: auto;
+    margin: auto;
 
-    /* ab <= 769px: Rücksetzung */
+    /* Nur auf divs anwenden, die NICHT .projectsHeading haben */
+    > div:not(.projectsHeading) {
+        margin-inline-start: 0;
+    }
+
     @media (max-width: 769px) {
-        > div {
-            //margin-inline-start: unset; /* oder auto, je nach gewünschtem Effekt */
+        > div:not(.projectsHeading) {
+            margin-inline-start: unset;
         }
     }
 }

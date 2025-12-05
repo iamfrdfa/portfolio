@@ -6,9 +6,8 @@ import { SkillsComponent } from './home/skills/skills.component';
 import { ProjectsComponent } from './home/projects/projects.component';
 import { ValuationComponent } from './home/valuation/valuation.component';
 import { ContactformComponent } from './contactform/contactform.component';
-
-// ▼ Passe ggf. den Pfad an, falls du die Komponente woanders erzeugt hast
 import { LegalNoticeComponent } from './pages/legal-notice/legal-notice.component';
+import { ImprintComponent } from './pages/imprint/imprint.component';
 
 export const routes: Routes = [
     {
@@ -22,6 +21,7 @@ export const routes: Routes = [
         ],
     },
     { path: 'contact', component: ContactformComponent },
-    { path: 'legal-notice', component: LegalNoticeComponent }, // ← http://localhost:4200/legal-notice
+    { path: 'legal-notice', component: LegalNoticeComponent },
+    { path: 'imprint', component: ImprintComponent },
     { path: '**', redirectTo: '' }, // Fallback
 ];

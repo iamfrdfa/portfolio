@@ -646,8 +646,12 @@
         font-size: 48px;
     }
 
+    .projectsWrapper {
+        margin-left: unset !important;
+    }
+
     .projectsWrapper > div {
-        margin-inline: initial;
+        margin-inline: unset;
     }
 }
 
