@@ -438,6 +438,9 @@
 
 /* <= 480px */
 @media (max-width: 480px) {
+    .greenBoxParagraph {
+        width: 81% !important;
+    }
     .textBoxGreen {
         max-width: 308px;
         width: unset !important;
@@ -449,7 +452,11 @@
     }
 }
 
-
+@media (max-width: 420px) {
+    .greenBoxParagraph {
+        width: 90% !important;
+    }
+}
 
 /* <= 400px */
 @media (max-width: 400px) {
