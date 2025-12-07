@@ -49,7 +49,7 @@
         },
         "more": "Melde dich gerne bei mir. Ich freue mich darauf, mein Wissen weiter auszubauen.",
         "cta": {
-            "label": "Lass uns sprechen"
+            "label": "Schreib mir"
         },
         "icons": {
             "html": "HTML",
@@ -101,7 +101,7 @@
     },
 
     "testimonials": {
-        "title": "Was Kolleginnen und Kollegen über mich sagen",
+        "title": "Was Teampartner über mich sagen",
         "aria": {
             "region": "Referenzen",
             "prev": "Vorheriges Testimonial",

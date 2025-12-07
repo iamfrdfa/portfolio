@@ -160,8 +160,8 @@ $ok: #39d98a !default;
 
     input[type="checkbox"] {
         appearance: none;
-        width: 18px !important;
-        height: 18px !important;
+        width: 30px !important;
+        height: 30px !important;
         border: 2px solid $accent;
         border-radius: 2px;
         position: relative;
@@ -173,8 +173,10 @@ $ok: #39d98a !default;
         &:checked::after {
             content: '';
             position: absolute;
-            left: 4px; top: 0px;
-            width: 5px; height: 10px;
+            left: 8px;
+            top: 0;
+            width: 7px;
+            height: 20px;
             border: solid #0b0b0b;
             border-width: 0 2px 2px 0;
             transform: rotate(45deg);
@@ -237,4 +239,38 @@ $ok: #39d98a !default;
 /* <= 768px: Button full-width optional */
 @media (max-width: 768px) {
     .submit { width: 100%; min-width: 0; }
+
+    .display {
+        font-size: clamp(36px, 4vw, 36px) !important;
+    }
+}
+
+/* <= 540 */
+@media (max-width: 540px) {
+    .consent {
+        input[type="checkbox"] {
+            width: 40px !important;
+            height: 30px !important;
+            &:checked::after {
+                left: 7px !important;
+                width: 6px !important;
+                height: 20px !important;
+            }
+        }
+    }
+}
+
+/* <= 360 */
+@media (max-width: 360px) {
+    .consent {
+        input[type="checkbox"] {
+            width: 40px !important;
+            height: 25px !important;
+            &:checked::after {
+                left: 5px !important;
+                width: 6px !important;
+                height: 16px !important;
+            }
+        }
+    }
 }

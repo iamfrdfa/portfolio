@@ -49,13 +49,6 @@
     @extend .align-x;
 }
 
-/* Projects */
-#projects .projectsWrapper,
-#projects .projectsHeading,
-#projects .projectsGrid {
-    @extend .align-x;
-}
-
 #projects .projectsHeading > div {
     margin-inline-start: unset;
 }

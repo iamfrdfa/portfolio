@@ -209,9 +209,25 @@
     .track { transition: none !important; }
 }
 
-/* <= 768px: mehr Sicht auf Nachbar-Slides (kleinerer left-cover sinnvoll im TS) */
-@media (max-width: 768px) {
+/* <= 770: mehr Sicht auf Nachbar-Slides (kleinerer left-cover sinnvoll im TS) */
+@media (max-width: 770px) {
     #valuationComponent { padding: clamp(80px, 12vh, 140px) 0; }
+
+    .viewport {
+        margin: 0 0 0 32px !important;
+    }
+
+    .sectionTitle {
+        font-size: clamp(36px, 4vw, 36px) !important;
+    }
+
+    /* Quote-Icon */
+    .card .quoteIcon {
+        top: -24px !important;
+        left: -24px !important;
+        width: 48px !important;
+        height: 48px !important;
+    }
 }
 
 /* <= 600: mehr Sicht auf Nachbar-Slides (kleinerer left-cover sinnvoll im TS) */
