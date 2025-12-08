@@ -441,9 +441,10 @@
     .greenBoxParagraph {
         width: 81% !important;
     }
+
     .textBoxGreen {
         max-width: 308px;
-        width: unset !important;
+        width: 300px;
         div {
             h1 {
                 font-size: clamp(36px, 4vw, 36px) !important;
@@ -454,7 +455,7 @@
 
 @media (max-width: 420px) {
     .greenBoxParagraph {
-        width: 90% !important;
+        width: 95% !important;
     }
 }
 
@@ -477,6 +478,26 @@
         .label {
             font-size: clamp(11px, 2vw, 13px);
         }
+    }
+
+    .greenBoxParagraph {
+        width: 90% !important;
+    }
+
+    .textBoxGreen {
+        width: 280px;
+    }
+}
+
+@media (max-width: 360px) {
+    .textBoxGreen {
+        width: 240px;
+    }
+}
+
+@media (max-width: 320px) {
+    .textBoxGreen {
+        width: 200px;
     }
 }
 

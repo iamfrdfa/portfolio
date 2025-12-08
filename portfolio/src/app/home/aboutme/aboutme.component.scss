@@ -189,6 +189,24 @@
     }
 
     .textBoxGreen {
-        width: unset !important;
+        width: 300px;
+    }
+}
+
+@media (max-width: 400px) {
+    .textBoxGreen {
+        width: 280px;
+    }
+}
+
+@media (max-width: 360px) {
+    .textBoxGreen {
+        width: 240px;
+    }
+}
+
+@media (max-width: 320px) {
+    .textBoxGreen {
+        width: 200px;
     }
 }
