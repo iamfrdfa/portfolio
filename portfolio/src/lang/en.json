@@ -285,5 +285,50 @@
             "p1": "The use of contact data published within the scope of the imprint obligation for the purpose of sending unsolicited advertising and information materials is hereby objected to. The operators of the pages expressly reserve the right to take legal action in the event of the unsolicited sending of advertising information, such as spam emails."
         },
         "source": { "title": "Source:" }
+    },
+
+    "imprint": {
+        "backToHomeAlt": "Back to home",
+        "title": "Legal Notice",
+        "subHeader": "Information according to § 5 DDG",
+        "owner": {
+            "name": "Friedrich Faraji",
+            "street": "Wingertstr. 24",
+            "city": "63477 Maintal, Germany"
+        },
+        "representative": {
+            "label": "Represented by:",
+            "name": "Friedrich Faraji"
+        },
+        "contact": {
+            "label": "Contact:",
+            "phone": "Phone: +49 174 1845661",
+            "fax": "Fax: +49 6181 4348153",
+            "emailLabel": "E-mail:"
+        },
+        "disputeResolution": {
+            "title": "Consumer dispute resolution / universal arbitration board",
+            "text": "We are neither willing nor obliged to participate in dispute resolution proceedings before a consumer arbitration board."
+        },
+        "disclaimer": {
+            "title": "Disclaimer:",
+            "liabilityContentTitle": "Liability for content",
+            "liabilityContentText": "The contents of our pages were created with great care. However, we cannot assume any liability for the correctness, completeness and up-to-dateness of the content. As a service provider, we are responsible for our own content on these pages in accordance with general laws pursuant to § 7 para. 1 DDG. According to §§ 8 to 10 DDG, however, we are not obliged as a service provider to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity. Obligations to remove or block the use of information in accordance with general laws remain unaffected. However, liability in this respect is only possible from the time we become aware of a specific infringement. As soon as we become aware of such legal violations, we will remove this content immediately.",
+            "liabilityLinksTitle": "Liability for links",
+            "liabilityLinksText": "Our website contains links to external third-party websites over whose content we have no influence. Therefore, we cannot assume any liability for these external contents. The respective provider or operator of the pages is always responsible for the content of the linked pages. The linked pages were checked for possible legal violations at the time the link was created. Illegal content was not recognizable at the time the link was created. However, permanent monitoring of the content of the linked pages is not reasonable without concrete evidence of an infringement. As soon as we become aware of legal violations, we will remove such links immediately.",
+            "copyrightTitle": "Copyright",
+            "copyrightText": "The content and works created by the site operators on these pages are subject to German copyright law. Duplication, processing, distribution and any kind of utilization outside the limits of copyright law require the written consent of the respective author or creator. Downloads and copies of this site are only permitted for private, non-commercial use. Insofar as the content on this site was not created by the operator, the copyrights of third parties are respected. In particular, third-party content is marked as such. Should you nevertheless become aware of a copyright infringement, please inform us accordingly. As soon as we become aware of legal violations, we will remove such content immediately."
+        },
+        "generatorNote": {
+            "prefix": "Created with the",
+            "generatorLabel": "legal notice generator",
+            "middle": "from WebsiteWissen.com, the guide for",
+            "linkWebsiteCreation": "website creation",
+            "linkHomepageBuilder": "homepage builders",
+            "and": "and",
+            "linkShopSystems": "shop systems",
+            "suffix": "Legal text by",
+            "lawFirm": "Kanzlei Hasselbach"
+        }
     }
 }

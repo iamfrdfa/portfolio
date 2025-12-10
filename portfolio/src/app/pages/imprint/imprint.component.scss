@@ -1,0 +1,75 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+@use "sass:color";
+
+p,
+a {
+    font-size: clamp(12px, 1.6vw, 18px);
+    font-family: "Karla", sans-serif;
+}
+
+.coloured {
+    color: $primaryColor;
+}
+
+a {
+    text-decoration: none;
+    color: $primaryColor;
+}
+
+.imprint-header {
+    padding: 24px;
+    max-width: 55%;
+    .arrow-back {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 70%;
+    }
+}
+
+.imprint-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 24px;
+}
+
+.textBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 50%;
+}
+
+.mailAddress {
+    display: inline-block;
+    text-orientation: mixed;
+
+    /* Leserichtung umkehren, ohne Hover-Invert */
+    transform-origin: center;
+
+    color: white;
+    text-decoration: none;
+    font-size: clamp(12px, 1.6vw, 18px);
+    letter-spacing: .08em;
+    opacity: .9;
+
+    /* weiche Transition – inkl. transform, damit Scale/Translate smooth sind */
+    transition:
+        opacity .2s ease,
+        color .2s ease,
+        transform .2s ease;
+
+    /* HOVER / FOCUS: größer wirken, leicht anheben, Farb-Boost */
+    &:hover,
+    &:focus-visible {
+        opacity: 1;
+        //color: lighten($primaryColor, 10%);
+        color: color.adjust($primaryColor, $lightness: 10%);
+        /* Rotation beibehalten und Effekte additiv kombinieren */
+        transform: translateY(2px) scale(1.06);
+    }
+}

@@ -1,1 +1,92 @@
-<p>imprint works!</p>
+<div class="imprint-header">
+    <div class="arrow-back">
+        <a (click)="goHomeToFooter()">
+            <img
+                src="img/icons/arrow-left.svg"
+                [alt]="'imprint.backToHomeAlt' | translate"
+            />
+        </a>
+    </div>
+</div>
+
+<div id="imprint-wrapper" class="imprint-wrapper">
+    <div class="textBlock">
+        <!-- Titel & Subheader -->
+        <h1>{{ 'imprint.title' | translate }}</h1>
+        <p>{{ 'imprint.subHeader' | translate }}</p>
+
+        <!-- Anschrift -->
+        <p>
+            {{ 'imprint.owner.name' | translate }}<br />
+            <br />
+            {{ 'imprint.owner.street' | translate }}<br />
+            {{ 'imprint.owner.city' | translate }}<br />
+        </p>
+
+        <!-- Vertretung -->
+        <p>
+            <strong>{{ 'imprint.representative.label' | translate }}</strong><br />
+            {{ 'imprint.representative.name' | translate }}<br />
+        </p>
+
+        <!-- Kontakt -->
+        <p>
+            <strong>{{ 'imprint.contact.label' | translate }}</strong><br />
+            {{ 'imprint.contact.phone' | translate }}<br />
+            {{ 'imprint.contact.fax' | translate }}<br />
+            {{ 'imprint.contact.emailLabel' | translate }}
+            <a class="mailAddress" href="mailto:info@faraji.dev">info&#64;faraji.dev</a>
+        </p>
+
+        <!-- Verbraucherstreitbeilegung -->
+        <p>
+            <strong>{{ 'imprint.disputeResolution.title' | translate }}</strong><br />
+            {{ 'imprint.disputeResolution.text' | translate }}
+        </p>
+
+        <!-- Haftungsausschluss / Urheberrecht -->
+        <p>
+            <strong>{{ 'imprint.disclaimer.title' | translate }}</strong><br /><br />
+
+            <strong>{{ 'imprint.disclaimer.liabilityContentTitle' | translate }}</strong
+            ><br />
+            {{ 'imprint.disclaimer.liabilityContentText' | translate }}<br /><br />
+
+            <strong>{{ 'imprint.disclaimer.liabilityLinksTitle' | translate }}</strong
+            ><br />
+            {{ 'imprint.disclaimer.liabilityLinksText' | translate }}<br /><br />
+
+            <strong>{{ 'imprint.disclaimer.copyrightTitle' | translate }}</strong><br />
+            {{ 'imprint.disclaimer.copyrightText' | translate }}
+        </p>
+
+        <!-- Generator-Hinweis -->
+        <p>
+            {{ 'imprint.generatorNote.prefix' | translate }}
+            <a href="https://impressum-generator.de" rel="dofollow">
+                {{ 'imprint.generatorNote.generatorLabel' | translate }}
+            </a>
+            {{ 'imprint.generatorNote.middle' | translate }}
+            <a href="https://websitewissen.com/website-erstellen" rel="dofollow">
+                {{ 'imprint.generatorNote.linkWebsiteCreation' | translate }}
+            </a>,
+            <a
+                href="https://websitewissen.com/homepage-baukasten-vergleich"
+                rel="dofollow"
+            >
+                {{ 'imprint.generatorNote.linkHomepageBuilder' | translate }}
+            </a>
+            {{ 'imprint.generatorNote.and' | translate }}
+            <a
+                href="https://websitewissen.com/shopsysteme-vergleich"
+                rel="dofollow"
+            >
+                {{ 'imprint.generatorNote.linkShopSystems' | translate }}
+            </a>.
+            {{ 'imprint.generatorNote.suffix' | translate }}
+            <a href="https://www.kanzlei-hasselbach.de/" rel="dofollow">
+                {{ 'imprint.generatorNote.lawFirm' | translate }}
+            </a>.
+        </p>
+    </div>
+</div>
