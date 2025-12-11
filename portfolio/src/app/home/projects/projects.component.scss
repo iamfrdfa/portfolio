@@ -665,6 +665,8 @@
     .overlayPanel {
         width: 90vw;
         height: min(88vh, 100%);
+        overflow: auto;
+        scrollbar-width: none;
     }
 
     .overlayContent {
