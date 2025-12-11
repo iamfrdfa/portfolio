@@ -254,7 +254,7 @@
     }
 }
 
-/* <= 420 */
+/* <= 370 */
 @media (max-width: 370px) {
     .card {
         left: 14px !important;
@@ -268,5 +268,9 @@
         left: -12px !important;
         width: 32px !important;
         height: 32px !important;
+    }
+
+    .quote {
+        font-size: clamp(14px, 2vw, 20px);
     }
 }

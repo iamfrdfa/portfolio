@@ -260,8 +260,11 @@ $ok: #39d98a !default;
     }
 }
 
-/* <= 360 */
-@media (max-width: 360px) {
+/* <= 375 */
+@media (max-width: 375px) {
+    .display {
+        font-size: 24px !important;
+    }
     .consent {
         input[type="checkbox"] {
             width: 40px !important;
@@ -272,5 +275,10 @@ $ok: #39d98a !default;
                 height: 16px !important;
             }
         }
+    }
+
+    .margin-right {
+        width: 286px;
+        margin: auto;
     }
 }
