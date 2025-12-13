@@ -1,39 +1,41 @@
 <footer class="footer">
-    <div class="footer-left">
-        <div class="logo-container">
-            <img src="img/friedrichfaraji_logo.png" alt="Logo Friedrich Faraji" class="logo" />
-            <span class="name">Friedrich<br>Faraji</span>
+    <div class="footerWrapper">
+        <div class="footer-left">
+            <div class="logo-container">
+                <img src="img/friedrichfaraji_logo.png" alt="Logo Friedrich Faraji" class="logo" />
+                <span class="name">Friedrich<br>Faraji</span>
+            </div>
+            <p class="profession">{{ 'footer.role' | translate }}</p>
+            <p class="location">{{ 'footer.location' | translate }}</p>
         </div>
-        <p class="profession">{{ 'footer.role' | translate }}</p>
-        <p class="location">{{ 'footer.location' | translate }}</p>
-    </div>
 
-    <div class="footer-center">
-        <p class="copyright">
-            {{ 'footer.copyright' | translate:{ year: currentYear } }}
-        </p>
-    </div>
+        <div class="footer-center">
+            <p class="copyright">
+                {{ 'footer.copyright' | translate:{ year: currentYear } }}
+            </p>
+        </div>
 
-    <div class="footer-right">
-        <nav class="social-links">
-            <a href="https://github.com/iamfrdfa" target="_blank" rel="noopener">
-                {{ 'footer.links.github' | translate }}
-            </a>
-            <a href="https://linkedin.com/in/friedrich-faraji-b17735a5" target="_blank" rel="noopener">
-                {{ 'footer.links.linkedin' | translate }}
-            </a>
-            <a href="/legal-notice">
-                {{ 'footer.links.legal' | translate }}
-            </a>
-            <a href="/imprint">
-                {{ 'footer.links.imprint' | translate }}
-            </a>
-        </nav>
-    </div>
+        <div class="footer-right">
+            <nav class="social-links">
+                <a href="https://github.com/iamfrdfa" target="_blank" rel="noopener">
+                    {{ 'footer.links.github' | translate }}
+                </a>
+                <a href="https://linkedin.com/in/friedrich-faraji-b17735a5" target="_blank" rel="noopener">
+                    {{ 'footer.links.linkedin' | translate }}
+                </a>
+                <a href="/legal-notice">
+                    {{ 'footer.links.legal' | translate }}
+                </a>
+                <a href="/imprint">
+                    {{ 'footer.links.imprint' | translate }}
+                </a>
+            </nav>
+        </div>
 
-    <div class="footer-center-2">
-        <p class="copyright-2">
-            {{ 'footer.copyright' | translate:{ year: currentYear } }}
-        </p>
+        <div class="footer-center-2">
+            <p class="copyright-2">
+                {{ 'footer.copyright' | translate:{ year: currentYear } }}
+            </p>
+        </div>
     </div>
 </footer>

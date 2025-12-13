@@ -9,6 +9,13 @@
 @use 'styles/mixins' as *;
 
 /* Basis-Header */
+
+.headerWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
 .header {
     display: flex;
     justify-content: space-between;
@@ -20,6 +27,9 @@
     font-family: "Fira Code", monospace;
     overflow: visible; /* wichtig für Bullet-Sichtbarkeit */
     box-sizing: border-box;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
 
     &__left {
         display: flex;

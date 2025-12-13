@@ -1,64 +1,66 @@
 <header class="header">
-    <div class="header__left">
-        <!-- 🟢 Mobiles Logo (nur bei <=600px sichtbar) -->
-        <img
-            src="img/icons/ff-logo-mobile.svg"
-            alt="Friedrich Faraji Logo Mobile"
-            class="logoMobile"
-        >
-
-        <!-- Language Toggle (Desktop) -->
-        <app-language-toggle class="langToggle--desktop"></app-language-toggle>
-
-        <!-- Desktop-Navigation -->
-        <nav class="navDesktop">
-            <a
-                routerLink="/about"
-                routerLinkActive="active"
-                (click)="scrollTo('aboutMeComponent')"
-                class="headerLinks"
-                [attr.aria-label]="'header.nav.about' | translate"
+    <div class="headerWrapper">
+        <div class="header__left">
+            <!-- 🟢 Mobiles Logo (nur bei <=600px sichtbar) -->
+            <img
+                src="img/icons/ff-logo-mobile.svg"
+                alt="Friedrich Faraji Logo Mobile"
+                class="logoMobile"
             >
-                {{ 'header.nav.about' | translate }}
-            </a>
 
-            <a
-                routerLink="/skills"
-                (click)="scrollTo('skillComponent')"
-                class="headerLinks"
-                [attr.aria-label]="'header.nav.skills' | translate"
+            <!-- Language Toggle (Desktop) -->
+            <app-language-toggle class="langToggle--desktop"></app-language-toggle>
+
+            <!-- Desktop-Navigation -->
+            <nav class="navDesktop">
+                <a
+                    routerLink="/about"
+                    routerLinkActive="active"
+                    (click)="scrollTo('aboutMeComponent')"
+                    class="headerLinks"
+                    [attr.aria-label]="'header.nav.about' | translate"
+                >
+                    {{ 'header.nav.about' | translate }}
+                </a>
+
+                <a
+                    routerLink="/skills"
+                    (click)="scrollTo('skillComponent')"
+                    class="headerLinks"
+                    [attr.aria-label]="'header.nav.skills' | translate"
+                >
+                    {{ 'header.nav.skills' | translate }}
+                </a>
+
+                <a
+                    routerLink="/projects"
+                    (click)="scrollTo('projects')"
+                    class="headerLinks"
+                    [attr.aria-label]="'header.nav.projects' | translate"
+                >
+                    {{ 'header.nav.projects' | translate }}
+                </a>
+            </nav>
+        </div>
+
+        <div class="header__right">
+            <!-- 🟢 Desktop Logo -->
+            <img
+                src="img/friedrichfaraji_fulllogo2.png"
+                class="logoDesktop"
+                [attr.alt]="'header.logoAlt' | translate"
             >
-                {{ 'header.nav.skills' | translate }}
-            </a>
 
-            <a
-                routerLink="/projects"
-                (click)="scrollTo('projects')"
-                class="headerLinks"
-                [attr.aria-label]="'header.nav.projects' | translate"
+            <!-- Burger-Button (Mobile) -->
+            <button
+                class="burgerBtn"
+                type="button"
+                aria-label="Menu"
+                (click)="toggleMenu()"
             >
-                {{ 'header.nav.projects' | translate }}
-            </a>
-        </nav>
-    </div>
-
-    <div class="header__right">
-        <!-- 🟢 Desktop Logo -->
-        <img
-            src="img/friedrichfaraji_fulllogo2.png"
-            class="logoDesktop"
-            [attr.alt]="'header.logoAlt' | translate"
-        >
-
-        <!-- Burger-Button (Mobile) -->
-        <button
-            class="burgerBtn"
-            type="button"
-            aria-label="Menu"
-            (click)="toggleMenu()"
-        >
-            <img src="img/icons/menu-icon.svg" alt="Close" class="" />
-        </button>
+                <img src="img/icons/menu-icon.svg" alt="Close" class="" />
+            </button>
+        </div>
     </div>
 
     <!-- Mobile Overlay -->
