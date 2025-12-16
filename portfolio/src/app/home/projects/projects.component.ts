@@ -50,8 +50,8 @@ export class ProjectsComponent {
             tech: ['JavaScript', 'HTML', 'CSS', 'Firebase'],
             image: '/img/thumbnails/join-overlay.svg',
             descriptionKey: 'projects.items.join.desc',
-            repoUrl: '',
-            liveUrl: '',
+            repoUrl: 'https://github.com/iamfrdfa/join',
+            liveUrl: 'https://faraji.dev/projects/join/',
         },
         {
             key: 'epl',
@@ -59,8 +59,8 @@ export class ProjectsComponent {
             tech: ['JavaScript', 'HTML', 'CSS'],
             image: '/img/thumbnails/epl-overlay.svg',
             descriptionKey: 'projects.items.epl.desc',
-            repoUrl: '',
-            liveUrl: '',
+            repoUrl: 'https://github.com/iamfrdfa/el_pollo_loco',
+            liveUrl: 'https://faraji.dev/projects/epl/',
         },
         {
             key: 'dabubble',

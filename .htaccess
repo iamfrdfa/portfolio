@@ -1,24 +1,12 @@
-# /portfolio/.htaccess
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /portfolio/
+# .htaccess im gleichen Ordner wie index.html
+Options -MultiViews
+RewriteEngine On
+RewriteBase /
 
-  # Wenn echte Datei oder Ordner existiert → normal ausliefern
-  RewriteCond %{REQUEST_FILENAME} -f [OR]
-  RewriteCond %{REQUEST_FILENAME} -d
-  RewriteRule ^ - [L]
+# Existierende Dateien/Ordner normal ausliefern
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
 
-  # Alles andere an index.html (Angular) geben
-  RewriteRule . index.html [L]
-</IfModule>
-
-# (Optional) sinnvolle Cache-Header für statische Assets
-<IfModule mod_expires.c>
-  ExpiresActive On
-  ExpiresByType text/html "access plus 0 seconds"
-  ExpiresByType text/css "access plus 7 days"
-  ExpiresByType application/javascript "access plus 7 days"
-  ExpiresByType image/png "access plus 30 days"
-  ExpiresByType image/jpeg "access plus 30 days"
-  ExpiresByType image/svg+xml "access plus 30 days"
-</IfModule>
+# Alle anderen Pfade an index.html übergeben (SPA)
+RewriteRule ^ index.html [L]
