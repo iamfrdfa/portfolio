@@ -18,12 +18,9 @@
 }
 .header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
     padding: clamp(10px, 2vw, 16px) clamp(16px, 3vw, 32px);
     background: transparent;
-    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    //box-shadow: 0 2px 4px rgba(0,0,0,.1);
     font-family: "Fira Code", monospace;
     overflow: visible; /* wichtig für Bullet-Sichtbarkeit */
     box-sizing: border-box;

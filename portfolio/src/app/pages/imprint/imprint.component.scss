@@ -19,12 +19,12 @@ a {
 
 .imprint-header {
     padding: 24px;
-    max-width: 55%;
+    max-width: 1200px;
     .arrow-back {
         display: flex;
         justify-content: center;
         align-items: center;
-        max-width: 70%;
+        max-width: 41%;
     }
 }
 
@@ -41,7 +41,7 @@ a {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    max-width: 50%;
+    max-width: 1200px;
 }
 
 .mailAddress {
@@ -72,9 +72,4 @@ a {
         /* Rotation beibehalten und Effekte additiv kombinieren */
         transform: translateY(2px) scale(1.06);
     }
-}
-
-.footer {
-    position: absolute;
-    bottom: 0;
 }
