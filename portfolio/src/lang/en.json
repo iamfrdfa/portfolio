@@ -293,7 +293,8 @@
         "subHeader": "Information according to § 5 DDG",
         "owner": {
             "name": "Friedrich Faraji",
-            "street": "Wingertstr. 24",
+            "c/o":  "c/o Krankenfahrdienst FM-Medical",
+            "street": "Marie-Curie-Ring 7",
             "city": "63477 Maintal, Germany"
         },
         "representative": {
