@@ -62,7 +62,7 @@ export class ProjectsComponent {
             repoUrl: 'https://github.com/iamfrdfa/el_pollo_loco',
             liveUrl: 'https://faraji.dev/projects/epl/',
         },
-        {
+        /*{
             key: 'dabubble',
             name: 'DA Bubble',
             tech: ['Angular', 'Firebase', 'TypeScript'],
@@ -70,7 +70,7 @@ export class ProjectsComponent {
             descriptionKey: 'projects.items.dabubble.desc',
             repoUrl: '',
             liveUrl: '',
-        },
+        },*/
     ];
 
     // ---------- Overlay-State ----------

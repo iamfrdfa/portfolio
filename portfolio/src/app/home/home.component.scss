@@ -434,6 +434,10 @@ button {
     background-color: $secondaryColorBG;
 }
 
+#skillComponent {
+    padding-top: 60px;
+}
+
 /* =======================
    RESPONSIVE BREAKPOINTS
    ======================= */
@@ -457,6 +461,10 @@ button {
     .marquee {
         top: clamp(-120px, -18vw, -180px);
         margin-top: clamp(12px, 3vh, 30px);
+    }
+
+    #skillComponent {
+        padding-top: 0;
     }
 }
 
