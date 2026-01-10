@@ -148,6 +148,10 @@
         transform: none;
     }
 
+    .aboutMeRightInnerWrapper {
+        padding-top: 40px;
+    }
+
     .photoOfMe img {
         width: 100%;
         max-width: 418px;
@@ -208,5 +212,9 @@
 @media (max-width: 320px) {
     .textBoxGreen {
         width: 200px;
+    }
+
+    .photoOfMe img {
+        max-width: 234px;
     }
 }
