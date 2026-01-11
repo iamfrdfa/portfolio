@@ -1,6 +1,6 @@
 import { Component, Inject, inject, computed } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLinkActive } from '@angular/router';
 import { LanguageToggleComponent } from '../shared/ui/language-toggle/language-toggle.component';
 import { LanguageService } from '../shared/services/language.service';
 import { TranslateModule } from '@ngx-translate/core';
@@ -10,7 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
     standalone: true,
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
-    imports: [CommonModule, RouterLink, RouterLinkActive, LanguageToggleComponent, TranslateModule],
+    imports: [CommonModule, RouterLinkActive, LanguageToggleComponent, TranslateModule],
 })
 export class HeaderComponent {
     private langSvc = inject(LanguageService);
