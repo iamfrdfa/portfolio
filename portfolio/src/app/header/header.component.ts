@@ -1,6 +1,6 @@
 import { Component, Inject, inject, computed } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { LanguageToggleComponent } from '../shared/ui/language-toggle/language-toggle.component';
 import { LanguageService } from '../shared/services/language.service';
 import { TranslateModule } from '@ngx-translate/core';
@@ -14,12 +14,14 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class HeaderComponent {
     private langSvc = inject(LanguageService);
+    private router = inject(Router);
 
     isDE = computed(() => this.langSvc.lang() === 'de');
     isEN = computed(() => this.langSvc.lang() === 'en');
 
     constructor(@Inject(DOCUMENT) private document: Document) {}
 
+    // Optional: kannst du behalten – wird für Home-internes Scrollen ggf. nicht mehr gebraucht
     scrollTo(anchor: string) {
         const el = this.document.getElementById(anchor);
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -39,13 +41,18 @@ export class HeaderComponent {
         this.isMenuOpen = !this.isMenuOpen;
     }
 
-    closeMenu(event?: Event) {
+    closeMenu(_event?: Event) {
         this.isMenuOpen = false;
     }
 
-    handleNavClick(targetId: string) {
-        this.scrollTo(targetId);  // du hast scrollTo ja schon
+    /**
+     * Zentraler Fix:
+     * Von jeder Route (Impressum/Datenschutz/etc.) nach Home navigieren
+     * und Fragment setzen. Home scrollt dann.
+     */
+    goHomeAndScroll(targetId: string) {
         this.isMenuOpen = false;
-    }
 
+        this.router.navigate(['/'], { fragment: targetId });
+    }
 }

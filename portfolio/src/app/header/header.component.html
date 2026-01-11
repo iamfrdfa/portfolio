@@ -14,33 +14,33 @@
             <!-- Desktop-Navigation -->
             <nav class="navDesktop">
                 <a
-                    routerLink="/about"
-                    routerLinkActive="active"
-                    (click)="scrollTo('aboutMeComponent')"
+                    (click)="goHomeAndScroll('aboutMeComponent')"
                     class="headerLinks"
+                    routerLinkActive="active"
                     [attr.aria-label]="'header.nav.about' | translate"
                 >
                     {{ 'header.nav.about' | translate }}
                 </a>
 
                 <a
-                    routerLink="/skills"
-                    (click)="scrollTo('skillComponent')"
+                    (click)="goHomeAndScroll('skillComponent')"
                     class="headerLinks"
+                    routerLinkActive="active"
                     [attr.aria-label]="'header.nav.skills' | translate"
                 >
                     {{ 'header.nav.skills' | translate }}
                 </a>
 
                 <a
-                    routerLink="/projects"
-                    (click)="scrollTo('projects')"
+                    (click)="goHomeAndScroll('projects')"
                     class="headerLinks"
+                    routerLinkActive="active"
                     [attr.aria-label]="'header.nav.projects' | translate"
                 >
                     {{ 'header.nav.projects' | translate }}
                 </a>
             </nav>
+
         </div>
 
         <div class="header__right">
@@ -76,13 +76,30 @@
             </button>
 
             <nav class="mobileMenuNav">
-                <a class="mobileMenuLink" (click)="handleNavClick('aboutMeComponent')">
+                <a
+                    (click)="goHomeAndScroll('aboutMeComponent')"
+                    class="headerLinks"
+                    routerLinkActive="active"
+                    [attr.aria-label]="'header.nav.about' | translate"
+                >
                     {{ 'header.nav.about' | translate }}
                 </a>
-                <a class="mobileMenuLink" (click)="handleNavClick('skillComponent')">
+
+                <a
+                    (click)="goHomeAndScroll('skillComponent')"
+                    class="headerLinks"
+                    routerLinkActive="active"
+                    [attr.aria-label]="'header.nav.skills' | translate"
+                >
                     {{ 'header.nav.skills' | translate }}
                 </a>
-                <a class="mobileMenuLink" (click)="handleNavClick('projects')">
+
+                <a
+                    (click)="goHomeAndScroll('projects')"
+                    class="headerLinks"
+                    routerLinkActive="active"
+                    [attr.aria-label]="'header.nav.projects' | translate"
+                >
                     {{ 'header.nav.projects' | translate }}
                 </a>
             </nav>

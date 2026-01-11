@@ -1,5 +1,6 @@
-import { Component, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnDestroy, AfterViewInit, NgZone, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AboutmeComponent } from './aboutme/aboutme.component';
 import { SkillsComponent } from './skills/skills.component';
 import { ProjectsComponent } from './projects/projects.component';
@@ -23,7 +24,7 @@ import { Subscription } from 'rxjs';
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnDestroy {
+export class HomeComponent implements AfterViewInit, OnDestroy {
     readonly MARQUEE_REPEAT_PER_HALF = 4;
 
     marqueeItems: string[] = [];
@@ -32,11 +33,46 @@ export class HomeComponent implements OnDestroy {
 
     private langSub?: Subscription;
 
+    private route = inject(ActivatedRoute);
+    private zone = inject(NgZone);
+
     constructor(private translate: TranslateService) {
         this.buildMarqueeFromI18n();
         this.langSub = this.translate.onLangChange.subscribe((_e: LangChangeEvent) => {
             this.buildMarqueeFromI18n();
         });
+    }
+
+    ngAfterViewInit(): void {
+        // Auf Fragment-Änderungen reagieren (z.B. von Impressum -> Home#projects)
+        this.route.fragment.subscribe((id) => {
+            if (!id) return;
+
+            // außerhalb Angular, damit ChangeDetection nicht unnötig triggert
+            this.zone.runOutsideAngular(() => {
+                this.scrollToIdWithRetry(id, 25, 40); // ~1 Sekunde max
+            });
+        });
+    }
+
+    private scrollToIdWithRetry(id: string, tries = 20, delayMs = 50) {
+        let attempt = 0;
+
+        const tick = () => {
+            const el = document.getElementById(id);
+
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                return;
+            }
+
+            attempt++;
+            if (attempt >= tries) return;
+
+            setTimeout(tick, delayMs);
+        };
+
+        tick();
     }
 
     private buildMarqueeFromI18n() {
@@ -68,15 +104,13 @@ export class HomeComponent implements OnDestroy {
         // Warte kurz bis der Scroll abgeschlossen ist (scrollend, rAF + Timeout Fallback)
         await this.waitForScrollEnd(350);
 
-        // Erstes sinnvolles fokussierbares Element suchen:
         const firstFocusable = container.querySelector<HTMLElement>(
             'input:not([type="hidden"]), textarea, select, [contenteditable="true"], button, [tabindex]:not([tabindex="-1"])'
         );
 
         if (firstFocusable) {
-            // Verhindert erneutes Scrollen beim Fokussieren
             firstFocusable.focus({ preventScroll: true } as any);
-            // Optional: Cursor an das Ende setzen (falls input/textarea)
+
             if (firstFocusable instanceof HTMLInputElement || firstFocusable instanceof HTMLTextAreaElement) {
                 const len = firstFocusable.value?.length ?? 0;
                 try {
@@ -95,18 +129,15 @@ export class HomeComponent implements OnDestroy {
                 resolve();
             };
 
-            // Browser mit scrollend-Event
             const onScrollEnd = () => {
                 window.removeEventListener('scrollend', onScrollEnd as any);
                 finish();
             };
+
             try {
                 window.addEventListener('scrollend', onScrollEnd as any, { once: true });
-            } catch {
-                // Ignorieren, wenn nicht unterstützt
-            }
+            } catch {}
 
-            // rAF + Timeout Fallback
             let raf = 0;
             const start = performance.now();
             const tick = (t: number) => {

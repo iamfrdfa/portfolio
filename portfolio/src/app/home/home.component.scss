@@ -539,6 +539,7 @@ button {
 
 /* Sehr kleine Geräte / Sicherheitsnetz */
 @media (max-width: 380px) {
+    .hero { gap: 16px; padding-top: 16px; }
     .heroButtonsWrapper { gap: 10px; }
     .heroButton_work,
     .heroButton_contact { min-width: 128px; }
@@ -557,6 +558,18 @@ button {
 
     .textBoxGreen { max-width: 250px !important; }
 }
+
+/* iPhone SE definition*/
+@media only screen
+and (max-width: 375px)
+and (min-width: 320px)
+and (-webkit-device-pixel-ratio: 2) {
+
+    .hero {
+        padding-top: 64px;
+    }
+}
+
 
 @media (max-width: 329px) { .heroButton_contact { margin-top: 0; }}
 
