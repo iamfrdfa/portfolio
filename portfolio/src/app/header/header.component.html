@@ -79,10 +79,9 @@
 
             <nav class="mobileMenuNav">
                 <a
-                    [routerLink]="['/about']"
-                    fragment="aboutMeComponent"
+                    [routerLink]="['/aboutme']"
                     routerLinkActive="active"
-                    class="headerLinks"
+                    class="mobileMenuLink"
                     (click)="closeMenu()"
                     [attr.aria-label]="'header.nav.about' | translate"
                 >
@@ -91,9 +90,8 @@
 
                 <a
                     [routerLink]="['/skills']"
-                    fragment="skillComponent"
                     routerLinkActive="active"
-                    class="headerLinks"
+                    class="mobileMenuLink"
                     (click)="closeMenu()"
                     [attr.aria-label]="'header.nav.skills' | translate"
                 >
@@ -102,7 +100,6 @@
 
                 <a
                     [routerLink]="['/projects']"
-                    fragment="projects"
                     routerLinkActive="active"
                     class="mobileMenuLink"
                     (click)="closeMenu()"

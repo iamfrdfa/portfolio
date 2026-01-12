@@ -221,10 +221,10 @@
 }
 
 .mobileMenuLink {
-    color: $textColor;
+    color: $textColor !important;
     font-size: 18px;
     font-family: "Courier New", ui-monospace, monospace;
-    text-decoration: none;
+    text-decoration: none !important;
     line-height: 1.4;
     cursor: pointer;
 
