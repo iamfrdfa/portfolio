@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable, NgZone } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { filter, first } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class ScrollService {
@@ -14,7 +14,6 @@ export class ScrollService {
         '/projects': 'projects',
         '/valuation': 'valuationComponent',
         '/contact': 'contactFormComponent',
-        // WICHTIG: '/' NICHT mappen, sonst "Start-Scroll" auf Header-Höhe
     };
 
     constructor(
@@ -29,11 +28,12 @@ export class ScrollService {
             .subscribe((e) => {
                 const url = e.urlAfterRedirects.split('?')[0].split('#')[0];
 
-                // Fix: Beim allerersten Load auf '/' nicht scrollen
+                // Beim ersten Load auf '/' nicht automatisch scrollen
                 if (this.firstLoad && url === '/') {
                     this.firstLoad = false;
-                    // sicherheitshalber wirklich nach ganz oben (ohne Animation)
-                    this.zone.runOutsideAngular(() => window.scrollTo({ top: 0, left: 0, behavior: 'auto' }));
+                    this.zone.runOutsideAngular(() =>
+                        window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+                    );
                     return;
                 }
                 this.firstLoad = false;
@@ -41,29 +41,69 @@ export class ScrollService {
                 const id = this.routeToId[url];
                 if (!id) return;
 
-                this.zone.runOutsideAngular(() => {
-                    this.scrollToIdWithRetry(id, 30, 40);
-                });
+                // Wichtig: Scrollen erst, wenn Angular + Layout stabil sind
+                this.scrollToIdAfterStabilization(id);
             });
     }
 
-    private scrollToIdWithRetry(id: string, tries = 20, delayMs = 50) {
-        let attempt = 0;
+    private scrollToIdAfterStabilization(id: string): void {
+        // 1) Angular-Rendering abwarten (Microtasks/Change Detection fertig)
+        this.zone.onStable.pipe(first()).subscribe(() => {
+            // 2) Zusätzlich Layout-Stabilität abwarten (Fonts/Images/Reflow auf Mobile)
+            this.zone.runOutsideAngular(() => {
+                const el = this.document.getElementById(id);
+                if (!el) return;
+
+                this.scrollWhenPositionStable(el, () => {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            });
+        });
+    }
+
+    /**
+     * Wartet, bis die absolute Y-Position des Elements über mehrere Frames stabil bleibt.
+     * Das ist die saubere Antwort auf Mobile-Reflow/CLS nach Route-Wechseln.
+     */
+    private scrollWhenPositionStable(
+        el: HTMLElement,
+        doScroll: () => void,
+        framesToConfirm = 6,
+        maxFrames = 90
+    ): void {
+        let lastY: number | null = null;
+        let stableFrames = 0;
+        let frames = 0;
+
+        const getAbsY = () => el.getBoundingClientRect().top + window.scrollY;
 
         const tick = () => {
-            const el = this.document.getElementById(id);
+            frames++;
+            const y = getAbsY();
 
-            if (el) {
-                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (lastY !== null && Math.abs(y - lastY) < 0.5) {
+                stableFrames++;
+            } else {
+                stableFrames = 0;
+            }
+
+            lastY = y;
+
+            // Sobald stabil -> scroll ausführen
+            if (stableFrames >= framesToConfirm) {
+                doScroll();
                 return;
             }
 
-            attempt++;
-            if (attempt >= tries) return;
+            // Sicherheitsbremse (falls irgendwas dauerhaft animiert)
+            if (frames >= maxFrames) {
+                doScroll();
+                return;
+            }
 
-            setTimeout(tick, delayMs);
+            requestAnimationFrame(tick);
         };
 
-        tick();
+        requestAnimationFrame(tick);
     }
 }
