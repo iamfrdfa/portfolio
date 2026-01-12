@@ -51,7 +51,7 @@ export class ProjectsComponent {
             image: '/img/thumbnails/join-overlay.svg',
             descriptionKey: 'projects.items.join.desc',
             repoUrl: 'https://github.com/iamfrdfa/join',
-            liveUrl: 'https://faraji.dev/projects/join/',
+            liveUrl: 'https://faraji.dev/projects/join/login.html',
         },
         {
             key: 'epl',

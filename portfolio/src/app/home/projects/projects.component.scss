@@ -670,7 +670,10 @@
     }
 
     .overlayContent {
-        //grid-template-columns: 1fr 1fr;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         gap: 24px;
         padding: 24px;
     }

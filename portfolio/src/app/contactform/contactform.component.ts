@@ -53,6 +53,10 @@ export class ContactformComponent {
         this.sentOk.set(false);
         this.sentError.set(null);
 
+        this.contactData.name = this.sanitizeName(this.contactData.name);
+        this.contactData.email = this.sanitizeEmail(this.contactData.email);
+        this.contactData.message = (this.contactData.message ?? '').trim();
+
         // Grundprüfungen
         if (!ngForm.form.valid || !this.consent || this.honeypot.trim().length > 0) {
             return;
@@ -95,4 +99,26 @@ export class ContactformComponent {
         el.scrollIntoView({ behavior: 'smooth', block: 'center' });
         setTimeout(() => el.focus(), 400);
     }
+
+    trimStartOnly(value: string): string {
+        return (value ?? '').replace(/^\s+/g, '');
+    }
+
+    sanitizeName(value: string): string {
+        // 1) führende Leerzeichen entfernen
+        // 2) mehrere Leerzeichen zu genau einem machen
+        // 3) NICHT komplett trimmen? -> doch: trailing spaces sind sinnlos -> weg damit
+        return (value ?? '')
+            .replace(/^\s+/, '')
+            .replace(/\s{2,}/g, ' ')
+            .trimEnd();
+    }
+
+    sanitizeEmail(value: string): string {
+        // Email: Leerzeichen komplett raus + trimmen
+        return (value ?? '')
+            .trim()
+            .replace(/\s+/g, '');
+    }
+
 }

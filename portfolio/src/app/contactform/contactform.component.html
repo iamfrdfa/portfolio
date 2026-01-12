@@ -36,6 +36,7 @@
                         minlength="2"
                         [attr.placeholder]="'contact.form.name.placeholder' | translate"
                         [(ngModel)]="contactData.name"
+                        (ngModelChange)="contactData.name = sanitizeName($event)"
                         #name="ngModel"
                         autocomplete="name"
                     />
@@ -54,8 +55,9 @@
                         required
                         [attr.placeholder]="'contact.form.email.placeholder' | translate"
                         [(ngModel)]="contactData.email"
+                        (ngModelChange)="contactData.email = sanitizeEmail($event)"
                         #email="ngModel"
-                        pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
+                        pattern="^(?!.*\.\.)[A-Za-z0-9._%+\-]+@[A-Za-z0-9\-]+(\.[A-Za-z0-9\-]+)*\.[A-Za-z]{2,}$"
                         autocomplete="email"
                     />
                     <div class="msg" *ngIf="email.invalid && (email.touched || contactForm.submitted)">
@@ -75,6 +77,8 @@
                         [attr.placeholder]="'contact.form.message.placeholder' | translate"
                         [(ngModel)]="contactData.message"
                         #message="ngModel"
+                        (ngModelChange)="contactData.message = trimStartOnly($event)"
+                        [ngModelOptions]="{ updateOn: 'change' }"
                     ></textarea>
                     <div class="msg" *ngIf="message.invalid && (message.touched || contactForm.submitted)">
                         {{ 'contact.form.message.error' | translate }}

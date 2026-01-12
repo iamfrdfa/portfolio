@@ -19,8 +19,9 @@ button {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: clamp(48px, 10vh, 160px) 0 clamp(40px, 6vh, 100px) 0;
+    //padding: clamp(48px, 10vh, 160px) 0 clamp(40px, 6vh, 100px) 0;
     overflow: visible;
+    height: 100vh;
 
     /* Hero-Inhalte auf gleiche X-Flucht wie andere Komponenten */
     width: unset;
@@ -470,7 +471,10 @@ button {
 
 /* <= 768px: Stack-Layout, Buttons größer tappbar, Seitenleisten schlanker */
 @media (max-width: 768px) {
-    .hero { padding: clamp(36px, 8vh, 72px) 0 clamp(28px, 6vh, 60px); }
+    .hero {
+        padding: clamp(36px, 8vh, 72px) 0 clamp(28px, 6vh, 60px);
+        height: auto;
+    }
 
     .heroButtonsWrapper {
         flex-wrap: wrap;
@@ -503,7 +507,7 @@ button {
     .vertBar { height: clamp(90px, 22vw, 140px); }
 
     .gimmick_center {
-        top: -150px;
+        top: -215px;
     }
     .marquee {
         rotate: -6deg;
@@ -566,12 +570,15 @@ and (min-width: 320px)
 and (-webkit-device-pixel-ratio: 2) {
 
     .hero {
-        padding-top: 64px;
+        padding-top: 0 !important;
     }
 }
 
 
-@media (max-width: 329px) { .heroButton_contact { margin-top: 0; }}
+@media (max-width: 329px) {
+    .hero { padding-top: 0 !important; }
+    .heroButton_contact { margin-top: 0; }
+}
 
 /* Touch-Geräte: kein Hover-Speedwechsel nötig */
 @media (hover: none) and (pointer: coarse) {

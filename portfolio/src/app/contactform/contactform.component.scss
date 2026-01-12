@@ -236,6 +236,14 @@ $ok: #39d98a !default;
     overflow: hidden;
 }
 
+@media (max-width: 1150px) {
+    .consent { font-size: 12px; }
+}
+
+@media (max-width: 980px) {
+    .consent { font-size: 14px; }
+}
+
 /* <= 768px: Button full-width optional */
 @media (max-width: 768px) {
     .submit { width: 100%; min-width: 0; }
