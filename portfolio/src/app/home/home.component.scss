@@ -19,7 +19,7 @@ button {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: clamp(48px, 8vh, 120px) 0 clamp(40px, 6vh, 100px) 0;
+    padding: clamp(48px, 10vh, 160px) 0 clamp(40px, 6vh, 100px) 0;
     overflow: visible;
 
     /* Hero-Inhalte auf gleiche X-Flucht wie andere Komponenten */
@@ -347,7 +347,7 @@ button {
 
 .marquee {
     cursor: pointer;
-    --speed: 30s;
+    --speed: 43s;
 
     padding: 10px 0;
     height: clamp(34px, 4.5vw, 40px);
@@ -382,8 +382,8 @@ button {
 }
 
 /* Hover: Geschwindigkeit runter auf 60s (Variante A) */
-.marquee:hover,
-.marquee:focus-visible { --speed: 60s; }
+/*.marquee:hover,
+.marquee:focus-visible { --speed: 60s; }*/
 
 /* Track */
 .marquee__inner {
