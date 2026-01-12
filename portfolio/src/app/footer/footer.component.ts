@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { RouterLink } from '@angular/router';
+import {CommonModule} from '@angular/common';
+
 
 @Component({
     selector: 'app-footer',
     standalone: true,
-    imports: [TranslateModule],
+    imports: [CommonModule, RouterLink, TranslateModule],
     templateUrl: './footer.component.html',
     styleUrl: './footer.component.scss',
 })

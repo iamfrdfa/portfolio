@@ -32,7 +32,12 @@
                 <a href="/legal-notice">
                     {{ 'footer.links.legal' | translate }}
                 </a>
-                <a href="/imprint">
+
+                <a [routerLink]="['/legal-notice']">
+                    {{ 'footer.links.legal' | translate }}
+                </a>
+
+                <a [routerLink]="['/imprint']">
                     {{ 'footer.links.imprint' | translate }}
                 </a>
             </nav>
