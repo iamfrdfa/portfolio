@@ -94,6 +94,13 @@
         }
     }
 
+
+    .header__innerLeft {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     &__right {
         display: inline-flex;
         align-items: center;
@@ -258,7 +265,7 @@
 /* <= 992px */
 @media (max-width: 992px) {
     .header {
-        padding: clamp(10px, 2vw, 16px) clamp(16px, 3vw, 32px);
+        padding: clamp(10px, 2vw, 16px) clamp(32px, 3vw, 32px);
         gap: 12px;
     }
 }
@@ -302,7 +309,7 @@
     .header {
         width: 100%;
         justify-content: space-between;
-        padding-right: 0;
+        padding-right: 12px;
     }
 
     .logoMobile {

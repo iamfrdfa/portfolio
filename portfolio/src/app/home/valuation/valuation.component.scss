@@ -189,8 +189,8 @@
 
     .dot {
         display: block;
-        width: clamp(7px, 1.6vw, 8px);
-        height: clamp(7px, 1.6vw, 8px);
+        width: clamp(7px, 1.6vw, 16px);
+        height: clamp(7px, 1.6vw, 12px);
         aspect-ratio: 1;
         border: none;
         border-radius: 50%;

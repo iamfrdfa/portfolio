@@ -1,28 +1,35 @@
 @use 'styles/variables' as *;
 @use 'styles/mixins' as *;
 
-.legal-header {
-    padding: 24px;
-    max-width: 55%;
-    .arrow-back {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        max-width: 70%;
-    }
-}
-
 .legalWrapper {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.inner__legalWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.legal-header {
     padding: 24px;
+    width: 100%;
+    max-width: 1200px;
+    .arrow-back {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
 }
 
 .textBlock {
-    max-width: 60%;
-
     h1,
     h3,
     .source {

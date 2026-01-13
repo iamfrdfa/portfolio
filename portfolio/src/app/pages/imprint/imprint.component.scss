@@ -20,9 +20,10 @@ a {
 .imprint-header {
     padding: 24px;
     max-width: 1200px;
+    width: 100%;
     .arrow-back {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         max-width: 58%;
     }
@@ -80,11 +81,6 @@ p.address {
 
 /* <= 430 */
 @media (max-width: 430px) {
-    .imprint-header {
-        .arrow-back {
-            justify-content: flex-start;
-        }
-    }
 
     .imprint-wrapper {
         padding-top: 0;

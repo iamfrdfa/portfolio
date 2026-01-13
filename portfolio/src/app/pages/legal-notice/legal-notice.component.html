@@ -1,116 +1,118 @@
-<div class="legal-header">
-    <div class="arrow-back">
-        <a (click)="goHomeToFooter()">
-            <img src="img/icons/arrow-left.svg" alt="Back to home" />
-        </a>
-    </div>
-</div>
-
 <div class="legalWrapper">
-    <!-- 1. Data Protection at a Glance -->
-    <div class="textBlock">
-        <h1>{{ 'legal.glance.title' | translate }}</h1>
-        <h3>{{ 'legal.glance.generalNotes.title' | translate }}</h3>
-        <p>{{ 'legal.glance.generalNotes.p1' | translate }}</p>
-    </div>
-
-    <!-- Data Collection on this Website -->
-    <div class="textBlock">
-        <h1>{{ 'legal.collection.title' | translate }}</h1>
-
-        <h3>{{ 'legal.collection.responsible.title' | translate }}</h3>
-        <p>{{ 'legal.collection.responsible.p1' | translate }}</p>
-
-        <h3>{{ 'legal.collection.how.title' | translate }}</h3>
-        <p>{{ 'legal.collection.how.p1' | translate }}</p>
-
-        <h3>{{ 'legal.collection.purpose.title' | translate }}</h3>
-        <p>{{ 'legal.collection.purpose.p1' | translate }}</p>
-        <p>{{ 'legal.collection.rights.intro' | translate }}</p>
-        <p>{{ 'legal.collection.rights.p1' | translate }}</p>
-    </div>
-
-    <!-- Analytics Tools -->
-    <div class="textBlock">
-        <h1>{{ 'legal.analytics.title' | translate }}</h1>
-        <p>{{ 'legal.analytics.p1' | translate }}</p>
-    </div>
-
-    <!-- 2. General Notes and Mandatory Information -->
-    <div class="textBlock">
-        <h1>{{ 'legal.general.title' | translate }}</h1>
-
-        <h3>{{ 'legal.general.dataProtection.title' | translate }}</h3>
-        <p>{{ 'legal.general.dataProtection.p1' | translate }}</p>
-        <p>{{ 'legal.general.dataProtection.p2' | translate }}</p>
-        <p>{{ 'legal.general.dataProtection.p3' | translate }}</p>
-    </div>
-
-    <!-- Controller / Verantwortlicher -->
-    <div class="textBlock">
-        <div class="accountable">
-            <p>{{ 'legal.controller.heading' | translate }}</p>
-            <p>
-                {{ 'legal.controller.name' | translate }}<br>
-                {{ 'legal.controller.street' | translate }}<br>
-                {{ 'legal.controller.city' | translate }}<br>
-                {{ 'legal.controller.country' | translate }}
-            </p>
-            <p>
-                {{ 'legal.controller.phoneLabel' | translate }}
-                <a href="tel:01712356457">0171 / 23 56 45 7</a>
-            </p>
-            <p>
-                {{ 'legal.controller.emailLabel' | translate }}
-                <a href="mailto:info@faraji.dev">info&#64;faraji.dev</a>
-            </p>
-            <p>{{ 'legal.controller.note' | translate }}</p>
+    <div class="inner__legalWrapper">
+        <div class="legal-header">
+            <div class="arrow-back">
+                <a (click)="goHomeToFooter()">
+                    <img src="img/icons/arrow-left.svg" alt="Back to home" />
+                </a>
+            </div>
         </div>
-    </div>
 
-    <!-- Storage / Legal bases / Recipients / Rights -->
-    <div class="textBlock">
-        <h3>{{ 'legal.storage.title' | translate }}</h3>
-        <p>{{ 'legal.storage.p1' | translate }}</p>
+        <!-- 1. Data Protection at a Glance -->
+        <div class="textBlock">
+            <h1>{{ 'legal.glance.title' | translate }}</h1>
+            <h3>{{ 'legal.glance.generalNotes.title' | translate }}</h3>
+            <p>{{ 'legal.glance.generalNotes.p1' | translate }}</p>
+        </div>
 
-        <h3>{{ 'legal.bases.title' | translate }}</h3>
-        <p>{{ 'legal.bases.p1' | translate }}</p>
+        <!-- Data Collection on this Website -->
+        <div class="textBlock">
+            <h1>{{ 'legal.collection.title' | translate }}</h1>
 
-        <h3>{{ 'legal.recipients.title' | translate }}</h3>
-        <p>{{ 'legal.recipients.p1' | translate }}</p>
+            <h3>{{ 'legal.collection.responsible.title' | translate }}</h3>
+            <p>{{ 'legal.collection.responsible.p1' | translate }}</p>
 
-        <h3>{{ 'legal.withdrawal.title' | translate }}</h3>
-        <p>{{ 'legal.withdrawal.p1' | translate }}</p>
+            <h3>{{ 'legal.collection.how.title' | translate }}</h3>
+            <p>{{ 'legal.collection.how.p1' | translate }}</p>
 
-        <h3>{{ 'legal.objection.title' | translate }}</h3>
-        <p>{{ 'legal.objection.p1' | translate }}</p>
+            <h3>{{ 'legal.collection.purpose.title' | translate }}</h3>
+            <p>{{ 'legal.collection.purpose.p1' | translate }}</p>
+            <p>{{ 'legal.collection.rights.intro' | translate }}</p>
+            <p>{{ 'legal.collection.rights.p1' | translate }}</p>
+        </div>
 
-        <h3>{{ 'legal.complaint.title' | translate }}</h3>
-        <p>{{ 'legal.complaint.p1' | translate }}</p>
+        <!-- Analytics Tools -->
+        <div class="textBlock">
+            <h1>{{ 'legal.analytics.title' | translate }}</h1>
+            <p>{{ 'legal.analytics.p1' | translate }}</p>
+        </div>
 
-        <h3>{{ 'legal.portability.title' | translate }}</h3>
-        <p>{{ 'legal.portability.p1' | translate }}</p>
+        <!-- 2. General Notes and Mandatory Information -->
+        <div class="textBlock">
+            <h1>{{ 'legal.general.title' | translate }}</h1>
 
-        <h3>{{ 'legal.restriction.title' | translate }}</h3>
-        <p>{{ 'legal.restriction.intro' | translate }}</p>
-        <ul>
-            <li>{{ 'legal.restriction.li1' | translate }}</li>
-            <br>
-            <li>{{ 'legal.restriction.li2' | translate }}</li>
-            <br>
-            <li>{{ 'legal.restriction.li3' | translate }}</li>
-            <br>
-            <li>{{ 'legal.restriction.li4' | translate }}</li>
-            <br>
-        </ul>
-        <p>{{ 'legal.restriction.outro' | translate }}</p>
+            <h3>{{ 'legal.general.dataProtection.title' | translate }}</h3>
+            <p>{{ 'legal.general.dataProtection.p1' | translate }}</p>
+            <p>{{ 'legal.general.dataProtection.p2' | translate }}</p>
+            <p>{{ 'legal.general.dataProtection.p3' | translate }}</p>
+        </div>
 
-        <h3>{{ 'legal.promoEmails.title' | translate }}</h3>
-        <p>{{ 'legal.promoEmails.p1' | translate }}</p>
+        <!-- Controller / Verantwortlicher -->
+        <div class="textBlock">
+            <div class="accountable">
+                <p>{{ 'legal.controller.heading' | translate }}</p>
+                <p>
+                    {{ 'legal.controller.name' | translate }}<br>
+                    {{ 'legal.controller.street' | translate }}<br>
+                    {{ 'legal.controller.city' | translate }}<br>
+                    {{ 'legal.controller.country' | translate }}
+                </p>
+                <p>
+                    {{ 'legal.controller.phoneLabel' | translate }}
+                    <a href="tel:01712356457">0171 / 23 56 45 7</a>
+                </p>
+                <p>
+                    {{ 'legal.controller.emailLabel' | translate }}
+                    <a href="mailto:info@faraji.dev">info&#64;faraji.dev</a>
+                </p>
+                <p>{{ 'legal.controller.note' | translate }}</p>
+            </div>
+        </div>
 
-        <h3>{{ 'legal.source.title' | translate }}</h3>
-        <p class="source">
-            <a href="https://www.e-recht24.de/" target="_blank">www.e-recht24.de</a>
-        </p>
+        <!-- Storage / Legal bases / Recipients / Rights -->
+        <div class="textBlock">
+            <h3>{{ 'legal.storage.title' | translate }}</h3>
+            <p>{{ 'legal.storage.p1' | translate }}</p>
+
+            <h3>{{ 'legal.bases.title' | translate }}</h3>
+            <p>{{ 'legal.bases.p1' | translate }}</p>
+
+            <h3>{{ 'legal.recipients.title' | translate }}</h3>
+            <p>{{ 'legal.recipients.p1' | translate }}</p>
+
+            <h3>{{ 'legal.withdrawal.title' | translate }}</h3>
+            <p>{{ 'legal.withdrawal.p1' | translate }}</p>
+
+            <h3>{{ 'legal.objection.title' | translate }}</h3>
+            <p>{{ 'legal.objection.p1' | translate }}</p>
+
+            <h3>{{ 'legal.complaint.title' | translate }}</h3>
+            <p>{{ 'legal.complaint.p1' | translate }}</p>
+
+            <h3>{{ 'legal.portability.title' | translate }}</h3>
+            <p>{{ 'legal.portability.p1' | translate }}</p>
+
+            <h3>{{ 'legal.restriction.title' | translate }}</h3>
+            <p>{{ 'legal.restriction.intro' | translate }}</p>
+            <ul>
+                <li>{{ 'legal.restriction.li1' | translate }}</li>
+                <br>
+                <li>{{ 'legal.restriction.li2' | translate }}</li>
+                <br>
+                <li>{{ 'legal.restriction.li3' | translate }}</li>
+                <br>
+                <li>{{ 'legal.restriction.li4' | translate }}</li>
+                <br>
+            </ul>
+            <p>{{ 'legal.restriction.outro' | translate }}</p>
+
+            <h3>{{ 'legal.promoEmails.title' | translate }}</h3>
+            <p>{{ 'legal.promoEmails.p1' | translate }}</p>
+
+            <h3>{{ 'legal.source.title' | translate }}</h3>
+            <p class="source">
+                <a href="https://www.e-recht24.de/" target="_blank">www.e-recht24.de</a>
+            </p>
+        </div>
     </div>
 </div>

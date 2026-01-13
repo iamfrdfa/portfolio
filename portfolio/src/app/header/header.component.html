@@ -1,57 +1,69 @@
 <header class="header">
     <div class="headerWrapper">
         <div class="header__left">
-            <!-- 🟢 Mobiles Logo (nur bei <=600px sichtbar) -->
-            <img
-                src="img/icons/ff-logo-mobile.svg"
-                alt="Friedrich Faraji Logo Mobile"
-                class="logoMobile"
-            >
-
-            <!-- Language Toggle (Desktop) -->
-            <app-language-toggle class="langToggle--desktop"></app-language-toggle>
-
-            <!-- Desktop-Navigation -->
-            <nav class="navDesktop">
+            <div class="header__innerLeft">
+                <!-- 🟢 Mobiles Logo (nur bei <=600px sichtbar) -->
                 <a
-                    [routerLink]="['/aboutme']"
-                    routerLinkActive="active"
-                    class="headerLinks"
-                    (click)="closeMenu()"
-                    [attr.aria-label]="'header.nav.about' | translate"
+                    routerLink="/"
+                    aria-label="Zur Startseite"
                 >
-                    {{ 'header.nav.about' | translate }}
+                    <img
+                        src="img/icons/ff-logo-mobile.svg"
+                        alt="Friedrich Faraji Logo Mobile"
+                        class="logoMobile"
+                    >
                 </a>
 
-                <a
-                    [routerLink]="['/skills']"
-                    routerLinkActive="active"
-                    class="headerLinks"
-                    (click)="closeMenu()"
-                    [attr.aria-label]="'header.nav.skills' | translate"
-                >
-                    {{ 'header.nav.skills' | translate }}
-                </a>
+                <!-- Language Toggle (Desktop) -->
+                <app-language-toggle class="langToggle--desktop"></app-language-toggle>
 
-                <a
-                    [routerLink]="['/projects']"
-                    routerLinkActive="active"
-                    class="headerLinks"
-                    (click)="closeMenu()"
-                    [attr.aria-label]="'header.nav.projects' | translate"
-                >
-                    {{ 'header.nav.projects' | translate }}
-                </a>
-            </nav>
+                <!-- Desktop-Navigation -->
+                <nav class="navDesktop">
+                    <a
+                        [routerLink]="['/aboutme']"
+                        routerLinkActive="active"
+                        class="headerLinks"
+                        (click)="closeMenu()"
+                        [attr.aria-label]="'header.nav.about' | translate"
+                    >
+                        {{ 'header.nav.about' | translate }}
+                    </a>
+
+                    <a
+                        [routerLink]="['/skills']"
+                        routerLinkActive="active"
+                        class="headerLinks"
+                        (click)="closeMenu()"
+                        [attr.aria-label]="'header.nav.skills' | translate"
+                    >
+                        {{ 'header.nav.skills' | translate }}
+                    </a>
+
+                    <a
+                        [routerLink]="['/projects']"
+                        routerLinkActive="active"
+                        class="headerLinks"
+                        (click)="closeMenu()"
+                        [attr.aria-label]="'header.nav.projects' | translate"
+                    >
+                        {{ 'header.nav.projects' | translate }}
+                    </a>
+                </nav>
+            </div>
         </div>
 
         <div class="header__right">
             <!-- 🟢 Desktop Logo -->
-            <img
-                src="img/friedrichfaraji_fulllogo2.png"
-                class="logoDesktop"
-                [attr.alt]="'header.logoAlt' | translate"
+            <a
+                routerLink="/"
+                aria-label="Zur Startseite"
             >
+                <img
+                    src="img/friedrichfaraji_fulllogo2.png"
+                    class="logoDesktop"
+                    [attr.alt]="'header.logoAlt' | translate"
+                >
+            </a>
 
             <!-- Burger-Button (Mobile) -->
             <button
@@ -60,7 +72,7 @@
                 aria-label="Menu"
                 (click)="toggleMenu()"
             >
-                <img src="img/icons/menu-icon.svg" alt="Close" class="" />
+                <img src="img/icons/menu-icon.svg" alt="Close" class=""/>
             </button>
         </div>
     </div>
