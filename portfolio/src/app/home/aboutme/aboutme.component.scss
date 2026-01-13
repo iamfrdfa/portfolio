@@ -163,7 +163,6 @@
 
     .aboutMeTable table tr td {
         padding: 5px;
-        font-size: 14px;
     }
 }
 
@@ -211,10 +210,10 @@
 
 @media (max-width: 320px) {
     .textBoxGreen {
-        width: 200px;
+        width: 250px;
     }
 
     .photoOfMe img {
-        max-width: 234px;
+        width: 280px !important;
     }
 }

@@ -167,8 +167,8 @@
         &::before {
             content: "";
             display: block;
-            width: clamp(18px, 3.2vw, 24px);
-            height: clamp(18px, 3.2vw, 24px);
+            width: clamp(43px, 3.2vw, 24px);
+            height: clamp(43px, 3.2vw, 24px);
             background-color: #fff;
             transition: background-color .25s ease, transform .25s ease;
             -webkit-mask: url('/img/icons/arrow-left.svg') no-repeat center / contain;

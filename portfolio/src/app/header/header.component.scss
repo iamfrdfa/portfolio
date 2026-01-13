@@ -18,7 +18,7 @@
 }
 .header {
     display: flex;
-    padding: clamp(10px, 2vw, 16px) clamp(16px, 3vw, 32px);
+    padding: clamp(10px, 2vw, 16px) 0;
     background: transparent;
     //box-shadow: 0 2px 4px rgba(0,0,0,.1);
     font-family: "Fira Code", monospace;
@@ -248,9 +248,17 @@
    BREAKPOINTS
    =========================== */
 
+/* <= 1250px */
+@media (max-width: 1250px) {
+    .header {
+        padding: clamp(10px, 2vw, 16px) clamp(16px, 3vw, 32px);
+    }
+}
+
 /* <= 992px */
 @media (max-width: 992px) {
     .header {
+        padding: clamp(10px, 2vw, 16px) clamp(16px, 3vw, 32px);
         gap: 12px;
     }
 }

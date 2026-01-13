@@ -4,7 +4,7 @@
 
 p,
 a {
-    font-size: clamp(12px, 1.6vw, 18px);
+    font-size: clamp(16px, 1.6vw, 18px);
     font-family: "Karla", sans-serif;
 }
 
@@ -24,7 +24,7 @@ a {
         display: flex;
         justify-content: center;
         align-items: center;
-        max-width: 41%;
+        max-width: 58%;
     }
 }
 
@@ -76,4 +76,17 @@ a {
 
 p.address {
     text-align: center;
+}
+
+/* <= 430 */
+@media (max-width: 430px) {
+    .imprint-header {
+        .arrow-back {
+            justify-content: flex-start;
+        }
+    }
+
+    .imprint-wrapper {
+        padding-top: 0;
+    }
 }

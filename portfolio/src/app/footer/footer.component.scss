@@ -37,7 +37,7 @@
 .footerWrapper {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     width: 100%;
     max-width: 1200px;
     margin: auto;
@@ -59,7 +59,7 @@
 }
 
 .footer-left {
-    padding: 0 0 16px clamp(12px, 3vw, 32px);
+    //padding: 0 0 16px clamp(12px, 3vw, 32px);
     flex: 1 1 300px;
 
     > p {
@@ -70,7 +70,7 @@
 }
 
 .footer-right {
-    padding: 0 clamp(12px, 3vw, 32px) 16px 0;
+    //padding: 0 clamp(12px, 3vw, 32px) 16px 0;
     flex: 1 1 280px;
     display: flex;
     justify-content: flex-end;

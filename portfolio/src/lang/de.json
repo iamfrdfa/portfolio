@@ -140,7 +140,7 @@
         "kicker": "Kontaktiere mich",
         "headline": "Lass uns<br>zusammenarbeiten",
         "subhead": "Sie haben ein Problem zu lösen?",
-        "lead": "Ermutige Besucher, dich zu kontaktieren, und beschreibe, für welche Rolle du dich interessierst. Zeige, welchen Mehrwert du durch deine Arbeit in ihre Projekte einbringst.",
+        "lead": "Ich habe Freude daran, Ideen in Ergebnisse zu verwandeln und bin immer neugierig auf neue Herausforderungen. Wenn Sie jemanden suchen, der Energie, Fokus und verlässlichen Mehrwert in Ihre Projekte bringt, freue ich mich auf den Austausch.",
         "ctaHint": {
             "pre": "Du brauchst einen Frontend-Entwickler?",
             "link": "Lass uns sprechen!"
@@ -164,7 +164,7 @@
             "consent": {
                 "labelBefore": "Ich habe die ",
                 "policy": "Datenschutzerklärung",
-                "labelAfter": " gelesen und stimme der dort beschriebenen Verarbeitung meiner Daten zu."
+                "labelAfter": " gelesen und stimme dieser zu."
             },
             "feedback": {
                 "ok": "Danke! Deine Nachricht wurde gesendet.",
@@ -187,7 +187,7 @@
         "links": {
             "github": "GitHub",
             "linkedin": "LinkedIn",
-            "legal": "Datenschutzerklärung",
+            "legal": "Datenschutz",
             "imprint": "Impressum"
         },
         "copyright": "© {{year}} Friedrich Faraji"
