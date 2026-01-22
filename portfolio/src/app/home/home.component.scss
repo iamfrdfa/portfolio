@@ -590,6 +590,13 @@ and (-webkit-device-pixel-ratio: 2) {
     }
 }
 
+@media screen and (max-height: 770px) {
+    .marquee {
+        top: clamp(-155px, -28vw, -300px);
+        rotate: -4deg;
+    }
+}
+
 /* Touch-Geräte: kein Hover-Speedwechsel nötig */
 @media (hover: none) and (pointer: coarse) {
     .marquee { --speed: 40s; } /* etwas ruhiger, aber ohne Hover-Abhängigkeit */
