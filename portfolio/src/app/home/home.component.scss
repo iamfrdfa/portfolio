@@ -575,10 +575,19 @@ and (-webkit-device-pixel-ratio: 2) {
     }
 }
 
-
 @media (max-width: 329px) {
     .hero { padding-top: 0 !important; }
     .heroButton_contact { margin-top: 0; }
+}
+
+@media screen and (max-height: 950px) {
+    .hero {
+        gap: 0;
+    }
+
+    .marquee {
+        top: clamp(-180px, -28vw, -300px);
+    }
 }
 
 /* Touch-Geräte: kein Hover-Speedwechsel nötig */
