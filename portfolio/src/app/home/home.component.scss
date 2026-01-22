@@ -359,7 +359,7 @@ button {
     z-index: 999;
     left: 50%;
     transform: translateX(-50%);
-    top: clamp(-180px, -28vw, -300px);
+    top: clamp(-280px, -28vw, -300px);
     rotate: -6deg;
 
     width: min(100vw, 1600px);
