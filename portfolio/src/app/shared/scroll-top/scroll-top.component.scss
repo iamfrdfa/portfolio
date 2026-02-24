@@ -1,0 +1,79 @@
+$accentGreen: #3dcfb6 !default;
+
+.scrollTopPill {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 1000;
+
+    width: 30px;
+    height: 48px;
+    border-radius: 9999px;
+    border: 1px solid rgba($accentGreen, 0.55);
+    background: rgba(0, 0, 0, 0.18);
+
+    display: grid;
+    place-items: center;
+
+    box-shadow: 0 2px 10px rgba($accentGreen, 0.12);
+    backdrop-filter: blur(6px);
+
+    cursor: pointer;
+
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: opacity 180ms ease, transform 180ms ease, border-color 180ms ease;
+
+    &:hover {
+        border-color: rgba($accentGreen, 0.85);
+        transform: translateY(8px);
+    }
+
+    &:focus-visible {
+        outline: 2px solid rgba($accentGreen, 0.9);
+        outline-offset: 3px;
+    }
+
+    &.isVisible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+}
+
+.scrollTopMotion {
+    will-change: transform;
+    animation: floatYUp 1s linear infinite;
+}
+
+.scrollTopGlyph {
+    display: inline-block;
+    color: #fff;
+    font-size: 18px;
+    line-height: 1;
+    transform: translateZ(0);
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+@keyframes floatYUp {
+    0%   { transform: translateY(0); }
+    20%  { transform: translateY(-2px); }
+    40%  { transform: translateY(-6px); }
+    60%  { transform: translateY(-2px); }
+    80%  { transform: translateY(0); }
+    100% { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scrollTopMotion { animation: none !important; transform: none !important; }
+    .scrollTopPill { transition: none !important; }
+}
+
+/* ✅ Mobil ausblenden */
+@media (max-width: 768px) {
+    .scrollTopPill {
+        display: none !important;
+    }
+}

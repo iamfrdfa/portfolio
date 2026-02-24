@@ -4,17 +4,22 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ScrollService } from './shared/services/scroll.service';
+import { ScrollTopComponent } from './shared/scroll-top/scroll-top.component';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [RouterOutlet, HeaderComponent, FooterComponent],
+    imports: [RouterOutlet, HeaderComponent, FooterComponent, ScrollTopComponent],
     template: `
         <app-header></app-header>
+
         <main>
             <router-outlet></router-outlet>
         </main>
+
         <app-footer></app-footer>
+
+        <app-scroll-top></app-scroll-top>
     `,
 })
 export class AppComponent {

@@ -1,0 +1,12 @@
+<button
+    class="scrollTopPill"
+    type="button"
+    (click)="scrollToTop()"
+    [class.isVisible]="isVisible"
+    aria-label="Scroll to top"
+    title="Nach oben scrollen"
+>
+  <span class="scrollTopMotion" aria-hidden="true">
+    <span class="scrollTopGlyph">↑</span>
+  </span>
+</button>
