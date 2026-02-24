@@ -1,0 +1,24 @@
+:host {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+
+    // Performance-Hint
+    will-change: transform;
+}
+
+.spotlight {
+    position: absolute;
+    inset: 0;
+
+    background: radial-gradient(
+            350px circle at var(--mx) var(--my),
+            rgba(255, 255, 255, 0.10),
+            rgba(255, 255, 255, 0.04) 35%,
+            rgba(0, 0, 0, 0) 70%
+    );
+
+    // WICHTIG: raus damit, das macht’s oft ruckelig
+    transition: none;
+}
