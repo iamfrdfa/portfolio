@@ -103,23 +103,23 @@
 
     </section>
 
-    <section id="aboutMeComponent">
+    <section id="aboutMeComponent" [animateOnScroll]="'fade-up'" [once]="true">
         <app-aboutme></app-aboutme>
     </section>
 
-    <section id="skillComponent">
+    <section id="skillComponent" [animateOnScroll]="'fade-up'" [once]="true">
         <app-skills></app-skills>
     </section>
 
-    <section id="projects">
+    <section id="projects" [animateOnScroll]="'fade-up'" [once]="true">
         <app-projects></app-projects>
     </section>
 
-    <section id="valuationComponent">
+    <section id="valuationComponent" [animateOnScroll]="'fade-up'" [once]="true">
         <app-valuation [items]="testimonials"></app-valuation>
     </section>
 
-    <section id="contactFormComponent">
+    <section id="contactFormComponent" [animateOnScroll]="'fade-up'" [once]="true">
         <app-contactform></app-contactform>
     </section>
 </section>

@@ -80,3 +80,36 @@ html {
 ::-webkit-scrollbar-thumb:hover {
     background-color: #2aa28d;
 }
+
+/* ===== AOS (Animate on Scroll) ===== */
+
+.aos {
+    --aos-delay: 0ms;
+    --aos-duration: 950ms;
+
+    opacity: 0;
+    will-change: transform, opacity;
+    transition-property: transform, opacity;
+    transition-duration: var(--aos-duration);
+    transition-timing-function: cubic-bezier(.2,.8,.2,1);
+    transition-delay: var(--aos-delay);
+}
+
+.aos.aos--in {
+    opacity: 1;
+    transform: none;
+}
+
+.aos--fade-up { transform: translateY(26px); }
+.aos--fade { transform: none; }
+.aos--slide-left { transform: translateX(-22px); }
+.aos--slide-right { transform: translateX(22px); }
+.aos--scale-in { transform: scale(.96); }
+
+@media (prefers-reduced-motion: reduce) {
+    .aos {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}

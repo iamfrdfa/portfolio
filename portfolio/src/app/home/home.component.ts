@@ -7,6 +7,7 @@ import { ProjectsComponent } from './projects/projects.component';
 import { ValuationComponent } from './valuation/valuation.component';
 import { ContactformComponent } from '../contactform/contactform.component';
 import { TranslateModule, TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { AnimateOnScrollDirective } from '../shared/directives/animate-on-scroll.directive';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -19,7 +20,8 @@ import { Subscription } from 'rxjs';
         ProjectsComponent,
         ValuationComponent,
         ContactformComponent,
-        TranslateModule
+        TranslateModule,
+        AnimateOnScrollDirective
     ],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss'
