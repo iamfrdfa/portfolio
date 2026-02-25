@@ -3,7 +3,7 @@ $accentGreen: #3dcfb6 !default;
 .scrollTopPill {
     position: fixed;
     right: 18px;
-    bottom: 18px;
+    bottom: calc(18px + var(--footer-offset, 0px)); // 👈 wichtig
     z-index: 1000;
 
     width: 30px;
@@ -23,7 +23,11 @@ $accentGreen: #3dcfb6 !default;
     opacity: 0;
     pointer-events: none;
     transform: translateY(10px);
-    transition: opacity 180ms ease, transform 180ms ease, border-color 180ms ease;
+    transition:
+        opacity 180ms ease,
+        transform 180ms ease,
+        border-color 180ms ease,
+        bottom 220ms ease;
 
     &:hover {
         border-color: rgba($accentGreen, 0.85);
