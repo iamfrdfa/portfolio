@@ -26,6 +26,7 @@ main {
 
 .app-shell {
     position: relative;
+    isolation: isolate;
     z-index: 1;
 }
 
