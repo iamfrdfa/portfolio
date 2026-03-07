@@ -586,13 +586,12 @@ and (-webkit-device-pixel-ratio: 2) {
     }
 
     .marquee {
-        top: clamp(-180px, -28vw, -300px);
     }
 }
 
-@media screen and (max-height: 770px) {
+@media screen and (max-height: 932px) {
     .marquee {
-        top: clamp(-155px, -28vw, -300px);
+        top: clamp(130px, -28vw, -300px);
         rotate: -4deg;
     }
 }
