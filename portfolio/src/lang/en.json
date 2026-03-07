@@ -25,11 +25,11 @@
     "about": {
         "kicker": "WHO I AM",
         "headline": "About me",
-        "intro": "Hey there, I'm Friedrich! Write some information about yourself that is IT related. Why are you passionate about coding? What is your source of inspiration for improving your programming skills?",
+        "intro": "Hey, I’m Friedrich! I’m passionate about web development because it combines technology, creativity, and structured problem-solving in a way that produces visible results. I enjoy turning ideas into functional, clean, and user-friendly applications. I see new technologies not as obstacles, but as opportunities to expand my perspective and grow as a developer.",
         "rows": {
-            "r1": "Where are you based? Would you be open to working remotely or potentially relocating?",
-            "r2": "Show that you are open-minded. Are you enthusiastic about learning new technologies and continually improving your skills?",
-            "r3": "A brief description of your problem-solving approach. Do you learn from each challenge as you search for the most efficient or elegant solution? You can include keywords like: analytical thinking, creativity, persistence and collaboration."
+            "r1": "I am based in Maintal in Germany and open to remote work.",
+            "r2": "I enjoy learning new things and exploring new technologies with curiosity and enthusiasm. In IT, I believe it is important to stay curious, keep improving, and remain open to new approaches and solutions.",
+            "r3": "I approach challenges in a structured and persistent way. When something does not work right away, it motivates me to dig deeper and find the best possible solution. My strengths include analytical thinking, creativity, a willingness to learn, and strong collaboration skills. I always aim not only to solve problems, but to truly understand them."
         },
         "alt": {
             "self": "Self Image",
@@ -42,7 +42,7 @@
     "skills": {
         "kicker": "Technologies",
         "headline": "Skill Set",
-        "intro": "A short introduction of your skills. Highlight your experience of using different front-end technologies and emphasise your openness to learning and adapting to new technologies. Show how important it is for you to keep up with the rapid changes in web development.",
+        "intro": "I work with various frontend technologies and value clean, structured, and user-friendly solutions. At the same time, I continue to develop my existing skills and remain open to new technologies, tools, and ways of working. Because web development evolves so quickly, it is important to me to keep learning, stay adaptable, and keep up with current developments.",
         "ask": {
             "pre": "You need",
             "highlight": "another skill?"
@@ -109,13 +109,13 @@
         },
         "items": [
             {
-                "quote": "Friedrich has proven to be a reliable group partner, delivering excellent results and clear communication throughout the project.",
-                "author": "H. Janisch",
-                "role": "Team Partner"
+                "quote": "Friedrich has proven to be a reliable team partner, delivers excellent results, and communicates clearly throughout the entire project.",
+                "author": "Patrick Wethli",
+                "role": "Join Project"
             },
             {
-                "quote": "I had the good fortune of working with Friedrich on several frontend projects. His structured approach and sense for design stand out.",
-                "author": "A. Smith",
+                "quote": "I had the opportunity to work with Friedrich on a frontend project. His structured way of working and his strong sense of usability are truly valuable.",
+                "author": "Stefan Irrgang",
                 "role": "Frontend Dev"
             },
             {

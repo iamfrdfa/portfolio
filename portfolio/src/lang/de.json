@@ -25,11 +25,11 @@
     "about": {
         "kicker": "WER ICH BIN",
         "headline": "Über mich",
-        "intro": "Hey, ich bin Friedrich! Schreib hier IT-bezogene Informationen über dich. Warum brennst du fürs Programmieren? Was ist deine Inspiration, deine Skills stetig zu verbessern?",
+        "intro": "Hey, ich bin Friedrich! Ich begeistere mich für Webentwicklung, weil sie Technik, Kreativität und strukturiertes Problemlösen auf eine Weise verbindet, die sofort sichtbar wird. Es motiviert mich, aus Ideen funktionierende, saubere und benutzerfreundliche Anwendungen zu bauen. Neue Technologien sehe ich nicht als Hürde, sondern als Chance, meinen Horizont zu erweitern und als Entwickler besser zu werden.",
         "rows": {
-            "r1": "Wo befindest du dich? Wärst du offen für Remote-Arbeit oder gegebenenfalls einen Umzug?",
-            "r2": "Zeige, dass du aufgeschlossen bist. Begeisterst du dich dafür, neue Technologien zu lernen und deine Fähigkeiten kontinuierlich zu verbessern?",
-            "r3": "Beschreibe kurz deinen Problemlösungsansatz. Lernst du aus jeder Herausforderung, während du nach der effizientesten oder elegantesten Lösung suchst? Du kannst Stichworte wie analytisches Denken, Kreativität, Ausdauer und Zusammenarbeit einbauen."
+            "r1": "Ich bin in Maintal in Deutschland ansässig und offen für Remote-Arbeit.",
+            "r2": "Ich lerne gerne Neues und arbeite mich mit Interesse in neue Technologien ein. Für mich gehört es zur IT einfach dazu, neugierig zu bleiben, sich weiterzuentwickeln und offen für neue Lösungswege zu sein.",
+            "r3": "Ich gehe Herausforderungen strukturiert und mit Ausdauer an. Wenn etwas nicht sofort funktioniert, motiviert mich das eher, tiefer reinzugehen und die beste Lösung zu finden. Ich bringe analytisches Denken, Kreativität, Lernbereitschaft und Teamfähigkeit mit und versuche immer, Probleme nicht nur zu beheben, sondern wirklich zu verstehen."
         },
         "alt": {
             "self": "Porträtfoto",
@@ -42,7 +42,7 @@
     "skills": {
         "kicker": "Technologien",
         "headline": "Skill Set",
-        "intro": "Eine kurze Einführung in deine Fähigkeiten. Hebe deine Erfahrung mit verschiedenen Frontend-Technologien hervor und betone deine Offenheit, neue Technologien zu lernen und dich anzupassen. Zeige, wie wichtig es dir ist, mit den schnellen Entwicklungen im Web mitzuhalten.",
+        "intro": "Ich arbeite mit verschiedenen Frontend-Technologien und lege Wert auf saubere, strukturierte und benutzerfreundliche Lösungen. Dabei entwickle ich nicht nur meine bestehenden Fähigkeiten weiter, sondern bin auch offen für neue Technologien, Tools und Arbeitsweisen. Gerade weil sich die Webentwicklung so schnell verändert, ist es mir wichtig, ständig dazuzulernen, flexibel zu bleiben und mit aktuellen Entwicklungen Schritt zu halten.",
         "ask": {
             "pre": "Dir fehlt",
             "highlight": "eine weitere Fähigkeit?"
@@ -110,12 +110,12 @@
         "items": [
             {
                 "quote": "Friedrich hat sich als verlässlicher Team-Partner erwiesen, liefert hervorragende Ergebnisse und kommuniziert klar über den gesamten Projektverlauf.",
-                "author": "H. Janisch",
-                "role": "Team-Partner"
+                "author": "Patrick Wethli",
+                "role": "Join-Projekt"
             },
             {
-                "quote": "Ich hatte das Glück, mit Friedrich an mehreren Frontend-Projekten zu arbeiten. Seine strukturierte Arbeitsweise und sein Gespür für Design stechen hervor.",
-                "author": "A. Smith",
+                "quote": "Ich hatte das Glück, mit Friedrich an einem Frontend-Projekte zu arbeiten. Seine strukturierte Arbeitsweise und sein Gespür für Usability sind wertvoll.",
+                "author": "Stefan Irrgang",
                 "role": "Frontend-Entwickler"
             },
             {
