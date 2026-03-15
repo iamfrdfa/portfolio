@@ -6,11 +6,13 @@ import { FooterComponent } from './footer/footer.component';
 import { ScrollService } from './shared/services/scroll.service';
 import { ScrollTopComponent } from './shared/scroll-top/scroll-top.component';
 import { MouseSpotlightComponent } from './shared/ui/mouse-spotlight/mouse-spotlight.component';
+import { OverlayHostComponent } from './shared/overlay-host/overlay-host.component';
+
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [RouterOutlet, HeaderComponent, FooterComponent, ScrollTopComponent, MouseSpotlightComponent],
+    imports: [RouterOutlet, HeaderComponent, FooterComponent, ScrollTopComponent, MouseSpotlightComponent, OverlayHostComponent],
     template: `
         <app-mouse-spotlight></app-mouse-spotlight>
 
@@ -19,6 +21,7 @@ import { MouseSpotlightComponent } from './shared/ui/mouse-spotlight/mouse-spotl
         <main>
             <router-outlet></router-outlet>
         </main>
+        <app-overlay-host></app-overlay-host>
 
         <app-footer></app-footer>
 

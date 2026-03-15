@@ -1,0 +1,486 @@
+@use 'styles/_variables' as *;
+
+:host {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    pointer-events: none;
+}
+
+/* ================= Overlay ================= */
+.overlayBackdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .55);
+    backdrop-filter: blur(2px);
+    z-index: 10000;
+    pointer-events: auto;
+
+    animation: overlay-backdrop-in 220ms ease-out;
+}
+
+.overlayPanel {
+    position: fixed;
+    inset: 32px;
+    margin: auto;
+    width: min(1248px, 92vw);
+    height: min(86vh, 656px);
+    background: radial-gradient(120% 120% at 0% 0%, #0f2623 0%, #122e2a 60%, #0f2623 100%);
+    border: 1px solid $primaryColor;
+    border-radius: 20px;
+    z-index: 10001;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,.35);
+    pointer-events: auto;
+
+    animation: overlay-panel-in 280ms cubic-bezier(.16, 1, .3, 1);
+    transform-origin: center center;
+}
+
+/* Header */
+.overlayHeader {
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px 16px 0 16px;
+}
+
+.iconBtn {
+    background: transparent;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color .2s ease;
+}
+
+/* Icons */
+.icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    transition: background-color .25s ease, transform .25s ease;
+}
+
+.icon.close {
+    -webkit-mask: url('/img/icons/cancel-cross-white.svg') no-repeat center / contain;
+    mask: url('/img/icons/cancel-cross-white.svg') no-repeat center / contain;
+
+    &:hover {
+        background-color: $primaryColor;
+        transform: scale(1.35);
+    }
+}
+
+/* Content */
+.overlayContent {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    padding: 24px 32px 0 32px;
+}
+
+.overlayLeft {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: #e8f5f2;
+
+    .overlayIndex {
+        font-size: 92px;
+        line-height: 1;
+        margin: 0;
+        color: $primaryColor;
+        font-weight: 700;
+    }
+
+    .overlayTitle {
+        font-size: 64px;
+        margin: 0 0 8px 0;
+        font-weight: 700;
+    }
+
+    .overlayQuestion {
+        font-family: 'Fira Code', monospace;
+        color: $primaryColor;
+        margin: 16px 0 0 0;
+        font-size: 28px;
+    }
+
+    .overlayDesc {
+        margin: 0;
+        opacity: .9;
+        max-width: 60ch;
+    }
+
+    .techRow {
+        display: flex;
+        gap: 14px;
+        margin-top: 8px;
+        flex-wrap: wrap;
+
+        .techIcon {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            width: auto;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            letter-spacing: .2px;
+
+            img {
+                width: 24px;
+                height: 24px;
+                display: inline-block;
+            }
+
+            p {
+                font-size: 16px;
+                margin: 0;
+            }
+        }
+    }
+
+    .ctaRow {
+        display: flex;
+        gap: 16px;
+        margin-top: 8px;
+        flex-wrap: wrap;
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,.25);
+            color: #fff;
+            text-decoration: none;
+            transition: background-color .2s ease, border-color .2s ease, color .2s ease;
+
+            &:hover {
+                background: rgba(255,255,255,.08);
+                border-color: $primaryColor;
+                color: $primaryColor;
+
+                .arrowOut {
+                    background-color: $primaryColor;
+                    transform: scale(1.35);
+                }
+            }
+
+            .arrowOut {
+                width: 18px;
+                height: 18px;
+                background-color: #fff;
+                -webkit-mask: url('/img/icons/arrow_outward.svg') no-repeat center / contain;
+                mask: url('/img/icons/arrow_outward.svg') no-repeat center / contain;
+                transition: background-color .2s ease, transform .25s ease;
+            }
+        }
+    }
+}
+
+.overlayRight {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        width: 100%;
+        max-width: 640px;
+        height: auto;
+        border-radius: 18px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.25);
+        background: #0e2320;
+    }
+}
+
+/* Footer */
+.overlayFooter {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 32px 24px 32px;
+
+    button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: #e8f5f2;
+        opacity: .9;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 6px 8px;
+        border-radius: 10px;
+        transition: color .2s ease, background .2s ease, transform .2s ease;
+
+        &:hover {
+            color: $primaryColor;
+            background: rgba(255,255,255,.06);
+            transform: scale(1.05);
+        }
+
+        .icon {
+            width: 18px;
+            height: 18px;
+            background: currentColor;
+        }
+
+        .arrowLeft {
+            -webkit-mask: url('/img/icons/arrow-left.svg') no-repeat center / contain;
+            mask: url('/img/icons/arrow-left.svg') no-repeat center / contain;
+        }
+
+        .arrowRight {
+            -webkit-mask: url('/img/icons/arrow-right.svg') no-repeat center / contain;
+            mask: url('/img/icons/arrow-right.svg') no-repeat center / contain;
+        }
+    }
+
+    .prevLink {
+        margin-right: auto;
+    }
+}
+
+/* ===== Animations ===== */
+@keyframes overlay-backdrop-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes overlay-panel-in {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .overlayBackdrop,
+    .overlayPanel {
+        animation: none !important;
+    }
+}
+
+/* Responsive */
+@media (max-width: 920px) {
+    .overlayPanel {
+        inset: 16px;
+        height: min(88vh, 820px);
+    }
+
+    .overlayContent {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .overlayLeft .overlayTitle {
+        font-size: 42px;
+    }
+
+    .overlayLeft .overlayIndex {
+        font-size: 64px;
+    }
+}
+
+@media (max-width: 800px) {
+    .overlayPanel {
+        height: auto !important;
+    }
+}
+
+@media (max-width: 500px) {
+    .overlayPanel {
+        inset: 8px;
+        width: 94vw;
+        height: auto;
+        min-height: 80vh;
+        padding: 0;
+        overflow: auto;
+        scrollbar-width: none;
+    }
+
+    .overlayHeader {
+        padding: 8px;
+    }
+
+    .overlayContent {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 16px;
+    }
+
+    .overlayLeft {
+        .overlayIndex {
+            font-size: 48px;
+        }
+
+        .overlayTitle {
+            font-size: 32px;
+            line-height: 1.1;
+        }
+
+        .overlayQuestion {
+            font-size: 20px;
+        }
+
+        .overlayDesc {
+            font-size: 14px;
+        }
+
+        .techRow {
+            gap: 8px;
+
+            .techIcon {
+                font-size: 12px;
+                padding: 4px 8px;
+            }
+        }
+
+        .ctaRow {
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+
+            .btn {
+                width: 90%;
+                justify-content: center;
+            }
+        }
+    }
+
+    .overlayRight img {
+        max-width: 100%;
+        border-radius: 10px;
+    }
+
+    .overlayFooter {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 8px 16px 16px 16px;
+
+        .prevLink,
+        .nextLink {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .prevLink {
+            margin-right: 0;
+        }
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .overlayPanel {
+        inset: 16px;
+        width: 94vw;
+        height: min(88vh, 820px);
+        overflow: auto;
+        scrollbar-width: none;
+    }
+
+    .overlayContent {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .overlayLeft .overlayTitle {
+        font-size: 40px;
+    }
+
+    .overlayLeft .overlayIndex {
+        font-size: 64px;
+    }
+
+    .overlayRight img {
+        border-radius: 14px;
+    }
+
+    .overlayFooter {
+        justify-content: space-between;
+        padding: 16px 24px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .overlayPanel {
+        width: 90vw;
+        height: min(88vh, 100%);
+        overflow: auto;
+        scrollbar-width: none;
+    }
+
+    .overlayContent {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+        padding: 24px;
+    }
+
+    .overlayLeft .overlayTitle {
+        font-size: 48px;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+    .overlayPanel {
+        width: min(1100px, 92vw);
+        height: min(86vh, 760px);
+    }
+
+    .overlayLeft .overlayTitle {
+        font-size: 56px;
+    }
+}
+
+@media (min-width: 1441px) {
+    .overlayPanel {
+        width: 1200px;
+        height: 760px;
+    }
+}
+
+/* ===== Exit Animations ===== */
+
+.overlayBackdrop.is-leaving {
+    animation: overlay-backdrop-out 220ms ease forwards;
+}
+
+.overlayPanel.is-leaving {
+    animation: overlay-panel-out 240ms cubic-bezier(.4,0,.2,1) forwards;
+}
+
+@keyframes overlay-backdrop-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes overlay-panel-out {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(14px) scale(.96);
+    }
+}

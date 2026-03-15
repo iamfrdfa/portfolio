@@ -5,7 +5,7 @@
     background-color: $secondaryColorBG;
     display: flex;
     flex-direction: column;
-    align-items: center; /* zentriert Heading & Grid-Rahmen */
+    align-items: center;
     justify-content: center;
     width: 94%;
     height: 100%;
@@ -14,7 +14,6 @@
 
 .projectsHeading,
 .projectsGrid {
-    /* Auf einheitliches Alignment-System umgestellt */
     width: min(var(--container-max), 100% - 2 * var(--gutter));
     align-items: flex-start;
 }
@@ -24,7 +23,9 @@
     flex-direction: column;
     margin-top: 32px;
 
-    .greenBoxHeadline { @include greenBoxHeadline; }
+    .greenBoxHeadline {
+        @include greenBoxHeadline;
+    }
 
     .textAboveBoxGreen {
         font-size: 24px;
@@ -92,7 +93,9 @@
             font-weight: bold;
         }
 
-        > .outwardArrow { display: none; }
+        > .outwardArrow {
+            display: none;
+        }
     }
 
     .projectGridItemRight {
@@ -105,7 +108,9 @@
         cursor: pointer;
         background-color: $hoverColorSkills;
 
-        .projectGridItemLeft > .outwardArrow { display: block; }
+        .projectGridItemLeft > .outwardArrow {
+            display: block;
+        }
     }
 }
 
@@ -130,7 +135,9 @@
     opacity: 1;
 }
 
-.greenPipe { color: $primaryColor; }
+.greenPipe {
+    color: $primaryColor;
+}
 
 .thumbnail {
     > img {
@@ -141,276 +148,10 @@
     }
 }
 
-/* ================= Overlay ================= */
-.overlayBackdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, .55);
-    backdrop-filter: blur(2px);
-    z-index: 80;
-}
-
-.overlayPanel {
-    position: fixed;
-    inset: 32px;
-    margin: auto;
-    width: min(1248px, 92vw);
-    height: min(86vh, 656px);
-    background: radial-gradient(120% 120% at 0% 0%, #0f2623 0%, #122e2a 60%, #0f2623 100%);
-    border: 1px solid $primaryColor;
-    border-radius: 20px;
-    z-index: 90;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0,0,0,.35);
-}
-
-/* Header mit Close-X */
-.overlayHeader {
-    display: flex;
-    justify-content: flex-end;
-    padding: 16px 16px 0 16px;
-}
-
-.iconBtn {
-    background: transparent;
-    border: none;
-    padding: 8px;
-    cursor: pointer;
-    border-radius: 10px;
-    transition: background-color .2s ease;
-
-}
-
-/* === Close-Icon (X) === */
-.icon {
-    display: inline-block;
-    width: 40px;       /* vorher 22px → größer */
-    height: 40px;
-    background-color: #fff;
-    transition: background-color .25s ease, transform .25s ease;
-}
-
-.icon.close {
-    -webkit-mask: url('/img/icons/cancel-cross-white.svg') no-repeat center / contain;
-    mask: url('/img/icons/cancel-cross-white.svg') no-repeat center / contain;
-
-    /* Hover-Zustand */
-    &:hover {
-        background-color: $primaryColor; /* Farbe auf Primärfarbe ändern */
-        transform: scale(1.35);           /* leichtes Vergrößern (~10%) */
-    }
-}
-
-
-/* Inhalt: zwei Spalten */
-.overlayContent {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    padding: 24px 32px 0 32px;
-}
-
-.overlayLeft {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    color: #e8f5f2;
-
-    .overlayIndex {
-        font-size: 92px;
-        line-height: 1;
-        margin: 0;
-        color: $primaryColor;
-        font-weight: 700;
-    }
-    .overlayTitle {
-        font-size: 64px;
-        margin: 0 0 8px 0;
-        font-weight: 700;
-    }
-    .overlayQuestion {
-        font-family: 'Fira Code', monospace;
-        color: $primaryColor;
-        margin: 16px 0 0 0;
-        font-size: 28px;
-    }
-    .overlayDesc {
-        margin: 0;
-        opacity: .9;
-        max-width: 60ch;
-    }
-
-    .techRow {
-        display: flex;
-        gap: 14px;
-        margin-top: 8px;
-
-        .techIcon {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            width: auto;
-            padding: 6px 10px;
-            border-radius: 8px;
-            font-size: 14px;
-            letter-spacing: .2px;
-
-            img {
-                width: 24px;
-                height: 24px;
-                display: inline-block;
-            }
-
-            p {
-                font-size: 16px;
-            }
-        }
-    }
-
-    .ctaRow {
-        display: flex;
-        gap: 16px;
-        margin-top: 8px;
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 18px;
-            border-radius: 999px;
-            border: 1px solid rgba(255,255,255,.25);
-            color: #fff;
-            text-decoration: none;
-            transition: background-color .2s ease, border-color .2s ease, color .2s ease;
-
-            &:hover {
-                background: rgba(255,255,255,.08);
-                border-color: $primaryColor;
-                color: $primaryColor;
-
-                .arrowOut {
-                    background-color: $primaryColor;
-                    transform: scale(1.35); /* ~35 % größer */
-                }
-            }
-
-            .arrowOut {
-                width: 18px;
-                height: 18px;
-                background-color: #fff;
-                -webkit-mask: url('/img/icons/arrow_outward.svg') no-repeat center / contain;
-                mask: url('/img/icons/arrow_outward.svg') no-repeat center / contain;
-                transition: background-color .2s ease, transform .25s ease; /* 👈 Übergang für Farbe & Skalierung */
-            }
-        }
-    }
-
-    .prevLink {
-        margin-top: auto;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        color: #e8f5f2;
-        opacity: .9;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        padding: 6px 8px;
-        border-radius: 10px;
-        &:hover { color: $primaryColor; background: rgba(255,255,255,.06); }
-        .arrowLeft {
-            width: 18px; height: 18px; background: currentColor;
-            -webkit-mask: url('/img/icons/arrow-left.svg') no-repeat center / contain;
-            mask: url('/img/icons/arrow-left.svg') no-repeat center / contain;
-        }
-    }
-}
-
-.overlayRight {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    img {
-        width: 100%;
-        max-width: 640px;
-        height: auto;
-        border-radius: 18px;
-        box-shadow: 0 10px 30px rgba(0,0,0,.25);
-        background: #0e2320;
-    }
-}
-
-/* Footer mit Prev- & Next-Link */
-.overlayFooter {
-    display: flex;
-    justify-content: flex-end; /* Next bleibt rechts, egal ob Prev da ist */
-    align-items: center;
-    padding: 0 32px 24px 32px;
-
-    /* Gemeinsamer Button-Style */
-    button {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        color: #e8f5f2;
-        opacity: .9;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        padding: 6px 8px;
-        border-radius: 10px;
-        transition: color .2s ease, background .2s ease, transform .2s ease;
-
-        &:hover {
-            color: $primaryColor;
-            background: rgba(255,255,255,.06);
-            transform: scale(1.05);
-        }
-
-        .icon {
-            width: 18px;
-            height: 18px;
-            background: currentColor;
-        }
-        .arrowLeft {
-            -webkit-mask: url('/img/icons/arrow-left.svg') no-repeat center / contain;
-            mask: url('/img/icons/arrow-left.svg') no-repeat center / contain;
-        }
-        .arrowRight {
-            -webkit-mask: url('/img/icons/arrow-right.svg') no-repeat center / contain;
-            mask: url('/img/icons/arrow-right.svg') no-repeat center / contain;
-        }
-    }
-
-    /* Nur wenn vorhanden -> schiebt Next nach rechts */
-    .prevLink {
-        margin-right: auto;
-    }
-}
-
-/* Responsive Tuning */
-@media (max-width: 920px) {
-    .overlayPanel { inset: 16px; height: min(88vh, 820px); }
-    .overlayContent { grid-template-columns: 1fr; gap: 20px; }
-    //.overlayRight { order: -1; }
-    .overlayLeft .overlayTitle { font-size: 42px; }
-    .overlayLeft .overlayIndex { font-size: 64px; }
-}
-
 /* ---------------------------------------
    Responsive Breakpoints
-   --------------------------------------- */
+--------------------------------------- */
 
-/* <= 1140px */
-@media (max-width: 1140px) {
-    .techIcon {
-        padding: 0 !important;
-    }
-}
-
-/* <= 1100px */
 @media (max-width: 1100px) {
     .projectsGrid {
         gap: 0;
@@ -429,7 +170,6 @@
     }
 }
 
-/* <= 992px */
 @media (max-width: 992px) {
     .projectsHeading {
         h1 {
@@ -446,9 +186,7 @@
     }
 }
 
-/* <= 600 */
 @media (max-width: 600px) {
-
     .projectsHeading {
         h1 {
             font-size: clamp(36px, 4vw, 36px) !important;
@@ -464,7 +202,6 @@
     }
 }
 
-/* <= 480 */
 @media (max-width: 480px) {
     .projectsHeading {
         h1 {
@@ -481,21 +218,18 @@
     }
 }
 
-/* <= 800px */
 @media (max-width: 800px) {
-    /* Row-Container mittig ausrichten */
     .projectsGrid {
-        justify-content: center;      /* zentriert die linke Spalte */
+        justify-content: center;
         align-items: center;
-        gap: 16px;                    /* etwas kompakter */
+        gap: 16px;
     }
 
-    /* linke Spalte/Card zentrieren und begrenzen */
     .leftProjectGrid {
-        flex: 0 1 auto;               /* kein 55% Layout mehr */
+        flex: 0 1 auto;
         min-width: 0;
         display: flex;
-        justify-content: center;       /* Card mittig */
+        justify-content: center;
         align-items: center;
         width: 100%;
     }
@@ -503,11 +237,10 @@
     .projectCard {
         max-width: min(720px, 100% - 2 * var(--gutter));
         margin-inline: auto;
-        height: 100px;                 /* optional kompakter */
+        height: 100px;
         padding: 0 24px;
     }
 
-    /* Thumbnails vollständig deaktivieren */
     .rightProjectGrid {
         display: none !important;
         visibility: hidden !important;
@@ -516,7 +249,6 @@
         transform: none !important;
     }
 
-    /* Hover darf nichts einblenden */
     .projectsGrid:has(.projectCard:hover) .rightProjectGrid {
         display: none !important;
         visibility: hidden !important;
@@ -525,93 +257,10 @@
         transform: none !important;
     }
 
-    /* vorhandene Offsets neutralisieren */
     .projectsGrid:nth-of-type(2) .rightProjectGrid,
     .projectsGrid:nth-of-type(3) .rightProjectGrid,
     .projectsGrid:nth-of-type(4) .rightProjectGrid {
         transform: none !important;
-    }
-
-    .overlayPanel {
-        height: auto !important;
-    }
-}
-
-/* --- Basis: mobile-first (unter 480px) --- */
-@media (max-width: 500px) {
-    .overlayPanel {
-        inset: 8px;
-        width: 94vw;
-        height: auto;
-        min-height: 80vh;
-        padding: 0;
-        overflow: auto;
-        scrollbar-width: none;
-    }
-
-    .overlayHeader {
-        padding: 8px;
-    }
-
-    .overlayContent {
-        grid-template-columns: 1fr;
-        gap: 16px;
-        padding: 16px;
-    }
-
-    .overlayLeft {
-        .overlayIndex {
-            font-size: 48px;
-        }
-        .overlayTitle {
-            font-size: 32px;
-            line-height: 1.1;
-        }
-        .overlayQuestion {
-            font-size: 20px;
-        }
-        .overlayDesc {
-            font-size: 14px;
-        }
-
-        .techRow {
-            flex-wrap: wrap;
-            gap: 8px;
-            .techIcon {
-                font-size: 12px;
-                padding: 4px 8px;
-            }
-        }
-
-        .ctaRow {
-            flex-direction: column;
-            gap: 10px;
-            align-items: center;
-            .btn {
-                width: 90%;
-                justify-content: center;
-            }
-        }
-    }
-
-    .overlayRight img {
-        max-width: 100%;
-        border-radius: 10px;
-    }
-
-    .overlayFooter {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 8px;
-        padding: 8px 16px 16px 16px;
-
-        .prevLink,
-        .nextLink {
-            width: 100%;
-            justify-content: center;
-        }
-
-        .prevLink { margin-right: 0; }
     }
 
     .projectCard {
@@ -622,91 +271,5 @@
         .projectGridItemLeft {
             max-width: 100% !important;
         }
-    }
-}
-
-/* --- Tablets (481px bis 768px) --- */
-@media (min-width: 481px) and (max-width: 768px) {
-    .overlayPanel {
-        inset: 16px;
-        width: 94vw;
-        height: min(88vh, 820px);
-        overflow: auto;
-        scrollbar-width: none;
-    }
-
-    .overlayContent {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 20px;
-    }
-
-    .overlayLeft .overlayTitle {
-        font-size: 40px;
-    }
-
-    .overlayLeft .overlayIndex {
-        font-size: 64px;
-    }
-
-    .overlayRight img {
-        //max-width: 90%;
-        border-radius: 14px;
-    }
-
-    .overlayFooter {
-        justify-content: space-between;
-        padding: 16px 24px;
-    }
-}
-
-/* --- Small Laptops (769px bis 1024px) --- */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .overlayPanel {
-        width: 90vw;
-        height: min(88vh, 100%);
-        overflow: auto;
-        scrollbar-width: none;
-    }
-
-    .overlayContent {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 24px;
-        padding: 24px;
-    }
-
-    .overlayLeft .overlayTitle {
-        font-size: 48px;
-    }
-
-    .projectsWrapper {
-        margin-left: unset !important;
-    }
-
-    .projectsWrapper > div {
-        margin-inline: unset;
-    }
-}
-
-/* --- Desktop Large (1025px bis 1440px) --- */
-@media (min-width: 1025px) and (max-width: 1440px) {
-    .overlayPanel {
-        width: min(1100px, 92vw);
-        height: min(86vh, 760px);
-    }
-
-    .overlayLeft .overlayTitle {
-        font-size: 56px;
-    }
-}
-
-/* --- Ultra-Wide (ab 1441px) --- */
-@media (min-width: 1441px) {
-    .overlayPanel {
-        width: 1200px;
-        height: 760px;
     }
 }

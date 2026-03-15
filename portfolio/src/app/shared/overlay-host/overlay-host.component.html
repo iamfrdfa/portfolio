@@ -1,0 +1,97 @@
+<ng-container *ngIf="overlay.isOpen || overlay.isClosing">
+
+    <div
+        class="overlayBackdrop"
+        [class.is-leaving]="overlay.isClosing"
+        (click)="overlay.close()"
+        aria-hidden="true"
+    ></div>
+
+    <section
+        class="overlayPanel"
+        [class.is-leaving]="overlay.isClosing"
+        role="dialog"
+        aria-modal="true"
+        [attr.aria-label]="overlay.project?.name"
+        (click)="$event.stopPropagation()"
+    >
+
+        <ng-container *ngIf="overlay.project as p">
+
+            <!-- Header -->
+            <header class="overlayHeader">
+                <button
+                    type="button"
+                    class="iconBtn closeBtn"
+                    (click)="overlay.close()"
+                >
+                    <span class="icon close"></span>
+                </button>
+            </header>
+
+            <!-- Content -->
+            <div class="overlayContent">
+
+                <div class="overlayLeft">
+
+                    <h2 class="overlayIndex">
+                        {{ (overlay.current + 1) | number: '2.0' }}
+                    </h2>
+
+                    <h3 class="overlayTitle">
+                        {{ p.name }}
+                    </h3>
+
+                    <h4 class="overlayQuestion">
+                        {{ 'projects.overlay.question' | translate }}
+                    </h4>
+
+                    <p class="overlayDesc">
+                        {{ p.descriptionKey | translate }}
+                    </p>
+
+                    <div class="techRow">
+                        <ng-container *ngFor="let t of p.tech">
+                            <span class="techIcon">
+                                <img [src]="getIcon(t)" />
+                                <p>&nbsp; {{ ('projects.tech.' + t) | translate }}</p>
+                            </span>
+                        </ng-container>
+                    </div>
+
+                </div>
+
+                <div class="overlayRight">
+                    <img [src]="p.image" [alt]="p.name"/>
+                </div>
+
+            </div>
+
+            <!-- Footer -->
+            <footer class="overlayFooter">
+
+                <button
+                    *ngIf="overlay.hasPrev"
+                    (click)="overlay.prev()"
+                    class="prevLink"
+                >
+                    <span class="icon arrowLeft"></span>
+                    Prev
+                </button>
+
+                <button
+                    *ngIf="overlay.hasNext"
+                    (click)="overlay.next()"
+                    class="nextLink"
+                >
+                    Next
+                    <span class="icon arrowRight"></span>
+                </button>
+
+            </footer>
+
+        </ng-container>
+
+    </section>
+
+</ng-container>

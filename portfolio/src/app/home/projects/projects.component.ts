@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { OverlayService } from '../../shared/services/overlay.service';
 
 type Tech =
     | 'JavaScript'
@@ -31,6 +32,8 @@ type Project = {
     styleUrl: './projects.component.scss',
 })
 export class ProjectsComponent {
+    constructor(private overlay: OverlayService) {}
+
     /** Zuordnung Tech → Icon (klein). Pfade bei Bedarf anpassen. */
     private iconMap: Record<Tech, string> = {
         JavaScript: '/img/icons/javascript-small.svg',
@@ -73,27 +76,9 @@ export class ProjectsComponent {
         },*/
     ];
 
-    // ---------- Overlay-State ----------
-    isOpen = false;
-    current = 0;
-
-    openOverlay(index: number) {
-        this.current = index;
-        this.isOpen = true;
-        document.body.style.overflow = 'hidden';
+    openOverlay(index: number): void {
+        this.overlay.open(this.projects, index);
     }
-    closeOverlay() {
-        this.isOpen = false;
-        document.body.style.overflow = '';
-    }
-    @HostListener('document:keydown.escape') onEsc() {
-        if (this.isOpen) this.closeOverlay();
-    }
-
-    prev() { if (this.hasPrev) this.current--; }
-    next() { if (this.hasNext) this.current++; }
-    get hasPrev() { return this.current > 0; }
-    get hasNext() { return this.current < this.projects.length - 1; }
 
     /** Icon-Pfad für ein Tech-Label. Fallback: HTML-Icon */
     getIcon(label: Tech): string {
