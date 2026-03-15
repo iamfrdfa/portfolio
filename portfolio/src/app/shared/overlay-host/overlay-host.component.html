@@ -17,7 +17,6 @@
     >
 
         <ng-container *ngIf="overlay.project as p">
-
             <!-- Header -->
             <header class="overlayHeader">
                 <button
@@ -59,12 +58,36 @@
                         </ng-container>
                     </div>
 
+                    <div class="ctaRow">
+                        <a
+                            class="btn gh"
+                            *ngIf="p.repoUrl"
+                            [href]="p.repoUrl"
+                            target="_blank"
+                            rel="noopener"
+                            (click)="$event.stopPropagation()"
+                        >
+                            {{ 'projects.overlay.github' | translate }}
+                            <span class="arrowOut"></span>
+                        </a>
+
+                        <a
+                            class="btn live"
+                            *ngIf="p.liveUrl"
+                            [href]="p.liveUrl"
+                            target="_blank"
+                            rel="noopener"
+                            (click)="$event.stopPropagation()"
+                        >
+                            {{ 'projects.overlay.live' | translate }}
+                            <span class="arrowOut"></span>
+                        </a>
+                    </div>
                 </div>
 
                 <div class="overlayRight">
                     <img [src]="p.image" [alt]="p.name"/>
                 </div>
-
             </div>
 
             <!-- Footer -->
