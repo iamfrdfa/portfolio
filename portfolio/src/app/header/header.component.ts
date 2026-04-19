@@ -1,8 +1,7 @@
-import { Component, Inject, inject, computed } from '@angular/core';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { LanguageToggleComponent } from '../shared/ui/language-toggle/language-toggle.component';
-import { LanguageService } from '../shared/services/language.service';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
@@ -13,21 +12,6 @@ import { TranslateModule } from '@ngx-translate/core';
     imports: [CommonModule, RouterLink, RouterLinkActive, LanguageToggleComponent, TranslateModule],
 })
 export class HeaderComponent {
-    private langSvc = inject(LanguageService);
-
-    isDE = computed(() => this.langSvc.lang() === 'de');
-    isEN = computed(() => this.langSvc.lang() === 'en');
-
-    constructor(@Inject(DOCUMENT) private document: Document) {}
-
-    switchTo(lang: 'de' | 'en') {
-        this.langSvc.setLang(lang);
-    }
-
-    toggleLang() {
-        this.langSvc.toggle();
-    }
-
     isMenuOpen = false;
 
     toggleMenu() {

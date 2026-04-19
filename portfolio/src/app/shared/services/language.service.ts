@@ -14,7 +14,6 @@ export class LanguageService {
     lang = this._lang.asReadonly();
 
     constructor(private translate: TranslateService) {
-        // Auf Signal-Änderungen reagieren (einziger „Writer“ ist setLang/toggle)
         effect(() => {
             const l = this._lang();
             this.translate.use(l);
@@ -22,13 +21,11 @@ export class LanguageService {
             document.documentElement.setAttribute('lang', l);
         });
 
-        // Sicherstellen, dass Translate eine Startsprache hat (Englisch)
         if (!this.translate.currentLang) {
-            this.translate.use(this._lang()); // 'en' durch initLang()
+            this.translate.use(this._lang());
         }
     }
 
-    /** Aktuellen Wert als normales Getter (optional) */
     get current(): LangCode {
         return this._lang();
     }
@@ -44,11 +41,10 @@ export class LanguageService {
     }
 }
 
-/** Startsprache ermitteln – Default: 'en' */
 function initLang(): LangCode {
     const saved = (localStorage.getItem(STORAGE_KEY) || '').toLowerCase();
     if (saved === 'de' || saved === 'en') return saved as LangCode;
 
     const n = (navigator.language || '').toLowerCase();
-    return n.startsWith('de') ? 'de' : 'en'; // Browser-Fallback
+    return n.startsWith('de') ? 'de' : 'en';
 }

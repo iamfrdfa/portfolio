@@ -13,20 +13,7 @@ import { OverlayHostComponent } from './shared/overlay-host/overlay-host.compone
     selector: 'app-root',
     standalone: true,
     imports: [RouterOutlet, HeaderComponent, FooterComponent, ScrollTopComponent, MouseSpotlightComponent, OverlayHostComponent],
-    template: `
-        <app-mouse-spotlight></app-mouse-spotlight>
-
-        <app-header></app-header>
-
-        <main>
-            <router-outlet></router-outlet>
-        </main>
-        <app-overlay-host></app-overlay-host>
-
-        <app-footer></app-footer>
-
-        <app-scroll-top></app-scroll-top>
-    `,
+    templateUrl: './app.component.html',
 })
 export class AppComponent {
     private scrollSvc = inject(ScrollService);
