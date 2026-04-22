@@ -65,15 +65,15 @@ export class ProjectsComponent {
             repoUrl: 'https://github.com/iamfrdfa/el_pollo_loco',
             liveUrl: 'https://faraji.dev/projects/epl/',
         },
-        /*{
+        {
             key: 'dabubble',
             name: 'DA Bubble',
             tech: ['Angular', 'Firebase', 'TypeScript'],
             image: '/img/thumbnails/dabubble-overlay.svg',
             descriptionKey: 'projects.items.dabubble.desc',
-            repoUrl: '',
-            liveUrl: '',
-        },*/
+            repoUrl: 'https://github.com/iamfrdfa/DABubble',
+            liveUrl: 'https://da-bubble-da44d.web.app/',
+        },
     ];
 
     openOverlay(index: number): void {
