@@ -72,7 +72,7 @@ export class ProjectsComponent {
             image: '/img/thumbnails/dabubble-overlay.svg',
             descriptionKey: 'projects.items.dabubble.desc',
             repoUrl: 'https://github.com/iamfrdfa/DABubble',
-            liveUrl: 'https://da-bubble-da44d.web.app/',
+            liveUrl: 'https://faraji.dev/projects/dabubble/',
         },
     ];
 
