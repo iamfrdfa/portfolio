@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, ChangeDetectionStrategy } from '@angular/core';
 
 import { TranslateModule } from '@ngx-translate/core';
 import { OverlayService } from '../../shared/services/overlay.service';
@@ -29,6 +29,7 @@ type Project = {
     standalone: true,
     imports: [TranslateModule],
     templateUrl: './projects.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './projects.component.scss',
 })
 export class ProjectsComponent {

@@ -1,4 +1,4 @@
-import { Component, inject, signal, computed } from '@angular/core';
+import { Component, inject, signal, computed, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
@@ -9,6 +9,7 @@ import { TranslateModule } from '@ngx-translate/core';
     standalone: true,
     imports: [FormsModule, TranslateModule],
     templateUrl: './contactform.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './contactform.component.scss'
 })
 export class ContactformComponent {

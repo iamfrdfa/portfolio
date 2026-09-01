@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, ChangeDetectionStrategy } from '@angular/core';
 
 import { LanguageService, LangCode } from '../../services/language.service';
 
@@ -26,6 +26,7 @@ import { LanguageService, LangCode } from '../../services/language.service';
       </span>
         </button>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./language-toggle.component.scss']
 })
 export class LanguageToggleComponent {

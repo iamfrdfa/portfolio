@@ -1,9 +1,10 @@
-import { Component, HostListener, AfterViewInit, OnDestroy, ElementRef, inject } from '@angular/core';
+import { Component, HostListener, AfterViewInit, OnDestroy, ElementRef, inject, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'app-scroll-top',
     standalone: true,
     templateUrl: './scroll-top.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './scroll-top.component.scss',
 })
 export class ScrollTopComponent implements AfterViewInit, OnDestroy {

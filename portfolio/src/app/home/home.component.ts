@@ -1,5 +1,5 @@
 
-import { Component, OnDestroy, AfterViewInit, NgZone, inject } from '@angular/core';
+import { Component, OnDestroy, AfterViewInit, NgZone, inject, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AboutmeComponent } from './aboutme/aboutme.component';
 import { SkillsComponent } from './skills/skills.component';
@@ -23,6 +23,7 @@ import { Subscription } from 'rxjs';
     AnimateOnScrollDirective
 ],
     templateUrl: './home.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './home.component.scss'
 })
 export class HomeComponent implements AfterViewInit, OnDestroy {

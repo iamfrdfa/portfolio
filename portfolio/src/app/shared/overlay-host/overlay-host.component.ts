@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { OverlayService } from '../services/overlay.service';
@@ -8,6 +8,7 @@ import { OverlayService } from '../services/overlay.service';
     standalone: true,
     imports: [CommonModule, TranslateModule, DecimalPipe],
     templateUrl: './overlay-host.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './overlay-host.component.scss',
 })
 export class OverlayHostComponent {

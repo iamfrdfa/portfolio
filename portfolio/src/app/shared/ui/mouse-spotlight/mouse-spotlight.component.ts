@@ -1,9 +1,10 @@
-import { Component, ElementRef, NgZone, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, NgZone, OnDestroy, OnInit, Renderer2, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'app-mouse-spotlight',
     standalone: true,
     templateUrl: './mouse-spotlight.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './mouse-spotlight.component.scss',
 })
 export class MouseSpotlightComponent implements OnInit, OnDestroy {

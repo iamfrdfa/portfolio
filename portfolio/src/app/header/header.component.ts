@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { LanguageToggleComponent } from '../shared/ui/language-toggle/language-toggle.component';
@@ -9,6 +9,7 @@ import { TranslateModule } from '@ngx-translate/core';
     standalone: true,
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [RouterLink, RouterLinkActive, LanguageToggleComponent, TranslateModule],
 })
 export class HeaderComponent {

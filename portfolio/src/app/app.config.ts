@@ -1,6 +1,6 @@
 import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
-import { provideHttpClient, HttpClient } from '@angular/common/http';
+import { provideHttpClient, HttpClient, withXhr } from '@angular/common/http';
 import { routes } from './app.routes';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -14,7 +14,7 @@ export const appConfig: ApplicationConfig = {
     providers: [
         provideZoneChangeDetection({ eventCoalescing: true }),
 
-        provideHttpClient(),
+        provideHttpClient(withXhr()),
 
         provideRouter(routes, withComponentInputBinding()),
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -8,6 +8,7 @@ import { TranslateModule } from '@ngx-translate/core';
         TranslateModule
     ],
   templateUrl: './legal-notice.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './legal-notice.component.scss'
 })
 export class LegalNoticeComponent {

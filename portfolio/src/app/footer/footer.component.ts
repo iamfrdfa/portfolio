@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import {RouterLink, RouterLinkActive} from '@angular/router';
 
@@ -9,6 +9,7 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
     standalone: true,
     imports: [RouterLink, TranslateModule, RouterLinkActive],
     templateUrl: './footer.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
