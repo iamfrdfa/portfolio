@@ -15,9 +15,9 @@
 // $accent: if(global-variable-exists(primaryColor), $primaryColor, #3dcfb6) !default;
 
 // NEU:
-$bg: if(meta.global-variable-exists('primaryColorBG'), $primaryColorBG, #222) !default;
-$fg: if(meta.global-variable-exists('textColor'), $textColor, #e8e8e8) !default;
-$accent: if(meta.global-variable-exists('primaryColor'), $primaryColor, #3dcfb6) !default;
+$bg: if(sass(meta.global-variable-exists('primaryColorBG')): $primaryColorBG; else: #222) !default;
+$fg: if(sass(meta.global-variable-exists('textColor')): $textColor; else: #e8e8e8) !default;
+$accent: if(sass(meta.global-variable-exists('primaryColor')): $primaryColor; else: #3dcfb6) !default;
 
 $muted: #9aa0a6 !default;
 $accent-soft: rgba(61, 207, 182, 0.55) !default;
