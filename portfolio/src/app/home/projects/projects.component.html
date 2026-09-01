@@ -1,67 +1,73 @@
 <div class="projectsWrapper">
-    <div class="projectsHeading">
-        <p class="textAboveBoxGreen">{{ 'projects.kicker' | translate }}</p>
-        <h1 class="greenBoxHeadline">{{ 'projects.headline' | translate }}</h1>
-        <p>{{ 'projects.lead' | translate }}</p>
-    </div>
+  <div class="projectsHeading">
+    <p class="textAboveBoxGreen">{{ 'projects.kicker' | translate }}</p>
+    <h1 class="greenBoxHeadline">{{ 'projects.headline' | translate }}</h1>
+    <p>{{ 'projects.lead' | translate }}</p>
+  </div>
 
-    <!-- Row 1 -->
-    <div class="projectsGrid">
-        <div class="leftProjectGrid">
-            <div class="projectCard" (click)="openOverlay(0)">
-                <div class="projectGridItemLeft">
-                    <p class="projectName">{{ projects[0].name }}</p>
-                    <img src="img/icons/arrow_outward.svg" alt="arrow_outward" class="outwardArrow"/>
-                </div>
-                <div class="projectGridItemRight">
-                    <ng-container *ngFor="let t of projects[0]?.tech; let last = last">
-                        {{ ('projects.tech.' + t) | translate }} <span *ngIf="!last" class="greenPipe">|</span>
-                    </ng-container>
-                </div>
-            </div>
+  <!-- Row 1 -->
+  <div class="projectsGrid">
+    <div class="leftProjectGrid">
+      <div class="projectCard" (click)="openOverlay(0)">
+        <div class="projectGridItemLeft">
+          <p class="projectName">{{ projects[0].name }}</p>
+          <img src="img/icons/arrow_outward.svg" alt="arrow_outward" class="outwardArrow"/>
         </div>
-        <div class="rightProjectGrid thumbnail">
-            <img src="img/thumbnails/join.svg" alt="Join - Kanban Board"/>
-        </div>
+        <div class="projectGridItemRight">
+          @for (t of projects[0]?.tech; track t; let last = $last) {
+            {{ ('projects.tech.' + t) | translate }} @if (!last) {
+            <span class="greenPipe">|</span>
+          }
+        }
+      </div>
     </div>
+  </div>
+  <div class="rightProjectGrid thumbnail">
+    <img src="img/thumbnails/join.svg" alt="Join - Kanban Board"/>
+  </div>
+</div>
 
-    <!-- Row 2 -->
-    <div class="projectsGrid">
-        <div class="leftProjectGrid">
-            <div class="projectCard" (click)="openOverlay(1)">
-                <div class="projectGridItemLeft">
-                    <p class="projectName">{{ projects[1].name }}</p>
-                    <img src="img/icons/arrow_outward.svg" alt="arrow_outward" class="outwardArrow"/>
-                </div>
-                <div class="projectGridItemRight">
-                    <ng-container *ngFor="let t of projects[1]?.tech; let last = last">
-                        {{ ('projects.tech.' + t) | translate }} <span *ngIf="!last" class="greenPipe">|</span>
-                    </ng-container>
-                </div>
-            </div>
-        </div>
-        <div class="rightProjectGrid thumbnail">
-            <img src="img/thumbnails/epl.svg" alt="El Pollo Loco"/>
-        </div>
+<!-- Row 2 -->
+<div class="projectsGrid">
+  <div class="leftProjectGrid">
+    <div class="projectCard" (click)="openOverlay(1)">
+      <div class="projectGridItemLeft">
+        <p class="projectName">{{ projects[1].name }}</p>
+        <img src="img/icons/arrow_outward.svg" alt="arrow_outward" class="outwardArrow"/>
+      </div>
+      <div class="projectGridItemRight">
+        @for (t of projects[1]?.tech; track t; let last = $last) {
+          {{ ('projects.tech.' + t) | translate }} @if (!last) {
+          <span class="greenPipe">|</span>
+        }
+      }
     </div>
+  </div>
+</div>
+<div class="rightProjectGrid thumbnail">
+  <img src="img/thumbnails/epl.svg" alt="El Pollo Loco"/>
+</div>
+</div>
 
-    <!-- Row 3 -->
-    <div class="projectsGrid">
-        <div class="leftProjectGrid">
-            <div class="projectCard" (click)="openOverlay(2)">
-                <div class="projectGridItemLeft">
-                    <p class="projectName">{{ projects[2].name }}</p>
-                    <img src="img/icons/arrow_outward.svg" alt="arrow_outward" class="outwardArrow"/>
-                </div>
-                <div class="projectGridItemRight">
-                    <ng-container *ngFor="let t of projects[2]?.tech; let last = last">
-                        {{ ('projects.tech.' + t) | translate }} <span *ngIf="!last" class="greenPipe">|</span>
-                    </ng-container>
-                </div>
-            </div>
-        </div>
-        <div class="rightProjectGrid thumbnail">
-            <img src="img/thumbnails/daBubble.svg" alt="DA Bubble - Team Messenger"/>
-        </div>
+<!-- Row 3 -->
+<div class="projectsGrid">
+  <div class="leftProjectGrid">
+    <div class="projectCard" (click)="openOverlay(2)">
+      <div class="projectGridItemLeft">
+        <p class="projectName">{{ projects[2].name }}</p>
+        <img src="img/icons/arrow_outward.svg" alt="arrow_outward" class="outwardArrow"/>
+      </div>
+      <div class="projectGridItemRight">
+        @for (t of projects[2]?.tech; track t; let last = $last) {
+          {{ ('projects.tech.' + t) | translate }} @if (!last) {
+          <span class="greenPipe">|</span>
+        }
+      }
     </div>
+  </div>
+</div>
+<div class="rightProjectGrid thumbnail">
+  <img src="img/thumbnails/daBubble.svg" alt="DA Bubble - Team Messenger"/>
+</div>
+</div>
 </div>

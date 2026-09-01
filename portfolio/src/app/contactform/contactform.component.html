@@ -1,119 +1,131 @@
 <div class="contactWrapper">
-    <div class="contact-container">
-        <!-- LEFT -->
-        <div id="contact-left" class="contact-left">
-            <p class="kicker">{{ 'contact.kicker' | translate }}</p>
-            <h2 class="display" [innerHTML]="'contact.headline' | translate"></h2>
+  <div class="contact-container">
+    <!-- LEFT -->
+    <div id="contact-left" class="contact-left">
+      <p class="kicker">{{ 'contact.kicker' | translate }}</p>
+      <h2 class="display" [innerHTML]="'contact.headline' | translate"></h2>
 
-            <h3 class="subhead">{{ 'contact.subhead' | translate }}</h3>
-            <p class="lead">
-                {{ 'contact.lead' | translate }}
-            </p>
-            <p class="cta-hint">
-                {{ 'contact.ctaHint.pre' | translate }}
-                <a class="accent-link" (click)="scrollToName(nameInput)">{{ 'contact.ctaHint.link' | translate }}</a>
-            </p>
-        </div>
-
-        <!-- RIGHT -->
-        <div id="contact-right" class="contact-right">
-            <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm" novalidate>
-                <!-- Honeypot -->
-                <div class="hp-wrapper" aria-hidden="true">
-                    <label for="company">{{ 'contact.form.honeypot.label' | translate }}</label>
-                    <input id="company" name="company" [(ngModel)]="honeypot" tabindex="-1" autocomplete="off" />
-                </div>
-
-                <!-- NAME -->
-                <div class="field sep" [class.invalid]="name.invalid && (name.touched || contactForm.submitted)" [class.valid]="name.valid">
-                    <div class="prompt">{{ 'contact.form.name.prompt' | translate }}</div>
-                    <input
-                        #nameInput
-                        id="name"
-                        name="name"
-                        type="text"
-                        required
-                        minlength="2"
-                        [attr.placeholder]="'contact.form.name.placeholder' | translate"
-                        [(ngModel)]="contactData.name"
-                        (ngModelChange)="contactData.name = sanitizeName($event)"
-                        #name="ngModel"
-                        autocomplete="name"
-                    />
-                    <div class="msg" *ngIf="name.invalid && (name.touched || contactForm.submitted)">
-                        {{ 'contact.form.name.error' | translate }}
-                    </div>
-                </div>
-
-                <!-- EMAIL -->
-                <div class="field sep" [class.invalid]="email.invalid && (email.touched || contactForm.submitted)" [class.valid]="email.valid">
-                    <div class="prompt">{{ 'contact.form.email.prompt' | translate }}</div>
-                    <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        [attr.placeholder]="'contact.form.email.placeholder' | translate"
-                        [(ngModel)]="contactData.email"
-                        (ngModelChange)="contactData.email = sanitizeEmail($event)"
-                        #email="ngModel"
-                        pattern="^(?!.*\.\.)[A-Za-z0-9._%+\-]+@[A-Za-z0-9\-]+(\.[A-Za-z0-9\-]+)*\.[A-Za-z]{2,}$"
-                        autocomplete="email"
-                    />
-                    <div class="msg" *ngIf="email.invalid && (email.touched || contactForm.submitted)">
-                        {{ 'contact.form.email.error' | translate }}
-                    </div>
-                </div>
-
-                <!-- MESSAGE -->
-                <div class="field sep" [class.invalid]="message.invalid && (message.touched || contactForm.submitted)" [class.valid]="message.valid">
-                    <div class="prompt">{{ 'contact.form.message.prompt' | translate }}</div>
-                    <textarea
-                        id="message"
-                        name="message"
-                        required
-                        minlength="8"
-                        rows="4"
-                        [attr.placeholder]="'contact.form.message.placeholder' | translate"
-                        [(ngModel)]="contactData.message"
-                        #message="ngModel"
-                        (ngModelChange)="contactData.message = trimStartOnly($event)"
-                        [ngModelOptions]="{ updateOn: 'change' }"
-                    ></textarea>
-                    <div class="msg" *ngIf="message.invalid && (message.touched || contactForm.submitted)">
-                        {{ 'contact.form.message.error' | translate }}
-                    </div>
-                </div>
-
-                <!-- PRIVACY -->
-                <label class="consent sep">
-                    <input type="checkbox" name="consent" [(ngModel)]="consent" required />
-                    <span>
-                        {{ 'contact.form.consent.labelBefore' | translate }}
-                        <a href="/legal-notice" target="_blank" rel="noopener">{{ 'contact.form.consent.policy' | translate }}</a>
-                        {{ 'contact.form.consent.labelAfter' | translate }}
-                    </span>
-                </label>
-
-                <!-- FEEDBACK -->
-                <div class="feedback">
-                    <div class="ok" *ngIf="sentOk()">{{ 'contact.form.feedback.ok' | translate }}</div>
-                    <div class="err" *ngIf="sentError()">{{ sentError() || ('contact.form.feedback.errorFallback' | translate) }}</div>
-                </div>
-
-                <!-- SUBMIT -->
-                <button
-                    class="submit pill"
-                    type="submit"
-                    [disabled]="contactForm.invalid || !canSubmit() || !consent"
-                    [attr.aria-label]="'contact.form.submit.aria' | translate"
-                >
-                    {{ sending() ? '' : ('contact.form.submit.label' | translate) }}
-                    <span class="spinner" *ngIf="sending()" aria-live="polite" aria-busy="true">
-            {{ 'contact.form.submit.sending' | translate }}
-          </span>
-                </button>
-            </form>
-        </div>
+      <h3 class="subhead">{{ 'contact.subhead' | translate }}</h3>
+      <p class="lead">
+        {{ 'contact.lead' | translate }}
+      </p>
+      <p class="cta-hint">
+        {{ 'contact.ctaHint.pre' | translate }}
+        <a class="accent-link" (click)="scrollToName(nameInput)">{{ 'contact.ctaHint.link' | translate }}</a>
+      </p>
     </div>
+
+    <!-- RIGHT -->
+    <div id="contact-right" class="contact-right">
+      <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm" novalidate>
+        <!-- Honeypot -->
+        <div class="hp-wrapper" aria-hidden="true">
+          <label for="company">{{ 'contact.form.honeypot.label' | translate }}</label>
+          <input id="company" name="company" [(ngModel)]="honeypot" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <!-- NAME -->
+        <div class="field sep" [class.invalid]="name.invalid && (name.touched || contactForm.submitted)" [class.valid]="name.valid">
+          <div class="prompt">{{ 'contact.form.name.prompt' | translate }}</div>
+          <input
+            #nameInput
+            id="name"
+            name="name"
+            type="text"
+            required
+            minlength="2"
+            [attr.placeholder]="'contact.form.name.placeholder' | translate"
+            [(ngModel)]="contactData.name"
+            (ngModelChange)="contactData.name = sanitizeName($event)"
+            #name="ngModel"
+            autocomplete="name"
+            />
+          @if (name.invalid && (name.touched || contactForm.submitted)) {
+            <div class="msg">
+              {{ 'contact.form.name.error' | translate }}
+            </div>
+          }
+        </div>
+
+        <!-- EMAIL -->
+        <div class="field sep" [class.invalid]="email.invalid && (email.touched || contactForm.submitted)" [class.valid]="email.valid">
+          <div class="prompt">{{ 'contact.form.email.prompt' | translate }}</div>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            [attr.placeholder]="'contact.form.email.placeholder' | translate"
+            [(ngModel)]="contactData.email"
+            (ngModelChange)="contactData.email = sanitizeEmail($event)"
+            #email="ngModel"
+            pattern="^(?!.*\.\.)[A-Za-z0-9._%+\-]+@[A-Za-z0-9\-]+(\.[A-Za-z0-9\-]+)*\.[A-Za-z]{2,}$"
+            autocomplete="email"
+            />
+          @if (email.invalid && (email.touched || contactForm.submitted)) {
+            <div class="msg">
+              {{ 'contact.form.email.error' | translate }}
+            </div>
+          }
+        </div>
+
+        <!-- MESSAGE -->
+        <div class="field sep" [class.invalid]="message.invalid && (message.touched || contactForm.submitted)" [class.valid]="message.valid">
+          <div class="prompt">{{ 'contact.form.message.prompt' | translate }}</div>
+          <textarea
+            id="message"
+            name="message"
+            required
+            minlength="8"
+            rows="4"
+            [attr.placeholder]="'contact.form.message.placeholder' | translate"
+            [(ngModel)]="contactData.message"
+            #message="ngModel"
+            (ngModelChange)="contactData.message = trimStartOnly($event)"
+            [ngModelOptions]="{ updateOn: 'change' }"
+          ></textarea>
+          @if (message.invalid && (message.touched || contactForm.submitted)) {
+            <div class="msg">
+              {{ 'contact.form.message.error' | translate }}
+            </div>
+          }
+        </div>
+
+        <!-- PRIVACY -->
+        <label class="consent sep">
+          <input type="checkbox" name="consent" [(ngModel)]="consent" required />
+          <span>
+            {{ 'contact.form.consent.labelBefore' | translate }}
+            <a href="/legal-notice" target="_blank" rel="noopener">{{ 'contact.form.consent.policy' | translate }}</a>
+            {{ 'contact.form.consent.labelAfter' | translate }}
+          </span>
+        </label>
+
+        <!-- FEEDBACK -->
+        <div class="feedback">
+          @if (sentOk()) {
+            <div class="ok">{{ 'contact.form.feedback.ok' | translate }}</div>
+          }
+          @if (sentError()) {
+            <div class="err">{{ sentError() || ('contact.form.feedback.errorFallback' | translate) }}</div>
+          }
+        </div>
+
+        <!-- SUBMIT -->
+        <button
+          class="submit pill"
+          type="submit"
+          [disabled]="contactForm.invalid || !canSubmit() || !consent"
+          [attr.aria-label]="'contact.form.submit.aria' | translate"
+          >
+          {{ sending() ? '' : ('contact.form.submit.label' | translate) }}
+          @if (sending()) {
+            <span class="spinner" aria-live="polite" aria-busy="true">
+              {{ 'contact.form.submit.sending' | translate }}
+            </span>
+          }
+        </button>
+      </form>
+    </div>
+  </div>
 </div>

@@ -1,11 +1,11 @@
 import { Component, computed, input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { LanguageService, LangCode } from '../../services/language.service';
 
 @Component({
     selector: 'app-language-toggle',
     standalone: true,
-    imports: [CommonModule],
+    imports: [],
     template: `
         <button
             class="lang-toggle"

@@ -9,7 +9,7 @@ import {
     SimpleChanges,
     ChangeDetectionStrategy
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { TranslateModule } from '@ngx-translate/core';
 
 type Testimonial = { quote: string; author: string; role?: string };
@@ -20,7 +20,7 @@ type Testimonial = { quote: string; author: string; role?: string };
     templateUrl: './valuation.component.html',
     styleUrls: ['./valuation.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CommonModule, TranslateModule],
+    imports: [TranslateModule],
 })
 export class ValuationComponent implements OnChanges, AfterViewInit {
     @Input() items: Testimonial[] = [];

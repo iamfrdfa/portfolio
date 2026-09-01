@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { TranslateModule } from '@ngx-translate/core';
 import { OverlayService } from '../../shared/services/overlay.service';
 
@@ -27,7 +27,7 @@ type Project = {
 @Component({
     selector: 'app-projects',
     standalone: true,
-    imports: [CommonModule, TranslateModule],
+    imports: [TranslateModule],
     templateUrl: './projects.component.html',
     styleUrl: './projects.component.scss',
 })

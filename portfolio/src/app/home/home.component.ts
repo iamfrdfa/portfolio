@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, OnDestroy, AfterViewInit, NgZone, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AboutmeComponent } from './aboutme/aboutme.component';
@@ -14,15 +14,14 @@ import { Subscription } from 'rxjs';
     selector: 'app-home',
     standalone: true,
     imports: [
-        CommonModule,
-        AboutmeComponent,
-        SkillsComponent,
-        ProjectsComponent,
-        ValuationComponent,
-        ContactformComponent,
-        TranslateModule,
-        AnimateOnScrollDirective
-    ],
+    AboutmeComponent,
+    SkillsComponent,
+    ProjectsComponent,
+    ValuationComponent,
+    ContactformComponent,
+    TranslateModule,
+    AnimateOnScrollDirective
+],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss'
 })
