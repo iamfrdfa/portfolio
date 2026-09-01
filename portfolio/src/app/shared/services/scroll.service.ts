@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { Inject, Injectable, NgZone } from '@angular/core';
+
+import { Inject, Injectable, NgZone, DOCUMENT } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, first } from 'rxjs/operators';
 
