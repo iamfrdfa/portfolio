@@ -222,7 +222,13 @@
         },
         "analytics": {
             "title": "Analytics Tools and Third-Party Tools",
-            "p1": "When visiting this website, your surfing behavior may be statistically evaluated. This is done primarily with so-called analysis programs. Detailed information on these analysis programs can be found in the following privacy policy."
+            "p1": "When visiting this website, your surfing behavior may be statistically evaluated. This is done primarily with so-called analysis programs. Detailed information on these analysis programs can be found in the following privacy policy.",
+            "cloudflare": {
+                "title": "Cloudflare Web Analytics",
+                "p1": "This website uses Cloudflare Web Analytics, a service provided by Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, USA. It records page views and technical information such as browser, operating system, device type, referring page (referrer) and loading times. No cookies are set and no information is stored on your device. No profiles of individual visitors are created.",
+                "p2": "Processing is based on Art. 6(1)(f) GDPR. Our legitimate interest lies in the statistical evaluation of the reach and technical performance of this website. Data may be transferred to the USA in the process. Cloudflare is certified under the EU-U.S. Data Privacy Framework.",
+                "p3": "Further information can be found in <a href=\"https://www.cloudflare.com/privacypolicy/\" target=\"_blank\" rel=\"noopener\">Cloudflare's privacy policy</a>."
+            }
         },
         "general": {
             "title": "2. General Notes and Mandatory Information",

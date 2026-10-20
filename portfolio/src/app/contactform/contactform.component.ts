@@ -80,7 +80,7 @@ export class ContactformComponent {
 
         this.http.post(
             this.post.endPoint,
-            this.post.body(this.contactData),
+            this.post.body({ ...this.contactData, company: this.honeypot }),
             this.post.options
         ).subscribe({
             next: () => {
