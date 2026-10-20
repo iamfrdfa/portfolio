@@ -47,6 +47,13 @@ a {
     }
 }
 
+// Link kommt per [innerHTML] aus der Übersetzung und bekommt daher
+// kein Encapsulation-Attribut. ::ng-deep, begrenzt auf .cf-link.
+.cf-link ::ng-deep a {
+    color: $primaryColor;
+    text-decoration: none;
+}
+
 .accountable {
     display: flex;
     justify-content: center;
